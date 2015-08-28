@@ -1,3 +1,37 @@
-<section class="section container-fluid">
-  <h1 class="page-header">Welcome to Youyi</h1>  
-</section>
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<div ui-content-for="title">
+    <span class="search-input">
+        <input type="text" class="form-control full-width" placeholder="请输入关键字">
+    </span>
+</div>
+<div ui-content-for="navbarAction">
+    <div class="btn sidebar-toggle">
+        <i class="fa fa-cog text-large"></i>
+    </div>
+</div>
+<div ui-content-for="backAction">
+    <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
+        <i class="fa fa-bars text-large"></i>
+    </div>
+</div>
+<div class="scrollable">
+    <div class="scrollable-header">
+        <div class="section section-condensed">
+            <div class="btn-group justified">
+                <label class="btn"><input type="radio" name="filter" class="hide" ng-model="filter.name" value="language">语言<i class="kk kk-icon kk-check"></i></label>
+                <label class="btn"><input type="radio" name="filter" class="hide" ng-model="filter.name" value="location">地点<i class="kk kk-icon kk-check"></i></label>
+                <label class="btn"><input type="radio" name="filter" class="hide" ng-model="filter.name" value="price">价格<i class="kk kk-icon kk-check"></i></label>
+                <label class="btn"><input type="radio" name="filter" class="hide" ng-model="filter.name" value="category">类型<i class="kk kk-icon kk-check"></i></label>
+            </div>
+        </div>
+    </div>
+    <div class="scrollable-content">
+        <!-- normal content -->
+        
+        <!-- hide content -->
+        <div ng-include="'language.html'" ng-if="filter.name == 'language'"></div>
+        <div ng-include="'location.html'" ng-if="filter.name == 'location'"></div>
+        <div ng-include="'price.html'" ng-if="filter.name == 'price'"></div>
+        <div ng-include="'category.html'" ng-if="filter.name == 'category'"></div>
+    </div>
+</div>

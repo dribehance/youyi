@@ -1,0 +1,18 @@
+<div class="filter-cover" ng-click="reset_filter()"></div>
+<div class="location">
+    <div class="btn-group justified">
+        <label class="btn rectangle" ng-class="{'text-primary':filter.country=='hot','bg-gray-lighter':filter.country != 'hot'}"><input type="radio" class="hide" ng-model="filter.country" name="country" value="hot">热门国家</label>
+        <label class="btn rectangle" ng-class="{'text-primary':filter.country =='other','bg-gray-lighter':filter.country !='other'}"><input type="radio" class="hide" ng-model="filter.country" name="country" value="other">其他国家</label>
+    </div>
+    <div class="list-group">
+        <a class="list-group-item">
+            <span class="list-group-item-text">中国</span>
+        </a>
+        <a class="list-group-item">
+            <span class="list-group-item-text">日本</span>
+        </a>
+        <a class="list-group-item">
+            <span class="list-group-item-text">澳大利亚</span>
+        </a>
+    </div>
+</div>

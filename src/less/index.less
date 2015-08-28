@@ -1,0 +1,155 @@
+.avatar {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    &.avatar-large {
+        width: 150px;
+        height: 150px;
+    }
+    img {
+        width: 100%;
+    }
+}
+
+.kk-input-group {
+    position: relative;
+    padding: 8px 15px;
+    margin: auto auto;
+    &.has-addon {
+        padding-left: 65px;
+    }
+    &.flat {
+        input {
+            border-left: 0;
+            border-right: 0;
+            border-top: 0;
+            border-radius: 0;
+            -webkit-border-radius: 0;
+        }
+    }
+    .addon {
+        position: absolute;
+        left: 15px;
+        width: 50px;
+        text-align: center;
+        color: @brand-primary;
+        border-right: 1px solid @brand-warning;
+        border-bottom: 1px solid @brand-warning;
+        .rectangle;
+    }
+    .input-group-addon {
+        border-color:@brand-primary;
+        .rectangle;
+    }
+    .tip {
+        position: absolute;
+        right: 15px;
+        bottom: -6px;
+    }
+    .btn[type='submit'] {
+        margin-top: 50px;
+    }
+    .btn-sms {
+        position: absolute;
+        right: 15px;
+        .rectangle;
+    }
+}
+
+.rectangle {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+.search-input {
+    display: inline-block;
+    margin: auto auto;
+    width: 230px;
+    height: 30px;
+    position: relative;
+    top: -5px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url("../images/search-input.png");
+    input {
+        position: relative;
+        top: -3px;
+        border: none;
+        background: none;
+        padding-left: 30px;
+    }
+}
+
+.language-content {
+    position: absolute;
+    top: 35px;
+    bottom: 30px;
+    width: 80%;
+    background-color: white;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.language-footer {
+    position: absolute;
+    bottom: 0;
+    height: 30px;
+    width: 80%;
+    background-color: white;
+}
+
+.location {
+    position: absolute;
+    width: 65%;
+    left: 25%;
+    top: 35px;
+    bottom: 0;
+    background-color: white;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.price {
+    position: absolute;
+    width: 65%;
+    right: 25%;
+    top: 35px;
+    background-color: white;
+}
+
+.category {
+    position: absolute;
+    width: 65%;
+    right: 1px;
+    top: 35px;
+    background-color: white;
+}
+.filter-cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.kk-select {
+    position: relative;
+    margin: 6px 15px;
+    border: 1px solid @brand-warning;
+    select {
+        border: none;
+        -webkit-appearance:none;
+    }
+    &:before {
+        font: normal normal normal 14px/1 FontAwesome;
+        content: "\f0d7";
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 32px;
+        line-height: 31px;
+        text-align: center;
+        color: @brand-warning;
+        border-left: 1px solid @brand-warning;
+    }
+}

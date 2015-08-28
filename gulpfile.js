@@ -12,7 +12,7 @@ var config = {
   cordova: true,
   less: {
     src: [
-      './src/less/app.less', './src/less/responsive.less'
+      './src/less/app.less'
     ],
     paths: [
       './src/less', './bower_components'
@@ -20,6 +20,7 @@ var config = {
   },
   vendor: {
     js: [
+      './bower_components/jquery/dist/jquery.min.js',
       './bower_components/angular/angular.js',
       './bower_components/angular-route/angular-route.js',
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js'

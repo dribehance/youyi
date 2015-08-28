@@ -1,0 +1,143 @@
+// ----------------------------text color---------------------------- //
+.text-white {
+	color: #FFFFFF;
+}
+.text-black {
+	color: @gray-base;
+}
+.text-gray {
+	color: @gray;
+}
+.text-gray-light {
+	color: @gray-light;
+}
+.text-gray-lighter {
+	color: @gray-lighter;
+}
+.text-primary {
+	color: @brand-primary;
+}
+.text-warning {
+	color: @brand-warning;
+}
+.text-danger {
+	color: @brand-danger;
+}
+.text-success {
+	color:@brand-success;
+}
+// ----------------------------text size---------------------------- //
+.text-very-large {
+	font-size: 30px;
+}
+.text-very-big {
+	font-size: 24px;
+}
+.text-large {
+	font-size: 16px;
+}
+.text-small {
+	font-size: 14px !important;
+}
+// ----------------------------text align---------------------------- //
+.text-center {
+	text-align: center;
+}
+.text-left {
+	text-align: left;
+}
+// ----------------------------text ellipsis---------------------------- //
+.text-ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.nowrap {
+	white-space: nowrap;
+}
+// ----------------------------bg   color---------------------------- //
+.bg-white {
+	background-color: white;
+}
+.bg-danger {
+	background-color: @brand-danger;
+}
+.bg-gray {
+	background-color: @gray;
+}
+.bg-gray-light {
+	background-color: @gray-light;
+}
+.bg-gray-lighter {
+	background-color: @gray-lighter;
+}
+.bg-transparent {
+	background: none;
+}
+// ----------------------------layout   ---------------------------- //
+.clearfixed {
+	&:before,&:after {
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+.block {
+	display: block;
+}
+.full-width {
+	width: 100%;
+}
+.semi-auto {
+	display: block;
+	position: relative;
+	min-height: 20px;
+	&.semi-icon-bar {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+	.semi-wide-40 {
+		width: 40px;
+	}
+	.semi-fixed-left {
+		display: block;	
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.error {
+		position: absolute;
+		color: @brand-danger;
+		top: -10px;
+		right: 53px;
+	}
+}
+// ----------------------------toast   ---------------------------- //
+.toast {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 51px;
+	bottom: 51px;
+	text-align: center;
+	z-index: 1000;
+	padding-top: 50%;
+	.loader {
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+		background-repeat: no-repeat;
+		background-image: url("../images/loader.gif");
+		background-size: 100%;
+	}
+}
+// ----------------------------error   ---------------------------- //
+.error-msg {
+	position: absolute;
+	top: 51px;
+	left: 0;
+	right: 0;
+	opacity: 0.8;
+	z-index: 100;
+}

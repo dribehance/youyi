@@ -1,0 +1,18 @@
+<div class="filter-cover" ng-click="reset_filter()"></div>
+<div class="price">
+    <div class="btn-group justified">
+        <label class="btn rectangle" ng-class="{'text-primary':filter.salary=='by_hour','bg-gray-lighter':filter.salary != 'by_hour'}"><input type="radio" class="hide" ng-model="filter.salary" name="salary" value="by_hour">按小时计算</label>
+        <label class="btn rectangle" ng-class="{'text-primary':filter.salary =='by_day','bg-gray-lighter':filter.salary != 'by_day'}"><input type="radio" class="hide" ng-model="filter.salary" name="salary" value="by_day">按天计算</label>
+    </div>
+    <div class="list-group">
+        <a class="list-group-item">
+            <span class="list-group-item-text">中国</span>
+        </a>
+        <a class="list-group-item">
+            <span class="list-group-item-text">日本</span>
+        </a>
+        <a class="list-group-item list-group-item-warning">
+            <span class="list-group-item-text">澳大利亚</span>
+        </a>
+    </div>
+</div>

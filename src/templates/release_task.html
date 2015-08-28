@@ -1,0 +1,51 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<div ui-content-for="title">发布任务</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+    <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content">
+        <form ng-submit="ajaxForm()" name="releaseForm">
+            <!-- step 1 -->
+            <div ui-state="step" ui-default="step=1" ui-if="step == '1'">
+                <div class="text-center" style="margin:50px auto 50px">
+                    <img src="../images/step_1.png" alt="">
+                </div>
+                <div class="kk-select">
+                    <select name="" id="" class="form-control block full-width rectangle text-primary" ng-init="input.from = input.options[0]" ng-model="input.from" ng-options="o for o in input.options">
+                    </select>
+                </div>
+                <div class="kk-select">
+                    <select name="" id="" class="form-control block full-width rectangle text-primary" ng-init="input.to = input.options[0]" ng-model="input.to" ng-options="o for o in input.options">
+                    </select>
+                </div>
+                <div class="text-right section bg-transparent" style="margin-top:150px">
+                    <button type="button" class="btn btn-success" ui-set="{step:2}">下一步</button>
+                </div>
+            </div>
+            <!-- step 2 -->
+            <div ui-if="step == '2'">
+                <div class="text-center" style="margin:50px auto 50px">
+                    <img src="../images/step_2.png" alt="">
+                </div>
+                <div class="clearfix">
+                    <button type="button" class="btn btn-default pull-left" ui-set="{step:1}">上一步</button>
+                    <button type="button" class="btn btn-success pull-right" ui-set="{step:3}">下一步</button>
+                </div>
+            </div>
+            <!-- step 3 -->
+            <div ui-if="step == '3'">
+                <div class="text-center" style="margin:50px auto 50px">
+                    <img src="../images/step_3.png" alt="">
+                </div>
+                <div class="clearfix">
+                    <button type="button" class="btn btn-default pull-left" ui-set="{step:2}">上一步</button>
+                    <button type="button" class="btn btn-warning pull-right" ui-set="{step:3}">确认提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

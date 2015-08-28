@@ -1,0 +1,20 @@
+// by dribehance <dribehance.kksdapp.com>
+angular.module("Youyi").controller("sidebarController",function($scope,$timeout,$rootScope,SharedState,errorServices,toastServices,localStorageService,config){
+	$scope.sidebar = {
+		current:"entrance",
+		last:""
+	};
+	$scope.prev = function() {
+		$scope.sidebar.current = $scope.sidebar.last;
+		$timeout(function(){
+			SharedState.turnOn("uiSidebarLeft")
+		},0)
+	}
+	$scope.show = function(state) {
+		$scope.sidebar.last = $scope.sidebar.current;
+		$scope.sidebar.current = state;
+		$timeout(function(){
+			SharedState.turnOn("uiSidebarLeft")
+		},0)
+	}
+})

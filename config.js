@@ -17,7 +17,7 @@ module.exports = function(config) {
    * @property config.cordova
    * @type {Boolean}
    */
-  config.cordova = true;
+  config.cordova = false;
 
 
 
@@ -41,7 +41,7 @@ module.exports = function(config) {
    * @property config.server.host
    * @type {String}
    */
-  config.server.host = '0.0.0.0';
+  config.server.host = '192.168.1.118';
 
   /**
    * The port where development server will to listen.
@@ -49,7 +49,7 @@ module.exports = function(config) {
    * @property config.server.port
    * @type {String}
    */
-  config.server.port = '8000';
+  config.server.port = '9000';
 
 
 
@@ -78,7 +78,7 @@ module.exports = function(config) {
   * The port where weinre server will to listen.
    * @type {String}
    */
-  config.weinre.httpPort = 8001;
+  config.weinre.httpPort = 9001;
 
 
 
@@ -124,7 +124,52 @@ module.exports = function(config) {
    */
 
    // config.vendor.js.push('.bower_components/mylib/mylib.js');
-
+   // by dribehance <dribehance.kksdapp.com>
+   /**
+    * [module:flow]
+    * support file upload
+    * repository:https://github.com/dribehance/ng-flow.git
+    */
+   config.vendor.js.push('./bower_components/ng-flow/dist/ng-flow-standalone.js');
+   /**
+    * [module:timer]
+    * support countdown
+    * repository:https://github.com/dribehance/angular-timer.git
+    */
+   config.vendor.js.push('./bower_components/angular-timer/dist/angular-timer.min.js');
+   config.vendor.js.push('./bower_components/humanize-duration/humanize-duration.js');
+   config.vendor.js.push('./bower_components/momentjs/moment.js');
+   /**
+    * [module:n3-pie-chart]
+    * support chart
+    * repository:https://github.com/dribehance/pie-chart.git 
+    */
+   config.vendor.js.push('./bower_components/d3/d3.min.js');
+   config.vendor.js.push('./bower_components/pie-chart/dist/pie-chart.min.js');
+   /**
+    * [module:LocalStorageModule]
+    * support localStorage
+    * repository:https://github.com/dribehance/angular-local-storage.git 
+    */
+   config.vendor.js.push('./bower_components/angular-local-storage/dist/angular-local-storage.min.js');
+   /**
+    * [lib]
+    * support carousel
+    * repository:https://github.com/dribehance/OwlCarousel.git 
+    */
+   config.vendor.js.push('./bower_components/OwlCarousel/owl-carousel/owl.carousel.min.js');
+   /**
+    * [lib]
+    * identity-card validation
+    * repository:https://github.com/dribehance/china-identity-card.git
+    */
+   config.vendor.js.push('./node_modules/china-identity-card/validate.js');
+   /**
+    * [lib]
+    * support html5 date/time/week
+    * repository:https://github.com/dribehance/date-polyfill.git 
+    */
+   config.vendor.js.push('./bower_components/date-polyfill/date-polyfill.min.js');
   /**
    * Vendor Fonts
    *
