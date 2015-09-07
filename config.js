@@ -41,7 +41,7 @@ module.exports = function(config) {
    * @property config.server.host
    * @type {String}
    */
-  config.server.host = '192.168.1.118';
+  config.server.host = 'localhost';
 
   /**
    * The port where development server will to listen.

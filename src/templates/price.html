@@ -1,5 +1,5 @@
 <div class="filter-cover" ng-click="reset_filter()"></div>
-<div class="price">
+<div class="price" style="top:{{offset_top}}">
     <div class="btn-group justified">
         <label class="btn rectangle" ng-class="{'text-primary':filter.salary=='by_hour','bg-gray-lighter':filter.salary != 'by_hour'}"><input type="radio" class="hide" ng-model="filter.salary" name="salary" value="by_hour">按小时计算</label>
         <label class="btn rectangle" ng-class="{'text-primary':filter.salary =='by_day','bg-gray-lighter':filter.salary != 'by_day'}"><input type="radio" class="hide" ng-model="filter.salary" name="salary" value="by_day">按天计算</label>

@@ -13,8 +13,5 @@ angular.module("Youyi").controller("sidebarController",function($scope,$timeout,
 	$scope.show = function(state) {
 		$scope.sidebar.last = $scope.sidebar.current;
 		$scope.sidebar.current = state;
-		$timeout(function(){
-			SharedState.turnOn("uiSidebarLeft")
-		},0)
 	}
 })

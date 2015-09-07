@@ -1,4 +1,4 @@
-<div class="scrollable" ng-if="sidebar.current=='entrance'">
+<div class="scrollable" ng-show="sidebar.current=='entrance'">
     <div class="scrollable-content">
         <div class="text-center">
             <img ng-src="../images/logo_signin.png" alt="">
@@ -35,7 +35,7 @@
     </div>
 </div>
 <!-- signin section -->
-<div class="scrollable" ng-if="sidebar.current=='signin'">
+<div class="scrollable" ng-show="sidebar.current=='signin'">
     <div class="scrollable-content">
         <div ng-click="prev()" ng-show="sidebar.last != ''" class="section text-primary" style="position:absolute;">返回</div>
         <div class="text-center">
@@ -57,7 +57,7 @@
     </div>
 </div>
 <!-- signup section -->
-<div class="scrollable" ng-if="sidebar.current=='signup'">
+<div class="scrollable" ng-show="sidebar.current=='signup'">
     <div class="scrollable-content">
         <div ng-click="prev()" ng-show="sidebar.last != ''" class="section text-primary" style="position:absolute;">返回</div>
         <div class="text-center">
@@ -89,7 +89,7 @@
     </div>
 </div>
 <!-- signup email section -->
-<div class="scrollable" ng-if="sidebar.current=='signup_email'">
+<div class="scrollable" ng-show="sidebar.current=='signup_email'">
     <div class="scrollable-content">
         <div ng-click="prev()" ng-show="sidebar.last != ''" class="section text-primary" style="position:absolute;">返回</div>
         <div class="text-center">
@@ -115,7 +115,7 @@
         </form>
     </div>
 </div>
-<div class="scrollable" ng-if="siderbar == 'login'">
+<div class="scrollable" ng-show="siderbar == 'login'">
     <div class="scrollable-header bg-gray-lighter text-center">
         <div class="avatar avatar-large">
             <img ng-src="../images/avatar_1.png" alt="">
