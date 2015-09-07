@@ -17,11 +17,13 @@ angular.module("Youyi").factory("appServices", function($rootScope, $window,$loc
     }
     var navBarHandler = function(e, currentRoute, prevRoute) {
         // handle navbar
-        var off_bottom = $location.path().indexOf("/index") != -1 ||
-                         $location.path().indexOf("/release_task") != -1 ||
-                         $location.path().indexOf("/tasks") != -1 ||
-                         $location.path().indexOf("/translators") != -1;
-        if (off_bottom) {
+        var path = $location.path();
+        $rootScope.navbar.bottom = true;
+        var off_bottom = path.indexOf("/index") != -1 ||
+                         path.indexOf("/release_task") != -1 ||
+                         (path.indexOf("/tasks") != -1 && path.indexOf("/tasks/") == -1) ||
+                         path.indexOf("/translators") != -1;
+        if (!off_bottom) {
             // SharedState.turnOff("navbarTop");
             $rootScope.navbar.bottom = false;
         } else {
@@ -46,7 +48,7 @@ angular.module("Youyi").factory("appServices", function($rootScope, $window,$loc
             // init navbar 
             $rootScope.navbar = {
                 top: true,
-                bottom: false
+                bottom: true
             };
             // backaction
             $rootScope.back = function() {
