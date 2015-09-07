@@ -13,7 +13,7 @@
     <script src="js/app.min.js"></script>
 </head>
 
-<body ng-app="Youyi">
+<body ng-app="Youyi" ng-class="{'off-top':!navbar.top,'off-bottom':!navbar.bottom}">
     <!-- Sidebars -->
     <div ng-include="'sidebar.html'" ui-track-as-search-param='true' class="sidebar sidebar-left" ng-controller="sidebarController"></div>
     <div class="app">

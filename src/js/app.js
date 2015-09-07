@@ -25,6 +25,11 @@ angular.module("Youyi", [
             reloadOnSearch: false,
             controller: tasksController
         })
+        .when("/tasks/:task_id", {
+            templateUrl: "task.html",
+            reloadOnSearch: false,
+            controller: taskController
+        })
         .when("/translators", {
             templateUrl: "translators.html",
             reloadOnSearch: false,
