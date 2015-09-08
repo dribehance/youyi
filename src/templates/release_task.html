@@ -31,7 +31,146 @@
                 <div class="text-center" style="margin:50px auto 50px">
                     <img src="../images/step_2.png" alt="">
                 </div>
-                <div class="clearfix">
+                <div class="section ">
+                    <div class="semi-auto semi-left-40">
+                        <div class="semi-fixed-left">
+                            <span class="btn section-wide">
+                                <i class="kk kk-30 kk-calendar"></i>
+                            </span>
+                        </div>
+                        <!-- begin -->
+                        <div class="semi-auto semi-left-80">
+                            <div class="semi-fixed-left text-center semi-wide-80">
+                                <span class="btn section-wide text-ellipsis">开始时间</span>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-xs-7 section-wide">
+                                        <input type="date" class="youyi-date form-control col-xs-8" value="2015-03-04">
+                                    </div>
+                                    <div class="col-xs-5 section-wide">
+                                        <input type="time" class="youyi-time form-control col-xs-4" value="12:00">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end -->
+                        <div class="semi-auto semi-left-80">
+                            <div class="semi-fixed-left text-center semi-wide-80">
+                                <span class="btn section-wide text-ellipsis">结束时间</span>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-xs-7 section-wide">
+                                        <input type="date" class="youyi-date form-control col-xs-8" value="2015-03-04">
+                                    </div>
+                                    <div class="col-xs-5 section-wide">
+                                        <input type="time" class="youyi-time form-control col-xs-4" value="12:00">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kk-line kk-5 kk-horizon"></div>
+                <div class="section">
+                    <div class="semi-auto semi-icon-bar">
+                        <div class="semi-fixed-left semi-wide-40">
+                            <div class="section section-wide">
+                                标题
+                            </div>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control youyi-flat-input text-right" ng-model="input.title" placeholder="请输入标题">
+                        </div>
+                        <div class="semi-fixed-right semi-wide-40">
+                            <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kk-line kk-horizon"></div>
+                <div class="section">
+                    <div class="semi-auto semi-left-40">
+                        <div class="semi-fixed-left semi-wide-40">
+                            <div class="section section-wide">
+                                类型
+                            </div>
+                        </div>
+                        <div class="btn-group justified">
+                            <label class="btn rectangle" ng-class="{'text-primary':input.category =='business','bg-gray-lighter':input.category  != 'business'}">
+                                <input type="radio" class="hide" ng-model="input.category " name="country" value="business">商务</label>
+                            <label class="btn rectangle" ng-class="{'text-primary':input.category  =='travel','bg-gray-lighter':input.category  !='travel'}">
+                                <input type="radio" class="hide" ng-model="input.category " name="country" value="travel">旅行</label>
+                            <label class="btn rectangle" ng-class="{'text-primary':input.category  =='other','bg-gray-lighter':input.category  !='other'}">
+                                <input type="radio" class="hide" ng-model="input.category " name="country" value="other">其他</label>
+                        </div>
+                        <div class="section section-wide" ng-show="input.category  =='other'">
+                            <input type="text" class="form-control rectangle">
+                        </div>
+                    </div>
+                </div>
+                <div class="kk-line kk-5 kk-horizon"></div>
+                <div class="section">
+                    <div class="semi-auto semi-left-40">
+                        <div class="semi-fixed-left semi-wide-40">
+                            <div class="section section-wide">
+                                价格
+                            </div>
+                        </div>
+                        <div class="semi-auto semi-icon-bar">
+                            <span class="semi-fixed-left semi-wide-40 text-center">
+                                <i class="kk kk-25 kk-checked" ng-class="{'active':input.price.by_day !=''}"></i>
+                            </span>
+                            <input type="text" class="form-control rectangle youyi-flat-input text-right" ng-model="input.price.by_day" placeholder="请填写">
+                            <span class="semi-fixed-right semi-wide-40 text-center">
+                                <span class="btn">/天</span>
+                            </span>
+                        </div>
+                        <div class="section"></div>
+                        <div class="semi-auto semi-icon-bar">
+                            <span class="semi-fixed-left semi-wide-40 text-center">
+                                <i class="kk kk-25 kk-checked" ng-class="{'active':input.price.by_hour !=''}"></i>
+                            </span>
+                            <input type="text" class="form-control rectangle youyi-flat-input text-right" ng-model="input.price.by_hour" placeholder="请填写">
+                            <span class="semi-fixed-right semi-wide-40 text-center">
+                                <span class="btn">/小时</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kk-line kk-horizon"></div>
+                <div class="section">
+                    <div class="semi-auto semi-icon-bar">
+                        <div class="semi-fixed-left semi-wide-40">
+                            <div class="section section-wide">
+                                地点
+                            </div>
+                        </div>
+                        <div class="section text-right">
+                            请选择
+                        </div>
+                        <div class="semi-fixed-right semi-wide-40">
+                            <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kk-line kk-5 kk-horizon"></div>
+                <div class="section">
+                    <div class="semi-auto semi-icon-bar">
+                        <div class="semi-fixed-left">
+                            <div class="section section-wide">
+                                任务详情
+                            </div>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control youyi-flat-input text-right" ng-model="input.address" placeholder="请填写">
+                        </div>
+                        <div class="semi-fixed-right semi-wide-40">
+                            <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section bg-transparent">
                     <button type="button" class="btn btn-default pull-left" ui-set="{step:1}">上一步</button>
                     <button type="button" class="btn btn-success pull-right" ui-set="{step:3}">下一步</button>
                 </div>
@@ -41,7 +180,86 @@
                 <div class="text-center" style="margin:50px auto 50px">
                     <img src="../images/step_3.png" alt="">
                 </div>
-                <div class="clearfix">
+                <div class="task-section">
+                    <div class="section" style="padding-bottom:0">
+                        <div class="semi-auto semi-left-80" style="min-height:80px">
+                            <div class="semi-fixed-left text-center">
+                                <img src="../images/avatar.png" width="70px" alt="">
+                            </div>
+                            <div style="padding-bottom:8px;">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eaque repellendus harum maxime nulla reprehenderit quibusdam. Doloribus provident explicabo culpa nihil, repellendus iure saepe nisi quisquam dolorum, velit quod officiis!
+                            </div>
+                            <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                        </div>
+                    </div>
+                    <div class="section" style="padding-bottom:0">
+                        <div class="semi-auto semi-left-80">
+                            <div class="semi-fixed-left text-center">
+                                语言：
+                            </div>
+                            <div style="padding-bottom:8px;">
+                                中文/英文
+                            </div>
+                            <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="semi-auto semi-left-80">
+                            <div class="semi-fixed-left text-center">
+                                日期：
+                            </div>
+                            <div style="padding-bottom:8px;">
+                                <p>2015-06-21 12:00 至</p>
+                                2015-06-23 18:00
+                            </div>
+                            <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                        </div>
+                    </div>
+                    <div class="section" style="padding-bottom:0">
+                        <div class="semi-auto semi-left-80">
+                            <div class="semi-fixed-left text-center">
+                                类型：
+                            </div>
+                            <div style="padding-bottom:8px;">
+                                商务
+                            </div>
+                            <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                        </div>
+                    </div>
+                    <div class="section" style="padding-bottom:0">
+                        <div class="semi-auto semi-left-80">
+                            <div class="semi-fixed-left text-center">
+                                价格：
+                            </div>
+                            <div style="padding-bottom:8px;">
+                                400/天 或 100/小时
+                            </div>
+                            <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                        </div>
+                    </div>
+                    <div class="section" style="padding-bottom:0">
+                        <div class="semi-auto semi-left-80">
+                            <div class="semi-fixed-left text-center">
+                                地点：
+                            </div>
+                            <div style="padding-bottom:8px;">
+                                日本，东京
+                            </div>
+                            <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                        </div>
+                    </div>
+                    <div class="section" style="padding-bottom:0">
+                        <div class="semi-auto semi-left-80">
+                            <div class="semi-fixed-left text-center">
+                                任务详情：
+                            </div>
+                            <div style="padding-bottom:8px;">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae doloremque repellendus laboriosam blanditiis in sit, non, dignissimos natus! Aut laboriosam a nihil quaerat recusandae illo odit eos saepe quibusdam voluptatibus!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section bg-transparent">
                     <button type="button" class="btn btn-default pull-left" ui-set="{step:2}">上一步</button>
                     <button type="button" class="btn btn-warning pull-right" ui-set="{step:3}">确认提交</button>
                 </div>

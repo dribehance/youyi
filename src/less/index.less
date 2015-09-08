@@ -38,7 +38,7 @@
         .rectangle;
     }
     .input-group-addon {
-        border-color:@brand-primary;
+        border-color: @brand-primary;
         .rectangle;
     }
     .tip {
@@ -54,6 +54,15 @@
         right: 15px;
         .rectangle;
     }
+}
+
+.youyi-flat-input {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-radius: 0;
+    -webkit-border-radius: 0;
 }
 
 .rectangle {
@@ -100,8 +109,8 @@
 
 .location {
     position: absolute;
-    width: 65%;
-    left: 25%;
+    right: 0;
+    width: 80%;
     top: 0px;
     bottom: 0;
     background-color: white;
@@ -111,33 +120,37 @@
 
 .price {
     position: absolute;
-    width: 65%;
-    right: 25%;
+    right: 0;
+    width: 80%;
     top: 0px;
     background-color: white;
 }
 
 .category {
     position: absolute;
-    width: 65%;
+    width: 80%;
     right: 1px;
     top: 0px;
     background-color: white;
 }
+
 .filter-cover {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
+    background-color: @gray-lighter;
+    background-color: fade(@gray-lighter, 50%);
 }
+
 .kk-select {
     position: relative;
     margin: 6px 15px;
     border: 1px solid @brand-warning;
     select {
         border: none;
-        -webkit-appearance:none;
+        -webkit-appearance: none;
     }
     &:before {
         font: normal normal normal 14px/1 FontAwesome;
@@ -153,6 +166,7 @@
         border-left: 1px solid @brand-warning;
     }
 }
+
 // margin section
 .task-section {
     display: block;
@@ -164,4 +178,37 @@
     -webkit-border-radius: 5px;
     overflow: hidden;
     color: @gray;
+}
+
+.youyi-date,
+.youyi-time {
+    border: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    -webikt-border-radius: 0;
+}
+
+.youyi-date {
+    // width: 100px;
+    border-bottom: 1px solid @gray-lighter;
+    border-right: 1px solid @gray-lighter;
+}
+
+.youyi-time {
+    // width: 50px;
+    border-bottom: 1px solid @gray-lighter;
+}
+.country {
+    .country-header {
+        padding: 5px 8px;
+        background-color: @gray-light;
+        color: white;
+    }
+    .btn {
+        border-left: 0;
+        border-top: 0;
+    }
+    .btn:nth-child(3n) {
+        border-right: 0;
+    }
 }

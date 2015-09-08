@@ -26,13 +26,13 @@
         <div class="section section-condensed" id="filter">
             <div class="btn-group justified">
                 <label class="btn">
-                    <input type="radio" name="filter" class="hide" ng-model="filter.name" value="language">语言<i class="kk kk-icon kk-check"></i></label>
+                    <input type="radio" name="filter" class="hide" ng-model="filter.name" value="language">语言<i class="kk kk-icon" ng-class="{'kk-check':choosen.languages.length == 2}"></i></label>
                 <label class="btn">
-                    <input type="radio" name="filter" class="hide" ng-model="filter.name" value="location">地点<i class="kk kk-icon kk-check"></i></label>
+                    <input type="radio" name="filter" class="hide" ng-model="filter.name" value="location">地点<i class="kk kk-icon" ng-class="{'kk-check':choosen.city.name != ''}"></i></label>
                 <label class="btn">
-                    <input type="radio" name="filter" class="hide" ng-model="filter.name" value="price">价格<i class="kk kk-icon kk-check"></i></label>
+                    <input type="radio" name="filter" class="hide" ng-model="filter.name" value="price">价格<i class="kk kk-icon" ng-class="{'kk-check':choosen.price.name != ''}"></i></label>
                 <label class="btn">
-                    <input type="radio" name="filter" class="hide" ng-model="filter.name" value="category">类型<i class="kk kk-icon kk-check"></i></label>
+                    <input type="radio" name="filter" class="hide" ng-model="filter.name" value="category">类型<i class="kk kk-icon" ng-class="{'kk-check':choosen.category.name != ''}"></i></label>
             </div>
         </div>
     </div>

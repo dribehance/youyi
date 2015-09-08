@@ -1,47 +1,14 @@
 <div class="filter-cover" ng-click="reset_filter()"></div>
 <div class="language-content" style="top:{{offset_top}}">
     <div class="list-group">
-        <a class="list-group-item">
-            <span class="list-group-item-text">阿拉伯文</span>
-        </a>
-        <a class="list-group-item">
-            <span class="list-group-item-text">保加利亚文</span>
-        </a>
-        <a class="list-group-item">
-            <span class="list-group-item-text">冰岛文</span>
-        </a>
-        <a class="list-group-item">
-            <span class="list-group-item-text">丹麦文</span>
-        </a>
-        <a class="list-group-item list-group-item-warning">
-            <span class="list-group-item-text">阿拉伯文</span>
-        </a>
-        <a class="list-group-item">
-            <span class="list-group-item-text">保加利亚文</span>
-        </a>
-        <a class="list-group-item">
-            <span class="list-group-item-text">冰岛文</span>
-        </a>
-        <a class="list-group-item">
-            <span class="list-group-item-text">丹麦文</span>
-        </a>
-        <a class="list-group-item list-group-item-warning">
-            <span class="list-group-item-text">阿拉伯文</span>
-        </a>
-        <a class="list-group-item">
-            <span class="list-group-item-text">保加利亚文</span>
-        </a>
-        <a class="list-group-item">
-            <span class="list-group-item-text">冰岛文</span>
-        </a>
-        <a class="list-group-item">
-            <span class="list-group-item-text">丹麦文</span>
+        <a class="list-group-item" ng-repeat="language in languages" ng-click="toggle_language(language)" ng-class="{'list-group-item-warning':language.checked}">
+            <span class="list-group-item-text">{{language.name}}</span>
         </a>
     </div>
 </div>
 <div class="language-footer">
     <div class="btn-group justified">
-        <span class="btn bg-gray-lighter text-primary rectangle">重置</span>
-        <span class="btn btn-warning rectangle">确定</span>
+        <span class="btn bg-gray-lighter text-primary rectangle" ng-click="reset_language()">重置</span>
+        <span class="btn btn-warning rectangle" ng-click="choose_language()">确定</span>
     </div>
 </div>
