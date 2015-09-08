@@ -35,6 +35,11 @@ angular.module("Youyi", [
             reloadOnSearch: false,
             controller: translatorsController
         })
+        .when("/translators/:translator_id", {
+            templateUrl: "translator.html",
+            reloadOnSearch: false,
+            controller: translatorController
+        })
         // .when("/me", {
 		//     templateUrl: "me.html",
 		//     reloadOnSearch: false,

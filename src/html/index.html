@@ -55,6 +55,8 @@
         <div class="toast" ui-state="toast_state" ui-if="toast_state">
             <span class="loader"></span>
         </div>
+        <!-- cover -->
+        <div ng-include="'cover.html'" ng-if="cover.show"></div>
     </div>
     <!-- ~ .app -->
     <div ui-yield-to="modals"></div>

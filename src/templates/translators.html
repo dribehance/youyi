@@ -1,5 +1,9 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">悠译人</div>
+<div ui-content-for="title">
+    <span class="search-input">
+        <input type="text" class="form-control full-width" placeholder="请输入关键字">
+    </span>
+</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
     <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
@@ -8,6 +12,14 @@
 </div>
 <div class="scrollable">
 	<div class="scrollable-content">
-		悠译人		
+		<a ng-href="#/translators/translator_id" class="translator" ng-repeat="translator in translators track by $index">
+			<imageview data-rate="750/422" src="translator.image"></imageview>
+			<span class="translator-intro">
+				<span class="h3 block">刘畅Leila</span>
+				<span class="block">英文/泰文/中文</span>
+				<span class="block">长居住地：曼谷</span>
+				<span class="block text-ellipsis">一句话简介</span>
+			</span>
+		</a>		
 	</div>
 </div>

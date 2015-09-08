@@ -22,7 +22,7 @@ angular.module("Youyi").factory("appServices", function($rootScope, $window,$loc
         var off_bottom = path.indexOf("/index") != -1 ||
                          path.indexOf("/release_task") != -1 ||
                          (path.indexOf("/tasks") != -1 && path.indexOf("/tasks/") == -1) ||
-                         path.indexOf("/translators") != -1;
+                         (path.indexOf("/translators") != -1 && path.indexOf("/translators/") == -1);
         if (!off_bottom) {
             // SharedState.turnOff("navbarTop");
             $rootScope.navbar.bottom = false;
@@ -50,6 +50,10 @@ angular.module("Youyi").factory("appServices", function($rootScope, $window,$loc
                 top: true,
                 bottom: true
             };
+            // global cover
+            $rootScope.cover = {
+                show:false,
+            }
             // backaction
             $rootScope.back = function() {
                 $window.history.back();
