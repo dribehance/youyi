@@ -14,8 +14,12 @@ angular.module("Youyi").directive('banner', function() {
             var style = {
                 width:$(element).width() || $(window).width(),
                 height:($(element).width() || $(window).width())/rate,
+                "line-height": ($(element).width() || $(window).width())/rate,
                 overflow:"hidden",
-                "background":"url('../images/banner.png') no-repeat center center"
+                "text-align":"center",
+                "background-image":"url('../images/banner.png')",
+                "background-repeat":"no-repeat",
+                "background-position":"center center"
             }
             options = angular.extend({},options,scope.$eval($(element).attr('data-options')));
             scope.$on('repeat_done', function() {
