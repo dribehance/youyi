@@ -1,6 +1,10 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
 <div ui-content-for="title">发布任务</div>
-<div ui-content-for="navbarAction"></div>
+<div ui-content-for="navbarAction">
+    <div class="btn sidebar-toggle">
+        <i class="fa fa-cog text-large"></i>
+    </div>
+</div>
 <div ui-content-for="backAction">
     <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
         <i class="fa fa-bars"></i>
@@ -124,16 +128,6 @@
                             <input type="text" class="form-control rectangle youyi-flat-input text-right" ng-model="input.price.by_day" placeholder="请填写">
                             <span class="semi-fixed-right semi-wide-40 text-center">
                                 <span class="btn">/天</span>
-                            </span>
-                        </div>
-                        <div class="section"></div>
-                        <div class="semi-auto semi-icon-bar">
-                            <span class="semi-fixed-left semi-wide-40 text-center">
-                                <i class="kk kk-25 kk-checked" ng-class="{'active':input.price.by_hour !=''}"></i>
-                            </span>
-                            <input type="text" class="form-control rectangle youyi-flat-input text-right" ng-model="input.price.by_hour" placeholder="请填写">
-                            <span class="semi-fixed-right semi-wide-40 text-center">
-                                <span class="btn">/小时</span>
                             </span>
                         </div>
                     </div>

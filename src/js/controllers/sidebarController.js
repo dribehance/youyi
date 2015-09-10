@@ -1,7 +1,7 @@
 // by dribehance <dribehance.kksdapp.com>
 angular.module("Youyi").controller("sidebarController",function($scope,$timeout,$rootScope,SharedState,errorServices,toastServices,localStorageService,config){
 	$scope.sidebar = {
-		current:"entrance",
+		current:"login",
 		last:""
 	};
 	$scope.prev = function() {

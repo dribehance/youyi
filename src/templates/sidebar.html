@@ -115,7 +115,7 @@
         </form>
     </div>
 </div>
-<div class="scrollable" ng-show="siderbar == 'login'">
+<div class="scrollable" ng-show="sidebar.current == 'login'">
     <div class="scrollable-header bg-gray-lighter text-center">
         <div class="avatar avatar-large">
             <img ng-src="../images/avatar_1.png" alt="">
@@ -127,23 +127,33 @@
     <div class="scrollable-content">
         <div class="list-group" ui-turn-off='uiSidebarLeft'>
             <a class="list-group-item" href="#/release_task">
-                <i class="kk kk-icon kk-tab-2 pull-left"></i>
+                <i class="kk kk-icon kk-sidebar-1 pull-left"></i>
                 <span class="list-group-item-text">发布任务</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
             <a class="list-group-item" href="#/tasks">
-                <i class="kk kk-icon kk-tab-3 pull-left"></i>
+                <i class="kk kk-icon kk-sidebar-2 pull-left"></i>
                 <span class="list-group-item-text">任务清单</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
             <a class="list-group-item" href="#/">
-                <i class="kk kk-icon kk-tab-4 pull-left"></i>
+                <i class="kk kk-icon kk-sidebar-3 pull-left"></i>
                 <span class="list-group-item-text">成为翻译</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
             <a class="list-group-item" href="#/">
-                <i class="kk kk-icon kk-tab-2 pull-left"></i>
+                <i class="kk kk-icon kk-sidebar-4 pull-left"></i>
                 <span class="list-group-item-text">我的收藏</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </a>
+            <a class="list-group-item" href="#/">
+                <i class="kk kk-icon kk-sidebar-5 pull-left"></i>
+                <span class="list-group-item-text">我的钱包</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </a>
+            <a class="list-group-item" href="#/">
+                <i class="kk kk-icon kk-sidebar-6 pull-left"></i>
+                <span class="list-group-item-text">我的消息</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
         </div>

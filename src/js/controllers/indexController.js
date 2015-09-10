@@ -162,7 +162,6 @@ var indexController = function($scope, $rootScope, errorServices, toastServices,
         if (n === undefined || o === undefined) {
             return;
         }
-        console.log(n)
         $scope.filter.name ="";
     })
 }

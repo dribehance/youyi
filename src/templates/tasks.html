@@ -1,6 +1,10 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
 <div ui-content-for="title">任务清单</div>
-<div ui-content-for="navbarAction"></div>
+<div ui-content-for="navbarAction">
+    <div class="btn sidebar-toggle">
+        <i class="fa fa-cog text-large"></i>
+    </div>
+</div>
 <div ui-content-for="backAction">
     <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
         <i class="fa fa-bars"></i>
@@ -50,7 +54,9 @@
                 </div>
             </div>
             <div class="section">
-                <img src="../images/avatar.png" width="20px" alt="">张三
+                <a ng-href="#/applicants" class="block text-gray">
+                    <img src="../images/avatar.png" width="20px" alt="">张三
+                </a>
             </div>
         </div>
         <div class="task-section">
@@ -87,7 +93,9 @@
                 </div>
             </div>
             <div class="section">
-                <img src="../images/avatar.png" width="20px" alt="">张三
+                <a ng-href="#/applicants" class="block text-gray">
+                    <img src="../images/avatar.png" width="20px" alt="">张三
+                </a>
             </div>
         </div>
         <div class="task-section">
@@ -124,7 +132,9 @@
                 </div>
             </div>
             <div class="section">
-                <img src="../images/avatar.png" width="20px" alt="">张三
+                <a ng-href="#/applicants" class="block text-gray">
+                    <img src="../images/avatar.png" width="20px" alt="">张三
+                </a>
             </div>
         </div>
     </div>
