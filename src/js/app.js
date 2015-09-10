@@ -50,14 +50,42 @@ angular.module("Youyi", [
             reloadOnSearch: false,
             controller: recommandsController
         })
-        // .when("/me", {
-		//     templateUrl: "me.html",
-		//     reloadOnSearch: false,
-		//     controller: meController,
-		//     resolve: {
-		//         factory:loginInterceptor
-		//     }
-		// })
+        .when("/me", {
+		    templateUrl: "me.html",
+		    reloadOnSearch: false,
+		    controller: meController,
+		    // resolve: {
+		    //     factory:loginInterceptor
+		    // }
+		})
+        .when("/me_info", {
+            templateUrl: "me_info.html",
+            reloadOnSearch: false,
+            controller: meInfoController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/authen_name/", {
+            templateUrl: "authen_name.html",
+            reloadOnSearch: false,
+            controller: authenNameController
+        })
+        .when("/authen_language/", {
+            templateUrl: "authen_language.html",
+            reloadOnSearch: false,
+            controller: authenLanguageController
+        })
+        .when("/authen_industry/", {
+            templateUrl: "authen_industry.html",
+            reloadOnSearch: false,
+            controller: authenIndustryController
+        })
+        .when("/authen_member/", {
+            templateUrl: "authen_member.html",
+            reloadOnSearch: false,
+            controller: authenMemberController
+        })
 		// .when("/signin", {
 		//     templateUrl: "signin.html",
 		//     reloadOnSearch: false,
