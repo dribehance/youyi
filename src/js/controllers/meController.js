@@ -14,14 +14,15 @@ var meController = function($scope, errorServices, toastServices, localStorageSe
         }, {
             name: "英语",
             level: "流利"
-        }]
+        }],
+        translate_types:[]
     };
     $scope.removeLanguage = function(language) {
-            $scope.user.languages = $scope.user.languages.filter(function(lang) {
-                return (lang.name != language.name || lang.level != language.level);
-            })
-        }
-        // language picker
+        $scope.user.languages = $scope.user.languages.filter(function(lang) {
+            return (lang.name != language.name || lang.level != language.level);
+        })
+    };
+    // language picker
     $scope.choosen_language = {
         name: "",
         level: ""
@@ -40,5 +41,45 @@ var meController = function($scope, errorServices, toastServices, localStorageSe
             level: ""
         }
 
+    };
+    // translate type picker
+    $scope.input = {};
+    $scope.input.choosen_translate_type = {
+    	index:"",
+        name: "",
+        skills:[{
+        	name:"",
+        	selected:false
+        }]
+    }
+    $scope.translate_types = [{
+        name: "旅行",
+        skills: [{
+            name: "美食",
+            selected: false
+        },{
+            name: "饮食",
+            selected: false
+        },{
+            name: "服装",
+            selected: false
+        },{
+            name: "纺织",
+            selected: false
+        }]
+    }, {
+        name: "商务",
+        skills: [{
+            name: "流利",
+            selected: false
+        }]
+    }];
+    $scope.toggleSkill = function(skill) {
+    	return skill.selected = !skill.selected;
+    }
+    $scope.pickTranslateType = function () {
+    	$scope.input.choosen_translate_type.skills = $scope.translate_types[$scope.input.choosen_translate_type.index].skills.filter(function(skill){
+    		return skill.selected;
+    	})
     }
 }

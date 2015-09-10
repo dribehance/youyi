@@ -41,6 +41,12 @@
                 <i class="fa fa-plus-circle text-primary"></i> 添加类型
             </div>
             <div class="picker" ui-state="single_picker" ui-show="single_picker" ui-outer-click="Ui.turnOff('single_picker')" ui-outer-click-if="Ui.active('single_picker')">
+                <div class="picker-header">
+                    <div class="btn-group justified text-primary">
+                        <span class="btn">语言</span>
+                        <span class="btn">语言程度</span>
+                    </div>
+                </div>
                 <div class="picker-left picker-column">
                     <div class="list-group">
                         <label class="list-group-item block" ng-repeat="language in languages.name" ng-class="{'selected':choosen_language.name == language}">
@@ -79,8 +85,34 @@
                     </span>
                 </div>
             </div>
-            <div class="list-group-item">
+            <div class="list-group-item" ui-turn-on="multiple_picker" ui-show="!multiple_picker">
                 <i class="fa fa-plus-circle text-primary"></i> 添加类型
+            </div>
+            <div class="picker" ui-state="multiple_picker" ui-show="multiple_picker" ui-outer-click="Ui.turnOff('multiple_picker')" ui-outer-click-if="Ui.active('multiple_picker')">
+                <div class="picker-header">
+                    <div class="btn-group justified text-primary">
+                        <span class="btn">翻译类型</span>
+                        <span class="btn">擅长领域</span>
+                    </div>
+                </div>
+                <div class="picker-left picker-column">
+                    <div class="list-group">
+                        <label class="list-group-item block" ng-repeat="translate_type in translate_types track by $index" ng-class="{'selected':input.choosen_translate_type.name == translate_type.name}">
+                            {{ translate_type.name }}
+                            <input type="radio" class="hidden" ng-model="input.choosen_translate_type" ng-value="{'name':translate_type.name,'index':$index}" />
+                        </label>
+                    </div>
+                </div>
+                <div class="picker-right picker-column">
+                    <div class="list-group">
+                        <label class="list-group-item block" ng-repeat="skill in translate_types[input.choosen_translate_type.index].skills track by $index" ng-class="{'selected':skill.selected}" ng-click="toggleSkill(skill)">
+                            {{ skill.name }}
+                        </label>
+                    </div>
+                </div>
+                <div class="picker-footer">
+                    <span class="block text-center" ng-click="pickTranslateType()" ui-turn-off="multiple_picker">确定</span>
+                </div>
             </div>
         </div>
         <!-- 个人认证 -->
