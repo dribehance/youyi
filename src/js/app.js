@@ -40,6 +40,16 @@ angular.module("Youyi", [
             reloadOnSearch: false,
             controller: translatorController
         })
+        .when("/applicants/", {
+            templateUrl: "applicants.html",
+            reloadOnSearch: false,
+            controller: applicantsController
+        })
+        .when("/recommands/", {
+            templateUrl: "recommands.html",
+            reloadOnSearch: false,
+            controller: recommandsController
+        })
         // .when("/me", {
 		//     templateUrl: "me.html",
 		//     reloadOnSearch: false,
