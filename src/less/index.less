@@ -317,3 +317,36 @@
         border: 3px solid white;
     }
 }
+.picker {
+    position: relative;
+    margin: 8px;
+    overflow: hidden;
+    background-color: white;
+    .picker-column {
+        display: block;
+        float: left;
+        width: 50%;
+        height: 114px;
+        overflow: auto;
+        -webkit-overflow-scrolling:touch;
+    }
+    .picker-footer {
+        padding-top:8px;
+        padding-bottom: 8px;
+        float: left;
+        width: 100%;
+        border-top:5px solid @gray-lighter;
+        background-color: @brand-primary;
+        color: white;
+    }
+    .list-group {
+        margin-bottom: 0;
+    }
+    .list-group-item.selected {
+        color: @brand-primary;
+        background-image: url("../images/checked.png");
+        background-repeat: no-repeat;
+        background-position: 110px center;
+        background-size: 10%;
+    }
+}

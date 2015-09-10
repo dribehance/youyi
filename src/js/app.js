@@ -45,7 +45,7 @@ angular.module("Youyi", [
             reloadOnSearch: false,
             controller: applicantsController
         })
-        .when("/recommands/", {
+        .when("/recommands", {
             templateUrl: "recommands.html",
             reloadOnSearch: false,
             controller: recommandsController
@@ -66,25 +66,40 @@ angular.module("Youyi", [
             //     factory:loginInterceptor
             // }
         })
-        .when("/authen_name/", {
+        .when("/authen_name", {
             templateUrl: "authen_name.html",
             reloadOnSearch: false,
             controller: authenNameController
         })
-        .when("/authen_language/", {
+        .when("/authen_language", {
             templateUrl: "authen_language.html",
             reloadOnSearch: false,
             controller: authenLanguageController
         })
-        .when("/authen_industry/", {
+        .when("/authen_industry", {
             templateUrl: "authen_industry.html",
             reloadOnSearch: false,
             controller: authenIndustryController
         })
-        .when("/authen_member/", {
+        .when("/authen_member", {
             templateUrl: "authen_member.html",
             reloadOnSearch: false,
             controller: authenMemberController
+        })
+        .when("/favorite", {
+            templateUrl: "favorite.html",
+            reloadOnSearch: false,
+            controller: favoriteController
+        })
+        .when("/wallet", {
+            templateUrl: "wallet.html",
+            reloadOnSearch: false,
+            controller: walletController
+        })
+        .when("/messages", {
+            templateUrl: "messages.html",
+            reloadOnSearch: false,
+            controller: messageController
         })
 		// .when("/signin", {
 		//     templateUrl: "signin.html",

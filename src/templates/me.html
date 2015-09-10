@@ -2,11 +2,11 @@
 <div ui-content-for="title">个人中心</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		<div class="translator-cover">
+    <div class="scrollable-content">
+        <div class="translator-cover">
             <imageview data-rate="750/422" src="user.cover"></imageview>
             <div class="translator-info left">
                 <span class="h3 block">姚逢临</span>
@@ -22,161 +22,179 @@
         </div>
         <!-- 擅长语种 -->
         <div class="list-group" style="margin:10px">
-        	<div class="list-group-header">
-        		<div class="section bg-transparent">
-        			擅长语种
-        		</div>
-        	</div>
-        	<div class="list-group-item clearfix">
-        		<div class="pull-left">
-					中文-中文----母语
-        		</div>
-        		<div class="pull-right">
-        			<span class="btn btn-danger bg-white text-danger section section-condensed">
-        				删除
-        			</span>
-        		</div>
-        	</div>
-        	<div class="list-group-item">
-        		<i class="fa fa-plus-circle text-primary"></i>
-        		添加类型
-        	</div>
+            <div class="list-group-header">
+                <div class="section bg-transparent">
+                    擅长语种
+                </div>
+            </div>
+            <div class="list-group-item clearfix" ng-repeat="language in user.languages track by $index">
+                <div class="pull-left">
+                    {{language.name}}---{{language.level}}
+                </div>
+                <div class="pull-right">
+                    <span class="btn btn-danger bg-white text-danger section section-condensed" ng-click="removeLanguage(language)">
+                        删除
+                    </span>
+                </div>
+            </div>
+            <div class="list-group-item" ui-turn-on="single_picker" ui-show="!single_picker">
+                <i class="fa fa-plus-circle text-primary"></i> 添加类型
+            </div>
+            <div class="picker" ui-state="single_picker" ui-show="single_picker" ui-outer-click="Ui.turnOff('single_picker')" ui-outer-click-if="Ui.active('single_picker')">
+                <div class="picker-left picker-column">
+                    <div class="list-group">
+                        <label class="list-group-item block" ng-repeat="language in languages.name" ng-class="{'selected':choosen_language.name == language}">
+                            {{ language }}
+                            <input type="radio" class="hidden" ng-model="choosen_language.name" value="{{language}}" />
+                        </label>
+                    </div>
+                </div>
+                <div class="picker-right picker-column">
+                    <div class="list-group">
+                        <label class="list-group-item block" ng-repeat="level in languages.level" ng-class="{'selected':choosen_language.level == level}">
+                            {{ level }}
+                            <input type="radio" class="hidden" ng-model="choosen_language.level" value="{{level}}" />
+                        </label>
+                    </div>
+                </div>
+                <div class="picker-footer">
+                    <span class="block text-center" ng-click="pickLanguage()" ui-turn-off="single_picker">确定</span>
+                </div>
+            </div>
         </div>
         <!-- 翻译类型 -->
-		<div class="list-group" style="margin:10px">
-        	<div class="list-group-header">
-        		<div class="section bg-transparent">
-        			翻译类型
-        		</div>
-        	</div>
-        	<div class="list-group-item clearfix">
-        		<div class="pull-left">
-					<span class="text-small">旅行</span>美食、景点、购物
-        		</div>
-        		<div class="pull-right">
-        			<span class="btn btn-danger bg-white text-danger section section-condensed">
-        				删除
-        			</span>
-        		</div>
-        	</div>
-        	<div class="list-group-item">
-        		<i class="fa fa-plus-circle text-primary"></i>
-        		添加类型
-        	</div>
+        <div class="list-group" style="margin:10px">
+            <div class="list-group-header">
+                <div class="section bg-transparent">
+                    翻译类型
+                </div>
+            </div>
+            <div class="list-group-item clearfix">
+                <div class="pull-left">
+                    <span class="text-small">旅行</span>美食、景点、购物
+                </div>
+                <div class="pull-right">
+                    <span class="btn btn-danger bg-white text-danger section section-condensed">
+                        删除
+                    </span>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <i class="fa fa-plus-circle text-primary"></i> 添加类型
+            </div>
         </div>
         <!-- 个人认证 -->
         <div class="list-group" style="margin:10px">
-        	<div class="list-group-header">
-        		<div class="section bg-transparent">
-        			个人认证
-        		</div>
-        	</div>
-        	<div class="list-group-item clearfix">
-        		<div class="pull-left">
-					实名认证
-        		</div>
-        		<div class="pull-right">
-        			<span class="list-group-item-text">上传身份证</span>
-                	<i class="text-gray-light fa fa-chevron-right pull-right"></i>
-        		</div>
-        	</div>
-        	<div class="list-group-item clearfix">
-        		<div class="pull-left">
-					语言认证
-        		</div>
-        		<div class="pull-right">
-        			<span class="list-group-item-text">上传语言考核证书</span>
-                	<i class="text-gray-light fa fa-chevron-right pull-right"></i>
-        		</div>
-        	</div>
-        	<div class="list-group-item clearfix">
-        		<div class="pull-left">
-					行业资格认证
-        		</div>
-        		<div class="pull-right">
-        			<span class="list-group-item-text">上传行业相关证明</span>
-                	<i class="text-gray-light fa fa-chevron-right pull-right"></i>
-        		</div>
-        	</div>
-        	<div class="list-group-item clearfix">
-        		<div class="pull-left">
-					高级会员认证
-        		</div>
-        		<div class="pull-right">
-        			<span class="list-group-item-text">取得会员认证</span>
-                	<i class="text-gray-light fa fa-chevron-right pull-right"></i>
-        		</div>
-        	</div>
+            <div class="list-group-header">
+                <div class="section bg-transparent">
+                    个人认证
+                </div>
+            </div>
+            <div class="list-group-item clearfix">
+                <div class="pull-left">
+                    实名认证
+                </div>
+                <div class="pull-right">
+                    <span class="list-group-item-text">上传身份证</span>
+                    <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+                </div>
+            </div>
+            <div class="list-group-item clearfix">
+                <div class="pull-left">
+                    语言认证
+                </div>
+                <div class="pull-right">
+                    <span class="list-group-item-text">上传语言考核证书</span>
+                    <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+                </div>
+            </div>
+            <div class="list-group-item clearfix">
+                <div class="pull-left">
+                    行业资格认证
+                </div>
+                <div class="pull-right">
+                    <span class="list-group-item-text">上传行业相关证明</span>
+                    <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+                </div>
+            </div>
+            <div class="list-group-item clearfix">
+                <div class="pull-left">
+                    高级会员认证
+                </div>
+                <div class="pull-right">
+                    <span class="list-group-item-text">取得会员认证</span>
+                    <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+                </div>
+            </div>
         </div>
         <!-- 我的工作日 -->
         <div class="list-group" style="margin:10px">
-        	<div class="list-group-header">
-        		<div class="section bg-transparent">
-        			我的工作日
-        		</div>
-        	</div>
-        	<div class="list-group-item clearfix">
-        		<div class="pull-left">
-					添加工作日(非工作日的邀请不会收到)
-        		</div>
-        		<div class="pull-right">
-                	<i class="text-gray-light fa fa-chevron-right pull-right"></i>
-        		</div>
-        	</div>
+            <div class="list-group-header">
+                <div class="section bg-transparent">
+                    我的工作日
+                </div>
+            </div>
+            <div class="list-group-item clearfix">
+                <div class="pull-left">
+                    添加工作日(非工作日的邀请不会收到)
+                </div>
+                <div class="pull-right">
+                    <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+                </div>
+            </div>
         </div>
         <!-- 收费标准 -->
         <div class="list-group" style="margin:10px">
-        	<div class="list-group-header">
-        		<div class="section bg-transparent">
-        			收费标准
-        		</div>
-        	</div>
-        	<div class="list-group-item clearfix">
-        		<div class="pull-left">
-					日薪
-        		</div>
-        		<div class="pull-right">
-                	<i class="text-gray-light fa fa-chevron-right pull-right"></i>
-        		</div>
-        	</div>
+            <div class="list-group-header">
+                <div class="section bg-transparent">
+                    收费标准
+                </div>
+            </div>
+            <div class="list-group-item clearfix">
+                <div class="pull-left">
+                    日薪
+                </div>
+                <div class="pull-right">
+                    <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+                </div>
+            </div>
         </div>
         <!-- 翻译经验 -->
         <div class="list-group" style="margin:10px">
-        	<div class="list-group-header">
-        		<div class="section bg-transparent">
-        			翻译经验
-        		</div>
-        	</div>
-        	<div class="list-group-item clearfix">
-        		<div class="pull-left">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita ratione tempore deleniti, officiis pariatur nesciunt, veniam quisquam culpa nisi blanditiis. Asperiores vero ducimus ad, voluptatum odit. Dignissimos iste, assumenda aliquid!
-        		</div>
-        		<div class="pull-right">
-        			<span class="btn btn-danger bg-white text-danger section section-condensed">
-        				删除
-        			</span>
-        		</div>
-        	</div>
-        	<div class="list-group-item">
-        		<i class="fa fa-plus-circle text-primary"></i>
-        		添加经验
-        	</div>
+            <div class="list-group-header">
+                <div class="section bg-transparent">
+                    翻译经验
+                </div>
+            </div>
+            <div class="list-group-item clearfix">
+                <div class="pull-left">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita ratione tempore deleniti, officiis pariatur nesciunt, veniam quisquam culpa nisi blanditiis. Asperiores vero ducimus ad, voluptatum odit. Dignissimos iste, assumenda aliquid!
+                </div>
+                <div class="pull-right">
+                    <span class="btn btn-danger bg-white text-danger section section-condensed">
+                        删除
+                    </span>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <i class="fa fa-plus-circle text-primary"></i> 添加经验
+            </div>
         </div>
         <!-- 个人简介 -->
         <div class="list-group" style="margin:10px">
-        	<div class="list-group-header">
-        		<div class="section bg-transparent">
-        			个人介绍
-        		</div>
-        	</div>
-        	<div class="list-group-item clearfix">
-        		<div class="pull-left">
-					编辑个人介绍
-        		</div>
-        		<div class="pull-right">
-                	<i class="text-gray-light fa fa-chevron-right pull-right"></i>
-        		</div>
-        	</div>
+            <div class="list-group-header">
+                <div class="section bg-transparent">
+                    个人介绍
+                </div>
+            </div>
+            <div class="list-group-item clearfix">
+                <div class="pull-left">
+                    编辑个人介绍
+                </div>
+                <div class="pull-right">
+                    <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+                </div>
+            </div>
         </div>
-	</div>
+    </div>
 </div>
