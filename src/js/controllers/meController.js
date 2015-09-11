@@ -1,5 +1,6 @@
 // by dribehance <dribehance.kksdapp.com>
-var meController = function($scope, errorServices, toastServices, localStorageService, config) {
+var meController = function($scope,SharedState, errorServices, toastServices, localStorageService, config) {
+    $scope.input = {};
     $scope.user = {
         cover: "../images/translator.png",
         languages: [{
@@ -15,7 +16,22 @@ var meController = function($scope, errorServices, toastServices, localStorageSe
             name: "英语",
             level: "流利"
         }],
-        translate_types:[]
+        translate_types: [{
+            index: "",
+            name: "旅行",
+            skills: [{
+                name: "美食",
+                selected: false
+            }, {
+                name: "旅行",
+                skills: [{
+                    name: "美食",
+                    selected: false
+                }]
+            }]
+        }],
+        translate_experiences:["Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus et numquam quod nam blanditiis, atque laudantium dicta dolorem fuga asperiores consequuntur dolor, recusandae cumque, reprehenderit quo facilis fugiat hic maiores!"],
+        intro:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus repudiandae quae obcaecati quos hic, libero non nobis consequatur, perferendis quo reprehenderit et voluptatibus labore, sapiente dolor quibusdam quam voluptate veritatis?"        
     };
     $scope.removeLanguage = function(language) {
         $scope.user.languages = $scope.user.languages.filter(function(lang) {
@@ -43,13 +59,12 @@ var meController = function($scope, errorServices, toastServices, localStorageSe
 
     };
     // translate type picker
-    $scope.input = {};
     $scope.input.choosen_translate_type = {
-    	index:"",
+        index: "",
         name: "",
-        skills:[{
-        	name:"",
-        	selected:false
+        skills: [{
+            name: "",
+            selected: false
         }]
     }
     $scope.translate_types = [{
@@ -57,13 +72,13 @@ var meController = function($scope, errorServices, toastServices, localStorageSe
         skills: [{
             name: "美食",
             selected: false
-        },{
+        }, {
             name: "饮食",
             selected: false
-        },{
+        }, {
             name: "服装",
             selected: false
-        },{
+        }, {
             name: "纺织",
             selected: false
         }]
@@ -75,11 +90,53 @@ var meController = function($scope, errorServices, toastServices, localStorageSe
         }]
     }];
     $scope.toggleSkill = function(skill) {
-    	return skill.selected = !skill.selected;
+        return skill.selected = !skill.selected;
     }
-    $scope.pickTranslateType = function () {
-    	$scope.input.choosen_translate_type.skills = $scope.translate_types[$scope.input.choosen_translate_type.index].skills.filter(function(skill){
-    		return skill.selected;
-    	})
+    $scope.pickTranslateType = function() {
+        $scope.input.choosen_translate_type.skills = $scope.translate_types[$scope.input.choosen_translate_type.index].skills.filter(function(skill) {
+            return skill.selected;
+        })
+        $scope.user.translate_types.push($scope.input.choosen_translate_type)
+    }
+    $scope.removeTranslateType = function(translate_type) {
+        $scope.user.translate_types = $scope.user.translate_types.filter(function(type) {
+            return type.name != translate_type.name;
+        })
+    }
+    $scope.skillsToString = function(skills) {
+        var skillString = "";
+        angular.forEach(skills, function(skill, index) {
+            skillString += skill.name + ",";
+        })
+        return skillString.slice(0, skillString.length - 1);
+    };
+    // edit content
+    $scope.input.editable_key = "";
+    $scope.input.editable_content = "";
+    $scope.edit = function(m) {
+        for (key in m) {
+            $scope.input.editable_key = key;
+            $scope.input.editable_content = m[key];
+        }
+        SharedState.turnOn("editable_panel");
+    }
+    $scope.ajaxForm = function() {
+        var editable = {};
+        editable[$scope.input.editable_key] = $scope.input.editable_content;
+        trainerServices.update(editable).then(function(data) {
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                errorServices.autoHide("修改成功");
+                $scope.trainer[$scope.input.editable_key] = $scope.input.editable_content;
+                SharedState.turnOff("editable_panel");
+            } else {
+                errorServices.autoHide("服务器错误")
+            }
+        })
+    };
+    // translate_experiences
+    $scope.removeTranslateExperience = function(index) {
+        $scope.user.translate_experiences = $scope.user.translate_experiences.filter(function(experience,i){
+            return index != i;
+        })
     }
 }

@@ -255,9 +255,28 @@
                 </div>
                 <div class="section bg-transparent">
                     <button type="button" class="btn btn-default pull-left" ui-set="{step:2}">上一步</button>
-                    <button type="button" class="btn btn-warning pull-right" ng-click="ajaxTask()">确认提交</button>
+                    <button type="button" class="btn btn-warning pull-right" ng-click="ajaxTask()" ui-turn-on="modal2">确认提交</button>
                 </div>
             </div>
         </form>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal" ui-if="modal2" ui-state='modal2'>
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close text-primary" ui-turn-off="modal2">&times;</button>
+                    <h4 class="modal-title">温馨提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quo illum nihil voluptatem earum optio repellendus, molestias illo facere, ea non. Possimus assumenda illo accusamus voluptatibus, vel corporis maxime quam.</p>
+                </div>
+                <div class="modal-footer text-center">
+                    <button ui-turn-off="modal2" class="btn btn-primary">查看推荐人</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

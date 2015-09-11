@@ -2,10 +2,42 @@
 <div ui-content-for="title">实名认证</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		实名认证
-	</div>
+    <div class="scrollable-content">
+        <div flow-init ng-controller="authenUploadController" class="uploader" ng-if="!is_authen">
+            <div class="section"></div>
+            <div class="section">
+                <h4 class="text-center"><p>完成实名认证信息</h4>
+            </div>
+            <div class="section text-center">
+                <span class="block full-width flow-btn text-center">
+                    <img src="../images/upload_2.png" ng-show="!$flow.files.length" alt="">
+                    <div ng-repeat="file in $flow.files" class="preview-box">
+                        <span class="remove-btn" ng-click="file.cancel()"></span>
+                <img flow-img="file" alt="">
+            </div>
+            </span>
+        </div>
+        <div class="section">
+            <span flow-btn flow-attrs="{accept:'image/*'}" ng-show="$flow.files.length <2" class="btn btn-primary block full-width needsclick">
+                    上传身份证照（正、反各一张）
+                </span>
+            <div class="btn-group justified" ng-show="$flow.files.length == 2">
+                <span class="btn btn-default" ng-click="$flow.cancel()">重新上传</span>
+                <span class="btn btn-primary" ng-click="ajaxForm($flow)">提交审核</span>
+            </div>
+        </div>
+        <div class="section text-grey text-center text-small">
+            我们将在1-2个工作日内完成信息审核
+        </div>
+    </div>
+    <div class="section text-center" ng-if="is_authen">
+        <h4 class="text-center"><p>恭喜您，完成实名认证</p>下面是您的实名信息</h4>
+        <div ng-repeat="authen in authens track by $index" class="preview-box">
+            <img ng-src="{{authen}}" alt="" style="margin-bottom:5px;" class="block full-width">
+        </div>
+    </div>
+</div>
 </div>
