@@ -2,10 +2,111 @@
 <div ui-content-for="title">评价</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		评价
-	</div>
+    <div class="scrollable-content multi-upload" flow-init>
+        <div class="section large">
+            <div class="media">
+                <div class="media-left">
+                    <div style="height:64px;width:64px">
+                        <img class="media-object" ng-src="../images/avatar.png" alt="">
+                    </div>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam iste odit, libero placeat veritatis velit laborum deleniti est at corporis perspiciatis illo expedita rerum sed unde doloribus cupiditate modi atque.</h4>
+                </div>
+            </div>
+        </div>
+        <div class="kk-line kk-horizon bg-gray-lighter"></div>
+        <div class="list-group">
+            <div class="list-group-item">
+                <div class="btn-group justified">
+                    <span class="btn" ng-click="level('good')">
+                        <i class="kk kk-good" ng-class="{'active':input.level=='good'}"></i>
+                    </span>
+                    <span class="btn" ng-click="level('soso')">
+                        <i class="kk kk-soso" ng-class="{'active':input.level=='soso'}"></i>
+                    </span>
+                    <span class="btn" ng-click="level('bad')">
+                        <i class="kk kk-bad" ng-class="{'active':input.level=='bad'}"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <textarea class="form-control" placeholder="写点什么..."></textarea>
+                <div ng-repeat="file in $flow.files" class="preview-box">
+                    <span class="remove-btn" ng-click="file.cancel()">&times;</span>
+                    <img flow-img="file" class="flow-img" alt="">
+                </div>
+                <span flow-btn class="upload-btn needsclick"></span>
+            </div>
+            <div class="list-group-item bg-transparent">
+                星级评价
+            </div>
+            <div class="list-group-item">
+                <div class="row" style="margin-bottom:8px">
+                    <div class="col-xs-3">服务态度</div>
+                    <div class="col-xs-9">
+                        <i class="fa fa-star text-gray-light"></i>
+                        <i class="fa fa-star text-gray-light"></i>
+                        <i class="fa fa-star text-gray-light"></i>
+                        <i class="fa fa-star text-gray-light"></i>
+                        <i class="fa fa-star text-gray-light"></i>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:8px">
+                    <div class="col-xs-3">专业水平</div>
+                    <div class="col-xs-9">
+                        <i class="fa fa-star text-gray-light"></i>
+                        <i class="fa fa-star text-gray-light"></i>
+                        <i class="fa fa-star text-gray-light"></i>
+                        <i class="fa fa-star text-gray-light"></i>
+                        <i class="fa fa-star text-gray-light"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">语言能力</div>
+                    <div class="col-xs-9">
+                        <i class="fa fa-star text-gray-light"></i>
+                        <i class="fa fa-star text-gray-light"></i>
+                        <i class="fa fa-star text-gray-light"></i>
+                        <i class="fa fa-star text-gray-light"></i>
+                        <i class="fa fa-star text-gray-light"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group-item bg-transparent">
+                添加标签
+            </div>
+            <div class="list-group-item">
+                <div class="row grid-gutter">
+                    <div class="col-xs-4">
+                        <span class="btn btn-default rectangle full-width">评价标签</span>
+                    </div>
+                    <div class="col-xs-4">
+                        <span class="btn btn-default rectangle full-width">评价标签</span>
+                    </div>
+                    <div class="col-xs-4">
+                        <span class="btn btn-default rectangle full-width">评价标签</span>
+                    </div>
+                    <div class="col-xs-4">
+                        <span class="btn btn-default rectangle full-width">评价标签</span>
+                    </div>
+                    <div class="col-xs-4">
+                        <span class="btn btn-default rectangle full-width">评价标签</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="list-group">
+            <a ng-href="#/report" class="list-group-item">
+                <span class="pull-left" style="padding-right:5px">
+                    <i class="fa fa-phone fa-rotate-90"></i>
+                </span>
+                <span class="list-group-item-text">举报或投诉</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </a>
+        </div>
+    </div>
 </div>

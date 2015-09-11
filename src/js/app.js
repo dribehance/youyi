@@ -146,6 +146,16 @@ angular.module("Youyi", [
             reloadOnSearch: false,
             controller: adController
         })
+        .when("/comment", {
+            templateUrl: "comment.html",
+            reloadOnSearch: false,
+            controller: commentController
+        })
+        .when("/report", {
+            templateUrl: "report.html",
+            reloadOnSearch: false,
+            controller: reportController
+        })
         .otherwise({
             redirectTo: "/index"
         });

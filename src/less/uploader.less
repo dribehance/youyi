@@ -1,0 +1,67 @@
+.multi-upload {
+	display: block;
+	.preview-box {
+		display: inline-block;
+		width: 80px;
+		height: 80px;
+		margin: 2px;
+		overflow: hidden;
+		position: relative;
+		border: 2px solid white;
+		vertical-align: middle;
+	}
+	.flow-img {
+		width: 100%;
+		max-width: 100%;
+		vertical-align: middle;
+	}
+	.remove-btn {
+		display: inline-block;
+		width: 19px;
+		height: 19px;
+		position: absolute;
+		right: 0;
+		top: 0;
+		background-image: url("../images/remove.png");
+		background-size: 100%;
+	}
+	.upload-btn {
+		display: inline-block;
+		position: relative;
+		width: 80px;
+		height: 80px;
+		margin: 2px;
+		background-size: 100%;
+		overflow: hidden;
+		vertical-align: middle;
+		background-image: url("../images/upload.png");
+		background-color: @gray-lighter;
+		overflow: hidden;
+	}
+}
+.uploader {
+	.preview-box {
+		position: relative;
+		width: 100%;
+		max-width: 600px;
+		min-height: 200px;
+		margin: 0 auto 10px;
+		overflow: hidden;
+		border: 2px solid @gray-lighter;
+		.flow-img {
+			max-width: 600px;
+			max-height: 200px;
+			margin: auto auto;
+		}
+	}
+	.remove-btn {
+		display: inline-block;
+		width: 19px;
+		height: 19px;
+		position: absolute;
+		right: 0;
+		top: 0;
+		background-image: url("../images/remove.png");
+		background-size: 100%;
+	}
+}
