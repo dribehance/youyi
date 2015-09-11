@@ -96,50 +96,56 @@ angular.module("Youyi", [
             reloadOnSearch: false,
             controller: walletController
         })
+        .when("/cash", {
+            templateUrl: "cash.html",
+            reloadOnSearch: false,
+            controller: cashController
+        })
+        .when("/records", {
+            templateUrl: "records.html",
+            reloadOnSearch: false,
+            controller: recordsController
+        })
         .when("/messages", {
             templateUrl: "messages.html",
             reloadOnSearch: false,
-            controller: messageController
+            controller: messagesController
         })
-		// .when("/signin", {
-		//     templateUrl: "signin.html",
-		//     reloadOnSearch: false,
-		//     controller: signinController
-		// })
-		// .when("/signup", {
-		//     templateUrl: "signup.html",
-		//     reloadOnSearch: false,
-		//     controller: signupController
-		// })
-		// .when("/forget", {
-		//     templateUrl: "forget.html",
-		//     reloadOnSearch: false,
-		//     controller:forgetController
-		// })
-		// .when("/about", {
-		//     templateUrl: "about.html",
-		//     reloadOnSearch: false,
-		//     controller:aboutController,
-		//     resolve: {
-		//         factory:loginInterceptor
-		//     }
-		// })
-		// .when("/update_trade_psd", {
-		//     templateUrl: "update_trade_psd.html",
-		//     reloadOnSearch: false,
-		//     controller: updateTradePsdController,
-		//     resolve: {
-		//         factory:loginInterceptor
-		//     }
-		// })
-		// .when("/update_signin_psd", {
-		//     templateUrl: "update_signin_psd.html",
-		//     reloadOnSearch: false,
-		//     controller: updateSigninPsdController,
-		//     resolve: {
-		//         factory:loginInterceptor
-		//     }
-		// })
+        .when("/setting", {
+            templateUrl: "setting.html",
+            reloadOnSearch: false,
+            controller: settingController
+        })
+        .when("/modify_signin_password", {
+            templateUrl: "modify_signin_password.html",
+            reloadOnSearch: false,
+            controller: modifySigninPasswordController
+        })
+        .when("/modify_trade_password", {
+            templateUrl: "modify_trade_password.html",
+            reloadOnSearch: false,
+            controller: modifyTradePasswordController
+        })
+        .when("/privacy", {
+            templateUrl: "privacy.html",
+            reloadOnSearch: false,
+            controller: privacyController
+        })
+        .when("/usage", {
+            templateUrl: "usage.html",
+            reloadOnSearch: false,
+            controller: usageController
+        })
+        .when("/about", {
+            templateUrl: "about.html",
+            reloadOnSearch: false,
+            controller: aboutController
+        })
+        .when("/ad", {
+            templateUrl: "ad.html",
+            reloadOnSearch: false,
+            controller: adController
+        })
         .otherwise({
             redirectTo: "/index"
         });

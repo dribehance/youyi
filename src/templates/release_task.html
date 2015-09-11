@@ -1,9 +1,9 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
 <div ui-content-for="title">发布任务</div>
 <div ui-content-for="navbarAction">
-    <div class="btn sidebar-toggle">
+    <a ng-href="#/setting" class="btn sidebar-toggle">
         <i class="fa fa-cog text-large"></i>
-    </div>
+    </a>
 </div>
 <div ui-content-for="backAction">
     <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
@@ -26,7 +26,7 @@
                     <select name="" id="" class="form-control block full-width rectangle text-primary" ng-init="input.to = input.options[0]" ng-model="input.to" ng-options="o for o in input.options">
                     </select>
                 </div>
-                <div class="text-right section bg-transparent" style="margin-top:150px">
+                <div class="text-right section large bg-transparent" style="margin-top:150px">
                     <button type="button" class="btn btn-success" ui-set="{step:2}">下一步</button>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                 <div class="text-center" style="margin:50px auto 50px">
                     <img src="../images/step_2.png" alt="">
                 </div>
-                <div class="section ">
+                <div class="section large ">
                     <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left">
                             <span class="btn section-wide">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="kk-line kk-5 kk-horizon"></div>
-                <div class="section">
+                <div class="section large">
                     <div class="semi-auto semi-icon-bar">
                         <div class="semi-fixed-left semi-wide-40">
                             <div class="section section-wide">
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="kk-line kk-horizon"></div>
-                <div class="section">
+                <div class="section large">
                     <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left semi-wide-40">
                             <div class="section section-wide">
@@ -108,13 +108,13 @@
                             <label class="btn rectangle" ng-class="{'text-primary':input.category  =='other','bg-gray-lighter':input.category  !='other'}">
                                 <input type="radio" class="hide" ng-model="input.category " name="country" value="other">其他</label>
                         </div>
-                        <div class="section section-wide" ng-show="input.category  =='other'">
+                        <div class="section large section-wide" ng-show="input.category  =='other'">
                             <input type="text" class="form-control rectangle">
                         </div>
                     </div>
                 </div>
                 <div class="kk-line kk-5 kk-horizon"></div>
-                <div class="section">
+                <div class="section large">
                     <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left semi-wide-40">
                             <div class="section section-wide">
@@ -133,14 +133,14 @@
                     </div>
                 </div>
                 <div class="kk-line kk-horizon"></div>
-                <div class="section">
+                <div class="section large">
                     <div class="semi-auto semi-icon-bar">
                         <div class="semi-fixed-left semi-wide-40">
                             <div class="section section-wide">
                                 地点
                             </div>
                         </div>
-                        <div class="section text-right">
+                        <div class="section large text-right">
                             请选择
                         </div>
                         <div class="semi-fixed-right semi-wide-40">
@@ -149,10 +149,10 @@
                     </div>
                 </div>
                 <div class="kk-line kk-5 kk-horizon"></div>
-                <div class="section">
+                <div class="section large">
                     <div class="semi-auto semi-icon-bar">
                         <div class="semi-fixed-left">
-                            <div class="section section-wide">
+                            <div class="section large section-wide">
                                 任务详情
                             </div>
                         </div>
@@ -164,7 +164,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="section bg-transparent">
+                <div class="section large bg-transparent">
                     <button type="button" class="btn btn-default pull-left" ui-set="{step:1}">上一步</button>
                     <button type="button" class="btn btn-success pull-right" ui-set="{step:3}">下一步</button>
                 </div>
@@ -175,7 +175,7 @@
                     <img src="../images/step_3.png" alt="">
                 </div>
                 <div class="task-section">
-                    <div class="section" style="padding-bottom:0">
+                    <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80" style="min-height:80px">
                             <div class="semi-fixed-left text-center">
                                 <img src="../images/avatar.png" width="70px" alt="">
@@ -186,7 +186,7 @@
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
                     </div>
-                    <div class="section" style="padding-bottom:0">
+                    <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80">
                             <div class="semi-fixed-left text-center">
                                 语言：
@@ -197,7 +197,7 @@
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
                     </div>
-                    <div class="section">
+                    <div class="section large">
                         <div class="semi-auto semi-left-80">
                             <div class="semi-fixed-left text-center">
                                 日期：
@@ -209,7 +209,7 @@
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
                     </div>
-                    <div class="section" style="padding-bottom:0">
+                    <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80">
                             <div class="semi-fixed-left text-center">
                                 类型：
@@ -220,7 +220,7 @@
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
                     </div>
-                    <div class="section" style="padding-bottom:0">
+                    <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80">
                             <div class="semi-fixed-left text-center">
                                 价格：
@@ -231,7 +231,7 @@
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
                     </div>
-                    <div class="section" style="padding-bottom:0">
+                    <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80">
                             <div class="semi-fixed-left text-center">
                                 地点：
@@ -242,7 +242,7 @@
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
                     </div>
-                    <div class="section" style="padding-bottom:0">
+                    <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80">
                             <div class="semi-fixed-left text-center">
                                 任务详情：
@@ -253,7 +253,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="section bg-transparent">
+                <div class="section large bg-transparent">
                     <button type="button" class="btn btn-default pull-left" ui-set="{step:2}">上一步</button>
                     <button type="button" class="btn btn-warning pull-right" ng-click="ajaxTask()" ui-turn-on="modal2">确认提交</button>
                 </div>

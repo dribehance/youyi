@@ -2,10 +2,35 @@
 <div ui-content-for="title">我的钱包</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		我的钱包
-	</div>
+    <div class="scrollable-content">
+        <div class="section large">
+            <div class="media">
+                <div class="media-left">
+                    <div style="height:64px;width:64px">
+                        <img class="media-object" ng-src="../images/dollar.png" alt="">
+                    </div>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" style="position:relative;top:8px">
+                    	账户余额&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-very-large text-primary">88</span><span class="text-primary">元</span>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="kk-line kk-horizon bg-gray-lighter"></div>
+        <div class="list-group">
+        	<a ng-href="#/cash" class="list-group-item">
+                <span class="list-group-item-text">提现</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </a>
+            <a ng-href="#/modify_trade_password" class="list-group-item">
+                <span class="list-group-item-text">支付密码</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+                <span class="pull-right text-primary">未设置</span>
+            </a>
+        </div>
+    </div>
 </div>

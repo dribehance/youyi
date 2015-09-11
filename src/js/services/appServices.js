@@ -58,6 +58,9 @@ angular.module("Youyi").factory("appServices", function($rootScope, $window,$loc
             $rootScope.back = function() {
                 $window.history.back();
             }
+            $rootScope.go = function(path) {
+                $location.path(path);
+            }
         }
     }
 });

@@ -2,10 +2,111 @@
 <div ui-content-for="title">编辑资料</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		编辑资料
-	</div>
+    <div class="scrollable-content">
+        <div class="translator-cover">
+            <imageview data-rate="750/422" src="user.cover"></imageview>
+            <div class="translator-avatar">
+                <img ng-src="../images/avatar_1.png" alt="">
+            </div>
+        </div>
+        <div class="list-group" style="margin:10px">
+            <div class="list-group-item clearfix kk-input-group">
+                <span class="btn col-xs-3 section-wide text-left">昵称</span>
+                <span class="col-xs-9 section-wide">
+                    <input type="text" name="nickname" class="form-control youyi-flat-input col-xs-8" placeholder="请输入昵称" ng-model="user.nickname">
+                <!-- <span class="tip text-warning">error</span> -->
+                </span>
+            </div>
+            <div class="list-group-item clearfix kk-input-group">
+                <span class="btn col-xs-3 section-wide text-left">真实姓名</span>
+                <span class="col-xs-9 section-wide">
+                    <input type="text" name="realname" class="form-control youyi-flat-input col-xs-8" placeholder="请输入真实姓名" ng-model="user.realname">
+                <!-- <span class="tip text-warning">error</span> -->
+                </span>
+            </div>
+            <div class="list-group-item clearfix kk-input-group">
+                <span class="btn col-xs-3 section-wide text-left">性别</span>
+                <span class="col-xs-9 section-wide">
+                    <i class="kk kk-icon kk-radio"ng-class="{'active':user.gender == 'male'}"></i>
+                    <label class="btn" style="min-width:60px">
+                        <input type="radio" name="male" ng-model="user.gender"  value="male" class="hidden">男
+                    </label>
+                    <i class="kk kk-icon kk-radio" ng-class="{'active':user.gender == 'female'}"></i>
+                    <label class="btn" style="min-width:60px">
+                        <input type="radio" name="female" ng-model="user.gender" value="female" class="hidden">女
+                    </label>
+                <!-- <span class="tip text-warning">error</span> -->
+                </span>
+            </div>
+            <div class="list-group-item clearfix kk-input-group">
+                <span class="btn col-xs-3 section-wide text-left">地区</span>
+                <span class="col-xs-9 section-wide">
+                    <a class="btn block full-width text-left" ui-turn-on="district_panel">
+                        <span>{{choosen.city.country +"  "+choosen.city.name}}</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+                </a>
+                <!-- <span class="tip text-warning">error</span> -->
+                </span>
+            </div>
+            <div class="list-group-item clearfix kk-input-group">
+                <span class="btn col-xs-3 section-wide text-left">行业</span>
+                <span class="col-xs-9 section-wide">
+                    <input type="text" name="industry" class="form-control youyi-flat-input col-xs-8" placeholder="请输入行业" ng-model="user.industry">
+                <!-- <span class="tip text-warning">error</span> -->
+                </span>
+            </div>
+            <div class="list-group-item clearfix kk-input-group">
+                <span class="btn col-xs-3 section-wide text-left">手机</span>
+                <span class="col-xs-9 section-wide">
+                    <input type="text" name="telephone" class="form-control youyi-flat-input col-xs-8" placeholder="请输入手机" ng-model="user.telephone">
+                <!-- <span class="tip text-warning">error</span> -->
+                </span>
+            </div>
+            <div class="list-group-item clearfix kk-input-group">
+                <span class="btn col-xs-3 section-wide text-left">邮箱</span>
+                <span class="col-xs-9 section-wide">
+                    <input type="email" name="email" class="form-control youyi-flat-input col-xs-8" placeholder="请输入邮箱" ng-model="user.email">
+                <!-- <span class="tip text-warning">error</span> -->
+                </span>
+            </div>
+        </div>
+        <div class="text-center section large bg-transparent">
+            <a class="btn btn-success">保存修改</a>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal modal-overlay" ui-if="district_panel" ui-state='district_panel'>
+        <!-- <div class="modal-backdrop in"></div> -->
+        <div class="modal-dialog" style="margin:0">
+            <div class="modal-content">
+                <div class="modal-header text-primary clearfix">
+                    <div class="pull-left section section-condensed bg-transparent" ui-turn-off="district_panel">
+                        <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
+                    </div>
+                    <span class="pull-right" ui-turn-off="district_panel" style="position:relative;top:3px">完成</span>
+                    <h4 class="modal-title text-center">选择地区</h4>
+                </div>
+                <div class="modal-body" style="padding:0">
+                    <div class="country">
+                        <div ng-repeat="country in countrys">
+                            <div class="country-header">
+                                {{country.name}}
+                            </div>
+                            <div class="section section-condensed">
+                                <div class="row">
+                                    <label class="col-xs-4 btn btn-default rectangle" ng-class="{'btn-primary':choosen.city.name == city }" ng-repeat="city in country.city">
+                                        <input type="radio" class="hidden" ng-model="choosen.city" ng-value="{'name':city,'country':country.name}">{{city}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

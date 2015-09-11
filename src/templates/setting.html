@@ -1,0 +1,78 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<div ui-content-for="title">设置</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content">
+    	<div class="list-group">
+    		<a ng-href="#/modify_signin_password" class="list-group-item">
+                <span class="list-group-item-text">修改登录密码</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </a>
+    	</div>
+        <div class="list-group">
+            <a class="list-group-item" ui-turn-on="language_panel">
+                <span class="list-group-item-text">语言切换</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </a>
+            <a ng-href="#/privacy" class="list-group-item">
+                <span class="list-group-item-text">隐私政策</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </a>
+            <a ng-href="#/usage" class="list-group-item">
+                <span class="list-group-item-text">使用条款</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </a>
+            <a class="list-group-item">
+                <span class="list-group-item-text">版本</span>
+                <span class="pull-right">8.5</span>
+            </a>
+        </div>
+        <div class="list-group">
+        	<a ng-href="#/about" class="list-group-item">
+                <span class="list-group-item-text">关于我们</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </a>
+            <a class="list-group-item" tel="400-000-000">
+                <span class="list-group-item-text">联系我们</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </a>
+            <a ng-href="#/ad" class="list-group-item">
+                <span class="list-group-item-text">广告业务</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </a>
+        </div>
+        <div class="section text-primary text-center">
+        	<a class="block full-width text-primary">退出登录</a>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal modal-overlay" ui-if="language_panel" ui-state='language_panel'>
+        <!-- <div class="modal-backdrop in"></div> -->
+        <div class="modal-dialog" style="margin:0">
+            <div class="modal-content">
+                <div class="modal-header text-primary clearfix">
+                    <div class="pull-left section section-condensed bg-transparent" ui-turn-off="language_panel">
+                        <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
+                    </div>
+                    <h4 class="modal-title text-center">切换语言</h4>
+                </div>
+                <div class="modal-body" style="padding:0">
+                    <div class="list-group language_panel">
+                        <label class="list-group-item block" ng-repeat="language in languages" ng-class="{'selected':input.choosen_language == language}">
+                            {{ language }}
+                            <input type="radio" class="hidden" ng-model="input.choosen_language" value="{{language}}" />
+                        </label>
+                    </div>
+                    <div class="section text-right">
+                        <button ui-turn-off="language_panel" class="btn btn-default">取消</button>
+                        <button ui-turn-off="language_panel" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

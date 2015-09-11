@@ -138,5 +138,5 @@ var meController = function($scope,SharedState, errorServices, toastServices, lo
         $scope.user.translate_experiences = $scope.user.translate_experiences.filter(function(experience,i){
             return index != i;
         })
-    }
+    }; 
 }
