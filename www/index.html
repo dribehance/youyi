@@ -55,6 +55,8 @@
         <div class="toast" ui-state="toast_state" ui-if="toast_state">
             <span class="loader"></span>
         </div>
+        <!-- sidebar cover -->
+        <div class="sidebar-cover" ng-class="{'show':Ui.active('uiSidebarLeft')}"></div>
     </div>
     <!-- ~ .app -->
     <div ui-yield-to="modals"></div>

@@ -64,6 +64,7 @@
     border-radius: 0;
     -webkit-border-radius: 0;
 }
+
 .rectangle {
     border-radius: 0;
     -webkit-border-radius: 0;
@@ -354,6 +355,7 @@
         background-size: 10%;
     }
 }
+
 .language_panel {
     .list-group-item.selected {
         color: @brand-primary;
@@ -363,8 +365,21 @@
         background-size: 10%;
     }
 }
+
 .me_info {
     .pull-right {
-        width:80%
+        width: 80%
     }
+}
+
+.sidebar-cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background-color: @gray-base;
+    background-color: fade(@gray-base, 50%);
+    display: none;
 }

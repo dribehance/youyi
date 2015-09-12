@@ -14,4 +14,9 @@ angular.module("Youyi").controller("sidebarController",function($scope,$timeout,
 		$scope.sidebar.last = $scope.sidebar.current;
 		$scope.sidebar.current = state;
 	}
+	$scope.$on("mobile-angular-ui.state.changed.uiSidebarLeft",function(e,n,o){
+		if (n === true) {
+			console.log("open")
+		}
+	})
 })

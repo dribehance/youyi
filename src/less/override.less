@@ -19,3 +19,32 @@
 .row.grid-gutter >* {
 	margin-bottom: 5px;
 }
+.sidebar-left-in .app, .sidebar-right-in .app  {
+   transform: translate3d(0,0,0);
+   background: #ccc;
+   opacity: .5;
+}
+
+.sidebar-left, .sidebar-right {
+   z-index: 2000;
+   transition:transform 400ms ease;
+   -webkit-transition:-webkit-transform 400ms ease;
+}
+
+.sidebar-left {
+   display: block;
+   transform: translate3d(-@sidebar-width,0,0);
+}
+
+.sidebar-left-in .sidebar-left {
+   transform: translate3d(0,0,0);
+}
+
+.sidebar-right {
+   display: block;
+   transform: translate3d(@sidebar-width,0,0);
+}
+
+.sidebar-right-in .sidebar-right {
+   transform: translate3d(0,0,0);
+}
