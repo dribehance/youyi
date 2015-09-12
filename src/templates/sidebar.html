@@ -187,8 +187,27 @@
         </div>
     </div>
     <div class="scrollable-footer">
+        <div class="section large bg-gray-lighter text-center" ng-show="sidebar.share.socialshare">
+            <div class="btn-group justified">
+                <a class="btn" ng-href="{{sidebar.share.sina}}">
+                    <i class="kk kk-50 kk-weibo"></i>
+                    <span class="block text-gray">微博</span>
+                </a>
+                <a class="btn" ng-click="share_weixin()">
+                    <i class="kk kk-50 kk-weixin"></i>
+                    <span class="block text-gray">微信</span>
+                </a>
+                <a class="btn" ng-href="{{sidebar.share.facebook}}">
+                    <i class="kk kk-50 kk-facebook"></i>
+                    <span class="block text-gray">Facebook</span>
+                </a>
+            </div>
+        </div>
         <div class="section text-right">
-            <a href="#、" class="btn btn-warning">分享我们</a>
+            <a class="btn btn-warning" ng-click="share()">分享我们</a>
         </div>
     </div>
+</div>
+<div class="sidebar-cover" ng-class="{'show':sidebar.share.weixin}" ng-click="share_weixin()">
+    <div class="kk kk-weixin-share-tip"></div>
 </div>
