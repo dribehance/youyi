@@ -1,5 +1,5 @@
 angular.module("Youyi").constant("config", {
-    url: "http://",
+    url: "http://120.24.237.130:8080",
     imageUrl: "http://",
     request: {
         "SUCCESS": "200",
@@ -16,5 +16,7 @@ angular.module("Youyi").constant("config", {
         gateway: "http://www.jiathis.com/send/",
         url: "http://dribehance.kksdapp.com",
     },
-    common_params: {},
+    common_params: {
+        invoke:"h5"
+    },
 });
