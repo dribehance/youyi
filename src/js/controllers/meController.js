@@ -1,114 +1,117 @@
 // by dribehance <dribehance.kksdapp.com>
-var meController = function($scope,SharedState, errorServices, toastServices, localStorageService, config) {
+var meController = function($scope, $rootScope, SharedState, userServices, errorServices, toastServices, localStorageService, config) {
+    toastServices.show();
+    // basic info
+    userServices.info.basic({}).then(function(data) {
+        toastServices.hide()
+        if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+            $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user, {
+                languages: data.Result.user_languages_list,
+                translate_types: data.Result.translate_type_list,
+                translate_experiences: data.Result.experiences
+            });
+        } else {
+            errorServices.autoHide("服务器错误");
+        }
+    });
+    // language
+    userServices.languages.query({}).then(function(data) {
+        $scope.languages = data.Result.languages;
+        $scope.languages_level = data.Result.level;
+    });
+    // translate type
+    userServices.translate_types.query({}).then(function(data) {
+        $scope.translate_types = data.Result.translte_type;
+    });
     $scope.input = {};
-    $scope.user = {
-        cover: "../images/translator.png",
-        languages: [{
-            name: "中文",
-            level: "母语"
-        }, {
-            name: "日语",
-            level: "流利"
-        }, {
-            name: "韩语",
-            level: "流利"
-        }, {
-            name: "英语",
-            level: "流利"
-        }],
-        translate_types: [{
-            index: "",
-            name: "旅行",
-            skills: [{
-                name: "美食",
-                selected: false
-            }, {
-                name: "旅行",
-                skills: [{
-                    name: "美食",
-                    selected: false
-                }]
-            }]
-        }],
-        translate_experiences:["Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus et numquam quod nam blanditiis, atque laudantium dicta dolorem fuga asperiores consequuntur dolor, recusandae cumque, reprehenderit quo facilis fugiat hic maiores!"],
-        intro:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus repudiandae quae obcaecati quos hic, libero non nobis consequatur, perferendis quo reprehenderit et voluptatibus labore, sapiente dolor quibusdam quam voluptate veritatis?"        
-    };
     $scope.removeLanguage = function(language) {
-        $scope.user.languages = $scope.user.languages.filter(function(lang) {
-            return (lang.name != language.name || lang.level != language.level);
+        userServices.languages.remove({
+            "user_language_id": language.user_language_id
+        }).then(function(data) {
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $rootScope.user.languages = $rootScope.user.languages.filter(function(lang) {
+                    return (lang != language);
+                })
+            } else {
+                errorServices.autoHide("服务器错误");
+            }
         })
     };
     // language picker
-    $scope.choosen_language = {
-        name: "",
-        level: ""
-    }
-    $scope.languages = {
-        name: ["中文", "日语", "韩语", "泰语", "英语"],
-        level: ["母语", "专业", "流利"]
-    }
+    $scope.input.choosen_language = {};
+    $scope.input.choosen_language_level = {}
     $scope.pickLanguage = function() {
-        if ($scope.choosen_language.name == "" || $scope.choosen_language.level == "") {
+        if (angular.equals({}, $scope.input.choosen_language) || angular.equals({}, $scope.input.choosen_language_level)) {
             return;
         }
-        $scope.user.languages.push($scope.choosen_language)
-        $scope.choosen_language = {
-            name: "",
-            level: ""
-        }
+        userServices.languages.create({
+            "from_language_group_id": $scope.input.choosen_language.from_language_group_id,
+            "to_language_group_id": $scope.input.choosen_language.to_language_group_id,
+            "group_id": $scope.input.choosen_language_level.group_id
+        }).then(function(data) {
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $rootScope.user.languages.push(angular.extend({}, $scope.input.choosen_language, $scope.input.choosen_language_level))
+                $scope.choosen_language = {}
+            } else {
+                errorServices.autoHide(data.message || "服务器错误");
+            }
+        })
 
     };
     // translate type picker
-    $scope.input.choosen_translate_type = {
-        index: "",
-        name: "",
-        skills: [{
-            name: "",
-            selected: false
-        }]
-    }
-    $scope.translate_types = [{
-        name: "旅行",
-        skills: [{
-            name: "美食",
-            selected: false
-        }, {
-            name: "饮食",
-            selected: false
-        }, {
-            name: "服装",
-            selected: false
-        }, {
-            name: "纺织",
-            selected: false
-        }]
-    }, {
-        name: "商务",
-        skills: [{
-            name: "流利",
-            selected: false
-        }]
-    }];
+    $scope.input.choosen_translate_type = {};
+    $scope.input.choosen_translate_skill = [];
+    $scope.input.choosen_translate_groupids = "";
+    $scope.input.choosen_translate_group_name = "";
     $scope.toggleSkill = function(skill) {
         return skill.selected = !skill.selected;
     }
     $scope.pickTranslateType = function() {
-        $scope.input.choosen_translate_type.skills = $scope.translate_types[$scope.input.choosen_translate_type.index].skills.filter(function(skill) {
+        $scope.input.choosen_translate_skill = $scope.translate_types[$scope.input.choosen_translate_type.index].second_catalogs.filter(function(skill) {
             return skill.selected;
         })
-        $scope.user.translate_types.push($scope.input.choosen_translate_type)
+        if (angular.equals({}, $scope.input.choosen_translate_type) || $scope.input.choosen_translate_skill.length == 0) {
+            return;
+        }
+        $scope.input.choosen_translate_groupids = $scope.input.choosen_translate_skill.map(function(skill) {
+            return skill.group_id
+        }).join("、");
+        $scope.input.choosen_translate_groupids = "{" + $scope.input.choosen_translate_groupids + "}";
+        $scope.input.choosen_translate_group_name = $scope.input.choosen_translate_skill.map(function(skill) {
+            return skill.second_catalog;
+        }).join("、")
+        toastServices.show();
+        userServices.translate_types.create({
+                group_ids: $scope.input.choosen_translate_groupids
+            }).then(function(data) {
+                toastServices.hide()
+                if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                    errorServices.autoHide(data.message || "无效message")
+                    $rootScope.user.translate_types.push({
+                        "first_catalg_str": $scope.input.choosen_translate_type.name,
+                        "second_catalog_str": $scope.input.choosen_translate_group_name
+                    })
+                } else {
+                    errorServices.autoHide(data.message || "服务器错误");
+                }
+            })
+            // $scope.user.translate_types.push($scope.input.choosen_translate_type)
     }
     $scope.removeTranslateType = function(translate_type) {
+        console.log(translate_type)
+        toastServices.show();
+        userServices.translate_types.remove(translate_type).then(function(data){
+            toastServices.hide()
+            if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                errorServices.autoHide(data.message)       
+            }
+            else {
+                errorServices.autoHide("服务器错误");
+            }
+        })
         $scope.user.translate_types = $scope.user.translate_types.filter(function(type) {
-            return type.name != translate_type.name;
+            return translate_type != type;
         })
-    }
-    $scope.skillsToString = function(skills) {
-        var skillString = "";
-        angular.forEach(skills, function(skill, index) {
-            skillString += skill.name + ",";
-        })
-        return skillString.slice(0, skillString.length - 1);
     };
     // edit content
     $scope.input.editable_key = "";
@@ -123,20 +126,47 @@ var meController = function($scope,SharedState, errorServices, toastServices, lo
     $scope.ajaxForm = function() {
         var editable = {};
         editable[$scope.input.editable_key] = $scope.input.editable_content;
-        trainerServices.update(editable).then(function(data) {
+        toastServices.show();
+        userServices.info.update(editable).then(function(data) {
+            toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                errorServices.autoHide("修改成功");
-                $scope.trainer[$scope.input.editable_key] = $scope.input.editable_content;
+                errorServices.autoHide(data.message || "修改成功");
+                $rootScope.user[$scope.input.editable_key] = $scope.input.editable_content;
                 SharedState.turnOff("editable_panel");
             } else {
-                errorServices.autoHide("服务器错误")
+                errorServices.autoHide(data.message || "服务器错误")
             }
         })
     };
     // translate_experiences
-    $scope.removeTranslateExperience = function(index) {
-        $scope.user.translate_experiences = $scope.user.translate_experiences.filter(function(experience,i){
-            return index != i;
+    $scope.input.experience = "";
+    $scope.experienceForm = function() {
+        console.log("sdf")
+        toastServices.show();
+        userServices.translate_experiences.create({
+            "experience": $scope.input.experience
+        }).then(function(data) {
+            toastServices.hide()
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $rootScope.user.translate_experiences.push(data.Result);
+                SharedState.turnOff("create_panel");
+            } else {
+                errorServices.autoHide(data.message || "服务器错误");
+            }
         })
-    }; 
+    }
+    $scope.removeTranslateExperience = function(experience) {
+        toastServices.show();
+        userServices.translate_experiences.remove(experience).then(function(data) {
+            toastServices.hide()
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                errorServices.autoHide(data.message || "服务器错误")
+                $rootScope.user.translate_experiences = $rootScope.user.translate_experiences.filter(function(ex) {
+                    return ex != experience
+                });
+            } else {
+                errorServices.autoHide(data.message || "服务器错误");
+            }
+        })
+    };
 }

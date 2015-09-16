@@ -7,17 +7,17 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="translator-cover" ng-click="go('/me_info')">
-            <imageview data-rate="750/422" src="user.cover"></imageview>
+            <imageview data-rate="750/422" src="user.bg_image"></imageview>
             <div class="translator-info left">
-                <span class="h3 block">姚逢临</span>
-                <span class="block">已有300人关注TA</span>
+                <span class="h3 block">{{user.nickname || user.telephone || user.email || '未填写'}}</span>
+                <span class="block">已有{{user.foucus_count || "0"}}人关注TA</span>
             </div>
             <div class="translator-info right">
-                <span class="block">互联网</span>
+                <span class="block">{{user.profession || "暂无填写"}}</span>
                 <span class="block">长居住地：香港</span>
             </div>
             <div class="translator-avatar">
-                <img ng-src="../images/avatar_1.png" alt="">
+                <img ng-src="{{user.avatar || '../images/avatar_1.png'}}" alt="">
             </div>
         </div>
         <!-- 擅长语种 -->
@@ -29,7 +29,7 @@
             </div>
             <div class="list-group-item clearfix" ng-repeat="language in user.languages track by $index">
                 <div class="pull-left">
-                    {{language.name}}---{{language.level}}
+                    {{language.from_language}}-{{language.to_language}}---{{language.level}}
                 </div>
                 <div class="pull-right">
                     <span class="btn btn-danger bg-white text-danger section section-condensed" ng-click="removeLanguage(language)">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="list-group-item" ui-turn-on="single_picker" ui-show="!single_picker">
-                <i class="fa fa-plus-circle text-primary"></i> 添加类型
+                <i class="fa fa-plus-circle text-primary"></i> 添加语言
             </div>
             <div class="picker" ui-state="single_picker" ui-show="single_picker" ui-outer-click="Ui.turnOff('single_picker')" ui-outer-click-if="Ui.active('single_picker')">
                 <div class="picker-header">
@@ -49,17 +49,17 @@
                 </div>
                 <div class="picker-left picker-column">
                     <div class="list-group">
-                        <label class="list-group-item block" ng-repeat="language in languages.name" ng-class="{'selected':choosen_language.name == language}">
-                            {{ language }}
-                            <input type="radio" class="hidden" ng-model="choosen_language.name" value="{{language}}" />
+                        <label class="list-group-item block" ng-repeat="language in languages track by $index" ng-class="{'selected':input.choosen_language == language}">
+                            {{ language.from_language +"-"+language.to_language }}
+                            <input type="radio" class="hidden" ng-model="input.choosen_language" ng-value="language" />
                         </label>
                     </div>
                 </div>
                 <div class="picker-right picker-column">
                     <div class="list-group">
-                        <label class="list-group-item block" ng-repeat="level in languages.level" ng-class="{'selected':choosen_language.level == level}">
-                            {{ level }}
-                            <input type="radio" class="hidden" ng-model="choosen_language.level" value="{{level}}" />
+                        <label class="list-group-item block" ng-repeat="lng in languages_level track by $index" ng-class="{'selected':input.choosen_language_level == lng}">
+                            {{ lng.level }}
+                            <input type="radio" class="hidden" ng-model="input.choosen_language_level" ng-value="lng" />
                         </label>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
             </div>
             <div class="list-group-item clearfix" ng-repeat="translate_type in user.translate_types track by $index">
                 <div class="pull-left">
-                    <span class="text-small">{{translate_type.name}}</span>---{{skillsToString(translate_type.skills)}}
+                    <span class="text-small">{{translate_type.first_catalg_str}}</span>---{{translate_type.second_catalog_str}}
                 </div>
                 <div class="pull-right">
                     <span class="btn btn-danger bg-white text-danger section section-condensed" ng-click="removeTranslateType(translate_type)">
@@ -97,16 +97,16 @@
                 </div>
                 <div class="picker-left picker-column">
                     <div class="list-group">
-                        <label class="list-group-item block" ng-repeat="translate_type in translate_types track by $index" ng-class="{'selected':input.choosen_translate_type.name == translate_type.name}">
-                            {{ translate_type.name }}
-                            <input type="radio" class="hidden" ng-model="input.choosen_translate_type" ng-value="{'name':translate_type.name,'index':$index}" />
+                        <label class="list-group-item block" ng-repeat="translate_type in translate_types track by $index" ng-class="{'selected':input.choosen_translate_type.name == translate_type.first_catalog}">
+                            {{ translate_type.first_catalog }}
+                            <input type="radio" class="hidden" ng-model="input.choosen_translate_type" ng-value="{'name':translate_type.first_catalog,'index':$index}" />
                         </label>
                     </div>
                 </div>
                 <div class="picker-right picker-column">
                     <div class="list-group">
-                        <label class="list-group-item block" ng-repeat="skill in translate_types[input.choosen_translate_type.index].skills track by $index" ng-class="{'selected':skill.selected}" ng-click="toggleSkill(skill)">
-                            {{ skill.name }}
+                        <label class="list-group-item block" ng-repeat="skill in translate_types[input.choosen_translate_type.index].second_catalogs track by $index" ng-class="{'selected':skill.selected}" ng-click="toggleSkill(skill)">
+                            {{ skill.second_catalog }}
                         </label>
                     </div>
                 </div>
@@ -182,9 +182,9 @@
                     收费标准
                 </div>
             </div>
-            <div class="list-group-item clearfix" ng-click="edit({'salary':user.salary})">
+            <div class="list-group-item clearfix" ng-click="edit({'pay_day':user.pay_day})">
                 <div class="pull-left">
-                    日薪{{user.salary}}
+                    日薪{{user.pay_day}}
                 </div>
                 <div class="pull-right">
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
@@ -200,15 +200,15 @@
             </div>
             <div class="list-group-item clearfix" ng-repeat="translate_experience in user.translate_experiences track by $index">
                 <div class="pull-left">
-                    {{translate_experience}}
+                    {{translate_experience.experience}}
                 </div>
-                <div class="pull-right" ng-click="removeTranslateExperience($index)">
+                <div class="pull-right" ng-click="removeTranslateExperience(translate_experience)">
                     <span class="btn btn-danger bg-white text-danger section section-condensed">
                         删除
                     </span>
                 </div>
             </div>
-            <div class="list-group-item">
+            <div class="list-group-item" ui-turn-on="create_panel">
                 <i class="fa fa-plus-circle text-primary"></i> 添加经验
             </div>
         </div>
@@ -219,9 +219,9 @@
                     个人介绍
                 </div>
             </div>
-            <div class="list-group-item clearfix" ng-click="edit({'intro':user.intro})">
+            <div class="list-group-item clearfix" ng-click="edit({'introduction':user.introduction})">
                 <div class="pull-left">
-                    {{user.intro}}
+                    {{user.introduction}}
                 </div>
                 <div class="pull-right">
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
@@ -233,7 +233,7 @@
 <div ui-content-for="modals">
     <div class="modal modal-overlay" ui-if="editable_panel" ui-state='editable_panel'>
         <!-- <div class="modal-backdrop in"></div> -->
-        <div class="modal-dialog" style="margin:0">
+        <form name="editForm" ng-submit="ajaxForm()" class="modal-dialog" style="margin:0">
             <div class="modal-content">
                 <div class="modal-header text-primary clearfix">
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="editable_panel">
@@ -242,13 +242,36 @@
                     <h4 class="modal-title text-center">信息编辑</h4>
                 </div>
                 <div class="modal-body">
-                    <textarea class="form-control" placeholder="请填写" ng-model="input.editable_content" required></textarea>
+                    <textarea class="form-control" placeholder="请填写" ng-model="input.editable_content" required ng-if="input.editable_key != 'pay_day'"></textarea>
+                    <input class="form-control" type="number" placeholder="请填写" name="salary" ng-model="input.editable_content" required ng-if="input.editable_key == 'pay_day'">
+                    <span class="text-primary" ng-show="editForm.salary.$invalid && editForm.salary.$dirty">必填,数字</span>
                 </div>
                 <div class="modal-footer">
                     <button ui-turn-off="editable_panel" class="btn btn-default">取消</button>
-                    <button ui-turn-off="editable_panel" class="btn btn-primary">保存</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
                 </div>
             </div>
-        </div>
+        </form>
+    </div>
+    <div class="modal modal-overlay" ui-if="create_panel" ui-state='create_panel'>
+        <!-- <div class="modal-backdrop in"></div> -->
+        <form name="createForm" ng-submit="experienceForm()" class="modal-dialog" style="margin:0">
+            <div class="modal-content">
+                <div class="modal-header text-primary clearfix">
+                    <div class="pull-left section section-condensed bg-transparent" ui-turn-off="create_panel">
+                        <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
+                    </div>
+                    <h4 class="modal-title text-center">新增翻译经验</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" placeholder="请填写" name="experience" ng-model="input.experience" required></textarea>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button ui-turn-off="create_panel" class="btn btn-default">取消</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="createForm.experience.$invalid">保存</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
