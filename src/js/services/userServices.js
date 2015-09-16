@@ -195,6 +195,23 @@ angular.module("Youyi").factory("userServices", function($http, localStorageServ
                 }).then(function(data) {
                     return data.data;
                 });
+            },
+            updateBasic:function(input){
+                return $http({
+                    // by dribehance <dribehance.kksdapp.com>
+                    url: config.url + "/app/UserCenter/updateBInfo",
+                    method: "GET",
+                    params: angular.extend({}, config.common_params, {
+                        "token": localStorageService.get("token"),
+                        "nickname": input.nickname,
+                        "name": input.name,
+                        "sex": input.sex,
+                        "city_dict_id": input.city_dict_id,
+                        "profession": input.profession,
+                    })
+                }).then(function(data) {
+                    return data.data;
+                });
             }
         },
         languages: {

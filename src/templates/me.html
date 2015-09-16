@@ -242,13 +242,13 @@
                     <h4 class="modal-title text-center">信息编辑</h4>
                 </div>
                 <div class="modal-body">
-                    <textarea class="form-control" placeholder="请填写" ng-model="input.editable_content" required ng-if="input.editable_key != 'pay_day'"></textarea>
+                    <textarea class="form-control" placeholder="请填写" ng-model="input.editable_content" name="edit" required ng-if="input.editable_key != 'pay_day'"></textarea>
                     <input class="form-control" type="number" placeholder="请填写" name="salary" ng-model="input.editable_content" required ng-if="input.editable_key == 'pay_day'">
                     <span class="text-primary" ng-show="editForm.salary.$invalid && editForm.salary.$dirty">必填,数字</span>
                 </div>
                 <div class="modal-footer">
                     <button ui-turn-off="editable_panel" class="btn btn-default">取消</button>
-                    <button type="submit" class="btn btn-primary">保存</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="editForm.edit.$invalid">保存</button>
                 </div>
             </div>
         </form>
