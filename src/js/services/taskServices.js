@@ -9,7 +9,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN"
+                    "language_app": localStorageService.get("language")
                 })
             }).then(function(data) {
                 return data.data;
@@ -23,7 +23,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN"
+                    "language_app": localStorageService.get("language")
                 })
             }).then(function(data) {
                 return data.data;
@@ -37,7 +37,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN"
+                    "language_app": localStorageService.get("language")
                 })
             }).then(function(data) {
                 return data.data;
@@ -51,7 +51,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN",
+                    "language_app": localStorageService.get("language"),
                     "page_size": input.page_size,
                     "pn":input.pn,
                     "filter_language_group_id": input.filter_language_group_id,
@@ -72,7 +72,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN",
+                    "language_app": localStorageService.get("language"),
                     "task_id": input.task_id,
                 })
             }).then(function(data) {
@@ -87,7 +87,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN",
+                    "language_app": localStorageService.get("language"),
                 })
             }).then(function(data) {
                 return data.data;
@@ -101,7 +101,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN",
+                    "language_app": localStorageService.get("language"),
                     "start_time": input.start_time,
                     "end_time": input.end_time,
                     "price_for_day": input.price_for_day,
@@ -118,7 +118,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN",
+                    "language_app": localStorageService.get("language"),
                     "from_language_group_id": input.from_language_group_id,
                     "to_language_group_id": input.to_language_group_id,
                     "start_time": input.start_time,
@@ -143,7 +143,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN",
+                    "language_app": localStorageService.get("language"),
                 })
             }).then(function(data) {
                 return data.data;
@@ -157,7 +157,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN",
+                    "language_app": localStorageService.get("language"),
                 })
             }).then(function(data) {
                 return data.data;
@@ -171,7 +171,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN",
+                    "language_app": localStorageService.get("language"),
                     "task_id":input.task_id,
                     "pn":input.pn,
                     "page_size":input.page_size,

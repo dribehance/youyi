@@ -9,7 +9,7 @@ angular.module("Youyi").factory("translatorServices", function($http, localStora
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN",
+                    "language_app": localStorageService.get("language"),
                     "page_size": input.page_size,
                     "pn": input.pn,
                     "filter_language_group_id": input.filter_language_group_id,
@@ -30,7 +30,7 @@ angular.module("Youyi").factory("translatorServices", function($http, localStora
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN",
+                    "language_app": localStorageService.get("language"),
                     "youyi_user_id": input.youyi_user_id
                 })
             }).then(function(data) {
@@ -45,7 +45,7 @@ angular.module("Youyi").factory("translatorServices", function($http, localStora
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN",
+                    "language_app": localStorageService.get("language"),
                     "from_language_group_id": input.from_language_group_id,
                     "to_language_group_id": input.to_language_group_id,
                     "task_type_group_id": input.task_type_group_id,

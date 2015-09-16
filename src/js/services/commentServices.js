@@ -8,7 +8,7 @@ angular.module("Youyi").factory("commentServices", function($http, config) {
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "language_app": "CN",
+                    "language_app": localStorageService.get("language"),
                 })
             }).then(function(data) {
                 return data.data;

@@ -62,6 +62,10 @@
              $rootScope.go = function(path) {
                  $location.path(path);
              };
+             // language cache
+             if (!localStorageService.get("language")) {
+                localStorageService.set("language","CN")
+             }
              // user info
              $rootScope.user = {};
              if (localStorageService.get("token")) {
