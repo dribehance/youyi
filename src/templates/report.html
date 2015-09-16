@@ -1,11 +1,53 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
 <div ui-content-for="title">举报或投诉</div>
-<div ui-content-for="navbarAction"></div>
+<div ui-content-for="navbarAction">
+	<span class="btn text-white">完成</span>
+</div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		举报或投诉
-	</div>
+    <div class="scrollable-content">
+        <div class="list-group">
+            <div class="section large bg-transparent">
+                请选择投诉原因
+            </div>
+            <div class="list-group-item">
+                <div class="pull-left">
+                    <i class="kk kk-25 kk-checked" ng-class="{'active':input.price.by_day !=''}"></i>
+                </div>
+                <span class="list-group-item-text">态度恶劣，出现侮辱性语言</span>
+            </div>
+            <div class="list-group-item">
+                <div class="pull-left">
+                    <i class="kk kk-25 kk-checked" ng-class="{'active':input.price.by_day !=''}"></i>
+                </div>
+                <span class="list-group-item-text">欺骗行为</span>
+            </div>
+            <div class="list-group-item">
+                <div class="pull-left">
+                    <i class="kk kk-25 kk-checked" ng-class="{'active':input.price.by_day !=''}"></i>
+                </div>
+                <span class="list-group-item-text">侵犯行为</span>
+            </div>
+            <div class="list-group-item">
+                <div class="pull-left">
+                    <i class="kk kk-25 kk-checked" ng-class="{'active':input.price.by_day !=''}"></i>
+                </div>
+                <span class="list-group-item-text">其他原因</span>
+            </div>
+            <div class="section large bg-transparent">
+                请补充证据
+            </div>
+            <div class="list-group-item">
+                <span class="list-group-item-text">详细说明</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+                <span class="pull-right">请填写</span>
+            </div>
+            <div class="list-group-item">
+                <span class="list-group-item-text">详细说明</span>
+                <i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </div>
+        </div>
+    </div>
 </div>
