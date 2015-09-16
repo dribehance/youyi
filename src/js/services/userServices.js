@@ -9,7 +9,7 @@ angular.module("Youyi").factory("userServices", function($http, localStorageServ
                 params: angular.extend({}, config.common_params, {
                     "name": input.username,
                     "password": input.password,
-                    "language": "CN"
+                    "language_app": "CN"
                 })
             }).then(function(data) {
                 return data.data;
@@ -206,7 +206,7 @@ angular.module("Youyi").factory("userServices", function($http, localStorageServ
                         "nickname": input.nickname,
                         "name": input.name,
                         "sex": input.sex,
-                        "city_dict_id": input.city_dict_id,
+                        "city_dict_group_id": input.city_dict_group_id,
                         "profession": input.profession,
                     })
                 }).then(function(data) {

@@ -7,9 +7,11 @@
 <div class="scrollable">
     <form class="scrollable-content" name="editForm" ng-submit="ajaxForm()">
         <div class="translator-cover">
-            <imageview data-rate="750/422" src="user.bg_image"></imageview>
-            <div class="translator-avatar">
-                <img ng-src="{{user.avatar || '../images/avatar_1.png'}}" alt="">
+            <div flow-init="{singleFile:true}" ng-controller="coverController" class="translator-bg">
+                <img flow-btn flow-attrs="{accept:'image/*'}" flow-img="$flow.files[0]" ng-src="{{staticImageUrl + user.bg_image || '../images/avatar_1.png'}}" alt="" class="needsclick">
+            </div>
+            <div flow-init="{singleFile:true}" ng-controller="avatarController" class="translator-avatar" >
+                <img flow-btn flow-attrs="{accept:'image/*'}" flow-img="$flow.files[0]" ng-src="{{staticImageUrl + user.avatar || '../images/avatar_1.png'}}" alt="" class="needsclick block full-width">
             </div>
         </div>
         <div class="list-group" style="margin:10px">

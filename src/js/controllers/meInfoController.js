@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var meInfoController = function($scope, $rootScope,SharedState, userServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var meInfoController = function($scope, $rootScope, SharedState, userServices, taskServices, errorServices, toastServices, localStorageService, config) {
 
     // location
     $scope.countries = [];
@@ -15,10 +15,8 @@ var meInfoController = function($scope, $rootScope,SharedState, userServices, ta
     $scope.input.choosen_city = {};
     $scope.ajaxForm = function() {
         toastServices.show();
-        var input = angular.extend({},$rootScope.user,{
-            "city_dict_id":$scope.input.choosen_city.city_dict_id
-        });
-        userServices.info.updateBasic(input).then(function(data) {
+        $rootScope.user.city_dict_group_id = $scope.input.choosen_city.group_id;
+        userServices.info.updateBasic($rootScope.user).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 errorServices.autoHide(data.message);
@@ -36,3 +34,25 @@ var meInfoController = function($scope, $rootScope,SharedState, userServices, ta
         $scope.choosen_country_index = index
     }
 }
+angular.module("Youyi").controller("avatarController", function($scope, localStorageService, config) {
+    $scope.$on("flow::filesSubmitted", function(event, flow, flowFile) {
+        flow.opts.target = config.url + "/app/UserCenter/updateAvatar";
+        flow.opts.testChunks = false;
+        flow.opts.fileParameterName = "avatar";
+        flow.opts.query = {
+            "token": localStorageService.get("token")
+        }
+        flow.upload();
+    })
+});
+angular.module("Youyi").controller("coverController", function($scope, localStorageService, config) {
+    $scope.$on("flow::filesSubmitted", function(event, flow, flowFile) {
+        flow.opts.target = config.url + "/app/UserCenter/updateBgImg";
+        flow.opts.testChunks = false;
+        flow.opts.fileParameterName = "bg_image";
+        flow.opts.query = {
+            "token": localStorageService.get("token")
+        }
+        flow.upload();
+    })
+});

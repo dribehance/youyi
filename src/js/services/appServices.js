@@ -1,6 +1,6 @@
  // by dribehance <dribehance.kksdapp.com>
  // EventHandle
- angular.module("Youyi").factory("appServices", function($rootScope, $window, $location,localStorageService, userServices, errorServices, toastServices) {
+ angular.module("Youyi").factory("appServices", function($rootScope, $window, $location, localStorageService, userServices, errorServices, toastServices, config) {
      var routeChangeStart = function(e) {
          // do something white routechangestart,eg:
          // toastServices.show();
@@ -54,6 +54,7 @@
              $rootScope.cover = {
                  show: false,
              };
+             $rootScope.staticImageUrl = config.imageUrl;
              // backaction
              $rootScope.back = function() {
                  $window.history.back();
@@ -64,10 +65,10 @@
              // user info
              $rootScope.user = {};
              if (localStorageService.get("token")) {
-                userServices.info.basic({}).then(function(data){
-                    $rootScope.user = angular.extend({},$rootScope.user,data.Result.user);
-                    console.log($rootScope.user)
-                })
+                 userServices.info.basic({}).then(function(data) {
+                     $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
+                     console.log($rootScope.user)
+                 })
              }
          }
      }

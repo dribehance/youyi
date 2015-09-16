@@ -163,7 +163,7 @@ angular.module("Youyi", [
         // $httpProvider.defaults.withCredentials = true;
         // delete $httpProvider.defaults.headers.common["X-Requested-With"];
         // localStorageServiceProvider.setStorageCookie(1/50);
-        // $httpProvider.interceptors.push('tokenInterceptor');
+        $httpProvider.interceptors.push('tokenInterceptor');
 
 }).run(function(appServices) {
     // init event such as routechangestart...

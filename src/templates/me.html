@@ -7,7 +7,7 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="translator-cover" ng-click="go('/me_info')">
-            <imageview data-rate="750/422" src="user.bg_image"></imageview>
+            <imageview data-rate="750/422" src="staticImageUrl + user.bg_image"></imageview>
             <div class="translator-info left">
                 <span class="h3 block">{{user.nickname || user.telephone || user.email || '未填写'}}</span>
                 <span class="block">已有{{user.foucus_count || "0"}}人关注TA</span>
@@ -17,7 +17,7 @@
                 <span class="block">长居住地：香港</span>
             </div>
             <div class="translator-avatar">
-                <img ng-src="{{user.avatar || '../images/avatar_1.png'}}" alt="">
+                <img ng-src="{{staticImageUrl + user.avatar || '../images/avatar_1.png'}}" class="block full-width" alt="">
             </div>
         </div>
         <!-- 擅长语种 -->
