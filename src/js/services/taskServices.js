@@ -79,6 +79,21 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 return data.data;
             });
         },
+        // apply task
+        apply: function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/PublishTask/applyTask",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "language_app": localStorageService.get("language"),
+                    "task_id": input.task_id,
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         // release task :choose task
         queryLanguageByTask: function() {
             return $http({

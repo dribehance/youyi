@@ -12,10 +12,10 @@
 			<div class="section" style="padding-bottom:0">
 				<div class="semi-auto semi-left-80" style="min-height:80px">
 					<div class="semi-fixed-left text-center">
-						<img src="../images/avatar.png" width="70px" alt=""> 
+						<img ng-src="{{task.avatar || '../images/avatar.png'}}" width="70px" alt=""> 
 					</div>
 					<div style="padding-bottom:8px;">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eaque repellendus harum maxime nulla reprehenderit quibusdam. Doloribus provident explicabo culpa nihil, repellendus iure saepe nisi quisquam dolorum, velit quod officiis!
+						{{task.title}}
 					</div>
 					<div class="kk-line kk-horizon bg-gray-lighter"></div>
 				</div>
@@ -26,7 +26,7 @@
 						语言：
 					</div>
 					<div style="padding-bottom:8px;">
-						中文/英文 
+						{{task.language}}
 					</div>
 					<div class="kk-line kk-horizon bg-gray-lighter"></div>
 				</div>
@@ -37,8 +37,8 @@
 						日期：
 					</div>
 					<div style="padding-bottom:8px;">
-						<p>2015-06-21 12:00 至</p>
-						2015-06-23 18:00 
+						<p>{{task.start_time}} 至</p>
+						{{task.end_time}}
 					</div>
 					<div class="kk-line kk-horizon bg-gray-lighter"></div>
 				</div>
@@ -49,7 +49,7 @@
 						类型：
 					</div>
 					<div style="padding-bottom:8px;">
-						商务 
+						{{task.type}} 
 					</div>
 					<div class="kk-line kk-horizon bg-gray-lighter"></div>
 				</div>
@@ -60,7 +60,18 @@
 						价格：
 					</div>
 					<div style="padding-bottom:8px;">
-						400/天 或 100/小时 
+						{{task.currency_type +" "+ task.price_for_day}}/天 (约{{task.to_price_for_day}}/天)
+					</div>
+					<div class="kk-line kk-horizon bg-gray-lighter"></div>
+				</div>
+            </div>
+            <div class="section" style="padding-bottom:0">
+				<div class="semi-auto semi-left-80">
+					<div class="semi-fixed-left text-center">
+						总价格：
+					</div>
+					<div style="padding-bottom:8px;">
+						{{task.currency_type +" "+ task.total_money}} (约{{task.to_total_money}} )
 					</div>
 					<div class="kk-line kk-horizon bg-gray-lighter"></div>
 				</div>
@@ -71,7 +82,7 @@
 						地点：
 					</div>
 					<div style="padding-bottom:8px;">
-						日本，东京
+						{{task.address}}
 					</div>
 					<div class="kk-line kk-horizon bg-gray-lighter"></div>
 				</div>
@@ -82,7 +93,7 @@
 						任务详情：
 					</div>
 					<div style="padding-bottom:8px;">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae doloremque repellendus laboriosam blanditiis in sit, non, dignissimos natus! Aut laboriosam a nihil quaerat recusandae illo odit eos saepe quibusdam voluptatibus! 
+						{{task.description}}
 					</div>
 				</div>
             </div>
@@ -91,7 +102,7 @@
 	<div class="scrollable-footer">
 		<div class="kk-line kk-horizon bg-gray-lighter"></div>
 		<div class="section text-right">
-			<a ng-href="" class="btn btn-success">发送申请</a>
+			<a class="btn btn-success" ng-click="apply()">发送申请</a>
 		</div>
 	</div>
 </div>
