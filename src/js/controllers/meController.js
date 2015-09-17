@@ -97,7 +97,6 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
             // $scope.user.translate_types.push($scope.input.choosen_translate_type)
     }
     $scope.removeTranslateType = function(translate_type) {
-        console.log(translate_type)
         toastServices.show();
         userServices.translate_types.remove(translate_type).then(function(data){
             toastServices.hide()
@@ -138,7 +137,6 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
     // translate_experiences
     $scope.input.experience = "";
     $scope.experienceForm = function() {
-        console.log("sdf")
         toastServices.show();
         userServices.translate_experiences.create({
             "experience": $scope.input.experience

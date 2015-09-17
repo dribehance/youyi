@@ -33,7 +33,6 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.tasks = $scope.tasks.concat(data.Result.tasks.list);
                 $scope.no_more = $scope.tasks.length == data.Result.tasks.totalRow ? true : false;
-                console.log($scope.tasks)
             } else {
                 errorServices.autoHide("服务器错误");
             }

@@ -7,6 +7,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/Home/cities",
                 method: "GET",
+                cache:true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language")
@@ -21,6 +22,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/Home/languages",
                 method: "GET",
+                cache:true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language")
@@ -35,6 +37,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/Home/type",
                 method: "GET",
+                cache:true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language")
@@ -49,6 +52,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/Home/task",
                 method: "GET",
+                cache:true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
@@ -100,6 +104,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/PublishTask/languageList",
                 method: "GET",
+                cache:true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),

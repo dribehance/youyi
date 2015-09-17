@@ -7,6 +7,7 @@ angular.module("Youyi").factory("translatorServices", function($http, localStora
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/YouyiPerson/persons",
                 method: "GET",
+                cache:true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),

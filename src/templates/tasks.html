@@ -24,39 +24,42 @@
             <div class="section">
                 <div class="semi-auto semi-right-80">
                     <div class="text-ellipsis">
-                        <img ng-src="{{task.avatar || '../images/avatar.png'}}" width="20px" alt="">
+                        <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" width="20px" alt="">
                         {{task.title}}
                     </div>
                     <div class="semi-fixed-right semi-wide-80 text-right">
-                        <span class="">待评价</span>
+                        <span class="">{{task.status}}</span>
                     </div>
                 </div>
             </div>
             <div class="section bg-gray-lighter">
                 <div class="row text-center">
                     <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-translate" style="position:relative;top:-3px"></i> 中文/日文
+                        <i class="kk kk-icon kk-translate" style="position:relative;top:-3px"></i>
+                        {{task.from_language}}/{{task.to_language}}
                     </div>
                     <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-location" style="position:relative;top:-3px"></i> 日本，东京
+                        <i class="kk kk-icon kk-location" style="position:relative;top:-3px"></i>
+                        {{task.country +","+task.city}}
                     </div>
                     <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-bag" style="position:relative;top:-3px"></i> 商务
+                        <i class="kk kk-icon kk-bag" style="position:relative;top:-3px"></i>
+                        {{task.type}}
                     </div>
                 </div>
                 <div class="section section-wide bg-gray-lighter task_cost text-ellipsis">
-                    JPY 7000/天 或1000/小时(约CNY 370天 或52/小时)
+                    {{task.currency_type}} {{task.price_for_day}}/天 (约{{task.to_currency_type}} {{task.to_price_for_day}}/天)
                 </div>
                 <div class="task_day section-wide bg-gray-lighter text-ellipsis">
-                    6月23日7:00-6月27日 18:00
+                    {{task.start_time}}——{{task.end_time}}
                 </div>
                 <div class="task_detail section-wide bg-gray-lighter text-ellipsis">
-                    详细要求：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure sed sapiente omnis, dicta at. Dolore labore voluptas nam maxime atque, architecto. Nisi ab atque molestias modi fuga accusantium officiis facilis.
+                    详细要求：{{task.description}}
                 </div>
             </div>
-            <div class="section">
-                <a ng-href="#/applicants" class="block text-gray">
-                    <img src="../images/avatar.png" width="20px" alt="">张三
+            <div class="section" ng-repeat="applicant in task.request_users track by $index" ng-if="$index==0">
+                <a ng-href="#/applicants/{{task.task_id}}" class="block text-gray">
+                    <img ng-src="../images/avatar.png" width="20px" alt="">张三
                 </a>
             </div>
         </div>
