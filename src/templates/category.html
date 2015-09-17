@@ -1,9 +1,9 @@
 <div class="filter-cover" ng-click="reset_filter()"></div>
 <div class="category" style="top:{{offset_top}}">
     <div class="list-group">
-        <label class="list-group-item" ng-repeat="category in categories" ng-class="{'list-group-item-warning':category == choosen.category}">
+        <label class="list-group-item" ng-repeat="category in categories track by $index" ng-class="{'list-group-item-warning':category == choosen.category}">
             <input type="radio" class="hidden" ng-model="choosen.category" ng-value="category">
-            {{category}}
+            {{category.name}}
         </label>
     </div>
 </div>

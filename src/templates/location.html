@@ -1,14 +1,14 @@
 <div class="filter-cover" ng-click="reset_filter()"></div>
 <div class="location" style="top:{{offset_top}}">
     <div class="country">
-        <div ng-repeat="country in countrys">
+        <div ng-repeat="country in countries track by $index">
             <div class="country-header">
-                {{country.name}}
+                {{country.country}}
             </div>
             <div class="section section-condensed">
                 <div class="row">
-                    <label class="col-xs-4 btn btn-default rectangle" ng-class="{'btn-primary':choosen.city.name == city }" ng-repeat="city in country.city">
-                        <input type="radio" class="hidden" ng-model="choosen.city" ng-value="{'name':city,'country':country.name}">{{city}}
+                    <label class="col-xs-4 btn btn-default rectangle" ng-class="{'btn-primary':choosen.city.name == city.city }" ng-repeat="city in country.cities">
+                        <input type="radio" class="hidden" ng-model="choosen.city" ng-value="{'name':city.city,'country':country.country,'group_id':city.group_id}">{{city.city}}
                     </label>
                 </div>
             </div>

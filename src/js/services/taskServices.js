@@ -16,7 +16,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
             });
         },
         // language filter
-        language: function() {
+        languages: function() {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/Home/languages",

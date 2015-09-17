@@ -1,7 +1,7 @@
 <div class="filter-cover" ng-click="reset_filter()"></div>
 <div class="language-content" style="top:{{offset_top}}">
     <div class="list-group">
-        <a class="list-group-item" ng-repeat="language in languages" ng-click="toggle_language(language)" ng-class="{'list-group-item-warning':language.checked}">
+        <a class="list-group-item" ng-repeat="language in languages track by $index" ng-click="toggle_language(language)" ng-class="{'list-group-item-warning':language.checked}">
             <span class="list-group-item-text">{{language.name}}</span>
         </a>
     </div>

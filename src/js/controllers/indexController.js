@@ -1,6 +1,51 @@
 // by dribehance <dribehance.kksdapp.com>
-var indexController = function($scope, $rootScope, errorServices, toastServices, localStorageService, config) {
-    $scope.banners = ["../images/banner.png", "ss", "sdf"];
+var indexController = function($scope, $rootScope, bannerServices, taskServices, errorServices, toastServices, localStorageService, config) {
+    $scope.banners = [];
+    bannerServices.query().then(function(data) {
+        if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+            $scope.banners = data.Result.list;
+        } else {
+            errorServices.autoHide(data.message);
+        }
+    });
+    $scope.choosen = {};
+    // tasks
+    $scope.tasks = [];
+    $scope.page = {
+        pn: 1,
+        page_size: 3,
+        message: "点击加载更多",
+        filter_language_group_id: "",
+        filter_place_group_id: "",
+        filter_type_group_id: "",
+        filter_money: "",
+        kw: ""
+    };
+    $scope.loadMore = function() {
+        if ($scope.no_more) {
+            return;
+        }
+        toastServices.show();
+        $scope.page.message = "正在加载...";
+        taskServices.query($scope.page).then(function(data) {
+            toastServices.hide();
+            $scope.page.message = "点击加载更多";
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $scope.tasks = $scope.tasks.concat(data.Result.tasks.list);
+                $scope.no_more = $scope.tasks.length == data.Result.tasks.totalRow ? true : false;
+                console.log($scope.tasks)
+            } else {
+                errorServices.autoHide("服务器错误");
+            }
+            if ($scope.no_more) {
+                $scope.page.message = "没有了";
+            }
+            $scope.page.pn++;
+        })
+
+    }
+    $scope.loadMore();
+    // filter
     $scope.filter = {
         name: "",
     };
@@ -13,23 +58,20 @@ var indexController = function($scope, $rootScope, errorServices, toastServices,
         $scope.filter.name = "";
     };
     /*
-     * hiden content for langage,location,price,category
+     * hiden content for language,location,price,category
      */
-    $scope.choosen = {};
     // language
-    $scope.languages = [{
-        name: "汉语",
-        checked: false
-    }, {
-        name: "中文",
-        checked: false
-    }, {
-        name: "韩语",
-        checked: false
-    }, {
-        name: "英文",
-        checked: false
-    }];
+    taskServices.languages().then(function(data) {
+        if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+            $scope.languages = data.Result.languages
+            $scope.languages = $scope.languages.map(function(language) {
+                language.checked = false;
+                return language;
+            })
+        } else {
+            errorServices.autoHide(data.message);
+        }
+    })
     $scope.choosen.languages = [];
     $scope.choose_language = function() {
         var count = $scope.get_language_count();
@@ -41,7 +83,21 @@ var indexController = function($scope, $rootScope, errorServices, toastServices,
         $scope.filter.name = "";
         $scope.choosen.languages = $scope.languages.filter(function(language) {
             return language.checked;
-        })
+        });
+        var language_ids = $scope.choosen.languages.map(function(language) {
+            return language.group_id;
+        }).join("、");
+        language_ids = "{" + language_ids + "}";
+        // reset
+        $scope.tasks = [];
+        $scope.no_more = false;
+        $scope.page = angular.extend({}, $scope.page, {
+            pn: 1,
+            page_size: 3,
+            message: "点击加载更多",
+            filter_language_group_id: language_ids,
+        });
+        $scope.loadMore();
     }
     $scope.reset_language = function() {
         angular.forEach($scope.languages, function(language) {
@@ -50,6 +106,16 @@ var indexController = function($scope, $rootScope, errorServices, toastServices,
         // do something
         $scope.filter.name = "";
         $scope.choosen.languages = [];
+        // reset;
+        $scope.tasks = [];
+        $scope.no_more = false;
+        $scope.page = angular.extend({}, $scope.page, {
+            pn: 1,
+            page_size: 3,
+            message: "点击加载更多",
+            filter_language_group_id: "",
+        });
+        $scope.loadMore();
     };
     $scope.toggle_language = function(language) {
         if (language.checked) {
@@ -72,25 +138,32 @@ var indexController = function($scope, $rootScope, errorServices, toastServices,
         return count;
     };
     // location
-    $scope.countrys = [{
-        name: "中国",
-        city: ["深圳", "上海", "北京", "南京", "广州", "武汉", "吉林", "长春", "哈尔滨"]
-    }, {
-        name: "日本",
-        city: ["东京", "横滨", "大阪"]
-    }, {
-        name: "韩国",
-        city: ["韩城", "朝鲜", "汉城"]
-    }];
+    taskServices.location().then(function(data) {
+        if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+            $scope.countries = data.Result.countries;
+        } else {
+            errorServices.autoHide(data.message);
+        }
+    })
     $scope.choosen.city = {
-        name: "",
-        country: ""
-    }
+        name:""
+    };
     $scope.$watch("choosen.city", function(n, o) {
         if (n === undefined || o === undefined) {
             return;
         }
-        $scope.filter.name = ""
+        $scope.filter.name = "";
+        var location_id = $scope.choosen.city.group_id;
+        // reset;
+        $scope.tasks = [];
+        $scope.no_more = false;
+        $scope.page = angular.extend({}, $scope.page, {
+            pn: 1,
+            page_size: 3,
+            message: "点击加载更多",
+            filter_place_group_id: location_id,
+        });
+        $scope.loadMore();
     });
     // price
     var price_by_hour = [{
@@ -134,16 +207,25 @@ var indexController = function($scope, $rootScope, errorServices, toastServices,
     $scope.prices = price_by_hour;
     $scope.price_tab = {};
     $scope.price_tab.name = "by_hour";
-    $scope.choosen.price = {};
     $scope.choosen.price = {
-        unit: "",
-        range: ""
-    }
+        range:""
+    };
     $scope.$watch("choosen.price.range", function(n, o) {
         if (n === undefined || o === undefined) {
             return;
         }
         $scope.filter.name = "";
+        var money = $scope.choosen.price.range;
+        // reset;
+        $scope.tasks = [];
+        $scope.no_more = false;
+        $scope.page = angular.extend({}, $scope.page, {
+            pn: 1,
+            page_size: 3,
+            message: "点击加载更多",
+            filter_money: money,
+        });
+        $scope.loadMore();
     })
     $scope.$watch("price_tab.name", function(n, o) {
         if (n === undefined || o === undefined) {
@@ -156,12 +238,37 @@ var indexController = function($scope, $rootScope, errorServices, toastServices,
         }
     });
     // category
-    $scope.categories = ["商务","旅行","其他"];
-    $scope.choosen.category = "";
-    $scope.$watch("choosen.category",function(n,o){
+    taskServices.category().then(function(data){
+        if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+            $scope.categories = data.Result.type;
+        }
+        else {
+            errorServices.autoHide(data.message);
+        }
+    })
+    $scope.choosen.category = {
+        name:""
+    };
+    $scope.$watch("choosen.category", function(n, o) {
         if (n === undefined || o === undefined) {
             return;
         }
-        $scope.filter.name ="";
+        $scope.filter.name = "";
+        // reset;
+        $scope.tasks = [];
+        $scope.no_more = false;
+        $scope.page = angular.extend({}, $scope.page, {
+            pn: 1,
+            page_size: 3,
+            message: "点击加载更多",
+            filter_type_group_id: $scope.choosen.category.group_id,
+        });
+        $scope.loadMore();
     })
+    $scope.timeFormater =  function(time) {
+        var time_string = "";
+        time = new Date(time.split(" ").join("T"));
+        time_string = time.getMonth()+"月"+time.getDate()+"日 "+time.getHours() +":"+time.getMinutes();
+        return time_string;
+    }
 }

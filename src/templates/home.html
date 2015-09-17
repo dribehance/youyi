@@ -19,7 +19,7 @@
         <!-- banner -->
         <banner data-options="{}" data-rate="750/175">
             <div class="image-holder" ng-repeat="b in banners" on-repeat-done>
-                <img ng-src="../images/banner.png" class="block full-width" alt="">
+                <img ng-src="{{staticImageUrl + b.cover}}" class="block full-width" alt="">
             </div>
         </banner>
         <!-- filter -->
@@ -32,102 +32,44 @@
                 <label class="btn">
                     <input type="radio" name="filter" class="hide" ng-model="filter.name" value="price">价格<i class="kk kk-icon" ng-class="{'kk-check':choosen.price.range != ''}"></i></label>
                 <label class="btn">
-                    <input type="radio" name="filter" class="hide" ng-model="filter.name" value="category">类型<i class="kk kk-icon" ng-class="{'kk-check':choosen.category != ''}"></i></label>
+                    <input type="radio" name="filter" class="hide" ng-model="filter.name" value="category">类型<i class="kk kk-icon" ng-class="{'kk-check':choosen.category.name != ''}"></i></label>
             </div>
         </div>
     </div>
     <div class="scrollable-content">
         <!-- normal content -->
-        <a ng-href="#/tasks/task_id" class="task-section">
+        <a ng-href="#/tasks/{{task.task_id}}" class="task-section" ng-repeat="task in tasks">
             <div class="section text-ellipsis">
-                <img src="../images/avatar.png" width="20px" alt=""> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga quae modi quam, quod repellendus dolorem excepturi et, quos pariatur qui atque possimus! Quam, veniam, deserunt esse magnam adipisci repellat eos!
+                <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" width="20px" alt="">
+                {{task.title}}
             </div>
             <div class="section bg-gray-lighter">
                 <div class="row text-center">
                     <div class="col-xs-4 section-wide text-ellipsis">
                         <i class="kk kk-icon kk-translate" style="position:relative;top:-3px"></i>
-                        中文/日文
+                        {{task.from_language}}/{{task.to_language}}
                     </div>
                     <div class="col-xs-4 section-wide text-ellipsis">
                         <i class="kk kk-icon kk-location" style="position:relative;top:-3px"></i>
-                        日本，东京
+                        {{task.country}}，{{task.city}}
                     </div>
                     <div class="col-xs-4 section-wide text-ellipsis">
                         <i class="kk kk-icon kk-bag" style="position:relative;top:-3px"></i>
-                        商务
+                        {{task.type}}
                     </div>
                 </div>
                 <div class="section section-wide bg-gray-lighter task_cost text-ellipsis">
-                    JPY 7000/天 或1000/小时(约CNY 370天 或52/小时)
+                    {{task.currency_type}} {{task.total_money}}/天 (约{{task.to_currency_type}} {{task.total_money}}/天)
                 </div>
                 <div class="task_day section-wide bg-gray-lighter text-ellipsis">
-                    6月23日7:00-6月27日 18:00
+                    {{timeFormater(task.start_time)}}——{{timeFormater(task.end_time)}}
                 </div>
                 <div class="task_detail section-wide bg-gray-lighter text-ellipsis">
-                    详细要求：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure sed sapiente omnis, dicta at. Dolore labore voluptas nam maxime atque, architecto. Nisi ab atque molestias modi fuga accusantium officiis facilis.
+                    详细要求：{{task.description}}
                 </div>
             </div>
         </a>
-        <a ng-href="#/tasks/task_id" class="task-section">
-            <div class="section text-ellipsis">
-                <img src="../images/avatar.png" width="20px" alt=""> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga quae modi quam, quod repellendus dolorem excepturi et, quos pariatur qui atque possimus! Quam, veniam, deserunt esse magnam adipisci repellat eos!
-            </div>
-            <div class="section bg-gray-lighter">
-                <div class="row text-center">
-                    <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-translate" style="position:relative;top:-3px"></i>
-                        中文/日文
-                    </div>
-                    <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-location" style="position:relative;top:-3px"></i>
-                        日本，东京
-                    </div>
-                    <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-bag" style="position:relative;top:-3px"></i>
-                        商务
-                    </div>
-                </div>
-                <div class="section section-wide bg-gray-lighter task_cost text-ellipsis">
-                    JPY 7000/天 或1000/小时(约CNY 370天 或52/小时)
-                </div>
-                <div class="task_day section-wide bg-gray-lighter text-ellipsis">
-                    6月23日7:00-6月27日 18:00
-                </div>
-                <div class="task_detail section-wide bg-gray-lighter text-ellipsis">
-                    详细要求：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure sed sapiente omnis, dicta at. Dolore labore voluptas nam maxime atque, architecto. Nisi ab atque molestias modi fuga accusantium officiis facilis.
-                </div>
-            </div>
-        </a>
-        <a ng-href="#/tasks/task_id" class="task-section">
-            <div class="section text-ellipsis">
-                <img src="../images/avatar.png" width="20px" alt=""> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga quae modi quam, quod repellendus dolorem excepturi et, quos pariatur qui atque possimus! Quam, veniam, deserunt esse magnam adipisci repellat eos!
-            </div>
-            <div class="section bg-gray-lighter">
-                <div class="row text-center">
-                    <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-translate" style="position:relative;top:-3px"></i>
-                        中文/日文
-                    </div>
-                    <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-location" style="position:relative;top:-3px"></i>
-                        日本，东京
-                    </div>
-                    <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-bag" style="position:relative;top:-3px"></i>
-                        商务
-                    </div>
-                </div>
-                <div class="section section-wide bg-gray-lighter task_cost text-ellipsis">
-                    JPY 7000/天 或1000/小时(约CNY 370天 或52/小时)
-                </div>
-                <div class="task_day section-wide bg-gray-lighter text-ellipsis">
-                    6月23日7:00-6月27日 18:00
-                </div>
-                <div class="task_detail section-wide bg-gray-lighter text-ellipsis">
-                    详细要求：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure sed sapiente omnis, dicta at. Dolore labore voluptas nam maxime atque, architecto. Nisi ab atque molestias modi fuga accusantium officiis facilis.
-                </div>
-            </div>
-        </a>
+        <div class="section text-center m" ng-click="loadMore()">{{page.message}}</div>
         <!-- hide content -->
         <div ng-include="'language.html'" ng-if="filter.name == 'language'"></div>
         <div ng-include="'location.html'" ng-if="filter.name == 'location'"></div>
