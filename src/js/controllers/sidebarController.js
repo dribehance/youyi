@@ -75,7 +75,7 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
                 errorServices.autoHide("验证码发送成功");        
             }
             else {
-                errorServices.autoHide(data.message);
+                errorServices.autoHide("服务器错误");
             }
         })
         $scope.callbackTimer.counting = 1;

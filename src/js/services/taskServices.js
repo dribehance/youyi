@@ -159,6 +159,8 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
+                    "pn":input.pn,
+                    "page_size":input.page_size
                 })
             }).then(function(data) {
                 return data.data;

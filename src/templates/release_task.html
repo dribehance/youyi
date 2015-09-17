@@ -19,11 +19,11 @@
                     <img src="../images/step_1.png" alt="">
                 </div>
                 <div class="kk-select">
-                    <select name="" id="" class="form-control block full-width rectangle text-primary" ng-init="input.from = input.options[0]" ng-model="input.from" ng-options="o for o in input.options">
+                    <select name="" id="" class="form-control block full-width rectangle text-primary" ng-model="choosen_language.from" ng-options="o as o.name for o in languages">
                     </select>
                 </div>
                 <div class="kk-select">
-                    <select name="" id="" class="form-control block full-width rectangle text-primary" ng-init="input.to = input.options[0]" ng-model="input.to" ng-options="o for o in input.options">
+                    <select name="" id="" class="form-control block full-width rectangle text-primary" ng-model="choosen_language.to" ng-options="o as o.name for o in languages">
                     </select>
                 </div>
                 <div class="text-right section large bg-transparent" style="margin-top:150px">
@@ -50,10 +50,10 @@
                             <div>
                                 <div class="row">
                                     <div class="col-xs-7 section-wide">
-                                        <input type="date" class="youyi-date form-control col-xs-8" value="2015-03-04">
+                                        <input type="date" class="youyi-date form-control col-xs-8" name="from_date" ng-model="input.from_date" required>
                                     </div>
                                     <div class="col-xs-5 section-wide">
-                                        <input type="time" class="youyi-time form-control col-xs-4" value="12:00">
+                                        <input type="time" class="youyi-time form-control col-xs-4" name="from_time" ng-model="input.from_time" required>
                                     </div>
                                 </div>
                             </div>
@@ -66,10 +66,10 @@
                             <div>
                                 <div class="row">
                                     <div class="col-xs-7 section-wide">
-                                        <input type="date" class="youyi-date form-control col-xs-8" value="2015-03-04">
+                                        <input type="date" class="youyi-date form-control col-xs-8" name="to_date" ng-model="input.to_date" required>
                                     </div>
                                     <div class="col-xs-5 section-wide">
-                                        <input type="time" class="youyi-time form-control col-xs-4" value="12:00">
+                                        <input type="time" class="youyi-time form-control col-xs-4" name="to_time" ng-model="input.to_time" required>
                                     </div>
                                 </div>
                             </div>
@@ -81,11 +81,11 @@
                     <div class="semi-auto semi-icon-bar">
                         <div class="semi-fixed-left semi-wide-40">
                             <div class="section section-wide">
-                                标题
+                                标题<span class="text-danger">*</span>
                             </div>
                         </div>
                         <div>
-                            <input type="text" class="form-control youyi-flat-input text-right" ng-model="input.title" placeholder="请输入标题">
+                            <input type="text" class="form-control youyi-flat-input text-right" name="title" ng-model="input.title" required placeholder="请输入标题">
                         </div>
                         <div class="semi-fixed-right semi-wide-40">
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
@@ -97,19 +97,15 @@
                     <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left semi-wide-40">
                             <div class="section section-wide">
-                                类型
+                                类型<span class="text-danger">*</span>
                             </div>
                         </div>
                         <div class="btn-group justified">
-                            <label class="btn rectangle" ng-class="{'text-primary':input.category =='business','bg-gray-lighter':input.category  != 'business'}">
-                                <input type="radio" class="hide" ng-model="input.category " name="country" value="business">商务</label>
-                            <label class="btn rectangle" ng-class="{'text-primary':input.category  =='travel','bg-gray-lighter':input.category  !='travel'}">
-                                <input type="radio" class="hide" ng-model="input.category " name="country" value="travel">旅行</label>
-                            <label class="btn rectangle" ng-class="{'text-primary':input.category  =='other','bg-gray-lighter':input.category  !='other'}">
-                                <input type="radio" class="hide" ng-model="input.category " name="country" value="other">其他</label>
+                            <label class="btn rectangle" ng-class="{'text-primary':input.category.name ==category.name,'bg-gray-lighter':input.category.name  != category.name}" ng-repeat="category in categories">
+                                <input type="radio" class="hide" name="category" ng-model="input.category " ng-value="category">{{category.name}}</label>
                         </div>
-                        <div class="section section-wide" ng-show="input.category  =='other'">
-                            <input type="text" class="form-control rectangle">
+                        <div class="section section-wide" ng-show="input.category.name  =='其它'">
+                            <input type="text" class="form-control rectangle" name="other" ng-model="other">
                         </div>
                     </div>
                 </div>
@@ -118,14 +114,14 @@
                     <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left semi-wide-40">
                             <div class="section section-wide">
-                                价格
+                                价格<span class="text-danger">*</span>
                             </div>
                         </div>
                         <div class="semi-auto semi-icon-bar">
                             <span class="semi-fixed-left semi-wide-40 text-center">
-                                <i class="kk kk-25 kk-checked" ng-class="{'active':input.price.by_day !=''}"></i>
+                                <i class="kk kk-25 kk-checked" ng-class="{'active':input.price !=''}"></i>
                             </span>
-                            <input type="text" class="form-control rectangle youyi-flat-input text-right" ng-model="input.price.by_day" placeholder="请填写">
+                            <input type="number" class="form-control rectangle youyi-flat-input text-right" name="price" ng-model="input.price" placeholder="请填写" required>
                             <span class="semi-fixed-right semi-wide-40 text-center">
                                 <span class="btn">/天</span>
                             </span>
@@ -133,16 +129,17 @@
                     </div>
                 </div>
                 <div class="kk-line kk-horizon"></div>
-                <div class="section large">
+                <div class="section large" ui-turn-on="district_panel">
                     <div class="semi-auto semi-icon-bar">
                         <div class="semi-fixed-left semi-wide-40">
                             <div class="section section-wide">
-                                地点
+                                地点<span class="text-danger">*</span>
                             </div>
                         </div>
                         <div class="section large text-right">
-                            请选择
+                            {{choosen.city.country+choosen.city.name}}
                         </div>
+
                         <div class="semi-fixed-right semi-wide-40">
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
                         </div>
@@ -152,12 +149,12 @@
                 <div class="section large">
                     <div class="semi-auto semi-icon-bar">
                         <div class="semi-fixed-left">
-                            <div class="section large section-wide">
-                                任务详情
+                            <div class="section section-wide">
+                                任务详情<span class="text-danger">*</span>
                             </div>
                         </div>
                         <div>
-                            <input type="text" class="form-control youyi-flat-input text-right" ng-model="input.address" placeholder="请填写">
+                            <input type="text" class="form-control youyi-flat-input text-right" name="content" ng-model="input.content" required placeholder="请填写">
                         </div>
                         <div class="semi-fixed-right semi-wide-40">
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
@@ -166,7 +163,7 @@
                 </div>
                 <div class="section large bg-transparent">
                     <button type="button" class="btn btn-default pull-left" ui-set="{step:1}">上一步</button>
-                    <button type="button" class="btn btn-success pull-right" ui-set="{step:3}">下一步</button>
+                    <button type="button" class="btn btn-success pull-right" ng-disabled="releaseForm.$invalid || choosen.city.name ==''" ng-click="next({step:'3'})">下一步</button>
                 </div>
             </div>
             <!-- step 3 -->
@@ -178,10 +175,10 @@
                     <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80" style="min-height:80px">
                             <div class="semi-fixed-left text-center">
-                                <img src="../images/avatar.png" width="70px" alt="">
+                                <img ng-src="{{staticImageUrl + user.avatar || '../images/avatar.png'}}" width="70px" alt="">
                             </div>
                             <div style="padding-bottom:8px;">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eaque repellendus harum maxime nulla reprehenderit quibusdam. Doloribus provident explicabo culpa nihil, repellendus iure saepe nisi quisquam dolorum, velit quod officiis!
+                                {{input.title}}
                             </div>
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
@@ -192,7 +189,7 @@
                                 语言：
                             </div>
                             <div style="padding-bottom:8px;">
-                                中文/英文
+                                {{choosen_language.from.name}}/{{choosen_language.to.name}}
                             </div>
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
@@ -203,8 +200,8 @@
                                 日期：
                             </div>
                             <div style="padding-bottom:8px;">
-                                <p>2015-06-21 12:00 至</p>
-                                2015-06-23 18:00
+                                <p>{{input.from_date | date:"yyyy-MM-dd"}}<span class="btn"></span>{{input.from_time | date:"HH:mm"}} 至</p>
+                                {{input.to_date | date:"yyyy-MM-dd"}}<span class="btn"></span>{{input.to_time | date:"HH:mm"}}
                             </div>
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
@@ -215,7 +212,7 @@
                                 类型：
                             </div>
                             <div style="padding-bottom:8px;">
-                                商务
+                                {{input.category.name}}
                             </div>
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
@@ -226,7 +223,7 @@
                                 价格：
                             </div>
                             <div style="padding-bottom:8px;">
-                                400/天 或 100/小时
+                                {{input.price}}/天
                             </div>
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
@@ -237,7 +234,7 @@
                                 地点：
                             </div>
                             <div style="padding-bottom:8px;">
-                                日本，东京
+                                {{choosen.city.country +","+choosen.city.name}}
                             </div>
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
@@ -248,33 +245,63 @@
                                 任务详情：
                             </div>
                             <div style="padding-bottom:8px;">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae doloremque repellendus laboriosam blanditiis in sit, non, dignissimos natus! Aut laboriosam a nihil quaerat recusandae illo odit eos saepe quibusdam voluptatibus!
+                                {{input.content}}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="section large bg-transparent">
                     <button type="button" class="btn btn-default pull-left" ui-set="{step:2}">上一步</button>
-                    <button type="button" class="btn btn-warning pull-right" ng-click="ajaxTask()" ui-turn-on="modal2">确认提交</button>
+                    <button type="submit" class="btn btn-warning pull-right">确认提交</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 <div ui-content-for="modals">
-    <div class="modal" ui-if="modal2" ui-state='modal2'>
+    <div class="modal modal-overlay" ui-if="district_panel" ui-state='district_panel'>
+        <!-- <div class="modal-backdrop in"></div> -->
+        <div class="modal-dialog" style="margin:0">
+            <div class="modal-content">
+                <div class="modal-header text-primary clearfix">
+                    <div class="pull-left section section-condensed bg-transparent" ui-turn-off="district_panel">
+                        <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
+                    </div>
+                    <span class="pull-right" style="position:relative;top:3px" ui-turn-off="district_panel">完成</span>
+                    <h4 class="modal-title text-center">选择地区</h4>
+                </div>
+                <div class="modal-body" style="padding:0">
+                    <div class="country">
+                        <div ng-repeat="country in countries track by $index">
+                            <div class="country-header">
+                                {{country.country}}
+                            </div>
+                            <div class="section section-condensed">
+                                <div class="row">
+                                    <label class="col-xs-4 btn btn-default rectangle" ng-class="{'btn-primary':choosen.city.name == city.city }" ng-repeat="city in country.cities">
+                                        <input type="radio" class="hidden" ng-model="choosen.city" ng-value="{'name':city.city,'country':country.country,'group_id':city.group_id}">{{city.city}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="modal" ui-if="modal2" ui-state='modal2'>
         <div class="modal-backdrop in"></div>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button class="close text-primary" ui-turn-off="modal2">&times;</button>
                     <h4 class="modal-title">温馨提示</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quo illum nihil voluptatem earum optio repellendus, molestias illo facere, ea non. Possimus assumenda illo accusamus voluptatibus, vel corporis maxime quam.</p>
+                    <p>恭喜您，发布任务成功！</p>
                 </div>
                 <div class="modal-footer text-center">
                     <button ui-turn-off="modal2" class="btn btn-primary">查看推荐人</button>
+                    <button class="btn btn-default" ng-click="close()">关闭</button>
                 </div>
             </div>
         </div>

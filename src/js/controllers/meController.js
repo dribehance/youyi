@@ -53,7 +53,7 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
                 $rootScope.user.languages.push(angular.extend({}, $scope.input.choosen_language, $scope.input.choosen_language_level))
                 $scope.choosen_language = {}
             } else {
-                errorServices.autoHide(data.message || "服务器错误");
+                errorServices.autoHide("服务器错误");
             }
         })
 
@@ -86,13 +86,12 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
             }).then(function(data) {
                 toastServices.hide()
                 if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                    errorServices.autoHide(data.message || "无效message")
                     $rootScope.user.translate_types.push({
                         "first_catalg_str": $scope.input.choosen_translate_type.name,
                         "second_catalog_str": $scope.input.choosen_translate_group_name
                     })
                 } else {
-                    errorServices.autoHide(data.message || "服务器错误");
+                    errorServices.autoHide("服务器错误");
                 }
             })
             // $scope.user.translate_types.push($scope.input.choosen_translate_type)
@@ -103,7 +102,6 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
         userServices.translate_types.remove(translate_type).then(function(data){
             toastServices.hide()
             if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                errorServices.autoHide(data.message)       
             }
             else {
                 errorServices.autoHide("服务器错误");
@@ -130,11 +128,10 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
         userServices.info.update(editable).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                errorServices.autoHide(data.message || "修改成功");
                 $rootScope.user[$scope.input.editable_key] = $scope.input.editable_content;
                 SharedState.turnOff("editable_panel");
             } else {
-                errorServices.autoHide(data.message || "服务器错误")
+                errorServices.autoHide("服务器错误")
             }
         })
     };
@@ -151,7 +148,7 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
                 $rootScope.user.translate_experiences.push(data.Result);
                 SharedState.turnOff("create_panel");
             } else {
-                errorServices.autoHide(data.message || "服务器错误");
+                errorServices.autoHide("服务器错误");
             }
         })
     }
@@ -160,12 +157,11 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
         userServices.translate_experiences.remove(experience).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                errorServices.autoHide(data.message || "服务器错误")
                 $rootScope.user.translate_experiences = $rootScope.user.translate_experiences.filter(function(ex) {
                     return ex != experience
                 });
             } else {
-                errorServices.autoHide(data.message || "服务器错误");
+                errorServices.autoHide("服务器错误");
             }
         })
     };
