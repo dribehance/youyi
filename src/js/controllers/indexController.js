@@ -147,8 +147,8 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
     $scope.choosen.city = {
         name:""
     };
-    $scope.$watch("choosen.city", function(n, o) {
-        if (n === undefined || o === undefined) {
+    $scope.$watch("choosen.city.name", function(n, o) {
+        if (n === undefined || o === undefined || n =="") {
             return;
         }
         $scope.filter.name = "";
@@ -210,7 +210,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
         range:""
     };
     $scope.$watch("choosen.price.range", function(n, o) {
-        if (n === undefined || o === undefined) {
+        if (n === undefined || o === undefined || n == "") {
             return;
         }
         $scope.filter.name = "";
@@ -248,8 +248,8 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
     $scope.choosen.category = {
         name:""
     };
-    $scope.$watch("choosen.category", function(n, o) {
-        if (n === undefined || o === undefined) {
+    $scope.$watch("choosen.category.name", function(n, o) {
+        if (n === undefined || o === undefined || n =="") {
             return;
         }
         $scope.filter.name = "";
@@ -264,10 +264,4 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
         });
         $scope.loadMore();
     })
-    $scope.timeFormater =  function(time) {
-        var time_string = "";
-        time = new Date(time.split(" ").join("T"));
-        time_string = time.getMonth()+"月"+time.getDate()+"日 "+time.getHours() +":"+time.getMinutes();
-        return time_string;
-    }
 }
