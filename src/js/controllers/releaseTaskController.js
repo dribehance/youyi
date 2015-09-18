@@ -51,19 +51,21 @@ var releaseTaskController = function($rootScope, $scope, $route, $timeout, $filt
         }
     });
     $scope.next = function(step) {
-        SharedState.set(step);
         var input = {
-                "start_time": $filter("date")($scope.input.from_date, "yyyy-MM-dd") + " " + $filter("date")($scope.input.from_time, "HH:mm"),
-                "end_time": $filter("date")($scope.input.to_date, "yyyy-MM-dd") + " " + $filter("date")($scope.input.to_time, "HH:mm"),
-                "price_for_day": $scope.input.price,
+            "start_time": $filter("date")($scope.input.from_date, "yyyy-MM-dd") + " " + $filter("date")($scope.input.from_time, "HH:mm"),
+            "end_time": $filter("date")($scope.input.to_date, "yyyy-MM-dd") + " " + $filter("date")($scope.input.to_time, "HH:mm"),
+            "price_for_day": $scope.input.price,
+        }
+        toastServices.show();
+        taskServices.queryTotalByDay(input).then(function(data) {
+            toastServices.hide();
+            SharedState.set(step);
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $scope.input.total = data.total_money;
+            } else {
+                errorServices.autoHide(data.message);
             }
-            // taskServices.queryTotalByDay(input).then(function(data) {
-            //     if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-            //         console.log(data)
-            //     } else {
-            //         errorServices.autoHide(data.message);
-            //     }
-            // })
+        })
     };
     // step 3
     $scope.ajaxForm = function() {

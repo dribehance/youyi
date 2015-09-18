@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var translatorController = function($scope, $routeParams, translatorServices, errorServices, toastServices, localStorageService, config) {
+var translatorController = function($scope, $routeParams, translatorServices,myLoveServices, errorServices, toastServices, localStorageService, config) {
     $scope.authens = [];
     toastServices.show();
     translatorServices.queryById({
@@ -17,13 +17,33 @@ var translatorController = function($scope, $routeParams, translatorServices, er
             $scope.authens = $scope.authens.filter(function(authen) {
                 return authen != "";
             })
-            console.log($scope.authens)
         } else {
             errorServices.autoHide("服务器错误");
         }
     })
-	$scope.commentStars = function(length){
-		length = length || "0";
-		return new Array(length)
-	};
+    $scope.commentStars = function(length) {
+        length = length || "0";
+        return new Array(length)
+    };
+    $scope.like = function() {
+        myLoveServices.like({"collection_user_id":$routeParams.translator_id}).then(function(data){
+            if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $scope.translator.collection_id = data.collection_id;
+                $scope.translator.is_collection = 1;
+            }
+            else {
+                errorServices.autoHide("服务器错误");
+            }
+        })
+    }
+    $scope.unlike = function(){
+        myLoveServices.cancel({"collection_id":$scope.translator.collection_id}).then(function(data){
+            if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $scope.translator.is_collection = 0;
+            }
+            else {
+                errorServices.autoHide("服务器错误");
+            }
+        })
+    }
 }
