@@ -20,7 +20,7 @@ angular.module("Youyi").directive('banner', function() {
                 "background-image":"url('../images/banner.png')",
                 "background-repeat":"no-repeat",
                 "background-position":"center center",
-                // "background-size":"100%"
+                "background-size":"100%"
             }
             options = angular.extend({},options,scope.$eval($(element).attr('data-options')));
             scope.$on('repeat_done', function() {

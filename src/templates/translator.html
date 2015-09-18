@@ -9,17 +9,17 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="translator-cover">
-            <imageview data-rate="750/422" src="translator.cover"></imageview>
+            <imageview data-rate="750/422" src="staticImageUrl+translator.bg_image"></imageview>
             <div class="translator-info left">
-                <span class="h3 block">姚逢临</span>
-                <span class="block">已有300人关注TA</span>
+                <span class="h3 block">{{translator.nickname}}</span>
+                <span class="block">已有{{translator.foucus_count}}人关注TA</span>
             </div>
             <div class="translator-info right">
-                <span class="block">互联网</span>
-                <span class="block">长居住地：香港</span>
+                <span class="block">{{translator.profession}}</span>
+                <span class="block">长居住地：{{translator.address}}</span>
             </div>
             <div class="translator-avatar">
-                <img ng-src="../images/avatar_1.png" alt="">
+                <img ng-src="{{staticImageUrl + translator.avatar || '../images/avatar_1.png'}}" alt="">
             </div>
         </div>
         <div style="margin:8px;">
@@ -28,58 +28,46 @@
                     <div class="btn-group justified">
                         <span>
                             <span class="block text-small">服务态度</span>
-                        <span class="block text-primary">4.8分</span>
+                        <span class="block text-primary">{{translator.service_score}}</span>
                         </span>
                         <span class="text-center">
                             <span class="block text-small">专业水平</span>
-                        <span class="block text-primary">4.8分</span>
+                        <span class="block text-primary">{{translator.profession_score}}</span>
                         </span>
                         <span class="text-right">
                             <span class="block text-small">语言能力</span>
-                        <span class="block text-primary">4.8分</span>
+                        <span class="block text-primary">{{translator.language_score}}</span>
                         </span>
                     </div>
                 </div>
                 <div class="list-group-item">
                     <div class="clearfix">
                         <p class="pull-left text-small">任务完成数量</p>
-                        <p class="pull-right text-primary">30单</p>
+                        <p class="pull-right text-primary">{{translator.done_task_count}}</p>
                     </div>
                     <div class="clearfix">
                         <p class="pull-left text-small">任务完成率</p>
-                        <p class="pull-right text-primary">90%</p>
+                        <p class="pull-right text-primary">{{translator.done_task_rate}}</p>
                     </div>
                 </div>
                 <div class="list-group-item">
-                    <span class="text-small">个人认证： 4项</span>
-                    <div class="btn-group justified text-center">
-                        <span><i class="kk kk-40 kk-authen-1"></i></span>
-                        <span><i class="kk kk-40 kk-authen-2"></i></span>
-                        <span><i class="kk kk-40 kk-authen-3"></i></span>
-                        <span><i class="kk kk-40 kk-authen-4"></i></span>
+                    <span class="text-small">个人认证： {{authens.length}}项</span>
+                    <div class="btn-group justified text-left">
+                        <span ng-if="translator.identity_front !=''"><i class="kk kk-40 kk-authen-1"></i></span>
+                        <span ng-if="translator.language_identity !=''"><i class="kk kk-40 kk-authen-2" ></i></span>
+                        <span ng-if="translator.profession_identity"><i class="kk kk-40 kk-authen-3" ></i></span>
+                        <span ng-if="translator.advanced_identity !=''"><i class="kk kk-40 kk-authen-4" ></i></span>
+                    </div>
+                    <div class="text-right" ng-show="authens.length >0">
+                        查看详细
                     </div>
                 </div>
                 <div class="list-group-item">
                     <p class="text-small">评价标签</p>
                     <div class="row grid-gutter">
-                        <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width">评价标签</span>
+                        <div class="col-xs-4" ng-repeat="tag in translator.commentTags">
+                            <span class="btn btn-default rectangle full-width text-ellipsis">{{tag.tag_name}}X{{tag.tag_count}}</span>
                         </div>
-                        <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width">评价标签</span>
-                        </div>
-                        <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width">评价标签</span>
-                        </div>
-                        <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width">评价标签</span>
-                        </div>
-                        <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width">评价标签</span>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        查看详细
                     </div>
                 </div>
                 <div class="list-group-item clearfix">
@@ -87,111 +75,75 @@
                         擅长语言
                     </div>
                     <div class="pull-right text-right">
-                        <p><span class="text-small">中文-中文</span> <span>母语</span></p>
-                        <p><span class="text-small">英文-English</span> <span>流利</span></p>
+                        <p ng-repeat="language in translator.user_languages_list"><span class="text-small">{{language.from_language+"-"+language.to_language}}</span> <span>{{language.level}}</span></p>
                     </div>
                 </div>
                 <div class="list-group-item clearfix">
-                    <div class="pull-left text-small">
-                        翻译类型
+                    <div class="clearfix">
+                        <div class="pull-left text-small">
+                            翻译类型
+                        </div>
+                        <div class="pull-right text-right">
+                            <p class="text-small">翻译类型</p>
+                        </div>
                     </div>
-                    <div class="pull-right text-right">
-                        <p class="text-small">旅行</p>
-                        <p>美食、文化、景点、购物</p>
-                        <p class="text-small">旅行</p>
-                        <p>美食、文化、景点、购物</p>
-                    </div>
-                </div>
-                <div class="list-group-item clearfix">
-                    <div class="pull-left text-small">
-                        翻译经验
-                    </div>
-                    <div class="pull-right text-right">
-                        <p class="text-small">经验介绍</p>
-                    </div>
-                    <div class="pull-right text-right">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt tempora laudantium dignissimos qui, voluptatum quo, tenetur eius, provident nobis repellendus nihil labore debitis quos consequatur possimus blanditiis vitae. Voluptate, sequi.</p>
-                    </div>
-                </div>
-                <div class="list-group-item clearfix">
-                    <div class="pull-left text-small">
-                        个人简介
-                    </div>
-                    <div class="pull-right text-right">
-                        <p class="text-small">个人简介</p>
-                    </div>
-                    <div class="pull-right text-right">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt tempora laudantium dignissimos qui, voluptatum quo, tenetur eius, provident nobis repellendus nihil labore debitis quos consequatur possimus blanditiis vitae. Voluptate, sequi.</p>
+                    <div class="text-right">
+                        <div ng-repeat="translate_type in translator.translate_type_list">
+                            <p class="text-small">{{translate_type.first_catalg_str}}</p>
+                            <p>{{translate_type.second_catalog_str}}</p>
+                        </div>
                     </div>
                 </div>
                 <div class="list-group-item">
-                    <span class="text-small">3条评价</span>
-                    <div class="media">
-                        <div class="media-body">
-                            <h4 class="media-heading">start</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint quos quisquam porro saepe magnam eligendi, voluptas quidem! Tempora, suscipit perferendis eligendi laboriosam doloremque voluptates delectus id reprehenderit laborum, inventore non.</p>
-                            <span>2015年5月28日</span>
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <span class="thumbnail">
-                                        <img ng-src="../images/avatar.png">
-                                    </span>
-                                </div>
-                                <div class="col-xs-3">
-                                    <span class="thumbnail">
-                                        <img ng-src="../images/avatar.png">
-                                    </span>
-                                </div>
-                                <div class="col-xs-3">
-                                    <span class="thumbnail">
-                                        <img ng-src="../images/avatar.png">
-                                    </span>
-                                </div>
-                                <div class="col-xs-3">
-                                    <span class="thumbnail">
-                                        <img ng-src="../images/avatar.png">
-                                    </span>
-                                </div>
-                            </div>
+                    <div class="clearfix">
+                        <div class="pull-left text-small">
+                            翻译经验
                         </div>
-                        <div class="media-right">
-                            <img class="media-object" src="../images/avatar.png" >
-                            <p>dribehance</p>
+                        <div class="pull-right text-right">
+                            <p class="text-small">经验介绍</p>
                         </div>
                     </div>
-                    <div class="kk-line kk-horizon bg-gray-lighter"></div>
-                    <div class="media">
+                    <div class="text-right" ng-repeat="experience in translator.experiences">
+                        <p>{{experience.experience}}</p>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="clearfix">
+                        <div class="pull-left text-small">
+                            个人简介
+                        </div>
+                        <div class="pull-right text-right">
+                            <p class="text-small">个人简介</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p>{{translator.introduction}}</p>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <span class="text-small">{{translator.commentUsers.length}}条评价</span>
+                    <div class="media" ng-repeat="comment in translator.commentUsers track by $index">
                         <div class="media-body">
-                            <h4 class="media-heading">start</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint quos quisquam porro saepe magnam eligendi, voluptas quidem! Tempora, suscipit perferendis eligendi laboriosam doloremque voluptates delectus id reprehenderit laborum, inventore non.</p>
-                            <span>2015年5月28日</span>
+                            <h4 class="media-heading">
+                                <i class="fa fa-star text-primary" ng-repeat="star in commentStars(comment.star) track by $index"></i>
+                            </h4>
+                            <p>{{comment.note}}</p>
+                            <span>{{comment.post_time}}</span>
                             <div class="row">
-                                <div class="col-xs-3">
+                                <div class="col-xs-3" ng-repeat="p in comment.picList">
                                     <span class="thumbnail">
-                                        <img ng-src="../images/avatar.png">
-                                    </span>
-                                </div>
-                                <div class="col-xs-3">
-                                    <span class="thumbnail">
-                                        <img ng-src="../images/avatar.png">
-                                    </span>
-                                </div>
-                                <div class="col-xs-3">
-                                    <span class="thumbnail">
-                                        <img ng-src="../images/avatar.png">
-                                    </span>
-                                </div>
-                                <div class="col-xs-3">
-                                    <span class="thumbnail">
-                                        <img ng-src="../images/avatar.png">
+                                        <img ng-src="{{staticImageUrl + p.pic}}" class="block full-width">
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <div class="media-right">
-                            <img class="media-object" src="../images/avatar.png" >
-                            <p>dribehance</p>
+                            <div style="height:48px;width:48px;border-radius:100%;-webkit-border-rasius:100%;overflow:hidden" class="avatar">
+                                <img class="media-object" ng-src="{{staticImageUrl + comment.avatar || '../images/avatar.png'}}" alt="">
+                            </div>
+                            <p class="text-center">{{comment.nickname}}</p>
                         </div>
+                        <div class="kk-line kk-horizon bg-gray-lighter"></div>
                     </div>
                 </div>
             </div>

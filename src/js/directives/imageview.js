@@ -15,7 +15,7 @@ angular.module("Youyi").directive('imageview', function() {
                 overflow: "hidden",
                 "text-align":"center",
                 "line-height":($(element).width() || $(window).width()) / rate +"px",
-                "background-image": "url('../images/banner.png')",
+                "background-image": "url('../images/banner_1.png')",
                 "background-size":"100%",
                 "background-position":"center center",
                 "background-repeat":"no-repeat"

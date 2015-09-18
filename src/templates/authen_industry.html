@@ -14,7 +14,7 @@
                 <span class="block full-width flow-btn text-center">
                     <img src="../images/upload_3.png" ng-show="!$flow.files.length" alt="">
                     <div ng-repeat="file in $flow.files" class="preview-box">
-                        <span class="close" ng-click="file.cancel()" style="opacity:1">&times;</span>
+                        <span class="remove-btn" ng-click="file.cancel()"></span>
 		                <img flow-img="file" alt="">
 		            </div>
             	</span>
