@@ -18,6 +18,7 @@ var applicantsController = function($scope, $routeParams, myLoveServices, taskSe
             $scope.page.message = "点击加载更多";
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.applicants = $scope.applicants.concat(data.RequestList.list);
+                $scope.payment = data.money;
                 $scope.no_more = $scope.applicants.length == data.RequestList.totalRow ? true : false;
             } else {
                 errorServices.autoHide("服务器错误");
@@ -47,10 +48,11 @@ var applicantsController = function($scope, $routeParams, myLoveServices, taskSe
         }).then(function(data) {
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 applicant.is_collect = 1,
-                applicant.collection_id = data.collection_id;
+                    applicant.collection_id = data.collection_id;
             } else {
                 errorServices.autoHide(data.message);
             }
         })
     }
+    $scope.payment = {};
 }
