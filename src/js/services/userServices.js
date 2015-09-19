@@ -94,9 +94,11 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
             $rootScope.user = $rootScope.user || {};
             this.info.basic({}).then(function(data) {
                 $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
+                console.log($rootScope.user)
             });
             this.info.sidebar({}).then(function(data) {
                 $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
+                console.log($rootScope.user)
             })
         },
         verifycode: {

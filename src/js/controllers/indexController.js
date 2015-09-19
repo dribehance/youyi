@@ -13,7 +13,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
     $scope.tasks = [];
     $scope.page = {
         pn: 1,
-        page_size: 3,
+        page_size: 10,
         message: "点击加载更多",
         filter_language_group_id: "",
         filter_place_group_id: "",
@@ -92,7 +92,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
-            page_size: 3,
+            page_size: 10,
             message: "点击加载更多",
             filter_language_group_id: language_ids,
         });
@@ -110,7 +110,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
-            page_size: 3,
+            page_size: 10,
             message: "点击加载更多",
             filter_language_group_id: "",
         });
@@ -158,7 +158,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
-            page_size: 3,
+            page_size: 10,
             message: "点击加载更多",
             filter_place_group_id: location_id,
         });
@@ -220,7 +220,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
-            page_size: 3,
+            page_size: 10,
             message: "点击加载更多",
             filter_money: money,
         });
@@ -258,7 +258,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
-            page_size: 3,
+            page_size: 10,
             message: "点击加载更多",
             filter_type_group_id: $scope.choosen.category.group_id,
         });

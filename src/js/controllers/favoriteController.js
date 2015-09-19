@@ -3,7 +3,7 @@ var favoriteController = function($scope, myLoveServices, errorServices, toastSe
     $scope.translators = [];
     $scope.page = {
         number: 1,
-        page_size: 1,
+        page_size: 10,
         message: "点击加载更多"
     }
     $scope.loadMore = function() {

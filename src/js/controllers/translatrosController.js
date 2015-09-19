@@ -4,7 +4,7 @@ var translatorsController = function($scope, translatorServices, taskServices, e
     $scope.translators = [];
     $scope.page = {
         pn: 1,
-        page_size: 3,
+        page_size: 10,
         message: "点击加载更多",
         filter_language_group_id: "",
         filter_place_group_id: "",
@@ -83,7 +83,7 @@ var translatorsController = function($scope, translatorServices, taskServices, e
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
-            page_size: 3,
+            page_size: 10,
             message: "点击加载更多",
             filter_language_group_id: language_ids,
         });
@@ -101,7 +101,7 @@ var translatorsController = function($scope, translatorServices, taskServices, e
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
-            page_size: 3,
+            page_size: 10,
             message: "点击加载更多",
             filter_language_group_id: "",
         });
@@ -149,7 +149,7 @@ var translatorsController = function($scope, translatorServices, taskServices, e
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
-            page_size: 3,
+            page_size: 10,
             message: "点击加载更多",
             filter_place_group_id: location_id,
         });
@@ -211,7 +211,7 @@ var translatorsController = function($scope, translatorServices, taskServices, e
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
-            page_size: 3,
+            page_size: 10,
             message: "点击加载更多",
             filter_money: money,
         });
@@ -248,7 +248,7 @@ var translatorsController = function($scope, translatorServices, taskServices, e
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
-            page_size: 3,
+            page_size: 10,
             message: "点击加载更多",
             filter_type_group_id: $scope.choosen.category.group_id,
         });

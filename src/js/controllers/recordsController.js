@@ -3,7 +3,7 @@ var recordsController = function($scope,walletServices, errorServices, toastServ
 	$scope.records = [];
 	$scope.page = {
 		number:1,
-		page_size:1,
+		page_size: 10,
 		message:"点击加载更多"
 	}
 	$scope.loadMore = function() {

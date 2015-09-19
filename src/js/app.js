@@ -146,7 +146,7 @@ angular.module("Youyi", [
             reloadOnSearch: false,
             controller: adController
         })
-        .when("/comment", {
+        .when("/:task_id/comment", {
             templateUrl: "comment.html",
             reloadOnSearch: false,
             controller: commentController

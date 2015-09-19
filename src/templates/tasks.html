@@ -27,8 +27,17 @@
                         <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" err-src="../images/avatar.png" class="circle icon" alt="">
                         {{task.title}}
                     </div>
-                    <div class="semi-fixed-right semi-wide-80 text-right">
-                        <span class="">{{task.status}}</span>
+                    <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.status == 0">
+                        <span class="">已下线</span>
+                    </div>
+                    <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.status == 1">
+                        <span class="">等待确认</span>
+                    </div>
+                    <div class="semi-fixed-right semi-wide-80 text-right text-success" ng-if="task.status == 2">
+                        <span class="">任务确认</span>
+                    </div>
+                    <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.status == 3">
+                        <a ng-href="#/{{task.task_id}}/comment" class="btn btn-danger section section-condensed bg-transparent text-danger">待评价</a>
                     </div>
                 </div>
             </div>

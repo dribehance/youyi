@@ -6,7 +6,7 @@ var tasksController = function($scope, taskServices, errorServices, toastService
     $scope.tasks = [];
     $scope.page = {
         pn: 1,
-        page_size: 3,
+        page_size: 10,
         message: "点击加载更多"
     }
     $scope.$watch("task_tab.name", function(n, o) {
@@ -16,7 +16,7 @@ var tasksController = function($scope, taskServices, errorServices, toastService
         $scope.tasks = [];
         $scope.page = {
             pn: 1,
-            page_size: 3,
+            page_size: 10,
             message: "点击加载更多"
         }
         $scope.no_more = false;

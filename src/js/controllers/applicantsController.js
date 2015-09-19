@@ -3,7 +3,7 @@ var applicantsController = function($scope, $routeParams, myLoveServices, taskSe
     $scope.applicants = [];
     $scope.page = {
         pn: 1,
-        page_size: 1,
+        page_size: 10,
         message: "点击加载更多",
         task_id: $routeParams.task_id
     }
