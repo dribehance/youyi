@@ -1,6 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
 var meInfoController = function($scope, $rootScope, SharedState, userServices, taskServices, errorServices, toastServices, localStorageService, config) {
-
     // location
     $scope.countries = [];
     taskServices.location().then(function(data) {
@@ -32,6 +31,10 @@ var meInfoController = function($scope, $rootScope, SharedState, userServices, t
     }
     $scope.outerIndex = function(index) {
         $scope.choosen_country_index = index
+    }
+    $scope.sync_back = function(){
+        userServices.sync();
+        $rootScope.back();
     }
 }
 angular.module("Youyi").controller("avatarController", function($scope, localStorageService, config) {

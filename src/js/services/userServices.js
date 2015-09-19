@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Youyi").factory("userServices", function($http, localStorageService, config) {
+angular.module("Youyi").factory("userServices", function($rootScope, $http, localStorageService, config) {
     return {
         signin: function(input) {
             return $http({
@@ -90,6 +90,15 @@ angular.module("Youyi").factory("userServices", function($http, localStorageServ
                 return data.data;
             });
         },
+        sync: function() {
+            $rootScope.user = $rootScope.user || {};
+            this.info.basic({}).then(function(data) {
+                $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
+            });
+            this.info.sidebar({}).then(function(data) {
+                $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
+            })
+        },
         verifycode: {
             getVerifycode: function(input) {
                 return $http({
@@ -136,6 +145,19 @@ angular.module("Youyi").factory("userServices", function($http, localStorageServ
                 return $http({
                     // by dribehance <dribehance.kksdapp.com>
                     url: config.url + "/app/Person/info",
+                    method: "GET",
+                    params: angular.extend({}, config.common_params, {
+                        "language_app": localStorageService.get("language"),
+                        "token": localStorageService.get("token")
+                    })
+                }).then(function(data) {
+                    return data.data;
+                });
+            },
+            sidebar: function(input) {
+                return $http({
+                    // by dribehance <dribehance.kksdapp.com>
+                    url: config.url + "/app/UserCenter/UserBInfo",
                     method: "GET",
                     params: angular.extend({}, config.common_params, {
                         "language_app": localStorageService.get("language"),
@@ -204,7 +226,7 @@ angular.module("Youyi").factory("userServices", function($http, localStorageServ
                     return data.data;
                 });
             },
-            updateBasic:function(input){
+            updateBasic: function(input) {
                 return $http({
                     // by dribehance <dribehance.kksdapp.com>
                     url: config.url + "/app/UserCenter/updateBInfo",

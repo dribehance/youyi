@@ -163,4 +163,8 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
             }
         })
     };
+    $scope.sync_back = function(){
+        userServices.sync();
+        $rootScope.back();
+    }
 }

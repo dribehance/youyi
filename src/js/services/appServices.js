@@ -69,10 +69,7 @@
              // user info
              $rootScope.user = {};
              if (localStorageService.get("token")) {
-                 userServices.info.basic({}).then(function(data) {
-                     $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
-                     console.log($rootScope.user)
-                 })
+                 userServices.sync();
              }
          }
      }

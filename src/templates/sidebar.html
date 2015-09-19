@@ -154,7 +154,7 @@
             <img ng-src="{{ staticImageUrl + user.avatar || '../images/avatar_1.png'}}" err-src="../images/avatar_1.png" alt="">
         </div>
         <a ng-href="#/me_info" class="block text-large text-gray">{{user.name || user.nickname || user.telephone || user.email }}<i class="kk kk-icon kk-edit" style="position:relative;top:-3px"></i></a>
-        <div>英文/中文/西班牙语/广东话</div>
+        <div>{{user.return_language}}</div>
         <p></p>
     </div>
     <div class="scrollable-content">
@@ -184,12 +184,12 @@
                 <span class="list-group-item-text">我的钱包</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
-            <a class="list-group-item" href="#/messages">
+            <!-- <a class="list-group-item" href="#/messages">
                 <i class="kk kk-icon kk-sidebar-6 pull-left"></i>
                 <span class="list-group-item-text">我的消息</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 <span class="badge">14</span>
-            </a>
+            </a> -->
         </div>
     </div>
     <div class="scrollable-footer">
