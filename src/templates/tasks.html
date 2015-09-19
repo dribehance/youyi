@@ -7,7 +7,7 @@
 </div>
 <div ui-content-for="backAction">
     <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
-        <i class="fa fa-bars"></i>
+        <i class="fa fa-bars text-large"></i>
     </div>
 </div>
 <div class="scrollable">
@@ -24,7 +24,7 @@
             <div class="section">
                 <div class="semi-auto semi-right-80">
                     <div class="text-ellipsis">
-                        <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" width="20px" alt="">
+                        <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" err-src="../images/avatar.png" class="circle icon" alt="">
                         {{task.title}}
                     </div>
                     <div class="semi-fixed-right semi-wide-80 text-right">
@@ -58,8 +58,8 @@
                 </div>
             </div>
             <div class="section" ng-repeat="applicant in task.request_users track by $index" ng-if="$index==0">
-                <a ng-href="#/applicants/{{task.task_id}}" class="block text-gray">
-                    <img ng-src="../images/avatar.png" width="20px" alt="">张三
+                <a ng-href="#/{{task.task_id}}/applicants" class="block text-gray">
+                    <img ng-src="{{staticImageUrl + applicant.avatar || '../images/avatar.png'}}" alt="" class="circle icon">{{applicant.nickname}}
                 </a>
             </div>
         </div>

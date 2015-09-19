@@ -1,11 +1,71 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
 <div ui-content-for="title">提现</div>
-<div ui-content-for="navbarAction"></div>
+<div ui-content-for="navbarAction">
+    <a ng-href="#/records" class="btn">提现记录</a>
+</div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		提现
-	</div>
+    <form class="scrollable-content" name="cashForm">
+        <div class="list-group">
+            <div class="list-group-item clearfix kk-input-group">
+                <span class="btn col-xs-3 section-wide text-left">提现金额</span>
+                <span class="col-xs-9 section-wide">
+                    <input type="number" name="money" class="form-control youyi-flat-input col-xs-8" ng-model="input.money" placeholder="本次最多可以提取{{wallet.money}}元" ng-model="input.money" required>
+                <span class="tip text-warning" ng-show="cashForm.money.$invalid && cashForm.money.$dirty">必填，金额为整数</span>
+                </span>
+            </div>
+            <div class="list-group-item clearfix kk-input-group">
+                <span class="btn col-xs-3 section-wide text-left">收款银行</span>
+                <span class="col-xs-9 section-wide">
+                    <input type="text" name="bank_name" class="form-control youyi-flat-input col-xs-8" placeholder="请输入开户银行" ng-model="input.bank_name" required>
+                <span class="tip text-warning" ng-show="cashForm.bank_name.$invalid && cashForm.bank_name.$dirty">必填</span>
+                </span>
+            </div>
+            <div class="list-group-item clearfix kk-input-group">
+                <span class="btn col-xs-3 section-wide text-left">收款卡号</span>
+                <span class="col-xs-9 section-wide">
+                    <input type="text" name="bank_cardno" class="form-control youyi-flat-input col-xs-8" placeholder="请输入银行卡号" ng-model="input.bank_cardno" required>
+                <span class="tip text-warning" ng-show="cashForm.bank_cardno.$invalid && cashForm.bank_cardno.$dirty">必填</span>
+                </span>
+            </div>
+            <div class="list-group-item clearfix kk-input-group">
+                <span class="btn col-xs-3 section-wide text-left">开户人姓名</span>
+                <span class="col-xs-9 section-wide">
+                    <input type="text" name="realname" class="form-control youyi-flat-input col-xs-8" placeholder="请输入开户人姓名" ng-model="input.realname" required>
+                <span class="tip text-warning" ng-show="cashForm.realname.$invalid && cashForm.realname.$dirty">必填</span>
+                </span>
+            </div>
+        </div>
+        <p class="section large bg-transparent">
+            申请提现平台审核成功后，提现金额将会在2-3个工作日内转入您的账户，如有疑问，请致商城客服400-800-8846.
+        </p>
+        <p class="section large bg-transparent" ng-if="wallet.is_setPayPwd == 0">
+            <button type="button" class="btn bg-gray block full-width text-white" >请先设置交易密码</button>
+        </p>
+        <p class="section large bg-transparent" ng-if="wallet.is_setPayPwd == 1">
+            <button type="button" class="btn btn-primary block full-width" ng-disabled="cashForm.$invalid" ui-turn-on="password_panel">申请提现</button>
+        </p>
+    </form>
+</div>
+<div ui-content-for="modals">
+    <div class="modal" ui-if="password_panel" ui-state='password_panel'>
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center">请输入交易密码</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="password" class="form-control" name="password" ng-model="input.password" required ng-minlength=6 ng-maxlength=6 placeholder="请输入6位交易密码">
+                    <p ng-show="error.show" class="text-primary">{{error.message}}</p>
+                </div>
+                <div class="modal-footer text-center">
+                    <button class="btn btn-primary" ng-click="ajaxForm()">确认</button>
+                    <button class="btn btn-default" ui-turn-off="password_panel">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

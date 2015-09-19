@@ -55,12 +55,11 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
     }
     $scope.getSmscode = function() {
         userServices.verifycode.getSmscode($scope.input).then(function(data) {
-            console.log(data.status)
             if (data.status == config.response.SUCCESS) {
                 console.log("验证码"+data.tel_code);
                 errorServices.autoHide("验证码发送成功");
             } else {
-                errorServices.autoHide(data.message || "还未生成message");
+                errorServices.autoHide("服务器错误");
             }
         })
         $scope.callbackTimer.counting = 1;
@@ -108,7 +107,7 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
                 localStorageService.set("token",data.user.token);
                 SharedState.turnOff("uiSidebarLeft");
             } else {
-                errorServices.autoHide(data.message || "还未生成message");
+                errorServices.autoHide("服务器错误");
             }
         })
     };
@@ -119,7 +118,7 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
             if (data.status == config.response.SUCCESS) {
 
             } else {
-                errorServices.autoHide(data.message || "还未生成message");
+                errorServices.autoHide("服务器错误");
             }
         })
     }
@@ -131,7 +130,7 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
                 SharedState.turnOff("uiSidebarLeft");
                 localStorageService.set("token",data.token)
             } else {
-                errorServices.autoHide(data.message || "还未生成message");
+                errorServices.autoHide(data.message);
             }
         })
     };
@@ -142,7 +141,7 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
             if (data.status == config.response.SUCCESS) {
                 SharedState.turnOff("uiSidebarLeft");
             } else {
-                errorServices.autoHide(data.message || "还未生成message");
+                errorServices.autoHide("服务器错误");
             }
         })
     };

@@ -2,10 +2,40 @@
 <div ui-content-for="title">我的收藏</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		我的收藏
-	</div>
+    <div class="scrollable-content">
+        <div class="recommands">
+            <div class="recommand" ng-repeat="translator in translators">
+                <div class="recommand-header">
+                    {{translator.nickname}} <i class="kk kk-icon" ng-class="{'kk-male':translator.sex=='男','kk-female':translator.sex !='男'}"></i>
+                </div>
+                <div class="recommand-body">
+                    <div>语种：{{translator.return_language}}</div>
+                    <p>所在地：{{translator.address}}</p>
+                    <p>个人简介：{{translator.introduction}}</p>
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <a ng-click="unlike(translator)" class="btn btn-default">
+                            	<i class="kk kk-like active"></i>
+                            	取消收藏
+                            </a>
+                        </div>
+                        <div class="pull-right">
+                            <a ng-click="unlike()" class="btn btn-default">
+                            	<i class="kk kk-accept"></i>
+                            	提出申请
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommand-avatar">
+                    <img ng-src="{{staticImageUrl + translator.avatar || '../images/avatar_1.png'}}" err-src="../images/avatar_1.png" alt="">
+                </div>
+            </div>
+            
+        </div>
+        <div class="section text-center m" ng-click="loadMore()">{{page.message}}</div>
+    </div>
 </div>

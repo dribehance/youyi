@@ -40,7 +40,7 @@ angular.module("Youyi", [
             reloadOnSearch: false,
             controller: translatorController
         })
-        .when("/applicants/", {
+        .when("/:task_id/applicants/", {
             templateUrl: "applicants.html",
             reloadOnSearch: false,
             controller: applicantsController

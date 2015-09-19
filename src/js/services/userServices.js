@@ -54,7 +54,7 @@ angular.module("Youyi").factory("userServices", function($http, localStorageServ
                     "language_app": localStorageService.get("language"),
                     "name": input.username,
                     "password": input.password,
-                    "msg_code": input.vertifycode,
+                    "msg_code": input.verifycode,
                 })
             }).then(function(data) {
                 return data.data;
@@ -69,7 +69,7 @@ angular.module("Youyi").factory("userServices", function($http, localStorageServ
                     "language_app": localStorageService.get("language"),
                     "name": input.username,
                     "password": input.password,
-                    "msg_code": input.vertifycode,
+                    "msg_code": input.verifycode,
                 })
             }).then(function(data) {
                 return data.data;
@@ -84,7 +84,7 @@ angular.module("Youyi").factory("userServices", function($http, localStorageServ
                     "language_app": localStorageService.get("language"),
                     "name": input.username,
                     "password": input.password,
-                    "msg_code": input.vertifycode,
+                    "msg_code": input.verifycode,
                 })
             }).then(function(data) {
                 return data.data;
@@ -98,7 +98,7 @@ angular.module("Youyi").factory("userServices", function($http, localStorageServ
                     method: "GET",
                     params: angular.extend({}, config.common_params, {
                         "language_app": localStorageService.get("language"),
-                        "name": input.username,
+                        "name": input.name,
                     })
                 }).then(function(data) {
                     return data.data;

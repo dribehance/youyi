@@ -79,7 +79,7 @@
                     获取验证码
                 </button>
                 <input type="text" name="sms_code" class="form-control" placeholder="请输入验证码" ng-model="input.sms_code" required>
-                <span class="tip text-warning" ng-show="signupForm.sms_code.$invalid && signupForm.sms_code.$drity">必填，验证码为6位</span>
+                <span class="tip text-warning" ng-show="signupForm.sms_code.$invalid && signupForm.sms_code.$dirty">必填，验证码为6位</span>
             </div>
             <div class="kk-input-group flat">
                 <input type="password" name="password" class="form-control" placeholder="设置密码，至少8位" ng-model="input.password" required ng-minlength=8>
@@ -109,7 +109,7 @@
                     获取验证码
                 </button>
                 <input type="text" name="email_code" class="form-control" placeholder="请输入验证码" ng-model="input.email_code" required>
-                <span class="tip text-warning" ng-show="signupEmailForm.email_code.$invalid && signupEmailForm.email_code.$drity">必填，验证码为6位</span>
+                <span class="tip text-warning" ng-show="signupEmailForm.email_code.$invalid && signupEmailForm.email_code.$dirty">必填，验证码为6位</span>
             </div>
             <div class="kk-input-group flat">
                 <input type="password" name="password" class="form-control" placeholder="设置密码，至少8位" ng-model="input.password" required ng-minlength=8>
@@ -151,7 +151,7 @@
 <div class="scrollable" ng-show="sidebar.current == 'login'">
     <div class="scrollable-header bg-gray-lighter text-center">
         <div class="avatar avatar-large">
-            <img ng-src="../images/avatar_1.png" alt="">
+            <img ng-src="{{ staticImageUrl + user.avatar || '../images/avatar_1.png'}}" err-src="../images/avatar_1.png" alt="">
         </div>
         <a ng-href="#/me_info" class="block text-large text-gray">{{user.name || user.nickname || user.telephone || user.email }}<i class="kk kk-icon kk-edit" style="position:relative;top:-3px"></i></a>
         <div>英文/中文/西班牙语/广东话</div>

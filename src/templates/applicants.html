@@ -7,69 +7,35 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="recommands">
-            <div class="recommand">
+            <div class="recommand" ng-repeat="applicant in applicants track by $index">
                 <div class="recommand-header">
-                    Angel Mo <i class="kk kk-icon kk-female"></i>
+                    {{applicant.nickname}} <i class="kk kk-icon" ng-class="{'kk-male':applicant.sex=='男','kk-female':applicant.sex !='男'}"></i>
                 </div>
                 <div class="recommand-body">
-                    <div>语种：中文(母语)/韩语(流利)</div>
-                    <p>所在地：韩国首尔</p>
-                    <p>个人简介：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, quibusdam. Sit quas tempora, quia officia, earum eum animi commodi! Expedita porro maiores recusandae in quidem quam rerum quo a exercitationem.</p>
+                    <div>语种：{{applicant.return_language}}</div>
+                    <p>所在地：{{applicant.address}}</p>
+                    <p>个人简介：{{applicant.introduction}}</p>
                     <div class="clearfix">
                         <div class="pull-left">
-                            <span class="kk kk-like-1"></span>
+                            <a ng-click="like(applicant)" class="btn btn-default" ng-if="applicant.is_collect == '0'">
+                                <i class="kk kk-like"></i> 收藏此人
+                            </a>
+                            <a ng-click="unlike(applicant)" class="btn btn-default" ng-if="applicant.is_collect == '1'">
+                                <i class="kk kk-like active"></i> 取消收藏
+                            </a>
                         </div>
                         <div class="pull-right">
-                            <span class="kk kk-apply-1"></span>
+                            <a ng-click="accept()" class="btn btn-default">
+                                <i class="kk kk-accept" ng-class="{'active':applicant.status == '1'}"></i> 接受申请
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div class="recommand-avatar">
-                    <img ng-src="../images/avatar_1.png" alt="">
+                    <img ng-src="{{staticImageUrl + applicant.avatar || '../images/avatar_1.png'}}" alt="">
                 </div>
             </div>
-            <div class="recommand">
-                <div class="recommand-header">
-                    Angel Mo <i class="kk kk-icon kk-female"></i>
-                </div>
-                <div class="recommand-body">
-                    <div>语种：中文(母语)/韩语(流利)</div>
-                    <p>所在地：韩国首尔</p>
-                    <p>个人简介：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, quibusdam. Sit quas tempora, quia officia, earum eum animi commodi! Expedita porro maiores recusandae in quidem quam rerum quo a exercitationem.</p>
-                    <div class="clearfix">
-                        <div class="pull-left">
-                            <span class="kk kk-like-2"></span>
-                        </div>
-                        <div class="pull-right">
-                            <span class="kk kk-apply-2"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="recommand-avatar">
-                    <img ng-src="../images/avatar_1.png" alt="">
-                </div>
-            </div>
-            <div class="recommand">
-                <div class="recommand-header">
-                    Angel Mo <i class="kk kk-icon kk-female"></i>
-                </div>
-                <div class="recommand-body">
-                    <div>语种：中文(母语)/韩语(流利)</div>
-                    <p>所在地：韩国首尔</p>
-                    <p>个人简介：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, quibusdam. Sit quas tempora, quia officia, earum eum animi commodi! Expedita porro maiores recusandae in quidem quam rerum quo a exercitationem.</p>
-                    <div class="clearfix">
-                        <div class="pull-left">
-                            <span class="kk kk-like-1"></span>
-                        </div>
-                        <div class="pull-right" ui-turn-on="payment_panel">
-                            <span class="kk kk-apply-3"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="recommand-avatar">
-                    <img ng-src="../images/avatar_1.png" alt="">
-                </div>
-            </div>
+            <div class="section text-center m" ng-click="loadMore()">{{page.message}}</div>
         </div>
     </div>
 </div>
@@ -105,8 +71,8 @@
                     <div class="section large bg-gray-lighter text-primary clearfix">
                         余额支付
                         <span class="pull-right">
-                    		<ui-switch  ng-model="invoice.paid"></ui-switch>
-                    	</span>
+                            <ui-switch  ng-model="invoice.paid"></ui-switch>
+                        </span>
                     </div>
                     <div class="section large">
                         当前可用余额50.0
@@ -114,8 +80,8 @@
                     <div class="section large bg-gray-lighter text-primary clearfix">
                         余额支付
                         <span class="pull-right">
-                    		<ui-switch  ng-model="invoice.paid"></ui-switch>
-                    	</span>
+                            <ui-switch  ng-model="invoice.paid"></ui-switch>
+                        </span>
                     </div>
                     <div class="list-group">
                         <div class="list-group-item">

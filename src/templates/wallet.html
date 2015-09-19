@@ -15,21 +15,22 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading" style="position:relative;top:8px">
-                    	账户余额&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-very-large text-primary">88</span><span class="text-primary">元</span>
+                        账户余额&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-very-large text-primary">{{wallet.money}}</span><span class="text-primary">元</span>
                     </h4>
                 </div>
             </div>
         </div>
         <div class="kk-line kk-horizon bg-gray-lighter"></div>
         <div class="list-group">
-        	<a ng-href="#/cash" class="list-group-item">
+            <a ng-href="#/cash" class="list-group-item">
                 <span class="list-group-item-text">提现</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
             <a ng-href="#/modify_trade_password" class="list-group-item">
                 <span class="list-group-item-text">支付密码</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
-                <span class="pull-right text-primary">未设置</span>
+                <span class="pull-right text-primary" ng-if="wallet.is_setPayPwd == 0">未设置</span>
+                <span class="pull-right text-primary" ng-if="wallet.is_setPayPwd == 1">修改交易密码</span>
             </a>
         </div>
     </div>
