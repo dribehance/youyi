@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var applicantsController = function($scope, $routeParams, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var applicantsController = function($scope, $routeParams,SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.applicants = [];
     $scope.page = {
         pn: 1,
@@ -18,7 +18,7 @@ var applicantsController = function($scope, $routeParams, myLoveServices, taskSe
             $scope.page.message = "点击加载更多";
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.applicants = $scope.applicants.concat(data.RequestList.list);
-                $scope.payment = data.money;
+                // $scope.payment = data.money;
                 $scope.no_more = $scope.applicants.length == data.RequestList.totalRow ? true : false;
             } else {
                 errorServices.autoHide(data.message);
@@ -31,6 +31,23 @@ var applicantsController = function($scope, $routeParams, myLoveServices, taskSe
 
     }
     $scope.loadMore();
+    $scope.accept = function(id){
+        toastServices.show();
+        taskServices.queryPaymentInfo({
+            "yy_user_id":id,
+            "task_id":$routeParams.task_id
+        }).then(function(data){
+            toastServices.hide()
+            if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                SharedState.turnOn("payment_panel");
+                $scope.payment = data.Result.user;  
+                $scope.payment_money = data.Result.money; 
+            }
+            else {
+                errorServices.autoHide(data.message);
+            }
+        })
+    }
     $scope.unlike = function(applicant) {
         myLoveServices.cancel({
             "collection_id": applicant.collection_id

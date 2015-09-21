@@ -9,7 +9,7 @@
         <div class="translator-cover" ng-click="go('/me_info')">
             <imageview data-rate="750/422" src="staticImageUrl + user.bg_image"></imageview>
             <div class="translator-info left">
-                <span class="h3 block">{{user.nickname || user.telephone || user.email || '未填写'}}</span>
+                <span class="h3 block">{{user.nickname || user.telephone || user.email || '未填写'}}<i class="kk kk-icon" ng-class="{'kk-male':user.gender=='1','kk-female':user.gender !='1'}"></i></span>
                 <span class="block">已有{{user.foucus_count || "0"}}人关注TA</span>
             </div>
             <div class="translator-info right">
@@ -160,7 +160,7 @@
             </a>
         </div>
         <!-- 我的工作日 -->
-        <div class="list-group" style="margin:10px">
+        <div class="list-group" style="margin:10px" ui-turn-on="workday_panel">
             <div class="list-group-header">
                 <div class="section bg-transparent">
                     我的工作日
@@ -265,7 +265,6 @@
                 </div>
                 <div class="modal-body">
                     <textarea class="form-control" placeholder="请填写" name="experience" ng-model="input.experience" required></textarea>
-                    
                 </div>
                 <div class="modal-footer">
                     <button ui-turn-off="create_panel" class="btn btn-default">取消</button>
@@ -273,5 +272,41 @@
                 </div>
             </div>
         </form>
+    </div>
+    <div class="modal modal-overlay" ui-if="workday_panel" ui-state='workday_panel'>
+        <!-- <div class="modal-backdrop in"></div> -->
+        <div class="modal-dialog" style="margin:0">
+            <div class="modal-content">
+                <div class="modal-header text-primary clearfix">
+                    <div class="pull-left section section-condensed bg-transparent" ui-turn-off="workday_panel">
+                        <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
+                    </div>
+                    <span class="pull-right" style="position:relative;top:3px"></span>
+                    <h4 class="modal-title text-center">工作日</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row grid-gutter">
+                        <div class="col-xs-4">
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_monday')" ng-class="{'btn-primary':user.work_monday == 1}">周一</span>
+                        </div>
+                        <div class="col-xs-4">
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_tuesday')" ng-class="{'btn-primary':user.work_tuesday == 1}">周二</span>
+                        </div>
+                        <div class="col-xs-4">
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_wednesday')" ng-class="{'btn-primary':user.work_wednesday == 1}">周三</span>
+                        </div>
+                        <div class="col-xs-4">
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_thursday')" ng-class="{'btn-primary':user.work_thursday == 1}">周四</span></div>
+                        <div class="col-xs-4">
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_friday')" ng-class="{'btn-primary':user.work_friday == 1}">周五</span></div>
+                        <div class="col-xs-4">
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_saturday')" ng-class="{'btn-primary':user.work_saturday == 1}">周六</span></div>
+                        <div class="col-xs-4">
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_sunday')" ng-class="{'btn-primary':user.work_sunday == 1}">周日</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -53,5 +53,4 @@ var recommandsController = function($scope, taskServices, myLoveServices, errorS
             }
         })
     }
-    $scope.payment = {};
 }

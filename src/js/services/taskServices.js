@@ -229,6 +229,21 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
             }).then(function(data) {
                 return data.data;
             });
+        },
+        queryPaymentInfo:function(input){
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/TaskUser/comfiyUser",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "language_app": localStorageService.get("language"),
+                    "yy_user_id":input.yy_user_id,
+                    "task_id":input.task_id,
+                })
+            }).then(function(data) {
+                return data.data;
+            });
         }
     }
 });

@@ -98,16 +98,27 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
     }
     $scope.removeTranslateType = function(translate_type) {
         toastServices.show();
-        userServices.translate_types.remove(translate_type).then(function(data){
+        userServices.translate_types.remove(translate_type).then(function(data) {
             toastServices.hide()
-            if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-            }
-            else {
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {} else {
                 errorServices.autoHide(data.message);
             }
         })
         $scope.user.translate_types = $scope.user.translate_types.filter(function(type) {
             return translate_type != type;
+        })
+    };
+    // work day
+    $scope.toggleWorkday = function(workday) {
+        userServices.info.updateWorkday({
+            "work_day": workday,
+            "work_day_setting": $rootScope.user[workday] == "1" ? "0" : "1",
+        }).then(function(data) {
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $rootScope.user[workday] = $rootScope.user[workday] == "1" ? "0" : "1";
+            } else {
+                errorServices.autoHide(data.message);
+            }
         })
     };
     // edit content
@@ -163,7 +174,7 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
             }
         })
     };
-    $scope.sync_back = function(){
+    $scope.sync_back = function() {
         userServices.sync();
         $rootScope.back();
     }

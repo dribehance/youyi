@@ -18,7 +18,7 @@ var meInfoController = function($scope, $rootScope, SharedState, userServices, t
         userServices.info.updateBasic($rootScope.user).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                // errorServices.autoHide(data.message);
+                errorServices.autoHide(data.message);
             } else {
                 errorServices.autoHide(data.message);
             }

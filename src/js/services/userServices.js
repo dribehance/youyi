@@ -213,7 +213,7 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
                     return data.data;
                 });
             },
-            updateSchedule: function(input) {
+            updateWorkday: function(input) {
                 return $http({
                     // by dribehance <dribehance.kksdapp.com>
                     url: config.url + "/app/Person/setWorkday",
@@ -238,7 +238,8 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
                         "language_app": localStorageService.get("language"),
                         "nickname": input.nickname,
                         "name": input.name,
-                        "sex": input.sex,
+                        "sex": input.gender == '1'?"男":"女",
+                        "is_men":input.gender,
                         "city_dict_group_id": input.city_dict_group_id,
                         "profession": input.profession,
                     })

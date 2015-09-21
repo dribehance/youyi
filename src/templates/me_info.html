@@ -32,13 +32,13 @@
             <div class="list-group-item clearfix kk-input-group">
                 <span class="btn col-xs-3 section-wide text-left">性别</span>
                 <span class="col-xs-9 section-wide">
-                    <i class="kk kk-icon kk-radio" ng-class="{'active':user.sex == '男'}"></i>
+                    <i class="kk kk-icon kk-radio" ng-class="{'active':user.gender == '1'}"></i>
                     <label class="btn" style="min-width:60px">
-                        <input type="radio" name="male" ng-model="user.sex"  value="男" class="hidden">男
+                        <input type="radio" name="male" ng-model="user.gender"  value="1" class="hidden">男
                     </label>
-                    <i class="kk kk-icon kk-radio" ng-class="{'active':user.sex == '女'}"></i>
+                    <i class="kk kk-icon kk-radio" ng-class="{'active':user.gender == '2'}"></i>
                     <label class="btn" style="min-width:60px">
-                        <input type="radio" name="female" ng-model="user.sex" value="女" class="hidden">女
+                        <input type="radio" name="female" ng-model="user.gender" value="2" class="hidden">女
                     </label>
                 <!-- <span class="tip text-warning">error</span> -->
                 </span>

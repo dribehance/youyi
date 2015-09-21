@@ -9,7 +9,7 @@
         <div class="recommands">
             <div class="recommand" ng-repeat="applicant in applicants track by $index">
                 <div class="recommand-header">
-                    {{applicant.nickname}} <i class="kk kk-icon" ng-class="{'kk-male':applicant.sex=='男','kk-female':applicant.sex !='男'}"></i>
+                    {{applicant.nickname}} <i class="kk kk-icon" ng-class="{'kk-male':applicant.gender=='1','kk-female':applicant.gender !='1'}"></i>
                 </div>
                 <div class="recommand-body">
                     <div>语种：{{applicant.return_language}}</div>
@@ -25,7 +25,7 @@
                             </a>
                         </div>
                         <div class="pull-right">
-                            <a ng-click="accept()" class="btn btn-default" ui-turn-on="payment_panel">
+                            <a ng-click="accept(applicant.user_id)" class="btn btn-default">
                                 <i class="kk kk-accept" ng-class="{'active':applicant.status == '1'}"></i> 接受申请
                             </a>
                         </div>
@@ -50,7 +50,7 @@
                     <h4 class="modal-title text-center">申请悠译人</h4>
                     <div class="section bg-transparent text-center">
                         <p>将要支付</p>
-                        <span class="text-very-large">{{payment.price_sign + payment.total_money}}</span>
+                        <span class="text-very-large">{{payment_money.price_sign + payment_money.total_money}}</span>
                     </div>
                 </div>
                 <div class="modal-body" style="padding:0;">
@@ -58,13 +58,13 @@
                         <div class="media">
                             <div class="media-left">
                                 <div class="circle icon-70">
-                                    <img class="media-object block full-width" ng-src="../images/avatar.png" err-src="../images/avatar.png" alt="">
+                                    <img class="media-object block full-width" ng-src="{{staticImageUrl + payment.avatar || '../images/avatar.png'}}" err-src="../images/avatar.png" alt="">
                                 </div>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam iste odit, libero placeat veritatis velit laborum deleniti est at corporis perspiciatis illo expedita rerum sed unde doloribus cupiditate modi atque.</h4>
-                                <div>语种：中文(母语)/韩文(流利)</div>
-                                <div>所在地：韩国首尔</div>
+                                <h4 class="media-heading text-ellipsis">{{payment.nickname}}</h4>
+                                <div>语种：{{payment.return_language}}</div>
+                                <div>所在地：{{payment.address}}</div>
                             </div>
                         </div>
                     </div>

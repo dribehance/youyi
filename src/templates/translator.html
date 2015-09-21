@@ -11,7 +11,10 @@
         <div class="translator-cover">
             <imageview data-rate="750/422" src="staticImageUrl+translator.bg_image"></imageview>
             <div class="translator-info left">
-                <span class="h3 block">{{translator.nickname}}</span>
+                <span class="h3 block">
+                    {{translator.nickname}}
+                    <i class="kk kk-icon" ng-class="{'kk-male':translator.gender=='1','kk-female':translator.gender !='1'}"></i>
+                </span>
                 <span class="block">已有{{translator.foucus_count}}人关注TA</span>
             </div>
             <div class="translator-info right">
@@ -66,7 +69,7 @@
                     <p class="text-small">评价标签</p>
                     <div class="row grid-gutter">
                         <div class="col-xs-4" ng-repeat="tag in translator.commentTags">
-                            <span class="btn btn-default rectangle full-width text-ellipsis">{{tag.tag_name}}X{{tag.tag_count}}</span>
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-class="{'btn-primary':$odd,'bg-white':$odd,'text-primary':$odd}">{{tag.tag_name}}X{{tag.tag_count}}</span>
                         </div>
                     </div>
                 </div>
@@ -154,8 +157,11 @@
             <span class="btn btn-success rectangle">
                 将我分享给朋友
             </span>
-            <a ng-href="#/apply_flow" class="btn btn-danger rectangle">
+            <a ng-href="#/apply_flow" class="btn btn-danger rectangle" ng-if="translator.apply_status ==0">
                 发送申请
+            </a>
+            <a class="btn btn-danger rectangle" ng-if="translator.apply_status ==1">
+                已经申请
             </a>
             <span class="btn bg-gray text-white rectangle" ng-click="like()" ng-if="translator.is_collection == 0">
                 收藏此人
