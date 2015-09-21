@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var releaseTaskController = function($rootScope, $scope, $route, $timeout, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
+var applyFlowController = function($rootScope, $scope, $route, $timeout, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {
         from_date: new Date(),
         from_time: new Date(),
@@ -81,38 +81,28 @@ var releaseTaskController = function($rootScope, $scope, $route, $timeout, $filt
             "total_money": $scope.input.total,
             "city_dict_group_id": $scope.choosen.city.group_id,
             "description": $scope.input.content,
-            "yy_user_id":$rootScope.user.user_id,
-            "is_apply":"1",
         };
-        localStorageService.set("recommand", input);
         toastServices.show();
         taskServices.release(input).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                // $rootScope.cover.show = true;
-                // SharedState.turnOn("modal2");
-                return taskServices.queryRecommandTask(angular.extend({}, {
-                    pn: 1,
-                    page_size: 10
-                }, input));
-            } else {
-                errorServices.autoHide(data.message);
-            }
-        }).then(function(data) {
-            if (data && data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                $scope.recommands = data.Result.recommends.totalRow;
                 $rootScope.cover.show = true;
                 SharedState.turnOn("modal2");
             } else {
                 errorServices.autoHide(data.message);
             }
-        });
+        })
 
     }
     $scope.close = function() {
         toastServices.show();
         $timeout(function() {
-            $route.reload();
+            // $route.reload();
+            $rootScope.back();
         }, 1000)
+    }
+    $scope.create = function() {
+        toastServices.show();
+        console.log("creating")
     }
 }

@@ -43,7 +43,7 @@ var tasksController = function($scope, taskServices, errorServices, toastService
                 $scope.tasks = $scope.tasks.concat(data.Result.tasks.list);
                 $scope.no_more = $scope.tasks.length == data.Result.tasks.totalRow ? true : false;
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
                 $scope.page.message = "没有了";
@@ -60,7 +60,7 @@ var tasksController = function($scope, taskServices, errorServices, toastService
                 $scope.tasks = $scope.tasks.concat(data.Result.tasks.list);
                 $scope.no_more = $scope.tasks.length == data.Result.tasks.totalRow ? true : false;
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
                 $scope.page.message = "没有了";

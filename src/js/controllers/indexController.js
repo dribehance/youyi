@@ -5,7 +5,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
             $scope.banners = data.Result.list;
         } else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     });
     $scope.choosen = {};
@@ -34,7 +34,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
                 $scope.tasks = $scope.tasks.concat(data.Result.tasks.list);
                 $scope.no_more = $scope.tasks.length == data.Result.tasks.totalRow ? true : false;
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
                 $scope.page.message = "没有了";
@@ -68,7 +68,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
                 return language;
             })
         } else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     })
     $scope.choosen.languages = [];
@@ -141,7 +141,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
             $scope.countries = data.Result.countries;
         } else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     })
     $scope.choosen.city = {
@@ -242,7 +242,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
             $scope.categories = data.Result.type;
         }
         else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     })
     $scope.choosen.category = {

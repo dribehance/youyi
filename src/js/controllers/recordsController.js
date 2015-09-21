@@ -19,7 +19,7 @@ var recordsController = function($scope,walletServices, errorServices, toastServ
 	            $scope.records = $scope.records.concat(data.Response.list);
 	            $scope.no_more = $scope.records.length == data.Response.totalRow?true:false;
 	        } else {
-	            errorServices.autoHide("服务器错误");
+	            errorServices.autoHide(data.message);
 	        }
 	        if ($scope.no_more) {
 	        	$scope.page.message = "没有了";

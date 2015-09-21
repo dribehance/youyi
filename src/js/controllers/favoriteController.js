@@ -19,7 +19,7 @@ var favoriteController = function($scope, myLoveServices, errorServices, toastSe
                 $scope.translators = $scope.translators.concat(data.CollectionList.list);
                 $scope.no_more = $scope.translators.length == data.CollectionList.totalRow ? true : false;
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
                 $scope.page.message = "没有了";
@@ -34,12 +34,12 @@ var favoriteController = function($scope, myLoveServices, errorServices, toastSe
             "collection_id": translator.collection_id
         }).then(function(data) {
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                $scope.translators = $scope.translators.filter(function(t){
-                	return t.collection_id != translator.collection_id;
+                $scope.translators = $scope.translators.filter(function(t) {
+                    return t.collection_id != translator.collection_id;
                 })
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
         })
-    }
+    };
 }

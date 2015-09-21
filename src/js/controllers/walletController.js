@@ -7,7 +7,7 @@ var walletController = function($scope, walletServices, errorServices, toastServ
 			$scope.wallet = data.MyMoneyResponse;		
 		}
 		else {
-			errorServices.autoHide("服务器错误");
+			errorServices.autoHide(data.message);
 		}
 	})
 }

@@ -23,7 +23,7 @@ var cashController = function($rootScope, $scope, walletServices, errorServices,
                     show: true,
                     message: data.message
                 };
-                // errorServices.autoHide("服务器错误");
+                // errorServices.autoHide(data.message);
             }
         })
     }
@@ -34,7 +34,7 @@ var cashController = function($rootScope, $scope, walletServices, errorServices,
             $scope.wallet = data.MyMoneyResponse;       
         }
         else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     })
 }

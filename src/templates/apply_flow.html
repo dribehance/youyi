@@ -1,14 +1,8 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">发布任务</div>
-<div ui-content-for="navbarAction">
-    <a ng-href="#/setting" class="btn sidebar-toggle">
-        <i class="fa fa-cog text-large"></i>
-    </a>
-</div>
+<div ui-content-for="title">申请悠译人</div>
+<div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
-    <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
-        <i class="fa fa-bars text-large"></i>
-    </div>
+	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
@@ -308,11 +302,11 @@
                     <h4 class="modal-title">温馨提示</h4>
                 </div>
                 <div class="modal-body">
-                    <p>恭喜您，发布任务成功！</p>
+                    <p>恭喜,你的申请已经发送，是否创建任务！</p>
                 </div>
                 <div class="modal-footer text-center">
-                    <a ng-href="#/recommands" class="btn btn-primary" ng-if="recommands > 0">查看推荐人</a>
-                    <button class="btn btn-default" ng-click="close()">关闭</button>
+                    <button class="btn btn-default" ng-click="close()">不创建，返回</button>
+                    <button class="btn btn-primary" ng-click="create()">创建</button>
                 </div>
             </div>
         </div>

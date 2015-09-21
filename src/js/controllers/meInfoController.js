@@ -7,7 +7,7 @@ var meInfoController = function($scope, $rootScope, SharedState, userServices, t
             $scope.countries = data.Result.countries;
 
         } else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     });
     $scope.input = {};
@@ -18,9 +18,9 @@ var meInfoController = function($scope, $rootScope, SharedState, userServices, t
         userServices.info.updateBasic($rootScope.user).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                // errorServices.autoHide("服务器错误");
+                // errorServices.autoHide(data.message);
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
         })
     };

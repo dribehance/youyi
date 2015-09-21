@@ -6,7 +6,7 @@ var taskController = function($scope, $routeParams,$location, taskServices, erro
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
         	$scope.task = data.taskDetail;
         } else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     });
     $scope.apply = function() {
@@ -17,7 +17,7 @@ var taskController = function($scope, $routeParams,$location, taskServices, erro
     			$location.path("tasks").replace();	
     		}
     		else {
-    			errorServices.autoHide("服务器错误");
+    			errorServices.autoHide(data.message);
     		}
     	})
     }

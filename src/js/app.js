@@ -40,6 +40,11 @@ angular.module("Youyi", [
             reloadOnSearch: false,
             controller: translatorController
         })
+        .when("/apply_flow", {
+            templateUrl: "apply_flow.html",
+            reloadOnSearch: false,
+            controller: applyFlowController
+        })
         .when("/:task_id/applicants/", {
             templateUrl: "applicants.html",
             reloadOnSearch: false,

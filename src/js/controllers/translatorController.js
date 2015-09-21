@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var translatorController = function($scope, $routeParams, translatorServices,myLoveServices, errorServices, toastServices, localStorageService, config) {
+var translatorController = function($scope, $routeParams, translatorServices, myLoveServices, errorServices, toastServices, localStorageService, config) {
     $scope.authens = [];
     toastServices.show();
     translatorServices.queryById({
@@ -18,7 +18,7 @@ var translatorController = function($scope, $routeParams, translatorServices,myL
                 return authen != "";
             })
         } else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     })
     $scope.commentStars = function(length) {
@@ -26,24 +26,26 @@ var translatorController = function($scope, $routeParams, translatorServices,myL
         return new Array(length)
     };
     $scope.like = function() {
-        myLoveServices.like({"collection_user_id":$routeParams.translator_id}).then(function(data){
-            if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+        myLoveServices.like({
+            "collection_user_id": $routeParams.translator_id
+        }).then(function(data) {
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.translator.collection_id = data.collection_id;
                 $scope.translator.is_collection = 1;
-            }
-            else {
-                errorServices.autoHide("服务器错误");
+            } else {
+                errorServices.autoHide(data.message);
             }
         })
     }
-    $scope.unlike = function(){
-        myLoveServices.cancel({"collection_id":$scope.translator.collection_id}).then(function(data){
-            if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+    $scope.unlike = function() {
+        myLoveServices.cancel({
+            "collection_id": $scope.translator.collection_id
+        }).then(function(data) {
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.translator.is_collection = 0;
-            }
-            else {
-                errorServices.autoHide("服务器错误");
+            } else {
+                errorServices.autoHide(data.message);
             }
         })
-    }
+    };
 }

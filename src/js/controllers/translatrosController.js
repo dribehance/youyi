@@ -25,7 +25,7 @@ var translatorsController = function($scope, translatorServices, taskServices, e
                 $scope.translators = $scope.translators.concat(data.Result.persons.list);
                 $scope.no_more = $scope.translators.length == data.Result.persons.totalRow ? true : false;
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
                 $scope.page.message = "没有了";
@@ -59,7 +59,7 @@ var translatorsController = function($scope, translatorServices, taskServices, e
                 return language;
             })
         } else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     })
     $scope.choosen.languages = [];
@@ -132,7 +132,7 @@ var translatorsController = function($scope, translatorServices, taskServices, e
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
             $scope.countries = data.Result.countries;
         } else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     })
     $scope.choosen.city = {
@@ -232,7 +232,7 @@ var translatorsController = function($scope, translatorServices, taskServices, e
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
             $scope.categories = data.Result.type;
         } else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     })
     $scope.choosen.category = {

@@ -11,7 +11,7 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
                 translate_experiences: data.Result.experiences
             });
         } else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     });
     // language
@@ -33,7 +33,7 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
                     return (lang != language);
                 })
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
         })
     };
@@ -53,7 +53,7 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
                 $rootScope.user.languages.push(angular.extend({}, $scope.input.choosen_language, $scope.input.choosen_language_level))
                 $scope.choosen_language = {}
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
         })
 
@@ -91,7 +91,7 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
                         "second_catalog_str": $scope.input.choosen_translate_group_name
                     })
                 } else {
-                    errorServices.autoHide("服务器错误");
+                    errorServices.autoHide(data.message);
                 }
             })
             // $scope.user.translate_types.push($scope.input.choosen_translate_type)
@@ -103,7 +103,7 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
             if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
             }
             else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
         })
         $scope.user.translate_types = $scope.user.translate_types.filter(function(type) {
@@ -130,7 +130,7 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
                 $rootScope.user[$scope.input.editable_key] = $scope.input.editable_content;
                 SharedState.turnOff("editable_panel");
             } else {
-                errorServices.autoHide("服务器错误")
+                errorServices.autoHide(data.message)
             }
         })
     };
@@ -146,7 +146,7 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
                 $rootScope.user.translate_experiences.push(data.Result);
                 SharedState.turnOff("create_panel");
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
         })
     }
@@ -159,7 +159,7 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
                     return ex != experience
                 });
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
         })
     };

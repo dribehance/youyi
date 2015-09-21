@@ -7,7 +7,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/Home/cities",
                 method: "GET",
-                cache:true,
+                cache: true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language")
@@ -22,7 +22,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/Home/languages",
                 method: "GET",
-                cache:true,
+                cache: true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language")
@@ -37,7 +37,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/Home/type",
                 method: "GET",
-                cache:true,
+                cache: true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language")
@@ -52,12 +52,12 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/Home/task",
                 method: "GET",
-                cache:true,
+                cache: true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
                     "page_size": input.page_size,
-                    "pn":input.pn,
+                    "pn": input.pn,
                     "filter_language_group_id": input.filter_language_group_id,
                     "filter_place_group_id": input.filter_place_group_id,
                     "filter_type_group_id": input.filter_type_group_id,
@@ -104,7 +104,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/PublishTask/languageList",
                 method: "GET",
-                cache:true,
+                cache: true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
@@ -150,6 +150,8 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     "total_money": input.total_money,
                     "city_dict_group_id": input.city_dict_group_id,
                     "description": input.description,
+                    "yy_user_id":input.yy_user_id,
+                    "is_apply":input.is_apply,
                 })
             }).then(function(data) {
                 return data.data;
@@ -164,8 +166,8 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
-                    "pn":input.pn,
-                    "page_size":input.page_size
+                    "pn": input.pn,
+                    "page_size": input.page_size
                 })
             }).then(function(data) {
                 return data.data;
@@ -186,7 +188,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
             });
         },
         // applicants 
-        queryApplicantsByTask:function(input){
+        queryApplicantsByTask: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/TaskUser/requestUser",
@@ -194,9 +196,35 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
-                    "task_id":input.task_id,
-                    "pn":input.pn,
-                    "page_size":input.page_size,
+                    "task_id": input.task_id,
+                    "pn": input.pn,
+                    "page_size": input.page_size,
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        queryRecommandTask: function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/PublishTask/recommend",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "language_app": localStorageService.get("language"),
+                    "from_language_group_id": input.from_language_group_id,
+                    "to_language_group_id": input.to_language_group_id,
+                    "task_type_group_id": input.task_type_group_id,
+                    // "start_time": input.start_time,
+                    // "end_time": input.end_time,
+                    // "title": input.title,
+                    // "other_type_note": input.other_type_note,
+                    "price_for_day": input.price_for_day,
+                    // "total_money": input.total_money,
+                    "city_dict_group_id": input.city_dict_group_id,
+                    // "description": input.description,
+                    "pn": input.pn,
+                    "page_size": input.page_size,
                 })
             }).then(function(data) {
                 return data.data;

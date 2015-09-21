@@ -21,7 +21,7 @@ var applicantsController = function($scope, $routeParams, myLoveServices, taskSe
                 $scope.payment = data.money;
                 $scope.no_more = $scope.applicants.length == data.RequestList.totalRow ? true : false;
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
                 $scope.page.message = "没有了";

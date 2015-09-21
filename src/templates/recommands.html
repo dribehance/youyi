@@ -2,39 +2,109 @@
 <div ui-content-for="title">推荐人列表</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		<div class="recommands">
-			<div class="recommand">
-				<div class="recommand-header">
-					Angel Mo <i class="kk kk-icon kk-female"></i>
-				</div>
-				<div class="recommand-body">
-					<div>语种：中文(母语)/韩语(流利)</div>
-					<p>所在地：韩国首尔</p>
-					<p>个人简介：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, quibusdam. Sit quas tempora, quia officia, earum eum animi commodi! Expedita porro maiores recusandae in quidem quam rerum quo a exercitationem.</p>
-					<div class="clearfix">
-						<div class="pull-left">
-							<a ng-click="like(translator)" class="btn btn-default">
-                            	<i class="kk kk-like active"></i>
-                            	收藏此人
+    <div class="scrollable-content">
+        <div class="recommands">
+            <div class="recommand" ng-repeat="recommand in recommands track by $index">
+                <div class="recommand-header">
+                    {{recommand.nickname}} <i class="kk kk-icon" ng-class="{'kk-male':recommand.sex=='男','kk-female':recommand.sex !='男'}"></i>
+                </div>
+                <div class="recommand-body">
+                    <div>语种：{{recommand.return_language}}</div>
+                    <p>所在地：{{recommand.address}}</p>
+                    <p>个人简介：{{recommand.introduction}}</p>
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <a ng-click="like(recommand)" class="btn btn-default" ng-if="recommand.is_collect == '0'">
+                                <i class="kk kk-like"></i> 收藏此人
                             </a>
-						</div>
-						<div class="pull-right">
-							<a class="btn btn-default">
-                            	<i class="kk kk-accept"></i>
-                            	提出申请
+                            <a ng-click="unlike(recommand)" class="btn btn-default" ng-if="recommand.is_collect == '1'">
+                                <i class="kk kk-like active"></i> 取消收藏
                             </a>
-						</div>
-					</div>
-				</div>
-				<div class="recommand-avatar">
-					<img ng-src="../images/avatar_1.png" alt="">
-				</div>
-			</div>
-			
-		</div>
-	</div>
+                        </div>
+                        <div class="pull-right">
+                            <a ng-click="accept()" class="btn btn-default" ui-turn-on="payment_panel">
+                                <i class="kk kk-accept" ng-class="{'active':recommand.status == '1'}"></i> 接受申请
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommand-avatar">
+                    <img ng-src="{{staticImageUrl + recommand.avatar || '../images/avatar_1.png'}}" err-src="../images/avatar_1.png" alt="">
+                </div>
+            </div>
+            <div class="section text-center m" ng-click="loadMore()">{{page.message}}</div>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal modal-overlay" ui-if="payment_panel" ui-state='payment_panel'>
+        <form name="editForm" ng-submit="ajaxForm()" class="modal-dialog" style="margin:0">
+            <div class="modal-content">
+                <div class="modal-header bg-primary clearfix">
+                    <div class="pull-left section section-condensed bg-transparent" ui-turn-off="payment_panel">
+                        <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
+                    </div>
+                    <h4 class="modal-title text-center">申请悠译人</h4>
+                    <div class="section bg-transparent text-center">
+                        <p>将要支付</p>
+                        <span class="text-very-large">{{payment.price_sign + payment.total_money}}</span>
+                    </div>
+                </div>
+                <div class="modal-body" style="padding:0;">
+                    <div class="section">
+                        <div class="media">
+                            <div class="media-left">
+                                <div class="circle icon-70">
+                                    <img class="media-object block full-width" ng-src="../images/avatar.png" err-src="../images/avatar.png" alt="">
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam iste odit, libero placeat veritatis velit laborum deleniti est at corporis perspiciatis illo expedita rerum sed unde doloribus cupiditate modi atque.</h4>
+                                <div>语种：中文(母语)/韩文(流利)</div>
+                                <div>所在地：韩国首尔</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section large bg-gray-lighter text-primary clearfix">
+                        余额支付
+                        <span class="pull-right">
+                            <ui-switch  ng-model="payment.balance"></ui-switch>
+                        </span>
+                    </div>
+                    <div class="section large">
+                        当前可用余额{{payment.price_sign + payment.current_money}}
+                    </div>
+                    <div class="section large bg-gray-lighter text-primary clearfix">
+                        其他支付方式
+                        <span class="pull-right">
+                            <ui-switch  ng-model="payment.channel"></ui-switch>
+                        </span>
+                    </div>
+                    <div class="list-group">
+                        <label class="list-group-item">
+                            银联支付方式
+                            <input type="radio" class="hidden" ng-model="payment.channel" value="yinlian">
+                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':payment.channel =='yinlian'}"></i>
+                        </label>
+                        <label class="list-group-item">
+                            微信支付
+                            <input type="radio" class="hidden" ng-model="payment.channel" value="weixin">
+                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':payment.channel == 'weixin'}"></i>
+                        </label>
+                        <label class="list-group-item">
+                            支付宝支付
+                            <input type="radio" class="hidden" ng-model="payment.channel" value="alipay">
+                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':payment.channel == 'alipay'}"></i>
+                        </label>
+                    </div>
+                    <div class="section text-center">
+                        <button type="submit" class="btn btn-primary" ng-disabled="editForm.edit.$invalid">确认并支付</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
