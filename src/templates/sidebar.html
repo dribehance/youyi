@@ -49,6 +49,7 @@
             <div class="kk-input-group flat">
                 <input type="password" name="password" class="form-control" placeholder="请输入登录密码" ng-model="input.password" required ng-minlength=8 />
                 <span class="tip text-warning" ng-show="signinForm.password.$invalid && signinForm.password.$dirty">必填,密码至少8位</span>
+                <span class="tip text-warning" ng-show="sidebar.error.show && signinForm.$valid">{{sidebar.error.message}}</span>
             </div>
             <div class="kk-input-group">
                 <button type="submit" class="btn btn-warning block full-width">马上登录</button>
@@ -84,6 +85,7 @@
             <div class="kk-input-group flat">
                 <input type="password" name="password" class="form-control" placeholder="设置密码，至少8位" ng-model="input.password" required ng-minlength=8>
                 <span class="tip text-warning" ng-show="signupForm.password.$invalid && signupForm.password.$dirty">必填,密码至少8位</span>
+                <span class="tip text-warning" ng-show="sidebar.error.show && signupForm.$valid">{{sidebar.error.message}}</span>
             </div>
             <div class="kk-input-group">
                 <button type="submit" class="btn btn-warning block full-width">注册</button>
@@ -114,6 +116,7 @@
             <div class="kk-input-group flat">
                 <input type="password" name="password" class="form-control" placeholder="设置密码，至少8位" ng-model="input.password" required ng-minlength=8>
                 <span class="tip text-warning" ng-show="signupEmailForm.password.$invalid && signupEmailForm.password.$dirty">必填,密码至少8位</span>
+                <span class="tip text-warning" ng-show="sidebar.error.show && signupEmailForm.$valid">{{sidebar.error.message}}</span>
             </div>
             <div class="kk-input-group">
                 <button type="submit" class="btn btn-warning block full-width">注册</button>
@@ -140,7 +143,7 @@
             </div>
             <div class="kk-input-group flat">
                 <input type="password" name="password" class="form-control" placeholder="重设密码，至少8位" ng-model="input.password" required>
-                <span class="tip text-warning">error</span>
+                <span class="tip text-warning" ng-show="forgetForm.password.$invalid && forgetForm.password.$dirty">必填,密码至少8位</span>
             </div>
             <div class="kk-input-group">
                 <button type="submit" class="btn btn-warning block full-width">注册</button>

@@ -2,7 +2,11 @@
 angular.module("Youyi").controller("sidebarController", function($scope, $timeout, $rootScope,$location, userServices, SharedState, errorServices, toastServices, localStorageService, config) {
     $scope.sidebar = {
         current:"entrance",
-        last: ""
+        last: "",
+        error:{
+            show:false,
+            message:""
+        }
     };
     $scope.title = "【dribehance】";
     $scope.summary = "share by dribehance";
@@ -59,7 +63,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
                 console.log("验证码"+data.tel_code);
                 errorServices.autoHide("验证码发送成功");
             } else {
-                errorServices.autoHide(data.message);
+                // errorServices.autoHide(data.message);
+                $scope.sidebar.error.show = true;
+                $scope.sidebar.error.message = data.message;
             }
         })
         $scope.callbackTimer.counting = 1;
@@ -74,7 +80,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
                 errorServices.autoHide("验证码发送成功");        
             }
             else {
-                errorServices.autoHide(data.message);
+                // errorServices.autoHide(data.message);
+                $scope.sidebar.error.show = true;
+                $scope.sidebar.error.message = data.message;
             }
         })
         $scope.callbackTimer.counting = 1;
@@ -107,7 +115,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
                 errorServices.autoHide("注册成功");
                 localStorageService.set("token",data.user.token);
             } else {
-                errorServices.autoHide(data.message);
+                // errorServices.autoHide(data.message);
+                $scope.sidebar.error.show = true;
+                $scope.sidebar.error.message = data.message;
             }
         })
     };
@@ -118,7 +128,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
             if (data.status == config.response.SUCCESS) {
 
             } else {
-                errorServices.autoHide(data.message);
+                // errorServices.autoHide(data.message);
+                $scope.sidebar.error.show = true;
+                $scope.sidebar.error.message = data.message;
             }
         })
     }
@@ -131,7 +143,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
                 localStorageService.set("token",data.token);
                 userServices.sync();
             } else {
-                errorServices.autoHide(data.message);
+                // errorServices.autoHide(data.message);
+                $scope.sidebar.error.show = true;
+                $scope.sidebar.error.message = data.message;
             }
         })
     };
@@ -142,12 +156,16 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
             if (data.status == config.response.SUCCESS) {
                 SharedState.turnOff("uiSidebarLeft");
             } else {
-                errorServices.autoHide(data.message);
+                // errorServices.autoHide(data.message);
+                $scope.sidebar.error.show = true;
+                $scope.sidebar.error.message = data.message;
             }
         })
     };
     // open uiSidebarLeft
     $scope.$on("mobile-angular-ui.state.changed.uiSidebarLeft",function(e,n,o){
+        $scope.sidebar.error.show = false;
+        $scope.sidebar.error.message = "";
         if (n === true) {
             // alert("true")
             $rootScope.cover.show = true;
