@@ -56,7 +56,7 @@
             <span class="loader"></span>
         </div>
         <!-- sidebar cover -->
-        <div class="sidebar-cover" ng-class="{'show':Ui.active('uiSidebarLeft')}"></div>
+        <div class="sidebar-cover" ng-if="cover.show"></div>
     </div>
     <!-- ~ .app -->
     <div ui-yield-to="modals"></div>

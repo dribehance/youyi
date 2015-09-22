@@ -103,9 +103,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
         userServices.signupByTel($scope.input).then(function(data) {
             toastServices.hide()
             if (data.status == config.response.SUCCESS) {
+                SharedState.turnOff("uiSidebarLeft");
                 errorServices.autoHide("注册成功");
                 localStorageService.set("token",data.user.token);
-                SharedState.turnOff("uiSidebarLeft");
             } else {
                 errorServices.autoHide(data.message);
             }
@@ -128,7 +128,8 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
             toastServices.hide()
             if (data.status == 2) {
                 SharedState.turnOff("uiSidebarLeft");
-                localStorageService.set("token",data.token)
+                localStorageService.set("token",data.token);
+                userServices.sync();
             } else {
                 errorServices.autoHide(data.message);
             }
@@ -148,7 +149,13 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
     // open uiSidebarLeft
     $scope.$on("mobile-angular-ui.state.changed.uiSidebarLeft",function(e,n,o){
         if (n === true) {
+            // alert("true")
+            $rootScope.cover.show = true;
             $scope.sidebar.current = localStorageService.get("token")?"login":"entrance"
+        }
+        else {
+            // alert("false")
+            $rootScope.cover.show = false;
         }
     })
     $scope.$watch("sidebar.current",function(n,o){
@@ -157,4 +164,10 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
             angular.element("#kkcountdown")[0].resume();
         }
     })
+    $scope.to = function(path) {
+        
+        $timeout(function(){
+            $location.path(path)
+        },0)
+    }
 })
