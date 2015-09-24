@@ -61,15 +61,16 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
         userServices.verifycode.getSmscode($scope.input).then(function(data) {
             if (data.status == config.response.SUCCESS) {
                 console.log("验证码"+data.tel_code);
-                errorServices.autoHide("验证码发送成功");
+                $scope.callbackTimer.counting = 1;
+                $scope.callbackTimer.addSeconds(60);
+                $scope.sidebar.error.show = false;
+                // errorServices.autoHide("验证码发送成功");
             } else {
                 // errorServices.autoHide(data.message);
                 $scope.sidebar.error.show = true;
                 $scope.sidebar.error.message = data.message;
             }
         })
-        $scope.callbackTimer.counting = 1;
-        $scope.callbackTimer.addSeconds(60);
     }
     $scope.getEmailcode = function() {
         toastServices.show();
@@ -77,7 +78,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
             toastServices.hide()
             if(data.status == config.response.SUCCESS) {
                 console.log("验证码"+data.code);
-                errorServices.autoHide("验证码发送成功");        
+                $scope.callbackTimer.counting = 1;
+                $scope.callbackTimer.addSeconds(60);
+                // errorServices.autoHide("验证码发送成功");        
             }
             else {
                 // errorServices.autoHide(data.message);
@@ -85,8 +88,23 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
                 $scope.sidebar.error.message = data.message;
             }
         })
-        $scope.callbackTimer.counting = 1;
-        $scope.callbackTimer.addSeconds(60);
+    }
+    $scope.getVerifycode = function() {
+        toastServices.show();
+        userServices.verifycode.getVerifycode($scope.input).then(function(data){
+            toastServices.hide()
+            if(data.status == config.response.SUCCESS) {
+                console.log("验证码"+data.code);
+                $scope.callbackTimer.counting = 1;
+                $scope.callbackTimer.addSeconds(60);
+                // errorServices.autoHide("验证码发送成功");        
+            }
+            else {
+                // errorServices.autoHide(data.message);
+                $scope.sidebar.error.show = true;
+                $scope.sidebar.error.message = data.message;
+            }
+        })
     }
     $scope.ajaxForm = function(form) {
         switch (form) {

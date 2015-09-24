@@ -74,6 +74,7 @@
              $rootScope.user = {};
              if (localStorageService.get("token")) {
                  userServices.sync();
+                 $rootScope.is_login = true;
              };
          }
      }

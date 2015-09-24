@@ -5,6 +5,7 @@ var settingController = function($scope, $rootScope, errorServices, toastService
     $scope.languages = ["中文", "日语", "韩语", "泰语", "英语"];
     $scope.exit = function() {
         $rootScope.back();
+        $rootScope.is_login = false;
         localStorageService.remove("token");
     }
 }

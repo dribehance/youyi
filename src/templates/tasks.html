@@ -1,7 +1,7 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
 <div ui-content-for="title">任务清单</div>
 <div ui-content-for="navbarAction">
-    <a ng-href="#/setting" class="btn sidebar-toggle">
+    <a ng-href="#/setting" class="btn sidebar-toggle" ng-if="is_loign">
         <i class="fa fa-cog text-large"></i>
     </a>
 </div>
@@ -27,17 +27,20 @@
                         <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" err-src="../images/avatar.png" class="circle icon" alt="">
                         {{task.title}}
                     </div>
-                    <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.status == 0">
+                    <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.task_status == 0">
                         <span class="">已下线</span>
                     </div>
-                    <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.status == 1">
+                    <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.task_status == 1">
                         <span class="">等待确认</span>
                     </div>
-                    <div class="semi-fixed-right semi-wide-80 text-right text-success" ng-if="task.status == 2">
+                    <div class="semi-fixed-right semi-wide-80 text-right text-success" ng-if="task.task_status == 2">
                         <span class="">任务确认</span>
                     </div>
-                    <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.status == 3">
+                    <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.task_status == 3 && task.is_comment == '0'">
                         <a ng-href="#/{{task.task_id}}/comment" class="btn btn-danger section section-condensed bg-transparent text-danger">待评价</a>
+                    </div>
+                    <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.is_comment == '1'">
+                        <span class="">已评价</span>
                     </div>
                 </div>
             </div>
