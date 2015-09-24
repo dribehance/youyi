@@ -69,7 +69,8 @@
                     <p class="text-small">评价标签</p>
                     <div class="row grid-gutter">
                         <div class="col-xs-4" ng-repeat="tag in translator.commentTags">
-                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-class="{'btn-primary':$odd,'bg-white':$odd,'text-primary':$odd}">{{tag.tag_name}}X{{tag.tag_count}}</span>
+                            <span class="btn btn-primary bg-transparent text-primary rectangle full-width text-ellipsis" >{{tag.tag_name}}x{{tag.tag_count}}</span>
+                            <!-- <span class="btn btn-default rectangle full-width text-ellipsis" ng-class="{'btn-primary':$odd,'bg-white':$odd,'text-primary':$odd}">{{tag.tag_name}}x{{tag.tag_count}}</span> -->
                         </div>
                     </div>
                 </div>
@@ -175,7 +176,7 @@
 <div ui-content-for="modals">
     <div class="modal modal-overlay" ui-if="authen_panel" ui-state='authen_panel'>
         <!-- <div class="modal-backdrop in"></div> -->
-        <div class="modal-dialog" style="margin:0">
+        <div class="modal-dialog scrollable-dialog" style="margin:0">
             <div class="modal-content">
                 <div class="modal-header text-primary clearfix">
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="authen_panel">

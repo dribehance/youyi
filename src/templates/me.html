@@ -127,7 +127,8 @@
                     实名认证
                 </div>
                 <div class="pull-right">
-                    <span class="list-group-item-text">上传身份证</span>
+                    <span class="list-group-item-text" ng-if="!user.identity_front">上传身份证</span>
+                    <span class="list-group-item-text" ng-if="user.identity_front">查看</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>
@@ -136,7 +137,8 @@
                     语言认证
                 </div>
                 <div class="pull-right">
-                    <span class="list-group-item-text">上传语言考核证书</span>
+                    <span class="list-group-item-text" ng-if="!user.language_identity">上传语言考核证书</span>
+                    <span class="list-group-item-text" ng-if="user.language_identity">查看</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>
@@ -145,7 +147,8 @@
                     行业资格认证
                 </div>
                 <div class="pull-right">
-                    <span class="list-group-item-text">上传行业相关证明</span>
+                    <span class="list-group-item-text" ng-if="!user.profession_identity">上传行业相关证明</span>
+                    <span class="list-group-item-text" ng-if="user.profession_identity">查看</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>
@@ -154,7 +157,8 @@
                     高级会员认证
                 </div>
                 <div class="pull-right">
-                    <span class="list-group-item-text">取得会员认证</span>
+                    <span class="list-group-item-text" ng-if="!user.advanced_identity">取得会员认证</span>
+                    <span class="list-group-item-text" ng-if="user.advanced_identity">查看</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>

@@ -101,7 +101,7 @@ var releaseTaskController = function($rootScope, $scope, $route, $timeout, $filt
         }).then(function(data) {
             if (data && data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.recommands = data.Result.recommends.totalRow;
-                $rootScope.cover.show = true;
+                // $rootScope.cover.show = true;
                 SharedState.turnOn("modal2");
             } else {
                 errorServices.autoHide(data.message);

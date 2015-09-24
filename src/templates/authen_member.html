@@ -8,7 +8,7 @@
 	<div class="scrollable-content">
 		
 		
-        <div flow-init ng-controller="authenUploadController" class="uploader" ng-if="!is_authen">
+        <div flow-init ng-controller="authenMemberUploadController" class="uploader" ng-if="!user.advanced_identity">
             <div class="section large"></div>
             <div class="section large text-center">
                 <span class="block full-width flow-btn text-center">
@@ -29,10 +29,10 @@
             我们将在1-2个工作日内完成信息审核
         </div>
     </div>
-    <div class="section large text-center" ng-if="is_authen">
-        <h4 class="text-center"><p>恭喜您，完成实名认证</p>下面是您的实名信息</h4>
-        <div ng-repeat="authen in authens track by $index" class="preview-box">
-            <img ng-src="{{authen}}" alt="" style="margin-bottom:5px;" class="block full-width">
+    <div class="section large text-center" ng-if="user.advanced_identity">
+        <h4 class="text-center"><p>恭喜您，通过高级会员认证</p>下面是您的认证信息</h4>
+        <div class="preview-box">
+            <img ng-src="{{staticImageUrl + user.advanced_identity}}" alt="" style="margin-bottom:5px;" class="block full-width">
         </div>
     </div>
 
