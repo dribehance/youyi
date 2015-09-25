@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var indexController = function($scope, $rootScope, bannerServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var indexController = function($scope, $rootScope, $location, SharedState, bannerServices, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.banners = [];
     bannerServices.query().then(function(data) {
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -145,10 +145,10 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
         }
     })
     $scope.choosen.city = {
-        name:""
+        name: ""
     };
     $scope.$watch("choosen.city.name", function(n, o) {
-        if (n === undefined || o === undefined || n =="") {
+        if (n === undefined || o === undefined || n == "") {
             return;
         }
         $scope.filter.name = "";
@@ -207,7 +207,7 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
     $scope.price_tab = {};
     $scope.price_tab.name = "by_hour";
     $scope.choosen.price = {
-        range:""
+        range: ""
     };
     $scope.$watch("choosen.price.range", function(n, o) {
         if (n === undefined || o === undefined || n == "") {
@@ -237,19 +237,18 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
         }
     });
     // category
-    taskServices.category().then(function(data){
-        if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+    taskServices.category().then(function(data) {
+        if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
             $scope.categories = data.Result.type;
-        }
-        else {
+        } else {
             errorServices.autoHide(data.message);
         }
     })
     $scope.choosen.category = {
-        name:""
+        name: ""
     };
     $scope.$watch("choosen.category.name", function(n, o) {
-        if (n === undefined || o === undefined || n =="") {
+        if (n === undefined || o === undefined || n == "") {
             return;
         }
         $scope.filter.name = "";
@@ -263,5 +262,16 @@ var indexController = function($scope, $rootScope, bannerServices, taskServices,
             filter_type_group_id: $scope.choosen.category.group_id,
         });
         $scope.loadMore();
-    })
+    });
+    // search pannel
+    $scope.input = {};
+    $scope.show_search_panel = function() {
+        SharedState.turnOn("search_panel");
+    }
+    $scope.search = function() {
+        if (!$scope.input.search) {
+            return
+        }
+        $location.path("search/" + $scope.input.search);
+    }
 }

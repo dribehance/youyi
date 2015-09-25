@@ -1,7 +1,7 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
 <div ui-content-for="title">
     <span class="search-input">
-        <input type="text" class="form-control full-width" placeholder="请输入关键字">
+        <input type="text" class="form-control full-width" ng-focus="show_search_panel()" placeholder="请输入关键字">
     </span>
 </div>
 <div ui-content-for="navbarAction">
@@ -40,22 +40,18 @@
         <!-- normal content -->
         <a ng-href="#/tasks/{{task.task_id}}" class="task-section" ng-repeat="task in tasks">
             <div class="section text-ellipsis">
-                <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" err-src="../images/avatar.png" alt="" class="circle icon">
-                {{task.title}}
+                <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" err-src="../images/avatar.png" alt="" class="circle icon"> {{task.title}}
             </div>
             <div class="section bg-gray-lighter">
                 <div class="row text-center">
                     <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-translate" style="position:relative;top:-3px"></i>
-                        {{task.from_language}}/{{task.to_language}}
+                        <i class="kk kk-icon kk-translate" style="position:relative;top:-3px"></i> {{task.from_language}}/{{task.to_language}}
                     </div>
                     <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-location" style="position:relative;top:-3px"></i>
-                        {{task.country}}，{{task.city}}
+                        <i class="kk kk-icon kk-location" style="position:relative;top:-3px"></i> {{task.country}}，{{task.city}}
                     </div>
                     <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-bag" style="position:relative;top:-3px"></i>
-                        {{task.type}}
+                        <i class="kk kk-icon kk-bag" style="position:relative;top:-3px"></i> {{task.type}}
                     </div>
                 </div>
                 <div class="section section-wide bg-gray-lighter task_cost text-ellipsis">
@@ -75,5 +71,29 @@
         <div ng-include="'location.html'" ng-if="filter.name == 'location'"></div>
         <div ng-include="'price.html'" ng-if="filter.name == 'price'"></div>
         <div ng-include="'category.html'" ng-if="filter.name == 'category'"></div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal modal-overlay" ui-if="search_panel" ui-state='search_panel'>
+        <!-- <div class="modal-backdrop in"></div> -->
+        <form name="searchForm" ng-submit="ajaxForm()" class="modal-dialog" style="margin:0">
+            <div class="navbar navbar-app">
+                <div class="navbar-brand navbar-brand-center">
+                    <span class="search-input">
+                        <input type="text" class="form-control full-width" ng-model="input.search" placeholder="请输入关键字">
+                    </span>
+                </div>
+                <div class="btn-group pull-left">
+                    <div class="btn sidebar-toggle" ui-turn-off="search_panel">
+                        <i class="fa fa-chevron-left"></i>
+                    </div>
+                </div>
+                <div class="btn-group pull-right">
+                    <a ng-click="search()" class="btn">
+                        <i class="fa fa-search text-large"></i>
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

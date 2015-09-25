@@ -161,6 +161,11 @@ angular.module("Youyi", [
             reloadOnSearch: false,
             controller: reportController
         })
+        .when("/search/:kw", {
+            templateUrl: "search.html",
+            reloadOnSearch: false,
+            controller: searchController
+        })
         .otherwise({
             redirectTo: "/index"
         });
