@@ -81,12 +81,14 @@ var applyFlowController = function($rootScope, $scope, $route, $timeout, $filter
             "total_money": $scope.input.total,
             "city_dict_group_id": $scope.choosen.city.group_id,
             "description": $scope.input.content,
+            "yy_user_id": $rootScope.user.user_id,
+            "is_apply": "0",
         };
         toastServices.show();
         taskServices.release(input).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                $rootScope.cover.show = true;
+                // $rootScope.cover.show = true;
                 SharedState.turnOn("modal2");
             } else {
                 errorServices.autoHide(data.message);
@@ -103,6 +105,10 @@ var applyFlowController = function($rootScope, $scope, $route, $timeout, $filter
     }
     $scope.create = function() {
         toastServices.show();
-        console.log("creating")
+        // do something create 
+        $timeout(function() {
+            // $route.reload();
+            $rootScope.back();
+        }, 1000)
     }
 }
