@@ -64,18 +64,15 @@
              };
              // language cache
              if (!localStorageService.get("language")) {
-                localStorageService.set("language","CN")
+                 localStorageService.set("language", "CN")
              };
              // recommand cache
              if (!localStorageService.get("recommand")) {
-                localStorageService.set("recommand",{})
-             } 
+                 localStorageService.set("recommand", {})
+             }
              // user info cache
              $rootScope.user = {};
-             if (localStorageService.get("token")) {
-                 userServices.sync();
-                 $rootScope.is_login = true;
-             };
+             userServices.sync();
          }
      }
  });

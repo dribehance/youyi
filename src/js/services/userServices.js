@@ -93,13 +93,27 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
         sync: function() {
             $rootScope.user = $rootScope.user || {};
             this.info.basic({}).then(function(data) {
-                $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
-                console.log($rootScope.user)
+                if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                    $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
+                    console.log($rootScope.user)
+                }
+                else {
+                    this.exit();
+                }
             });
             this.info.sidebar({}).then(function(data) {
-                $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
-                console.log($rootScope.user)
+                if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                    $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
+                    console.log($rootScope.user)
+                }
+                else {
+                    this.exit();
+                }
             })
+        },
+        exit: function() {
+            $rootScope.user = {};
+            localStorageService.remove("token");
         },
         verifycode: {
             getVerifycode: function(input) {
@@ -238,8 +252,8 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
                         "language_app": localStorageService.get("language"),
                         "nickname": input.nickname,
                         "name": input.name,
-                        "sex": input.gender == '1'?"男":"女",
-                        "is_men":input.gender,
+                        "sex": input.gender == '1' ? "男" : "女",
+                        "is_men": input.gender,
                         "city_dict_group_id": input.city_dict_group_id,
                         "profession": input.profession,
                     })
