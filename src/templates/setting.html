@@ -13,10 +13,10 @@
             </a>
     	</div>
         <div class="list-group">
-            <!-- <a class="list-group-item" ui-turn-on="language_panel">
+            <a class="list-group-item" ui-turn-on="language_panel">
                 <span class="list-group-item-text">语言切换</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
-            </a> -->
+            </a>
             <a ng-href="#/privacy" class="list-group-item">
                 <span class="list-group-item-text">隐私政策</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
@@ -63,13 +63,13 @@
                 <div class="modal-body" style="padding:0">
                     <div class="list-group language_panel">
                         <label class="list-group-item block" ng-repeat="language in languages" ng-class="{'selected':input.choosen_language == language}">
-                            {{ language }}
-                            <input type="radio" class="hidden" ng-model="input.choosen_language" value="{{language}}" />
+                            {{ language.name }}
+                            <input type="radio" class="hidden" ng-model="input.choosen_language" ng-value="language" />
                         </label>
                     </div>
                     <div class="section text-right">
                         <button ui-turn-off="language_panel" class="btn btn-default">取消</button>
-                        <button ui-turn-off="language_panel" class="btn btn-primary">保存</button>
+                        <button class="btn btn-primary" ng-click="ajaxForm()">保存</button>
                     </div>
                 </div>
             </div>

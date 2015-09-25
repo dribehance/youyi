@@ -1,6 +1,6 @@
  // by dribehance <dribehance.kksdapp.com>
  // EventHandle
- angular.module("Youyi").factory("appServices", function($rootScope, $window, $location, localStorageService, userServices, errorServices, toastServices, config) {
+ angular.module("Youyi").factory("appServices", function($rootScope, $window, $location, $translate, localStorageService, userServices, errorServices, toastServices, config) {
      var routeChangeStart = function(e) {
          // do something white routechangestart,eg:
          // toastServices.show();
@@ -65,7 +65,10 @@
              // language cache
              if (!localStorageService.get("language")) {
                  localStorageService.set("language", "CN")
-             };
+                 $translate.use("CN")
+             } else {
+                 $translate.use(localStorageService.get("language"));
+             }
              // recommand cache
              if (!localStorageService.get("recommand")) {
                  localStorageService.set("recommand", {})

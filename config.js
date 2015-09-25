@@ -126,6 +126,12 @@ module.exports = function(config) {
    // config.vendor.js.push('.bower_components/mylib/mylib.js');
    // by dribehance <dribehance.kksdapp.com>
    /**
+    * [lib]
+    * support escaping of variable content
+    * repository:https://github.com/dribehance/angular-translate.git 
+    */
+   config.vendor.js.push('./bower_components/angular-sanitize/angular-sanitize.min.js');
+   /**
     * [module:flow]
     * support file upload
     * repository:https://github.com/dribehance/ng-flow.git
@@ -170,6 +176,16 @@ module.exports = function(config) {
     * repository:https://github.com/dribehance/date-polyfill.git 
     */
    config.vendor.js.push('./bower_components/date-polyfill/date-polyfill.min.js');
+   /**
+    * [lib]
+    * support i18n
+    * repository:https://github.com/dribehance/angular-translate.git 
+    */
+   config.vendor.js.push('./bower_components/angular-translate/angular-translate.min.js');
+   // translate language offer by server
+   // config.vendor.js.push('./bower_components/angular-translate-loader-url/angular-translate-loader-url.min.js');
+   // translate language offer by static file
+   config.vendor.js.push('./bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js');
   /**
    * Vendor Fonts
    *
