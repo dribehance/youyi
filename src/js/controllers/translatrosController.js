@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var translatorsController = function($scope, translatorServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var translatorsController = function($scope, $location, SharedState, translatorServices, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.choosen = {};
     $scope.translators = [];
     $scope.page = {
@@ -239,19 +239,30 @@ var translatorsController = function($scope, translatorServices, taskServices, e
         name: ""
     };
     $scope.$watch("choosen.category.name", function(n, o) {
-        if (n === undefined || o === undefined || n == "") {
-            return;
+            if (n === undefined || o === undefined || n == "") {
+                return;
+            }
+            $scope.filter.name = "";
+            // reset;
+            $scope.translators = [];
+            $scope.no_more = false;
+            $scope.page = angular.extend({}, $scope.page, {
+                pn: 1,
+                page_size: 10,
+                message: "点击加载更多",
+                filter_type_group_id: $scope.choosen.category.group_id,
+            });
+            $scope.loadMore();
+        })
+        // search pannel
+    $scope.input = {};
+    $scope.show_search_panel = function() {
+        SharedState.turnOn("search_translators_panel");
+    }
+    $scope.search = function() {
+        if (!$scope.input.search) {
+            return
         }
-        $scope.filter.name = "";
-        // reset;
-        $scope.translators = [];
-        $scope.no_more = false;
-        $scope.page = angular.extend({}, $scope.page, {
-            pn: 1,
-            page_size: 10,
-            message: "点击加载更多",
-            filter_type_group_id: $scope.choosen.category.group_id,
-        });
-        $scope.loadMore();
-    })
+        $location.path("search/translators/" + $scope.input.search);
+    }
 }

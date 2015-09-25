@@ -166,6 +166,11 @@ angular.module("Youyi", [
             reloadOnSearch: false,
             controller: searchController
         })
+        .when("/search/translators/:kw", {
+            templateUrl: "search_translators.html",
+            reloadOnSearch: false,
+            controller: searchTranslatorsController
+        })
         .otherwise({
             redirectTo: "/index"
         });
