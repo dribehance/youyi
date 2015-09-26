@@ -71,7 +71,7 @@
                  localStorageService.set("recommand", {})
              };
              // user info cache
-             localStorageService.remove("token")
+             // localStorageService.remove("token")
              $rootScope.user = {};
              userServices.sync();
              // translate app

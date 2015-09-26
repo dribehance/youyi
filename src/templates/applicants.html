@@ -18,15 +18,15 @@
                     <div class="clearfix">
                         <div class="pull-left">
                             <a ng-click="like(applicant)" class="btn btn-default" ng-if="applicant.is_collect == '0'">
-                                <i class="kk kk-like"></i> 收藏此人
+                                <i class="kk kk-like"></i> {{"Follow" | translate}}
                             </a>
                             <a ng-click="unlike(applicant)" class="btn btn-default" ng-if="applicant.is_collect == '1'">
-                                <i class="kk kk-like active"></i> 取消收藏
+                                <i class="kk kk-like active"></i> {{"Followed" | translate}}
                             </a>
                         </div>
                         <div class="pull-right">
                             <a ng-click="accept(applicant.user_id)" class="btn btn-default">
-                                <i class="kk kk-accept" ng-class="{'active':applicant.status == '1'}"></i> 接受申请
+                                <i class="kk kk-accept" ng-class="{'active':applicant.status == '1'}"></i> {{"Accept" | translate}}
                             </a>
                         </div>
                     </div>
@@ -47,9 +47,9 @@
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="payment_panel">
                         <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
                     </div>
-                    <h4 class="modal-title text-center">申请悠译人</h4>
+                    <h4 class="modal-title text-center">{{"Payment" | translate}}</h4>
                     <div class="section bg-transparent text-center">
-                        <p>将要支付</p>
+                        <p>{{"Going to Pay" | translate}}</p>
                         <span class="text-very-large">{{payment_money.price_sign + payment_money.total_money}}</span>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="section large bg-gray-lighter text-primary clearfix">
-                        余额支付
+                        {{"Pay by Balance" | translate}}
                         <span class="pull-right">
                             <ui-switch  ng-model="payment.balance"></ui-switch>
                         </span>
@@ -78,24 +78,24 @@
                         当前可用余额{{payment.price_sign + payment.current_money}}
                     </div>
                     <div class="section large bg-gray-lighter text-primary clearfix">
-                        其他支付方式
+                        {{"Payment Method" | translate}}
                         <span class="pull-right">
                             <ui-switch  ng-model="payment.channel"></ui-switch>
                         </span>
                     </div>
                     <div class="list-group">
                         <label class="list-group-item">
-                            银联支付方式
+                            {{"Unionpay" | translate}}
                             <input type="radio" class="hidden" ng-model="payment.channel" value="yinlian">
                             <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':payment.channel =='yinlian'}"></i>
                         </label>
                         <label class="list-group-item">
-                            微信支付
+                            {{"WeChat" | translate}}
                             <input type="radio" class="hidden" ng-model="payment.channel" value="weixin">
                             <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':payment.channel == 'weixin'}"></i>
                         </label>
                         <label class="list-group-item">
-                            支付宝支付
+                            {{"AliPay" | translate}}
                             <input type="radio" class="hidden" ng-model="payment.channel" value="alipay">
                             <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':payment.channel == 'alipay'}"></i>
                         </label>

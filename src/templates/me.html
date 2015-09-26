@@ -1,5 +1,5 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">个人中心</div>
+<div ui-content-for="title">{{"Basic information" | translate}}</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
     <span class="btn" ng-click="sync_back()"><i class="fa fa-chevron-left"></i></span>
@@ -14,7 +14,7 @@
             </div>
             <div class="translator-info right">
                 <span class="block">{{user.profession || "暂无填写"}}</span>
-                <span class="block">长居住地：香港</span>
+                <span class="block">{{user.country + user.city}}</span>
             </div>
             <div class="translator-avatar">
                 <img ng-src="{{staticImageUrl + user.avatar || '../images/avatar_1.png'}}" err-src="../images/avatar_1.png" class="block full-width" alt="">
@@ -24,7 +24,7 @@
         <div class="list-group" style="margin:10px">
             <div class="list-group-header">
                 <div class="section bg-transparent">
-                    擅长语种
+                    {{"Language" | translate}}
                 </div>
             </div>
             <div class="list-group-item clearfix" ng-repeat="language in user.languages track by $index">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="list-group-item" ui-turn-on="single_picker" ui-show="!single_picker">
-                <i class="fa fa-plus-circle text-primary"></i> 添加语言
+                <i class="fa fa-plus-circle text-primary"></i> {{"Add Language" | translate}}
             </div>
             <div class="picker" ui-state="single_picker" ui-show="single_picker" ui-outer-click="Ui.turnOff('single_picker')" ui-outer-click-if="Ui.active('single_picker')">
                 <div class="picker-header">
@@ -72,7 +72,7 @@
         <div class="list-group" style="margin:10px">
             <div class="list-group-header">
                 <div class="section bg-transparent">
-                    翻译类型
+                    {{"Type" | translate}}
                 </div>
             </div>
             <div class="list-group-item clearfix" ng-repeat="translate_type in user.translate_types track by $index">
@@ -86,7 +86,7 @@
                 </div>
             </div>
             <div class="list-group-item" ui-turn-on="multiple_picker" ui-show="!multiple_picker">
-                <i class="fa fa-plus-circle text-primary"></i> 添加类型
+                <i class="fa fa-plus-circle text-primary"></i> {{"Add Type" | translate}}
             </div>
             <div class="picker" ui-state="multiple_picker" ui-show="multiple_picker" ui-outer-click="Ui.turnOff('multiple_picker')" ui-outer-click-if="Ui.active('multiple_picker')">
                 <div class="picker-header">
@@ -119,45 +119,45 @@
         <div class="list-group" style="margin:10px">
             <div class="list-group-header">
                 <div class="section bg-transparent">
-                    个人认证
+                    {{"Personal Identity" | translate}}
                 </div>
             </div>
             <a ng-href="#/authen_name" class="list-group-item clearfix">
                 <div class="pull-left">
-                    实名认证
+                    {{"ID Verification" | translate}}
                 </div>
                 <div class="pull-right">
-                    <span class="list-group-item-text" ng-if="!user.identity_front">上传身份证</span>
+                    <span class="list-group-item-text" ng-if="!user.identity_front">{{"Upload ID Card" | translate}}</span>
                     <span class="list-group-item-text" ng-if="user.identity_front">查看</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>
             <a ng-href="#/authen_language" class="list-group-item clearfix">
                 <div class="pull-left">
-                    语言认证
+                    {{"Language Certificate" | translate}}
                 </div>
                 <div class="pull-right">
-                    <span class="list-group-item-text" ng-if="!user.language_identity">上传语言考核证书</span>
+                    <span class="list-group-item-text" ng-if="!user.language_identity">{{"Upload Certificate" | translate}}</span>
                     <span class="list-group-item-text" ng-if="user.language_identity">查看</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>
             <a ng-href="#/authen_industry" class="list-group-item clearfix">
                 <div class="pull-left">
-                    行业资格认证
+                    {{"Professional Qualification" | translate}}
                 </div>
                 <div class="pull-right">
-                    <span class="list-group-item-text" ng-if="!user.profession_identity">上传行业相关证明</span>
+                    <span class="list-group-item-text" ng-if="!user.profession_identity">{{"Upload Qualification" | translate}}</span>
                     <span class="list-group-item-text" ng-if="user.profession_identity">查看</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>
             <a ng-href="#/authen_member" class="list-group-item clearfix">
                 <div class="pull-left">
-                    高级会员认证
+                    {{"Membership" | translate}}
                 </div>
                 <div class="pull-right">
-                    <span class="list-group-item-text" ng-if="!user.advanced_identity">取得会员认证</span>
+                    <span class="list-group-item-text" ng-if="!user.advanced_identity">{{"Join" | translate}}</span>
                     <span class="list-group-item-text" ng-if="user.advanced_identity">查看</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
@@ -167,12 +167,12 @@
         <div class="list-group" style="margin:10px" ui-turn-on="workday_panel">
             <div class="list-group-header">
                 <div class="section bg-transparent">
-                    我的工作日
+                    {{"Working Days" | translate}}
                 </div>
             </div>
             <div class="list-group-item clearfix">
                 <div class="pull-left">
-                    添加工作日(非工作日的邀请不会收到)
+                    {{"Set (No application in non-working days)" | translate}}
                 </div>
                 <div class="pull-right">
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
@@ -199,7 +199,7 @@
         <div class="list-group" style="margin:10px">
             <div class="list-group-header">
                 <div class="section bg-transparent">
-                    翻译经验
+                    {{"Experience" | translate}}
                 </div>
             </div>
             <div class="list-group-item clearfix" ng-repeat="translate_experience in user.translate_experiences track by $index">
@@ -213,14 +213,14 @@
                 </div>
             </div>
             <div class="list-group-item" ui-turn-on="create_panel">
-                <i class="fa fa-plus-circle text-primary"></i> 添加经验
+                <i class="fa fa-plus-circle text-primary"></i> {{"Add Experience" | translate}}
             </div>
         </div>
         <!-- 个人简介 -->
         <div class="list-group" style="margin:10px">
             <div class="list-group-header">
                 <div class="section bg-transparent">
-                    个人介绍
+                    {{"Profile" | translate}}
                 </div>
             </div>
             <div class="list-group-item clearfix" ng-click="edit({'introduction':user.introduction})">
@@ -265,7 +265,7 @@
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="create_panel">
                         <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
                     </div>
-                    <h4 class="modal-title text-center">新增翻译经验</h4>
+                    <h4 class="modal-title text-center">{{"Add Experience" | translate}}</h4>
                 </div>
                 <div class="modal-body">
                     <textarea class="form-control" placeholder="请填写" name="experience" ng-model="input.experience" required></textarea>

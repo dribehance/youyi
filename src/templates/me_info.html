@@ -1,5 +1,5 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">编辑资料</div>
+<div ui-content-for="title">{{"Edit Profile" | translate}}</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
     <span class="btn" ng-click="sync_back()"><i class="fa fa-chevron-left"></i></span>
@@ -16,35 +16,35 @@
         </div>
         <div class="list-group" style="margin:10px">
             <div class="list-group-item clearfix kk-input-group">
-                <span class="btn col-xs-3 section-wide text-left">昵称</span>
+                <span class="btn col-xs-3 section-wide text-left">{{"Nickname" | translate}}</span>
                 <span class="col-xs-9 section-wide">
                     <input type="text" name="nickname" class="form-control youyi-flat-input col-xs-8" placeholder="请输入昵称" ng-model="user.nickname" required>
                 <!-- <span class="tip text-warning">error</span> -->
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
-                <span class="btn col-xs-3 section-wide text-left">真实姓名</span>
+                <span class="btn col-xs-3 section-wide text-left">{{"Real Name" | translate}}</span>
                 <span class="col-xs-9 section-wide">
                     <input type="text" name="realname" class="form-control youyi-flat-input col-xs-8" placeholder="请输入真实姓名" ng-model="user.name" required>
                 <!-- <span class="tip text-warning">error</span> -->
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
-                <span class="btn col-xs-3 section-wide text-left">性别</span>
+                <span class="btn col-xs-3 section-wide text-left">{{"Gender" | translate}}</span>
                 <span class="col-xs-9 section-wide">
                     <i class="kk kk-icon kk-radio" ng-class="{'active':user.gender == '1'}"></i>
                     <label class="btn" style="min-width:60px">
-                        <input type="radio" name="male" ng-model="user.gender"  value="1" class="hidden">男
+                        <input type="radio" name="male" ng-model="user.gender"  value="1" class="hidden">{{"Male" | translate}}
                     </label>
                     <i class="kk kk-icon kk-radio" ng-class="{'active':user.gender == '2'}"></i>
                     <label class="btn" style="min-width:60px">
-                        <input type="radio" name="female" ng-model="user.gender" value="2" class="hidden">女
+                        <input type="radio" name="female" ng-model="user.gender" value="2" class="hidden">{{"Female" | translate}}
                     </label>
                 <!-- <span class="tip text-warning">error</span> -->
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
-                <span class="btn col-xs-3 section-wide text-left">地区</span>
+                <span class="btn col-xs-3 section-wide text-left">{{"Place" | translate}}</span>
                 <span class="col-xs-9 section-wide">
                     <a class="btn block full-width text-left" ui-turn-on="district_panel">
                         <span>{{user.country +"  "+user.city}}</span>
@@ -54,14 +54,14 @@
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
-                <span class="btn col-xs-3 section-wide text-left">行业</span>
+                <span class="btn col-xs-3 section-wide text-left">{{"Industry" | translate}}</span>
                 <span class="col-xs-9 section-wide">
                     <input type="text" name="profession" class="form-control youyi-flat-input col-xs-8" placeholder="请输入行业" ng-model="user.profession" required>
                 <!-- <span class="tip text-warning">error</span> -->
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
-                <span class="btn col-xs-3 section-wide text-left">手机</span>
+                <span class="btn col-xs-3 section-wide text-left">{{"Mobile No." | translate}}</span>
                 <span class="col-xs-9 section-wide">
                     <!-- <input type="text" name="telephone" class="form-control youyi-flat-input col-xs-8" placeholder="请输入手机" ng-model="user.telephone"> -->
                 <!-- <span class="tip text-warning">error</span> -->
@@ -69,7 +69,7 @@
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
-                <span class="btn col-xs-3 section-wide text-left">邮箱</span>
+                <span class="btn col-xs-3 section-wide text-left">{{"Email" | translate}}</span>
                 <span class="col-xs-9 section-wide">
 
                     <!-- <input type="email" name="email" class="form-control youyi-flat-input col-xs-8" placeholder="请输入邮箱" ng-model="user.email"> -->
@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="text-center section large bg-transparent">
-            <button type="submit" class="btn btn-success" ng-disabled="editForm.$invalid">保存修改</button>
+            <button type="submit" class="btn btn-success" ng-disabled="editForm.$invalid">{{"Save" | translate}}</button>
         </div>
     </form>
 </div>

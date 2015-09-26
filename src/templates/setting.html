@@ -14,38 +14,38 @@
     	</div>
         <div class="list-group">
             <a class="list-group-item" ui-turn-on="language_panel">
-                <span class="list-group-item-text">语言切换</span>
+                <span class="list-group-item-text">{{"Select Language " | translate}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
             <a ng-href="#/privacy" class="list-group-item">
-                <span class="list-group-item-text">隐私政策</span>
+                <span class="list-group-item-text">{{"Privacy Policy" | translate}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
             <a ng-href="#/usage" class="list-group-item">
-                <span class="list-group-item-text">使用条款</span>
+                <span class="list-group-item-text">{{"Terms of Use" | translate}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
             <a class="list-group-item">
-                <span class="list-group-item-text">版本</span>
+                <span class="list-group-item-text">{{"Version" | translate}}</span>
                 <span class="pull-right">8.5</span>
             </a>
         </div>
         <div class="list-group">
         	<a ng-href="#/about" class="list-group-item">
-                <span class="list-group-item-text">关于我们</span>
+                <span class="list-group-item-text">{{"About Us" | translate}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
             <a class="list-group-item" tel="400-000-000">
-                <span class="list-group-item-text">联系我们</span>
+                <span class="list-group-item-text">{{"Contact Us" | translate}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
             <a ng-href="#/ad" class="list-group-item">
-                <span class="list-group-item-text">广告业务</span>
+                <span class="list-group-item-text">{{"Ads" | translate}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
         </div>
         <div class="section text-primary text-center" ng-click="exit()">
-        	<a class="block full-width text-primary">退出登录</a>
+        	<a class="block full-width text-primary">{{"Log out" | translate}}</a>
         </div>
     </div>
 </div>
@@ -58,7 +58,7 @@
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="language_panel">
                         <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
                     </div>
-                    <h4 class="modal-title text-center">切换语言</h4>
+                    <h4 class="modal-title text-center">{{"Select Language" | translate}}</h4>
                 </div>
                 <div class="modal-body" style="padding:0">
                     <div class="list-group language_panel">
@@ -68,8 +68,8 @@
                         </label>
                     </div>
                     <div class="section text-right">
-                        <button ui-turn-off="language_panel" class="btn btn-default">取消</button>
-                        <button class="btn btn-primary" ng-click="ajaxForm()">保存</button>
+                        <button ui-turn-off="language_panel" class="btn btn-default">{{"Cancel" | translate}}</button>
+                        <button class="btn btn-primary" ng-click="ajaxForm()">{{"Save" | translate}}</button>
                     </div>
                 </div>
             </div>
