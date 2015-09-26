@@ -69,7 +69,7 @@
                     <p class="text-small">评价标签</p>
                     <div class="row grid-gutter">
                         <div class="col-xs-4" ng-repeat="tag in translator.commentTags">
-                            <span class="btn btn-primary bg-transparent text-primary rectangle full-width text-ellipsis" >{{tag.tag_name}}x{{tag.tag_count}}</span>
+                            <span class="btn btn-primary bg-transparent text-primary rectangle full-width text-ellipsis">{{tag.tag_name}}x{{tag.tag_count}}</span>
                             <!-- <span class="btn btn-default rectangle full-width text-ellipsis" ng-class="{'btn-primary':$odd,'bg-white':$odd,'text-primary':$odd}">{{tag.tag_name}}x{{tag.tag_count}}</span> -->
                         </div>
                     </div>
@@ -135,15 +135,15 @@
                             <span>{{comment.post_time}}</span>
                             <div class="row">
                                 <div class="col-xs-3" ng-repeat="p in comment.picList">
-                                    <span class="thumbnail">
-                                        <img ng-src="{{staticImageUrl + p.pic}}" class="block full-width">
+                                    <span class="thumbnail" ng-click="preview(comment.picList)">
+                                        <img ng-src="{{staticImageUrl + p.pic}}" err-src="../images/avatar_1.png" class="block full-width">
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <div class="media-right">
                             <div style="height:48px;width:48px;border-radius:100%;-webkit-border-rasius:100%;overflow:hidden" class="avatar">
-                                <img class="media-object" ng-src="{{staticImageUrl + comment.avatar || '../images/avatar.png'}}" alt="">
+                                <img class="media-object" ng-src="{{staticImageUrl + comment.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" alt="">
                             </div>
                             <p class="text-center">{{comment.nickname}}</p>
                         </div>
@@ -185,9 +185,25 @@
                     <h4 class="modal-title text-center">认证详情</h4>
                 </div>
                 <div class="modal-body">
-                    <img ng-src="{{staticImageUrl+authen}}" class="block full-width" ng-repeat="authen in authens"/>
+                    <img ng-src="{{staticImageUrl+authen}}" class="block full-width" ng-repeat="authen in authens" />
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="modal" ui-if="preview_panel" ui-state='preview_panel'>
+        <div class="modal-backdrop"></div>
+        <div class="modal-dialog scrollable-dialog" style="margin:0">
+            <div class="section" ui-turn-off="preview_panel" style="background-color:black">
+                <span class="btn text-white">
+                    <i class="fa fa-chevron-left"></i>
+                </span>
+            </div>
+            <!-- banner -->
+            <previewer data-options="{autoPlay:10000}" data-rate="1">
+                <div class="image-holder" ng-repeat="b in preview_images" on-repeat-done>
+                    <img ng-src="{{staticImageUrl + b.pic}}" err-src="../images/banner.png" class="block full-width" alt="">
+                </div>
+            </previewer>
         </div>
     </div>
 </div>

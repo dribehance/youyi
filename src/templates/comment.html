@@ -1,5 +1,5 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">评价</div>
+<div ui-content-for="title">{{"Comments" | translate}}</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
     <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
@@ -10,7 +10,7 @@
             <div class="media">
                 <div class="media-left">
                     <div class="circle icon-70">
-                        <img class="media-object" ng-src="{{staticImageUrl + task.avatar || '../images/avatar.png'}}" err-src="../images/avatar.png" alt="">
+                        <img class="media-object" ng-src="{{staticImageUrl + task.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" alt="">
                     </div>
                 </div>
                 <div class="media-body">
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="list-group-item">
-                <textarea class="form-control" ng-model="input.note" required placeholder="写点什么..."></textarea>
+                <textarea class="form-control" ng-model="input.note" required placeholder="{{'Write Something' | translate}}"></textarea>
                 <div ng-repeat="file in $flow.files" class="preview-box">
                     <span class="remove-btn" ng-click="file.cancel()"></span>
                     <img flow-img="file" class="flow-img" alt="">
@@ -37,30 +37,30 @@
                 <span flow-btn class="upload-btn needsclick"></span>
             </div>
             <div class="list-group-item bg-transparent">
-                星级评价
+                {{"Give Star(s)" | translate}}
             </div>
             <div class="list-group-item">
                 <div class="row" style="margin-bottom:8px">
-                    <div class="col-xs-3">服务态度</div>
+                    <div class="col-xs-3">{{"Service Attitude" | translate}}</div>
                     <div class="col-xs-9">
                         <i class="fa fa-star text-gray-light" ng-repeat="s in fiveStar() track by $index" ng-click="rate('service',$index)" ng-class="{'text-primary':!(input.star.service<$index)}"></i>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:8px">
-                    <div class="col-xs-3">专业水平</div>
+                    <div class="col-xs-3">{{"Proficiency" | translate}}</div>
                     <div class="col-xs-9">
                         <i class="fa fa-star text-gray-light" ng-repeat="s in fiveStar() track by $index" ng-click="rate('profession',$index)" ng-class="{'text-primary':!(input.star.profession<$index)}"></i>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-3">语言能力</div>
+                    <div class="col-xs-3">{{"Language Skill" | translate}}</div>
                     <div class="col-xs-9">
                         <i class="fa fa-star text-gray-light" ng-repeat="s in fiveStar() track by $index" ng-click="rate('language',$index)" ng-class="{'text-primary':!(input.star.language<$index)}"></i>
                     </div>
                 </div>
             </div>
             <div class="list-group-item bg-transparent">
-                添加标签
+                {{"Tags" | translate}}
             </div>
             <div class="list-group-item">
                 <div class="row grid-gutter">
@@ -75,12 +75,12 @@
                 <span class="pull-left" style="padding-right:5px">
                     <i class="fa fa-phone fa-rotate-90"></i>
                 </span>
-                <span class="list-group-item-text">举报或投诉</span>
+                <span class="list-group-item-text">{{"Report or Complain" | translate}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>
         </div>
         <div class="section large">
-            <a ng-click="releaseComment($flow)" class="btn btn-success block full-width">提交评价</a>
+            <a ng-click="releaseComment($flow)" class="btn btn-success block full-width">{{"Confirm" | translate}}</a>
         </div>
     </div>
 </div>

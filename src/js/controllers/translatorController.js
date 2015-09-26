@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var translatorController = function($scope, $routeParams, translatorServices, myLoveServices, errorServices, toastServices, localStorageService, config) {
+var translatorController = function($scope, $routeParams,SharedState, translatorServices, myLoveServices, errorServices, toastServices, localStorageService, config) {
     $scope.authens = [];
     toastServices.show();
     translatorServices.queryById({
@@ -25,6 +25,10 @@ var translatorController = function($scope, $routeParams, translatorServices, my
         length = length || "0";
         return new Array(length)
     };
+    $scope.preview = function(images) {
+        $scope.preview_images = images;
+        SharedState.turnOn("preview_panel")
+    }
     $scope.like = function() {
         myLoveServices.like({
             "collection_user_id": $routeParams.translator_id

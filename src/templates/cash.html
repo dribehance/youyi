@@ -1,7 +1,7 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">提现</div>
+<div ui-content-for="title">{{"Withdraw" | translate}}</div>
 <div ui-content-for="navbarAction">
-    <a ng-href="#/records" class="btn">提现记录</a>
+    <a ng-href="#/records" class="btn">{{"Withdraw Record" | translate}}</a>
 </div>
 <div ui-content-for="backAction">
     <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
@@ -10,42 +10,37 @@
     <form class="scrollable-content" name="cashForm">
         <div class="list-group">
             <div class="list-group-item clearfix kk-input-group">
-                <span class="btn col-xs-3 section-wide text-left">提现金额</span>
+                <span class="btn col-xs-3 section-wide text-left">{{"Amount" | translate}}</span>
                 <span class="col-xs-9 section-wide">
-                    <input type="number" name="money" class="form-control youyi-flat-input col-xs-8" ng-model="input.money" placeholder="本次最多可以提取{{wallet.money}}元" ng-model="input.money" required>
-                <span class="tip text-warning" ng-show="cashForm.money.$invalid && cashForm.money.$dirty">必填，金额为整数</span>
+                    <input type="number" name="money" class="form-control youyi-flat-input col-xs-8" ng-model="input.money" placeholder="{{'Max. Amount xxx' | translate}}{{wallet.money}}" ng-model="input.money" required>
+            </div>
+            <div class="list-group-item clearfix kk-input-group">
+                <span class="btn col-xs-3 section-wide text-left">{{"Bank Name" | translate}}</span>
+                <span class="col-xs-9 section-wide">
+                    <input type="text" name="bank_name" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Enter Complete Bank Name Correctly' | translate}}" ng-model="input.bank_name" required>
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
-                <span class="btn col-xs-3 section-wide text-left">收款银行</span>
-                <span class="col-xs-9 section-wide">
-                    <input type="text" name="bank_name" class="form-control youyi-flat-input col-xs-8" placeholder="请输入开户银行" ng-model="input.bank_name" required>
-                <span class="tip text-warning" ng-show="cashForm.bank_name.$invalid && cashForm.bank_name.$dirty">必填</span>
-                </span>
-            </div>
-            <div class="list-group-item clearfix kk-input-group">
-                <span class="btn col-xs-3 section-wide text-left">收款卡号</span>
+                <span class="btn col-xs-3 section-wide text-left">{{"Bank Account No." | translate}}</span>
                 <span class="col-xs-9 section-wide">
                     <input type="text" name="bank_cardno" class="form-control youyi-flat-input col-xs-8" placeholder="请输入银行卡号" ng-model="input.bank_cardno" required>
-                <span class="tip text-warning" ng-show="cashForm.bank_cardno.$invalid && cashForm.bank_cardno.$dirty">必填</span>
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
-                <span class="btn col-xs-3 section-wide text-left">开户人姓名</span>
+                <span class="btn col-xs-3 section-wide text-left">{{"Cardholder Name" | translate}}</span>
                 <span class="col-xs-9 section-wide">
                     <input type="text" name="realname" class="form-control youyi-flat-input col-xs-8" placeholder="请输入开户人姓名" ng-model="input.realname" required>
-                <span class="tip text-warning" ng-show="cashForm.realname.$invalid && cashForm.realname.$dirty">必填</span>
                 </span>
             </div>
         </div>
         <p class="section large bg-transparent">
-            申请提现平台审核成功后，提现金额将会在2-3个工作日内转入您的账户，如有疑问，请致商城客服400-800-8846.
+            {{"Once your application is approved, money will be transferred to you account after 2-3 working days. Any inquiries, Pls. Contact xxxx" | translate}}
         </p>
         <p class="section large bg-transparent" ng-if="wallet.is_setPayPwd == 0">
             <button type="button" class="btn bg-gray block full-width text-white" >请先设置交易密码</button>
         </p>
         <p class="section large bg-transparent" ng-if="wallet.is_setPayPwd == 1">
-            <button type="button" class="btn btn-primary block full-width" ng-disabled="cashForm.$invalid" ui-turn-on="password_panel">申请提现</button>
+            <button type="button" class="btn btn-primary block full-width" ng-disabled="cashForm.$invalid" ui-turn-on="password_panel">{{"Submit" | translate}}</button>
         </p>
     </form>
 </div>

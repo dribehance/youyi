@@ -80,8 +80,8 @@
                 <div class="section large">
                     <div class="semi-auto semi-icon-bar">
                         <div class="semi-fixed-left semi-wide-40">
-                            <div class="section section-wide">
-                                标题<span class="text-danger">*</span>
+                            <div class="section section-wide text-ellipsis">
+                                {{"Title" | translate}}<span class="text-danger">*</span>
                             </div>
                         </div>
                         <div>
@@ -96,8 +96,8 @@
                 <div class="section large">
                     <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left semi-wide-40">
-                            <div class="section section-wide">
-                                类型<span class="text-danger">*</span>
+                            <div class="section section-wide text-ellipsis">
+                                {{"Type" | translate}}<span class="text-danger">*</span>
                             </div>
                         </div>
                         <div class="btn-group justified">
@@ -113,8 +113,8 @@
                 <div class="section large">
                     <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left semi-wide-40">
-                            <div class="section section-wide">
-                                价格<span class="text-danger">*</span>
+                            <div class="section section-wide text-ellipsis">
+                                {{"Price" | translate}}<span class="text-danger">*</span>
                             </div>
                         </div>
                         <div class="semi-auto semi-icon-bar">
@@ -123,7 +123,7 @@
                             </span>
                             <input type="number" class="form-control rectangle youyi-flat-input text-right" name="price" ng-model="input.price" placeholder="请填写" required>
                             <span class="semi-fixed-right semi-wide-40 text-center">
-                                <span class="btn">/天</span>
+                                <span class="btn">/{{"Day" | translate}}</span>
                             </span>
                         </div>
                     </div>
@@ -132,8 +132,8 @@
                 <div class="section large" ui-turn-on="district_panel">
                     <div class="semi-auto semi-icon-bar">
                         <div class="semi-fixed-left semi-wide-40">
-                            <div class="section section-wide">
-                                地点<span class="text-danger">*</span>
+                            <div class="section section-wide text-ellipsis">
+                                {{"Place" | translate}}<span class="text-danger">*</span>
                             </div>
                         </div>
                         <div class="section large text-right">
@@ -149,8 +149,8 @@
                 <div class="section large">
                     <div class="semi-auto semi-icon-bar">
                         <div class="semi-fixed-left">
-                            <div class="section section-wide">
-                                任务详情<span class="text-danger">*</span>
+                            <div class="section section-wide text-ellipsis">
+                                {{"Task Details" | translate}}<span class="text-danger">*</span>
                             </div>
                         </div>
                         <div>
@@ -186,7 +186,7 @@
                     <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80">
                             <div class="semi-fixed-left text-center">
-                                语言：
+                                {{"Language" | translate}}：
                             </div>
                             <div style="padding-bottom:8px;">
                                 {{choosen_language.from.name}}/{{choosen_language.to.name}}
@@ -209,7 +209,7 @@
                     <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80">
                             <div class="semi-fixed-left text-center">
-                                类型：
+                                {{"Type" | translate}}：
                             </div>
                             <div style="padding-bottom:8px;">
                                 {{input.category.name}}
@@ -220,10 +220,10 @@
                     <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80">
                             <div class="semi-fixed-left text-center">
-                                价格：
+                                {{"Type" | translate}}：
                             </div>
                             <div style="padding-bottom:8px;">
-                                {{input.price}}/天
+                                {{input.price}}/{{"Day" | translate}}
                             </div>
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
@@ -242,7 +242,7 @@
                     <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80">
                             <div class="semi-fixed-left text-center">
-                                地点：
+                                {{"Place" | translate}}：
                             </div>
                             <div style="padding-bottom:8px;">
                                 {{choosen.city.country +","+choosen.city.name}}
@@ -253,7 +253,7 @@
                     <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80">
                             <div class="semi-fixed-left text-center">
-                                任务详情：
+                                {{"Task Details" | translate}}：
                             </div>
                             <div style="padding-bottom:8px;">
                                 {{input.content}}
@@ -278,7 +278,7 @@
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="district_panel">
                         <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
                     </div>
-                    <span class="pull-right" style="position:relative;top:3px" ui-turn-off="district_panel">完成</span>
+                    <span class="pull-right" style="position:relative;top:3px" ui-turn-off="district_panel">{{"Save" | translate}}</span>
                     <h4 class="modal-title text-center">选择地区</h4>
                 </div>
                 <div class="modal-body" style="padding:0">
@@ -311,7 +311,7 @@
                     <p>恭喜您，{{"Create Task" | translate}}成功！</p>
                 </div>
                 <div class="modal-footer text-center">
-                    <a ng-href="#/recommands" class="btn btn-primary" ng-if="recommands > 0">查看推荐人</a>
+                    <a ng-href="#/recommands" class="btn btn-primary" ng-if="recommands > 0">{{"Our Recommendations" | translate}}</a>
                     <button class="btn btn-default" ng-click="close()">关闭</button>
                 </div>
             </div>

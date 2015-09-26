@@ -8,13 +8,13 @@ var settingController = function($scope, $rootScope, $translate, SharedState, us
         name: "中文",
         code: "CN"
     }, {
-        name: "日语",
+        name: "日本語",
         code: "JP"
     }, {
-        name: "韩语",
+        name: "한국어",
         code: "KR"
     }, {
-        name: "英语",
+        name: "English",
         code: "CA"
     }];
     $scope.exit = function() {

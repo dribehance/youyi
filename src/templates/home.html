@@ -1,7 +1,7 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
 <div ui-content-for="title">
     <span class="search-input">
-        <input type="text" class="form-control full-width" ng-focus="show_search_panel()" placeholder="请输入关键字">
+        <input type="text" class="form-control full-width" ng-focus="show_search_panel()" placeholder="{{'Enter Search Keywords, Language/Place/Price/Type' | translate}}">
     </span>
 </div>
 <div ui-content-for="navbarAction">
@@ -40,7 +40,7 @@
         <!-- normal content -->
         <a ng-href="#/tasks/{{task.task_id}}" class="task-section" ng-repeat="task in tasks">
             <div class="section text-ellipsis">
-                <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" err-src="../images/avatar.png" alt="" class="circle icon"> {{task.title}}
+                <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" alt="" class="circle icon"> {{task.title}}
             </div>
             <div class="section bg-gray-lighter">
                 <div class="row text-center">

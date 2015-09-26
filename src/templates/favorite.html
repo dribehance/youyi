@@ -12,20 +12,20 @@
                     {{translator.nickname}} <i class="kk kk-icon" ng-class="{'kk-male':translator.sex=='男','kk-female':translator.sex !='男'}"></i>
                 </div>
                 <div class="recommand-body">
-                    <div>语种：{{translator.return_language}}</div>
-                    <p>所在地：{{translator.address}}</p>
-                    <p>个人简介：{{translator.introduction}}</p>
+                    <div>{{"Language" | translate}}：{{translator.return_language}}</div>
+                    <p>{{"Place" | translate}}：{{translator.address}}</p>
+                    <p>{{"Profile" | translate}}：{{translator.introduction}}</p>
                     <div class="clearfix">
                         <div class="pull-left">
                             <a ng-click="unlike(translator)" class="btn btn-default">
                             	<i class="kk kk-like active"></i>
-                            	取消收藏
+                            	{{"Followed" | translate}}
                             </a>
                         </div>
                         <div class="pull-right">
                             <a ng-href="#/apply_flow" class="btn btn-default">
                             	<i class="kk kk-accept"></i>
-                            	提出申请
+                            	{{"Apply" | translate}}
                             </a>
                         </div>
                     </div>
