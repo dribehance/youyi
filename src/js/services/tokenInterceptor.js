@@ -27,8 +27,9 @@ angular.module("Youyi").factory("tokenInterceptor", function($location, $q, loca
             if (response.data.code == config.request.TOKEN_INVALID) {
                 console.log("TOKEN_INVALID")
                 localStorageService.remove("token");
-                $location.path("/signIn").replace();
-                return defer.promise;
+                // $location.path("/signIn").replace();
+                // return defer.promise;
+                return response;
             } else {
                 return response;
             }
