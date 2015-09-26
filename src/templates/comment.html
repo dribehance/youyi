@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="list-group-item">
-                <textarea class="form-control" ng-model="input.note" required placeholder="{{'Write Something' | translate}}"></textarea>
+                <textarea class="form-control rectangle" ng-model="input.note" required placeholder="{{'Write Something' | translate}}"></textarea>
                 <div ng-repeat="file in $flow.files" class="preview-box">
                     <span class="remove-btn" ng-click="file.cancel()"></span>
                     <img flow-img="file" class="flow-img" alt="">
@@ -71,7 +71,7 @@
             </div>
         </div>
         <div class="list-group">
-            <a ng-href="#/report" class="list-group-item">
+            <a ng-href="#/report/{{input.task_id}}" class="list-group-item">
                 <span class="pull-left" style="padding-right:5px">
                     <i class="fa fa-phone fa-rotate-90"></i>
                 </span>

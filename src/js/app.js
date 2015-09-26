@@ -158,7 +158,7 @@ angular.module("Youyi", [
                 reloadOnSearch: false,
                 controller: commentController
             })
-            .when("/report", {
+            .when("/report/:task_id", {
                 templateUrl: "report.html",
                 reloadOnSearch: false,
                 controller: reportController

@@ -1,53 +1,69 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
 <div ui-content-for="title">{{"Report or Complain" | translate}}</div>
-<div ui-content-for="navbarAction">
-	<span class="btn text-white">{{"Save" | translate}}</span>
-</div>
+<div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
     <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
-<div class="scrollable">
+<div class="scrollable" flow-init="{singleFile:true}" ng-controller="reportUploadController">
     <div class="scrollable-content">
         <div class="list-group">
             <div class="section large bg-transparent">
                 {{"Reasons of Complaint" | translate}}
             </div>
-            <div class="list-group-item">
+            <div class="list-group-item" ng-repeat="report in reports" ng-click="toggle(report)">
                 <div class="pull-left">
-                    <i class="kk kk-25 kk-checked" ng-class="{'active':input.price.by_day !=''}"></i>
+                    <i class="kk kk-25 kk-checked" ng-class="{'active':report.selected}"></i>
                 </div>
-                <span class="list-group-item-text">态度恶劣，出现侮辱性语言</span>
+                <span class="list-group-item-text">{{report.title}}</span>
             </div>
-            <div class="list-group-item">
-                <div class="pull-left">
-                    <i class="kk kk-25 kk-checked" ng-class="{'active':input.price.by_day !=''}"></i>
-                </div>
-                <span class="list-group-item-text">欺骗行为</span>
-            </div>
-            <div class="list-group-item">
-                <div class="pull-left">
-                    <i class="kk kk-25 kk-checked" ng-class="{'active':input.price.by_day !=''}"></i>
-                </div>
-                <span class="list-group-item-text">侵犯行为</span>
-            </div>
-            <div class="list-group-item">
-                <div class="pull-left">
-                    <i class="kk kk-25 kk-checked" ng-class="{'active':input.price.by_day !=''}"></i>
-                </div>
-                <span class="list-group-item-text">其他原因</span>
+            <div class="list-group-item" ng-show="input.other_show">
+                <input type="text" name="other" ng-model="input.other" class="form-control rectangle">
             </div>
             <div class="section large bg-transparent">
                 {{"Evidence" | translate}}
             </div>
-            <div class="list-group-item">
+            <div class="list-group-item" ui-turn-on="discripe_panel">
                 <span class="list-group-item-text">{{"Detail Description" | translate}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
-                <span class="pull-right">请填写</span>
+                <span class="pull-right" ng-show="input.details == ''">请填写</span>
+                <div class="section section-wide" ng-show="input.details != ''">{{input.details}}</div>
             </div>
-            <div class="list-group-item">
+            <div class="list-group-item" flow-btn flow-attrs="{accept:'image/*'}">
                 <span class="list-group-item-text">{{"Upload Photos" | translate}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </div>
+            <div class="list-group-item text-center" ng-show="$flow.files.length>0">
+                <img flow-img="$flow.files[0]" alt="">
+            </div>
         </div>
+    </div>
+    <div class="scrollable-footer">
+        <div class="section text-center">
+            <a class="btn btn-primary full-width" ng-click="ajaxForm($flow)">提交</a>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal modal-overlay" ui-if="discripe_panel" ui-state='discripe_panel'>
+        <!-- <div class="modal-backdrop in"></div> -->
+        <form name="editForm" ng-submit="ajaxForm()" class="modal-dialog" style="margin:0">
+            <div class="modal-content">
+                <div class="modal-header text-primary clearfix">
+                    <div class="pull-left section section-condensed bg-transparent" ui-turn-off="discripe_panel">
+                        <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
+                    </div>
+                    <h4 class="modal-title text-center">详细描述</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" placeholder="请填写" ng-model="input.details" name="edit" required ng-if="input.editable_key != 'pay_day'"></textarea>
+                    <input class="form-control" type="number" placeholder="请填写" name="salary" ng-model="input.details" required ng-if="input.editable_key == 'pay_day'">
+                    <span class="text-primary" ng-show="editForm.salary.$invalid && editForm.salary.$dirty">必填,数字</span>
+                </div>
+                <div class="modal-footer">
+                    <button ui-turn-off="discripe_panel" class="btn btn-default">取消</button>
+                    <button type="submit" class="btn btn-primary" ui-turn-off="discripe_panel" ng-disabled="editForm.edit.$invalid">保存</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

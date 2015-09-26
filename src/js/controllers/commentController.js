@@ -94,6 +94,6 @@ angular.module("Youyi").controller("commentUploadController", function($rootScop
     };
     $scope.$on("flow::fileSuccess", function(file, message, chunk) {
         toastServices.hide();
-        errorServices.autoHide("上传结束");
+        errorServices.autoHide("上传成功");
     })
 });
