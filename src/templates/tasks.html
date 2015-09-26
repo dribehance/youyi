@@ -33,7 +33,7 @@
                     <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.task_status == 1">
                         <span class="">{{"To be Confirmed" | translate}}</span>
                     </div>
-                    <div class="semi-fixed-right semi-wide-80 text-right text-success" ng-if="task.task_status == 2">
+                    <div class="semi-fixed-right semi-wide-80 text-right text-success" ng-if="task.task_status == 2 && task.is_comment == '0'">
                         <span class="">{{"Confirmed" | translate}}</span>
                     </div>
                     <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.task_status == 3 && task.is_comment == '0'">
