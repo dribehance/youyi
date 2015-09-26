@@ -92,22 +92,23 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
         },
         sync: function() {
             $rootScope.user = $rootScope.user || {};
-            this.info.basic({}).then(function(data) {
+            var self = this;
+            self.info.basic({}).then(function(data) {
                 if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                     $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
                     console.log($rootScope.user)
                 }
                 else {
-                    this.exit();
+                    self.exit();
                 }
             });
-            this.info.sidebar({}).then(function(data) {
+            self.info.sidebar({}).then(function(data) {
                 if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                     $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
                     console.log($rootScope.user)
                 }
                 else {
-                    this.exit();
+                    self.exit();
                 }
             })
         },

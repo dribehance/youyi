@@ -1,5 +1,5 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">发布任务</div>
+<div ui-content-for="title">{{"Create Task" | translate}}</div>
 <div ui-content-for="navbarAction">
     <a ng-href="#/setting" class="btn sidebar-toggle" ng-if="user.user_id">
         <i class="fa fa-cog text-large"></i>
@@ -308,7 +308,7 @@
                     <h4 class="modal-title">温馨提示</h4>
                 </div>
                 <div class="modal-body">
-                    <p>恭喜您，发布任务成功！</p>
+                    <p>恭喜您，{{"Create Task" | translate}}成功！</p>
                 </div>
                 <div class="modal-footer text-center">
                     <a ng-href="#/recommands" class="btn btn-primary" ng-if="recommands > 0">查看推荐人</a>

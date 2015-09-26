@@ -65,17 +65,17 @@
              // language cache
              if (!localStorageService.get("language")) {
                  localStorageService.set("language", "CN")
-                 $translate.use("CN")
-             } else {
-                 $translate.use(localStorageService.get("language"));
-             }
+             };
              // recommand cache
              if (!localStorageService.get("recommand")) {
                  localStorageService.set("recommand", {})
-             }
+             };
              // user info cache
+             localStorageService.remove("token")
              $rootScope.user = {};
              userServices.sync();
+             // translate app
+             $translate.use(localStorageService.get("language"))
          }
      }
  });

@@ -176,7 +176,7 @@ angular.module("Youyi", [
             .otherwise({
                 redirectTo: "/index"
             });
-        $translateProvider.useSanitizeValueStrategy('sanitize');
+        $translateProvider.useSanitizeValueStrategy('escape');
         $translateProvider.useStaticFilesLoader({
             prefix: '/languages/',
             suffix: '.json'

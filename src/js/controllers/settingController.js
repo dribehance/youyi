@@ -1,7 +1,9 @@
 // by dribehance <dribehance.kksdapp.com>
-var settingController = function($scope, $rootScope, $translate,SharedState, userServices, errorServices, toastServices, localStorageService, config) {
+var settingController = function($scope, $rootScope, $translate, SharedState, userServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {};
-    $scope.input.choosen_language = "";
+    $scope.input.choosen_language = {
+        code: localStorageService.get("language")
+    };
     $scope.languages = [{
         name: "中文",
         code: "CN"
@@ -10,18 +12,18 @@ var settingController = function($scope, $rootScope, $translate,SharedState, use
         code: "JP"
     }, {
         name: "韩语",
-        code: "KO"
+        code: "KR"
     }, {
         name: "英语",
-        code: "EN"
+        code: "CA"
     }];
     $scope.exit = function() {
         userServices.exit();
         $rootScope.back();
     }
     $scope.ajaxForm = function() {
-        console.log($scope.input.choosen_language.code)
-        $translate.use($scope.input.choosen_language.code);
+        localStorageService.set("language",$scope.input.choosen_language.code);
+        $translate.use(localStorageService.get("language"));
         SharedState.turnOff("language_panel");
     }
 }

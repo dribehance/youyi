@@ -62,7 +62,7 @@
                 </div>
                 <div class="modal-body" style="padding:0">
                     <div class="list-group language_panel">
-                        <label class="list-group-item block" ng-repeat="language in languages" ng-class="{'selected':input.choosen_language == language}">
+                        <label class="list-group-item block" ng-repeat="language in languages" ng-class="{'selected':input.choosen_language.code == language.code}">
                             {{ language.name }}
                             <input type="radio" class="hidden" ng-model="input.choosen_language" ng-value="language" />
                         </label>
