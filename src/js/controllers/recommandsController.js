@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var recommandsController = function($scope, taskServices, myLoveServices, errorServices, toastServices, localStorageService, config) {
+var recommandsController = function($scope,$routeParams, taskServices, myLoveServices, errorServices, toastServices, localStorageService, config) {
     $scope.recommands = [];
     $scope.page = {
         number: 1,
@@ -33,7 +33,7 @@ var recommandsController = function($scope, taskServices, myLoveServices, errorS
     $scope.apply = function(id) {
         toastServices.show();
         taskServices.apply({
-            "task_id": "",
+            "task_id": $routeParams.task_id,
             "yy_user_id":id,
             "is_apply": 1,
         }).then(function(data) {

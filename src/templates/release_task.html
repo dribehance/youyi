@@ -311,7 +311,7 @@
                     <p>恭喜您，{{"Create Task" | translate}}成功！</p>
                 </div>
                 <div class="modal-footer text-center">
-                    <a ng-href="#/recommands" class="btn btn-primary" ng-if="recommands > 0">{{"Our Recommendations" | translate}}</a>
+                    <a ng-href="#/recommands?task_id={{task_id}}" class="btn btn-primary" ng-if="recommands > 0">{{"Our Recommendations" | translate}}</a>
                     <button class="btn btn-default" ng-click="close()">关闭</button>
                 </div>
             </div>

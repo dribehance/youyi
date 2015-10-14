@@ -91,6 +91,7 @@ var releaseTaskController = function($rootScope, $scope, $route, $timeout, $filt
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 // $rootScope.cover.show = true;
                 // SharedState.turnOn("modal2");
+                $scope.task_id = data.task_id;
                 return taskServices.queryRecommandTask(angular.extend({}, {
                     pn: 1,
                     page_size: 10
