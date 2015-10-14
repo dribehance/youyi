@@ -96,7 +96,6 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
             self.info.basic({}).then(function(data) {
                 if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                     $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
-                    console.log($rootScope.user)
                 }
                 else {
                     self.exit();
@@ -105,7 +104,6 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
             self.info.sidebar({}).then(function(data) {
                 if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                     $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
-                    console.log($rootScope.user)
                 }
                 else {
                     self.exit();

@@ -93,6 +93,8 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
                     "task_id": input.task_id,
+                    "is_apply": input.is_apply,
+                    "yy_user_id": input.yy_user_id
                 })
             }).then(function(data) {
                 return data.data;
@@ -150,8 +152,8 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     "total_money": input.total_money,
                     "city_dict_group_id": input.city_dict_group_id,
                     "description": input.description,
-                    "yy_user_id":input.yy_user_id,
-                    "is_apply":input.is_apply,
+                    "yy_user_id": input.yy_user_id,
+                    "is_apply": input.is_apply,
                 })
             }).then(function(data) {
                 return data.data;
@@ -230,7 +232,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 return data.data;
             });
         },
-        queryPaymentInfo:function(input){
+        queryPaymentInfo: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/TaskUser/comfiyUser",
@@ -238,8 +240,8 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
-                    "yy_user_id":input.yy_user_id,
-                    "task_id":input.task_id,
+                    "yy_user_id": input.yy_user_id,
+                    "task_id": input.task_id,
                 })
             }).then(function(data) {
                 return data.data;

@@ -30,6 +30,21 @@ var recommandsController = function($scope, taskServices, myLoveServices, errorS
 
     }
     $scope.loadMore();
+    $scope.apply = function(id) {
+        toastServices.show();
+        taskServices.apply({
+            "task_id": "",
+            "yy_user_id":id,
+            "is_apply": 1,
+        }).then(function(data) {
+            toastServices.hide()
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $location.path("tasks").replace();
+            } else {
+                errorServices.autoHide(data.message);
+            }
+        })
+    }
     $scope.unlike = function(applicant) {
         myLoveServices.cancel({
             "collection_id": applicant.collection_id
