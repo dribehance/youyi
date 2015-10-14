@@ -75,7 +75,11 @@
              $rootScope.user = {};
              userServices.sync();
              // translate app
-             $translate.use(localStorageService.get("language"))
+             $translate.use(localStorageService.get("language"));
+             // index dialog tips
+             $rootScope.showDialog = function() {
+                errorServices.autoHide("请下载悠译人APP使用完整的功能");
+             }
          }
      }
  });
