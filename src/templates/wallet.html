@@ -15,7 +15,8 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading" style="position:relative;top:8px">
-                        {{"Account Balance" | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-very-large text-primary">{{wallet.money}}</span><span class="text-primary"></span>
+                        {{"Account Balance" | translate}}
+                        <div class="text-very-large text-primary">{{wallet.money | currency:""}}</div>
                     </h4>
                 </div>
             </div>

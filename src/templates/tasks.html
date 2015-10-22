@@ -24,13 +24,20 @@
             <div class="section">
                 <div class="semi-auto semi-right-80">
                     <div class="text-ellipsis">
-                        <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" class="circle icon" alt="">
-                        {{task.title}}
+                        <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" class="circle icon" alt=""> {{task.title}}
                     </div>
-                    <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.task_status == 0">
-                        <span class="">已下线</span>
+                    <div class="semi-fixed-right semi-wide-80 text-right" ng-click="action(task)">
+                        <div class="btn-group">
+                            <a>
+                                <span class="">{{task.status_message}}</span>
+                            </a>
+                            <ul class="dropdown-menu" ui-outer-click="Ui.turnOff('task'+task.task_id)" ui-outer-click-if="Ui.active('task'+task.task_id)" role="menu" ui-show="task{{task.task_id}}" ui-state="task{{task.task_id}}" ui-turn-off="task{{task.task_id}}">
+                                <li ng-click="agree(task)"><a>同意</a></li>
+                                <li ng-click="reject(task)"><a>拒绝</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.task_status == 1">
+                    <!-- <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.task_status == 1">
                         <span class="">{{"To be Confirmed" | translate}}</span>
                     </div>
                     <div class="semi-fixed-right semi-wide-80 text-right text-success" ng-if="task.task_status == 2 && task.is_comment == '0'">
@@ -41,22 +48,19 @@
                     </div>
                     <div class="semi-fixed-right semi-wide-80 text-right" ng-if="task.is_comment == '1'">
                         <span class="">已评价</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="section bg-gray-lighter">
                 <div class="row text-center">
                     <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-translate" style="position:relative;top:-3px"></i>
-                        {{task.from_language}}/{{task.to_language}}
+                        <i class="kk kk-icon kk-translate" style="position:relative;top:-3px"></i> {{task.from_language}}/{{task.to_language}}
                     </div>
                     <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-location" style="position:relative;top:-3px"></i>
-                        {{task.country +","+task.city}}
+                        <i class="kk kk-icon kk-location" style="position:relative;top:-3px"></i> {{task.country +","+task.city}}
                     </div>
                     <div class="col-xs-4 section-wide text-ellipsis">
-                        <i class="kk kk-icon kk-bag" style="position:relative;top:-3px"></i>
-                        {{task.type}}
+                        <i class="kk kk-icon kk-bag" style="position:relative;top:-3px"></i> {{task.type}}
                     </div>
                 </div>
                 <div class="section section-wide bg-gray-lighter task_cost text-ellipsis">

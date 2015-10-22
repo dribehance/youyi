@@ -93,8 +93,6 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
                     "task_id": input.task_id,
-                    "is_apply": input.is_apply,
-                    "yy_user_id": input.yy_user_id
                 })
             }).then(function(data) {
                 return data.data;
@@ -154,6 +152,21 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     "description": input.description,
                     "yy_user_id": input.yy_user_id,
                     "is_apply": input.is_apply,
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        // apply and the same time create task
+        create:function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/PublishTask/IsBuild",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "language_app": localStorageService.get("language"),
+                    "task_id":input.task_id
                 })
             }).then(function(data) {
                 return data.data;
@@ -241,6 +254,54 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
                     "yy_user_id": input.yy_user_id,
+                    "task_id": input.task_id,
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        pay:function (input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/TaskUser/comfiyPay",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "language_app": localStorageService.get("language"),
+                    "user_id": input.user_id,
+                    "task_id": input.task_id,
+                    "pay_type": input.pay_type,
+                    "pay_total_money":input.pay_total_money,
+                    "pay_password": input.pay_password,
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        // agree task 
+        agree: function (input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/TaskUser/acceptTask",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "language_app": localStorageService.get("language"),
+                    "task_id": input.task_id,
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        // reject task 
+        reject: function (input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/TaskUser/refuseTask",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "language_app": localStorageService.get("language"),
                     "task_id": input.task_id,
                 })
             }).then(function(data) {

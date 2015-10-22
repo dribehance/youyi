@@ -158,7 +158,7 @@
             <span class="btn btn-success rectangle">
                 将我分享给朋友
             </span>
-            <a ng-href="#/apply_flow" class="btn btn-danger rectangle" ng-if="translator.apply_status ==0">
+            <a ng-href="#/apply_flow?translator_id={{translator.user_id}}" class="btn btn-danger rectangle" ng-if="translator.apply_status ==0">
                 {{"Apply" | translate}}
             </a>
             <a class="btn btn-danger rectangle" ng-if="translator.apply_status ==1">

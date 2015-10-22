@@ -25,8 +25,8 @@
                             </a>
                         </div>
                         <div class="pull-right">
-                            <a ng-click="accept(applicant.user_id)" class="btn btn-default">
-                                <i class="kk kk-accept" ng-class="{'active':applicant.status == '1'}"></i> {{"Accept" | translate}}
+                            <a ng-click="accept(applicant)" class="btn btn-default">
+                                <i class="kk kk-accept" ng-class="{'active':applicant.status == '1'}"></i> {{applicant.status_message}}
                             </a>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
 </div>
 <div ui-content-for="modals">
     <div class="modal modal-overlay" ui-if="payment_panel" ui-state='payment_panel'>
-        <form name="editForm" ng-submit="ajaxForm()" class="modal-dialog" style="margin:0">
+        <form name="paymentForm" ng-submit="ajaxForm()" class="modal-dialog" style="margin:0">
             <div class="modal-content">
                 <div class="modal-header bg-primary clearfix">
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="payment_panel">
@@ -71,7 +71,9 @@
                     <div class="section large bg-gray-lighter text-primary clearfix">
                         {{"Pay by Balance" | translate}}
                         <span class="pull-right">
-                            <ui-switch  ng-model="payment.balance"></ui-switch>
+                            <span class="switch switch-transition-enabled" ng-class="{'active':payway.balance}" ng-click="togglePayway()">
+                                <span class="switch-handle"></span>
+                        </span>
                         </span>
                     </div>
                     <div class="section large">
@@ -80,31 +82,52 @@
                     <div class="section large bg-gray-lighter text-primary clearfix">
                         {{"Payment Method" | translate}}
                         <span class="pull-right">
-                            <ui-switch  ng-model="payment.channel"></ui-switch>
+                            <span class="switch switch-transition-enabled" ng-class="{'active':!payway.balance}" ng-click="togglePayway()">
+                                <span class="switch-handle"></span>
+                        </span>
                         </span>
                     </div>
                     <div class="list-group">
                         <label class="list-group-item">
                             {{"Unionpay" | translate}}
                             <input type="radio" class="hidden" ng-model="payment.channel" value="yinlian">
-                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':payment.channel =='yinlian'}"></i>
+                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payment.channel == 'yinlian' && !payment.balance)}"></i>
                         </label>
                         <label class="list-group-item">
                             {{"WeChat" | translate}}
                             <input type="radio" class="hidden" ng-model="payment.channel" value="weixin">
-                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':payment.channel == 'weixin'}"></i>
+                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payment.channel == 'weixin' && !payment.balance)}"></i>
                         </label>
                         <label class="list-group-item">
                             {{"AliPay" | translate}}
                             <input type="radio" class="hidden" ng-model="payment.channel" value="alipay">
-                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':payment.channel == 'alipay'}"></i>
+                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payment.channel == 'alipay' && !payment.balance)}"></i>
                         </label>
                     </div>
                     <div class="section text-center">
-                        <button type="submit" class="btn btn-primary" ng-disabled="editForm.edit.$invalid">确认并支付</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="paymentForm.edit.$invalid">确认并支付</button>
                     </div>
                 </div>
             </div>
         </form>
+    </div>
+    <div class="modal" ui-if="password_panel" ui-state='password_panel' style="z-index:5000">
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close text-primary" ui-turn-off="password_panel">&times;</button>
+                    <h4 class="modal-title text-center">请输入支付密码</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="password" class="form-control text-center" ng-model="input.password" placeholder="请输入交易密码，六位">
+                    <span class="text-primary">{{input.error_message}}</span>
+                </div>
+                <div class="modal-footer text-center">
+                    <button ui-turn-off="password_panel" class="btn btn-default">取消</button>
+                    <button ng-click="pay()" ng-disabled="input.password == ''" class="btn btn-primary">确定</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

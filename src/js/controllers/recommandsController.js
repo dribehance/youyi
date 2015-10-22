@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var recommandsController = function($scope,$routeParams, taskServices, myLoveServices, errorServices, toastServices, localStorageService, config) {
+var recommandsController = function($scope,$routeParams,$location, taskServices, myLoveServices, errorServices, toastServices, localStorageService, config) {
     $scope.recommands = [];
     $scope.page = {
         number: 1,
@@ -20,7 +20,7 @@ var recommandsController = function($scope,$routeParams, taskServices, myLoveSer
                 $scope.recommands = $scope.recommands.concat(data.Result.recommends.list);
                 $scope.no_more = $scope.recommands.length == data.Result.recommends.totalRow ? true : false;
             } else {
-                errorServices.autoHide("服务器错误");
+                errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
                 $scope.page.message = "没有了";

@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var tasksController = function($scope, taskServices, errorServices, toastServices, localStorageService, config) {
+var tasksController = function($scope, $location, taskServices, SharedState, errorServices, toastServices, localStorageService, config) {
     $scope.task_tab = {
         name: "release"
     }
@@ -33,7 +33,8 @@ var tasksController = function($scope, taskServices, errorServices, toastService
             $scope.loadAccept();
         }
 
-    }
+    };
+    // release record
     $scope.loadRelease = function() {
         toastServices.show();
         taskServices.queryTaskByRelease($scope.page).then(function(data) {
@@ -50,7 +51,8 @@ var tasksController = function($scope, taskServices, errorServices, toastService
             }
             $scope.page.pn++;
         })
-    }
+    };
+    // accept record
     $scope.loadAccept = function() {
         toastServices.show();
         taskServices.queryTaskByAccept($scope.page).then(function(data) {
@@ -67,5 +69,48 @@ var tasksController = function($scope, taskServices, errorServices, toastService
             }
             $scope.page.pn++;
         })
+    };
+    $scope.agree = function(task) {
+        toastServices.show();
+        taskServices.agree({
+            "task_id": task.task_id
+        }).then(function(data) {
+            toastServices.hide();
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                task.oper_status = data.oper_status;
+                task.status_message = data.status_message;
+            } else {
+                errorServices.autoHide(data.message);
+            }
+        })
+    }
+    $scope.reject = function(task) {
+        toastServices.show();
+        taskServices.reject({
+            "task_id": task.task_id
+        }).then(function(data) {
+            toastServices.hide()
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                task.oper_status = data.oper_status;
+                task.status_message = data.status_message;
+            } else {
+                errorServices.autoHide(data.message);
+            }
+        })
+    }
+    $scope.action = function(task) {
+        // comment;
+        if (task.oper_status == '2') {
+            var path = task.task_id + "/comment";
+            $location.path(path)
+            return;
+        }
+        // agree;
+        // reject;
+        if (task.oper_status == '-1') {
+            SharedState.turnOn('task' + task.task_id);
+            return;
+        }
+        return;
     }
 }

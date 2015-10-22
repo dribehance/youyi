@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var applyFlowController = function($rootScope, $scope, $route, $timeout, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
+var applyFlowController = function($rootScope, $scope, $route,$routeParams, $timeout, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {
         from_date: new Date(),
         from_time: new Date(),
@@ -81,7 +81,7 @@ var applyFlowController = function($rootScope, $scope, $route, $timeout, $filter
             "total_money": $scope.input.total,
             "city_dict_group_id": $scope.choosen.city.group_id,
             "description": $scope.input.content,
-            "yy_user_id": $rootScope.user.user_id,
+            "yy_user_id": $routeParams.translator_id,
             "is_apply": "0",
         };
         toastServices.show();
@@ -89,6 +89,7 @@ var applyFlowController = function($rootScope, $scope, $route, $timeout, $filter
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 // $rootScope.cover.show = true;
+                $scope.task_id = data.task_id;
                 SharedState.turnOn("modal2");
             } else {
                 errorServices.autoHide(data.message);
@@ -104,11 +105,17 @@ var applyFlowController = function($rootScope, $scope, $route, $timeout, $filter
         }, 1000)
     }
     $scope.create = function() {
-        toastServices.show();
         // do something create 
-        $timeout(function() {
-            // $route.reload();
-            $rootScope.back();
-        }, 1000)
+        toastServices.show();
+        taskServices.create({
+            "task_id": $scope.task_id
+        }).then(function(data) {
+            toastServices.hide()
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $rootScope.back();
+            } else {
+                errorServices.autoHide(data.message);
+            }
+        })
     }
 }
