@@ -150,8 +150,8 @@ module.exports = function(config) {
     * support chart
     * repository:https://github.com/dribehance/pie-chart.git 
     */
-   config.vendor.js.push('./bower_components/d3/d3.min.js');
-   config.vendor.js.push('./bower_components/pie-chart/dist/pie-chart.min.js');
+   // config.vendor.js.push('./bower_components/d3/d3.min.js');
+   // config.vendor.js.push('./bower_components/pie-chart/dist/pie-chart.min.js');
    /**
     * [module:LocalStorageModule]
     * support localStorage
@@ -175,7 +175,13 @@ module.exports = function(config) {
     * support html5 date/time/week
     * repository:https://github.com/dribehance/date-polyfill.git 
     */
-   config.vendor.js.push('./bower_components/date-polyfill/date-polyfill.min.js');
+   // config.vendor.js.push('./bower_components/date-polyfill/date-polyfill.min.js');
+   /**
+    * [lib]
+    * support customer datepicker
+    * repository:https://github.com/dribehance/angular-datepicker.git 
+    */
+   config.vendor.js.push('./bower_components/angular-native-datepicker/build/angular-datepicker.js');
    /**
     * [lib]
     * support i18n
@@ -186,6 +192,7 @@ module.exports = function(config) {
    // config.vendor.js.push('./bower_components/angular-translate-loader-url/angular-translate-loader-url.min.js');
    // translate language offer by static file
    config.vendor.js.push('./bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js');
+
   /**
    * Vendor Fonts
    *

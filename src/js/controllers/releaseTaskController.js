@@ -1,10 +1,10 @@
 // by dribehance <dribehance.kksdapp.com>
-var releaseTaskController = function($rootScope,$filter, $scope, $route, $timeout, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
+var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeout, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {
-        from_date: new Date(),
-        from_time: new Date(),
-        to_date: new Date(),
-        to_time: new Date,
+        from_date: "",
+        from_time: "",
+        to_date: "",
+        to_time: "",
         title: "",
         category: {},
         price: 100,
@@ -12,6 +12,18 @@ var releaseTaskController = function($rootScope,$filter, $scope, $route, $timeou
         address: "请选择",
         content: "",
         other: "",
+        from_date_options: {
+            format: "yyyy-mm-dd",
+            min:new Date(),
+        },
+        to_date_options: {
+            format: "yyyy-mm-dd",
+        },
+        time_options: {
+            format: "HH:i",
+            min:0.5,
+            max:[23,30]
+        }
     };
     $scope.choosen = {};
     // step 1 
@@ -67,6 +79,7 @@ var releaseTaskController = function($rootScope,$filter, $scope, $route, $timeou
             }
         })
     };
+    // $scope.$watch()
     // step 3
     $scope.ajaxForm = function() {
         var input = {
@@ -81,8 +94,8 @@ var releaseTaskController = function($rootScope,$filter, $scope, $route, $timeou
             "total_money": $scope.input.total,
             "city_dict_group_id": $scope.choosen.city.group_id,
             "description": $scope.input.content,
-            "yy_user_id":$rootScope.user.user_id,
-            "is_apply":"1",
+            "yy_user_id": $rootScope.user.user_id,
+            "is_apply": "1",
         };
         localStorageService.set("recommand", input);
         toastServices.show();
@@ -116,5 +129,5 @@ var releaseTaskController = function($rootScope,$filter, $scope, $route, $timeou
         $timeout(function() {
             $route.reload();
         }, 1000)
-    }
+    };
 }

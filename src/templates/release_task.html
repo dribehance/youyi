@@ -14,7 +14,7 @@
     <div class="scrollable-content">
         <form ng-submit="ajaxForm()" name="releaseForm">
             <!-- step 1 -->
-            <div ui-state="step" ui-default="step=1" ui-if="step == '1'">
+            <div ui-state="step" ui-default="step=1" ui-show="step == '1'">
                 <div class="text-center" style="margin:50px auto 50px">
                     <img src="../images/step_1.png" alt="">
                 </div>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <!-- step 2 -->
-            <div ui-if="step == '2'">
+            <div ui-show="step == '2'">
                 <div class="text-center" style="margin:50px auto 50px">
                     <img src="../images/step_2.png" alt="">
                 </div>
@@ -50,10 +50,10 @@
                             <div>
                                 <div class="row">
                                     <div class="col-xs-7 section-wide">
-                                        <input type="date" class="youyi-date form-control col-xs-8" name="from_date" ng-model="input.from_date" required>
+                                        <input type="text" class="youyi-date form-control col-xs-8" name="from_date" pick-a-date="input.from_date" pick-a-date-options="input.from_date_options" placeholder="请选择" required>
                                     </div>
                                     <div class="col-xs-5 section-wide">
-                                        <input type="time" class="youyi-time form-control col-xs-4" name="from_time" ng-model="input.from_time" required>
+                                        <input type="text" class="youyi-time form-control col-xs-4" name="from_time" pick-a-time="input.from_time" pick-a-time-options="input.time_options" placeholder="请选择" required>
                                     </div>
                                 </div>
                             </div>
@@ -66,10 +66,10 @@
                             <div>
                                 <div class="row">
                                     <div class="col-xs-7 section-wide">
-                                        <input type="date" class="youyi-date form-control col-xs-8" name="to_date" ng-model="input.to_date" required>
+                                        <input type="text" class="youyi-date form-control col-xs-8" name="to_date" pick-a-date="input.to_date" pick-a-date-options="input.to_date_options" placeholder="请选择" required>
                                     </div>
                                     <div class="col-xs-5 section-wide">
-                                        <input type="time" class="youyi-time form-control col-xs-4" name="to_time" ng-model="input.to_time" required>
+                                        <input type="text" class="youyi-time form-control col-xs-4" name="to_time" pick-a-time="input.to_time" pick-a-time-options="input.to_time_options" placeholder="请选择" required>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +139,6 @@
                         <div class="section large text-right">
                             {{choosen.city.country+choosen.city.name}}
                         </div>
-
                         <div class="semi-fixed-right semi-wide-40">
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
                         </div>
@@ -167,7 +166,7 @@
                 </div>
             </div>
             <!-- step 3 -->
-            <div ui-if="step == '3'">
+            <div ui-show="step == '3'">
                 <div class="text-center" style="margin:50px auto 50px">
                     <img src="../images/step_3.png" alt="">
                 </div>
@@ -300,7 +299,7 @@
             </div>
         </div>
     </div>
-     <div class="modal" ui-if="modal2" ui-state='modal2'>
+    <div class="modal" ui-if="modal2" ui-state='modal2'>
         <div class="modal-backdrop in"></div>
         <div class="modal-dialog">
             <div class="modal-content">

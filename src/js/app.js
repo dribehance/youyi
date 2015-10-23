@@ -8,7 +8,8 @@ angular.module("Youyi", [
         "flow",
         "timer",
         "pascalprecht.translate",
-        "ngSanitize"
+        "ngSanitize",
+        "angular-datepicker"
     ])
     .config(function($routeProvider, $httpProvider, $translateProvider, localStorageServiceProvider) {
         $routeProvider

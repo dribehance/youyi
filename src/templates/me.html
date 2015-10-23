@@ -40,7 +40,7 @@
             <div class="list-group-item" ui-turn-on="single_picker" ui-show="!single_picker">
                 <i class="fa fa-plus-circle text-primary"></i> {{"Add Language" | translate}}
             </div>
-            <div class="picker" ui-state="single_picker" ui-show="single_picker" ui-outer-click="Ui.turnOff('single_picker')" ui-outer-click-if="Ui.active('single_picker')">
+            <div class="data-picker" ui-state="single_picker" ui-show="single_picker" ui-outer-click="Ui.turnOff('single_picker')" ui-outer-click-if="Ui.active('single_picker')">
                 <div class="picker-header">
                     <div class="btn-group justified text-primary">
                         <span class="btn">语言</span>
@@ -88,7 +88,7 @@
             <div class="list-group-item" ui-turn-on="multiple_picker" ui-show="!multiple_picker">
                 <i class="fa fa-plus-circle text-primary"></i> {{"Add Type" | translate}}
             </div>
-            <div class="picker" ui-state="multiple_picker" ui-show="multiple_picker" ui-outer-click="Ui.turnOff('multiple_picker')" ui-outer-click-if="Ui.active('multiple_picker')">
+            <div class="data-picker" ui-state="multiple_picker" ui-show="multiple_picker" ui-outer-click="Ui.turnOff('multiple_picker')" ui-outer-click-if="Ui.active('multiple_picker')">
                 <div class="picker-header">
                     <div class="btn-group justified text-primary">
                         <span class="btn">翻译类型</span>

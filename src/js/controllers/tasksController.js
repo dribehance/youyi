@@ -79,6 +79,7 @@ var tasksController = function($scope, $location, taskServices, SharedState, err
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 task.oper_status = data.oper_status;
                 task.status_message = data.status_message;
+                SharedState.turnOff("task"+task.task_id);
             } else {
                 errorServices.autoHide(data.message);
             }
@@ -93,6 +94,7 @@ var tasksController = function($scope, $location, taskServices, SharedState, err
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 task.oper_status = data.oper_status;
                 task.status_message = data.status_message;
+                SharedState.turnOff("task"+task.task_id);
             } else {
                 errorServices.autoHide(data.message);
             }
