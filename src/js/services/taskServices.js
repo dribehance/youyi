@@ -149,7 +149,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     "price_for_day": input.price_for_day,
                     "total_money": input.total_money,
                     "city_dict_group_id": input.city_dict_group_id,
-                    "description": input.description,
+                    "task_description": input.description,
                     "yy_user_id": input.yy_user_id,
                     "is_apply": input.is_apply,
                 })

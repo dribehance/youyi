@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var releaseTaskController = function($rootScope, $scope, $route, $timeout, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
+var releaseTaskController = function($rootScope,$filter, $scope, $route, $timeout, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {
         from_date: new Date(),
         from_time: new Date(),

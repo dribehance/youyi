@@ -87,6 +87,7 @@
                 <!-- <span class="tip text-warning" ng-show="signupForm.password.$invalid && signupForm.password.$dirty">必填,密码至少8位</span> -->
                 <span class="tip text-warning" ng-show="sidebar.error.show">{{sidebar.error.message}}</span>
             </div>
+            <div class="section text-center text-warning" ng-click="show('agreement')">阅读悠译人用户使用协议</div>
             <div class="kk-input-group">
                 <button type="submit" class="btn btn-warning block full-width" ng-disabled="signupForm.$invalid">{{"Agree and Register" | translate}}</button>
             </div>
@@ -102,7 +103,7 @@
         </div>
         <form ng-submit="ajaxForm('signup_by_email')" name="signupEmailForm">
             <div class="kk-input-group flat">
-                <input type="email" name="email" class="form-control" placeholder="请输入常用邮箱" ng-model="input.email" required >
+                <input type="email" name="email" class="form-control" placeholder="{{'Enter Email Address' | translate}}" ng-model="input.email" required >
                 <!-- <span class="tip text-warning" ng-show="signupEmailForm.email.$invalid && signupEmailForm.email.$dirty">必填,邮箱格式xx@xx</span> -->
             </div>
             <div class="kk-input-group flat">
@@ -110,7 +111,7 @@
                     <timer id="kkcountdown" interval="1000" countdown="60" auto-start='false' ng-show="callbackTimer.counting" finish-callback="callbackTimer.finish()">{{countdown + 1}}</timer>
                     {{"Get Verification Code" | translate}}
                 </button>
-                <input type="text" name="email_code" class="form-control" placeholder="请输入验证码" ng-model="input.email_code" required>
+                <input type="text" name="email_code" class="form-control" placeholder="{{'Enter Verification Code' | translate}}" ng-model="input.email_code" required>
                 <!-- <span class="tip text-warning" ng-show="signupEmailForm.email_code.$invalid && signupEmailForm.email_code.$dirty">必填，验证码为6位</span> -->
             </div>
             <div class="kk-input-group flat">
@@ -118,6 +119,7 @@
                 <!-- <span class="tip text-warning" ng-show="signupEmailForm.password.$invalid && signupEmailForm.password.$dirty">必填,密码至少8位</span> -->
                 <span class="tip text-warning" ng-show="sidebar.error.show">{{sidebar.error.message}}</span>
             </div>
+            <div class="section text-center text-warning" ng-click="show('agreement')">阅读悠译人用户使用协议</div>
             <div class="kk-input-group">
                 <button type="submit" class="btn btn-warning block full-width" ng-disabled="signupEmailForm.$invalid">{{"Agree and Register" | translate}}</button>
             </div>
@@ -133,7 +135,7 @@
         </div>
         <form ng-submit="ajaxForm('forget')" name="forgetForm">
             <div class="kk-input-group flat">
-                <input type="text" name="tel_email" class="form-control" placeholder="请输入常用邮箱/手机号" ng-model="input.telephone" required telephone-or-email>
+                <input type="text" name="tel_email" class="form-control" placeholder="{{'Enter Your Mobile No. or Email' | translate}}" ng-model="input.telephone" required telephone-or-email>
                 <!-- <span class="tip text-warning" ng-show="forgetForm.tel_email.$invalid && forgetForm.tel_email.$dirty">必填,手机或者邮箱</span> -->
             </div>
             <div class="kk-input-group flat">
@@ -218,6 +220,18 @@
         </div>
         <div class="section text-right">
             <a class="btn btn-warning" ng-click="share()">分享我们</a>
+        </div>
+    </div>
+</div>
+<!-- agreement -->
+<div class="scrollable" ng-show="sidebar.current=='agreement'">
+    <div class="scrollable-content">
+        <div class="section" style="padding:20px 15px 0">
+            <h3>用户使用协议</h3>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.
+        </div>
+        <div class="section text-center">
+            <button class="btn btn-primary full-width" ng-click="prev()">{{"Agree and Register" | translate}}</button>
         </div>
     </div>
 </div>
