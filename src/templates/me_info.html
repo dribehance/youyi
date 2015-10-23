@@ -10,7 +10,7 @@
             <div flow-init="{singleFile:true}" ng-controller="coverController" class="translator-bg">
                 <img flow-btn flow-attrs="{accept:'image/*'}" flow-img="$flow.files[0]" ng-src="{{staticImageUrl + user.bg_image || '../images/avatar_1.png'}}" alt="" class="needsclick">
             </div>
-            <div flow-init="{singleFile:true}" ng-controller="avatarController" class="translator-avatar" >
+            <div flow-init="{singleFile:true}" ng-controller="avatarController" class="translator-avatar">
                 <img flow-btn flow-attrs="{accept:'image/*'}" flow-img="$flow.files[0]" ng-src="{{staticImageUrl + user.avatar || '../images/avatar_1.png'}}" alt="" class="needsclick block full-width">
             </div>
         </div>
@@ -32,12 +32,12 @@
             <div class="list-group-item clearfix kk-input-group">
                 <span class="btn col-xs-3 section-wide text-left">{{"Gender" | translate}}</span>
                 <span class="col-xs-9 section-wide">
-                    <i class="kk kk-icon kk-radio" ng-class="{'active':user.gender == '1'}"></i>
                     <label class="btn" style="min-width:60px">
+                        <i class="kk kk-icon kk-radio" ng-class="{'active':user.gender == '1'}"></i>
                         <input type="radio" name="male" ng-model="user.gender"  value="1" class="hidden">{{"Male" | translate}}
                     </label>
-                    <i class="kk kk-icon kk-radio" ng-class="{'active':user.gender == '2'}"></i>
                     <label class="btn" style="min-width:60px">
+                        <i class="kk kk-icon kk-radio" ng-class="{'active':user.gender == '2'}"></i>
                         <input type="radio" name="female" ng-model="user.gender" value="2" class="hidden">{{"Female" | translate}}
                     </label>
                 <!-- <span class="tip text-warning">error</span> -->
