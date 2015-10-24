@@ -14,7 +14,7 @@ var taskController = function($scope, $routeParams,$location, taskServices, erro
     	taskServices.apply({"task_id":$routeParams.task_id}).then(function(data){
     		toastServices.hide()
     		if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-    			$location.path("tasks").replace();	
+    			$location.path("tasks").search("from","task").replace();	
     		}
     		else {
     			errorServices.autoHide(data.message);

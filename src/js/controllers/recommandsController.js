@@ -32,7 +32,7 @@ var recommandsController = function($scope,$routeParams,$location, taskServices,
     $scope.loadMore();
     $scope.apply = function(id) {
         toastServices.show();
-        taskServices.apply({
+        taskServices.invite({
             "task_id": $routeParams.task_id,
             "yy_user_id":id,
         }).then(function(data) {

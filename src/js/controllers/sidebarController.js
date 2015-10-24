@@ -1,11 +1,11 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Youyi").controller("sidebarController", function($scope, $timeout, $rootScope,$location, userServices, SharedState, errorServices, toastServices, localStorageService, config) {
+angular.module("Youyi").controller("sidebarController", function($scope, $timeout, $rootScope, $location, $route, userServices, SharedState, errorServices, toastServices, localStorageService, config) {
     $scope.sidebar = {
-        current:"entrance",
+        current: "entrance",
         last: "",
-        error:{
-            show:false,
-            message:""
+        error: {
+            show: false,
+            message: ""
         }
     };
     $scope.title = "【dribehance】";
@@ -48,19 +48,19 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
     // user input
     $scope.input = {};
     $scope.input = {
-        username:"",
+        username: "",
         telephone: "",
         email: "",
         password: "",
         sms_code: "",
-        email_code:"",
-        verifycode:"",
+        email_code: "",
+        verifycode: "",
 
     }
     $scope.getSmscode = function() {
         userServices.verifycode.getSmscode($scope.input).then(function(data) {
             if (data.status == config.response.SUCCESS) {
-                console.log("验证码"+data.tel_code);
+                console.log("验证码" + data.tel_code);
                 $scope.callbackTimer.counting = 1;
                 $scope.callbackTimer.addSeconds(60);
                 $scope.sidebar.error.show = false;
@@ -74,15 +74,14 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
     }
     $scope.getEmailcode = function() {
         toastServices.show();
-        userServices.verifycode.getEmailcode($scope.input).then(function(data){
+        userServices.verifycode.getEmailcode($scope.input).then(function(data) {
             toastServices.hide()
-            if(data.status == config.response.SUCCESS) {
-                console.log("验证码"+data.code);
+            if (data.status == config.response.SUCCESS) {
+                console.log("验证码" + data.code);
                 $scope.callbackTimer.counting = 1;
                 $scope.callbackTimer.addSeconds(60);
                 // errorServices.autoHide("验证码发送成功");        
-            }
-            else {
+            } else {
                 // errorServices.autoHide(data.message);
                 $scope.sidebar.error.show = true;
                 $scope.sidebar.error.message = data.message;
@@ -91,15 +90,14 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
     }
     $scope.getVerifycode = function() {
         toastServices.show();
-        userServices.verifycode.getVerifycode($scope.input).then(function(data){
+        userServices.verifycode.getVerifycode($scope.input).then(function(data) {
             toastServices.hide()
-            if(data.status == config.response.SUCCESS) {
-                console.log("验证码"+data.code);
+            if (data.status == config.response.SUCCESS) {
+                console.log("验证码" + data.code);
                 $scope.callbackTimer.counting = 1;
                 $scope.callbackTimer.addSeconds(60);
                 // errorServices.autoHide("验证码发送成功");        
-            }
-            else {
+            } else {
                 // errorServices.autoHide(data.message);
                 $scope.sidebar.error.show = true;
                 $scope.sidebar.error.message = data.message;
@@ -131,7 +129,7 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
             if (data.status == config.response.SUCCESS) {
                 SharedState.turnOff("uiSidebarLeft");
                 errorServices.autoHide("注册成功");
-                localStorageService.set("token",data.user.token);
+                localStorageService.set("token", data.user.token);
             } else {
                 // errorServices.autoHide(data.message);
                 $scope.sidebar.error.show = true;
@@ -154,12 +152,15 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
     }
     $scope.signin = function() {
         toastServices.show();
+        $scope.loading = true;
         userServices.signin($scope.input).then(function(data) {
+            $scope.loading = false;
             toastServices.hide()
             if (data.status == 2) {
                 SharedState.turnOff("uiSidebarLeft");
-                localStorageService.set("token",data.token);
+                localStorageService.set("token", data.token);
                 userServices.sync();
+                $route.reload();
             } else {
                 // errorServices.autoHide(data.message);
                 $scope.sidebar.error.show = true;
@@ -181,29 +182,28 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
         })
     };
     // open uiSidebarLeft
-    $scope.$on("mobile-angular-ui.state.changed.uiSidebarLeft",function(e,n,o){
+    $scope.$on("mobile-angular-ui.state.changed.uiSidebarLeft", function(e, n, o) {
         $scope.sidebar.error.show = false;
         $scope.sidebar.error.message = "";
         if (n === true) {
             // alert("true")
             $rootScope.cover.show = true;
-            $scope.sidebar.current = localStorageService.get("token")?"login":"entrance"
-        }
-        else {
+            $scope.sidebar.current = localStorageService.get("token") ? "login" : "entrance"
+        } else {
             // alert("false")
             $rootScope.cover.show = false;
         }
     })
-    $scope.$watch("sidebar.current",function(n,o){
-        if (angular.element("#kkcountdown").length>0) {
+    $scope.$watch("sidebar.current", function(n, o) {
+        if (angular.element("#kkcountdown").length > 0) {
             $scope.callbackTimer.counting = 0;
             angular.element("#kkcountdown")[0].resume();
         }
     })
     $scope.to = function(path) {
-        
-        $timeout(function(){
+
+        $timeout(function() {
             $location.path(path)
-        },0)
+        }, 0)
     }
 })

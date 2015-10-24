@@ -1,7 +1,7 @@
 // by dribehance <dribehance.kksdapp.com>
-var tasksController = function($scope, $location, taskServices, SharedState, errorServices, toastServices, localStorageService, config) {
+var tasksController = function($scope, $location,$routeParams, taskServices, SharedState, errorServices, toastServices, localStorageService, config) {
     $scope.task_tab = {
-        name: "release"
+        name: $routeParams.from == "task"?"accept":"release",
     }
     $scope.tasks = [];
     $scope.page = {

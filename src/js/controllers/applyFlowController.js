@@ -1,10 +1,10 @@
 // by dribehance <dribehance.kksdapp.com>
 var applyFlowController = function($rootScope, $scope, $route,$routeParams, $timeout, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {
-        from_date: new Date(),
-        from_time: new Date(),
-        to_date: new Date(),
-        to_time: new Date,
+        from_date: "",
+        from_time: "",
+        to_date: "",
+        to_time: "",
         title: "",
         category: {},
         price: 100,
@@ -12,6 +12,18 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
         address: "请选择",
         content: "",
         other: "",
+        from_date_options: {
+            format: "yyyy-mm-dd",
+            min:new Date(),
+        },
+        to_date_options: {
+            format: "yyyy-mm-dd",
+        },
+        time_options: {
+            format: "HH:i",
+            min:0.5,
+            max:[23,30]
+        }
     };
     $scope.choosen = {};
     // step 1 

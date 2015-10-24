@@ -1,9 +1,10 @@
 // by dribehance <dribehance.kksdapp.com>
-var applicantsController = function($scope, $route, $routeParams,$location, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var applicantsController = function($scope, $route, $routeParams, $location, $filter, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.applicants = [];
     $scope.input = {
-        password:"",
-        error_message:"",
+        password: "",
+        error_message: "",
+        paying: false,
     };
     $scope.page = {
         pn: 1,
@@ -37,7 +38,7 @@ var applicantsController = function($scope, $route, $routeParams,$location, Shar
     $scope.loadMore();
     // accept applicant
     $scope.accept = function(applicant) {
-        if ((applicant.request_type == '0' && applicant.status == '0') || (applicant.request_type == '1' && applicant.status == '1')) {
+        if (applicant.oper_status == "1" || applicant.oper_status == "0") {
             toastServices.show();
             taskServices.queryPaymentInfo({
                 "yy_user_id": applicant.user_id,
@@ -80,8 +81,8 @@ var applicantsController = function($scope, $route, $routeParams,$location, Shar
         })
     };
     // preview translator
-    $scope.preview_translator = function (translator_id) {
-        $location.path("translators/"+translator_id).search("from","tasks")
+    $scope.preview_translator = function(translator_id) {
+        $location.path("translators/" + translator_id).search("from", "tasks")
     };
     // payway balance or third part payment
     $scope.payway = {
@@ -101,7 +102,11 @@ var applicantsController = function($scope, $route, $routeParams,$location, Shar
         // $scope.thirdpart();
     }
     $scope.pay = function() {
+        if ($scope.input.password == "" || $scope.input.paying) {
+            return;
+        }
         // 余额支付;
+        $scope.input.paying = true;
         $scope.input.error_message = '';
         toastServices.show();
         taskServices.pay({
@@ -112,6 +117,7 @@ var applicantsController = function($scope, $route, $routeParams,$location, Shar
             "pay_password": $scope.input.password,
         }).then(function(data) {
             toastServices.hide();
+            $scope.input.paying = false;
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $route.reload();
             } else {
@@ -119,5 +125,21 @@ var applicantsController = function($scope, $route, $routeParams,$location, Shar
                 // errorServices.autoHide(data.message);
             }
         })
-    }
+    };
+    // password control
+    // password control
+    $scope.imulate_password = [];
+    $scope.prepare_imulate_password = function() {
+        $scope.imulate_password = new Array($scope.input.password.length);
+    };
+    $scope.$watch("input.password", function(n, o) {
+        if (n === undefined) return;
+        $scope.prepare_imulate_password();
+        if ($scope.input.password.length == 6) {
+            $scope.pay();
+        }
+        if ($scope.input.password.length > 6) {
+            $scope.input.password = $filter("limitTo")($scope.input.password, 6)
+        }
+    })
 }
