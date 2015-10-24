@@ -155,10 +155,32 @@
     </div>
     <div class="scrollable-footer" ng-hide="from =='tasks'">
         <div class="btn-group justified" ng-if="translator.user_id">
-            <span class="btn btn-success rectangle">
-                将我分享给朋友
-            </span>
-            <a ng-href="#/apply_flow?translator_id={{translator.user_id}}" class="btn btn-danger rectangle" ng-if="translator.apply_status ==0 && translator.apply_status !=2">
+            <div class="btn btn-success rectangle">
+                <span ui-turn-on="share_panel">将我分享给朋友</span>
+                <ul class="dropdown-menu top" ui-outer-click="Ui.turnOff('share_panel')" ui-outer-click-if="Ui.active('share_panel')" role="menu" ui-show="share_panel" ui-state="share_panel" ui-turn-off="share_panel">
+                    <li>
+                        <a ng-href="{{share_footer.share.sina}}">
+                            <i class="kk kk-30 kk-weibo"></i>
+                            <span class="text-gray">{{"Weibo" | translate}}</span>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a ui-turn-on="weixin_share_panel">
+                            <i class="kk kk-30 kk-weixin"></i>
+                            <span class="text-gray">{{"WeChat" | translate}}</span>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a ng-href="{{share_footer.share.facebook}}">
+                            <i class="kk kk-30 kk-facebook"></i>
+                            <span class="text-gray">{{"Facebook" | translate}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <a ng-click="apply()" class="btn btn-danger rectangle" ng-if="translator.apply_status ==0 && translator.apply_status !=2">
                 {{"Apply" | translate}}
             </a>
             <a class="btn btn-danger rectangle" ng-if="translator.apply_status ==1">
@@ -204,6 +226,12 @@
                     <img ng-src="{{staticImageUrl + b.pic}}" err-src="../images/banner.png" class="block full-width" alt="">
                 </div>
             </previewer>
+        </div>
+    </div>
+    <div class="modal" ui-if="weixin_share_panel" ui-state='weixin_share_panel'>
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog scrollable-dialog" style="margin:0">
+            <div class="kk kk-weixin-share-tip" ui-turn-off="weixin_share_panel"></div>
         </div>
     </div>
 </div>

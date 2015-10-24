@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var translatorController = function($scope, $routeParams,SharedState, translatorServices, myLoveServices, errorServices, toastServices, localStorageService, config) {
+var translatorController = function($scope, $routeParams, $location, SharedState, translatorServices, myLoveServices, errorServices, toastServices, localStorageService, config) {
     $scope.from = $routeParams.from;
     $scope.authens = [];
     toastServices.show();
@@ -53,4 +53,23 @@ var translatorController = function($scope, $routeParams,SharedState, translator
             }
         })
     };
+    // apply
+    $scope.apply = function() {
+        if (!localStorageService.get("token")) {
+            $location.search("uiSidebarLeft");
+            return;
+        }
+        $location.path("apply_flow").search("translator_id", $scope.translator.user_id);
+    };
+    // share
+    $scope.share_footer = {};
+    $scope.title = "【dribehance】";
+    $scope.summary = "share by dribehance";
+    $scope.imageUrl = "http://www.cto9.com/upFiles/infoImg/coll/20141030/OT20141030114721229.jpg";
+    $scope.share_footer.share = {
+        socialshare: false,
+        weixin: false,
+        sina: config.share.gateway + "?webid=tsina&appkey=" + config.share.appkey.sina + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
+        facebook: config.share.gateway + "?webid=fb&appkey=" + config.share.appkey.facebook + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
+    }
 }

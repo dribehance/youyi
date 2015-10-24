@@ -35,7 +35,6 @@ var recommandsController = function($scope,$routeParams,$location, taskServices,
         taskServices.apply({
             "task_id": $routeParams.task_id,
             "yy_user_id":id,
-            "is_apply": 1,
         }).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {

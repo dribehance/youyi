@@ -50,15 +50,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title text-center">请输入交易密码</h4>
+                    <button class="close text-primary" ui-turn-off="password_panel">&times;</button>
+                    <h4 class="modal-title text-center">请输入支付密码</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="password" class="form-control" name="password" ng-model="input.password" required ng-minlength=6 ng-maxlength=6 placeholder="请输入6位交易密码">
-                    <p ng-show="error.show" class="text-primary">{{error.message}}</p>
+                    <input type="password" class="form-control text-center" ng-model="input.password" placeholder="请输入交易密码，六位">
+                    <span class="text-primary">{{error.message}}</span>
                 </div>
                 <div class="modal-footer text-center">
-                    <button class="btn btn-primary" ng-click="ajaxForm()">确认</button>
-                    <button class="btn btn-default" ui-turn-off="password_panel">取消</button>
+                    <button ui-turn-off="password_panel" class="btn btn-default">取消</button>
+                    <button ng-click="ajaxForm()" ng-disabled="input.password == ''" class="btn btn-primary">确定</button>
                 </div>
             </div>
         </div>

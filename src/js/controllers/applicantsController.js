@@ -111,7 +111,7 @@ var applicantsController = function($scope, $route, $routeParams,$location, Shar
             "pay_total_money": $scope.payment_money.total_money,
             "pay_password": $scope.input.password,
         }).then(function(data) {
-            toastServices.hide()
+            toastServices.hide();
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $route.reload();
             } else {

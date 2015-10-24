@@ -1,8 +1,8 @@
 // by dribehance <dribehance.kksdapp.com>
-var cashController = function($rootScope, $scope, walletServices, errorServices, toastServices, localStorageService, config) {
+var cashController = function($rootScope, $scope,$location, walletServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {
         money: "",
-        bank: "",
+        bank_name: "",
         bank_cardno: "",
         realname: "",
         password: ""
@@ -17,7 +17,8 @@ var cashController = function($rootScope, $scope, walletServices, errorServices,
         walletServices.cash($scope.input).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                $rootScope.back();
+                // $rootScope.back();
+                $location.path("records");
             } else {
                 $scope.error = {
                     show: true,
