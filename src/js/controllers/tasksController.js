@@ -114,5 +114,17 @@ var tasksController = function($scope, $location, taskServices, SharedState, err
             return;
         }
         return;
+    };
+    // collapse
+    $scope.input = {
+        collapse_id:"",
+    }
+    $scope.toggle_collapse = function (current_id) {
+        if (current_id == $scope.input.collapse_id) {
+            $scope.input.collapse_id = "";
+        }
+        else {
+            $scope.input.collapse_id = current_id
+        }
     }
 }

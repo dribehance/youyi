@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var applicantsController = function($scope, $route, $routeParams, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var applicantsController = function($scope, $route, $routeParams,$location, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.applicants = [];
     $scope.input = {
         password:"",
@@ -78,6 +78,10 @@ var applicantsController = function($scope, $route, $routeParams, SharedState, m
                 errorServices.autoHide(data.message);
             }
         })
+    };
+    // preview translator
+    $scope.preview_translator = function (translator_id) {
+        $location.path("translators/"+translator_id).search("from","tasks")
     };
     // payway balance or third part payment
     $scope.payway = {

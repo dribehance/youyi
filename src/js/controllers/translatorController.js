@@ -1,5 +1,6 @@
 // by dribehance <dribehance.kksdapp.com>
 var translatorController = function($scope, $routeParams,SharedState, translatorServices, myLoveServices, errorServices, toastServices, localStorageService, config) {
+    $scope.from = $routeParams.from;
     $scope.authens = [];
     toastServices.show();
     translatorServices.queryById({

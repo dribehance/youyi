@@ -153,8 +153,8 @@
             </div>
         </div>
     </div>
-    <div class="scrollable-footer">
-        <div class="btn-group justified">
+    <div class="scrollable-footer" ng-hide="from =='tasks'">
+        <div class="btn-group justified" ng-if="translator.user_id">
             <span class="btn btn-success rectangle">
                 将我分享给朋友
             </span>

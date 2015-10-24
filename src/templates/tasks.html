@@ -51,7 +51,7 @@
                     </div> -->
                 </div>
             </div>
-            <div class="section bg-gray-lighter">
+            <div class="section bg-gray-lighter" ng-click="toggle_collapse(task.task_id)">
                 <div class="row text-center">
                     <div class="col-xs-4 section-wide text-ellipsis">
                         <i class="kk kk-icon kk-translate" style="position:relative;top:-3px"></i> {{task.from_language}}/{{task.to_language}}
@@ -69,7 +69,7 @@
                 <div class="task_day section-wide bg-gray-lighter text-ellipsis">
                     {{task.start_time}}——{{task.end_time}}
                 </div>
-                <div class="task_detail section-wide bg-gray-lighter text-ellipsis">
+                <div class="task_detail section-wide bg-gray-lighter text-ellipsis" ng-class="{'detail-collapse': task.task_id == input.collapse_id}">
                     详细要求：{{task.description}}
                 </div>
             </div>
