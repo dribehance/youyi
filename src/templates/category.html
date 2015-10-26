@@ -3,7 +3,7 @@
     <div class="list-group">
         <label class="list-group-item" ng-repeat="category in categories track by $index" ng-class="{'list-group-item-warning':category == choosen.category}">
             <input type="radio" class="hidden" ng-model="choosen.category" ng-value="category">
-            {{category.name}}
+            {{category.name | translate}}
         </label>
     </div>
 </div>

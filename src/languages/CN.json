@@ -87,6 +87,8 @@
     "/day": "按天数计算",
     "Business": "商务",
     "Travel": "旅行",
+    "商务":"商务",
+    "旅行":"旅行",
     "Task Details": "任务详情",
     "Home": "主页",
     "Create Task": "发起任务",
