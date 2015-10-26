@@ -162,7 +162,7 @@
                 </div>
                 <div class="section large bg-transparent">
                     <button type="button" class="btn btn-default pull-left" ui-set="{step:1}">{{"Previous" | translate}}</button>
-                    <button type="button" class="btn btn-success pull-right" ng-disabled="releaseForm.$invalid || choosen.city.name ==''" ng-click="next({step:'3'})">{{"Next" | translate}}</button>
+                    <button type="button" class="btn btn-success pull-right" ng-disabled="releaseForm.$invalid || choosen.city.name ==''|| input.from_date ==''|| input.from_time ==''|| input.to_date ==''|| input.to_time ==''" ng-click="next({step:'3'})">{{"Next" | translate}}</button>
                 </div>
             </div>
             <!-- step 3 -->
