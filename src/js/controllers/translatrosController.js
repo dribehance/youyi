@@ -107,6 +107,24 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         });
         $scope.loadMore();
     };
+    $scope.reset_location = function() {
+        $scope.choosen.city = {
+            name: ""
+        };
+        $scope.filter.name = "";
+    }
+    $scope.reset_price = function() {
+        $scope.choosen.price = {
+            range: ""
+        };
+        $scope.filter.name = "";
+    }
+    $scope.reset_category = function() {
+        $scope.choosen.category = {
+            name: ""
+        };
+        $scope.filter.name = "";
+    }
     $scope.toggle_language = function(language) {
         if (language.checked) {
             language.checked = false;
