@@ -2,12 +2,18 @@
 <div ui-content-for="title">{{"Ads" | translate}}</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		<div class="section large bg-transparent">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum veniam quas quos quam accusantium voluptatibus similique, asperiores eaque fugiat labore commodi ab vero exercitationem pariatur earum voluptatem reprehenderit minus explicabo!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere fugiat magnam excepturi explicabo odio accusamus sint consequatur rem dolores a deleniti, in laboriosam, unde deserunt sequi, nostrum ratione quasi beatae.
-		</div>
-	</div>
+    <div class="scrollable-content">
+        <div class="section large">
+            <form name="adForm" ng-submit="ajaxForm()">
+                <p>{{ "Please contact us for any advertisement enquiry or quotation." | translate}} </p>
+                <p>
+                	<textarea class="form-control" rows="10" placeholder="{{ 'Please briefly describe your business and advertisement needs here. We will get back to you soon.'| translate}}" required></textarea>
+                </p>
+				<button type="submit" class="btn btn-primary full-width">{{"Confirm" | translate}}</button>
+            </form>
+        </div>
+    </div>
 </div>

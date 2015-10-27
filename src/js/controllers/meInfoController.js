@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var meInfoController = function($scope, $rootScope, SharedState, userServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var meInfoController = function($scope, $rootScope, $timeout, SharedState, userServices, taskServices, errorServices, toastServices, localStorageService, config) {
     // location
     $scope.countries = [];
     taskServices.location().then(function(data) {
@@ -18,6 +18,9 @@ var meInfoController = function($scope, $rootScope, SharedState, userServices, t
         userServices.info.updateBasic($rootScope.user).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $timeout(function() {
+                    $rootScope.back();
+                }, 1500)
                 errorServices.autoHide(data.message);
             } else {
                 errorServices.autoHide(data.message);
@@ -32,7 +35,7 @@ var meInfoController = function($scope, $rootScope, SharedState, userServices, t
     $scope.outerIndex = function(index) {
         $scope.choosen_country_index = index
     }
-    $scope.sync_back = function(){
+    $scope.sync_back = function() {
         userServices.sync();
         $rootScope.back();
     }

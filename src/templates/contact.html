@@ -1,0 +1,27 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<div ui-content-for="title">联系我们</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content">
+        <div class="section large">
+            <form name="contactForm" ng-submit="ajaxForm()">
+                <p class="btn-group justified">
+                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == 'issue_1'}"><input type="radio" class="hide" ng-model="input.issue" value="issue_1">审核认证</label>
+                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == 'issue_2'}"><input type="radio" class="hide" ng-model="input.issue" value="issue_2">支付问题</label>
+                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == 'issue_3'}"><input type="radio" class="hide" ng-model="input.issue" value="issue_3">结算问题</label>
+                </p>
+                <p class="btn-group justified">
+                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == 'issue_4'}"><input type="radio" class="hide" ng-model="input.issue" value="issue_4">市场活动</label>
+                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == 'issue_5'}"><input type="radio" class="hide" ng-model="input.issue" value="issue_5">其他</label>
+                </p>
+                <p>
+                    <textarea class="form-control" rows="10" placeholder="{{ 'Please briefly describe your business and advertisement needs here. We will get back to you soon.'| translate}}" name="issue_content" ng-model="input.issue_content" required></textarea>
+                </p>
+                <button type="submit" class="btn btn-primary full-width">{{"Confirm" | translate}}</button>
+            </form>
+        </div>
+    </div>
+</div>

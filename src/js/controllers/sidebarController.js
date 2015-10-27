@@ -17,14 +17,19 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
         sina: config.share.gateway + "?webid=tsina&appkey=" + config.share.appkey.sina + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
         facebook: config.share.gateway + "?webid=fb&appkey=" + config.share.appkey.facebook + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
     }
+    $scope.state = [];
     $scope.prev = function() {
-        $scope.sidebar.current = $scope.sidebar.last;
+        $scope.state = $scope.state.slice(0,$scope.state.length-1)
+        var state = $scope.state.pop();
+        if (!state) state = "entrance";
+        $scope.sidebar.current = state;
         $timeout(function() {
             SharedState.turnOn("uiSidebarLeft")
         }, 0)
     }
     $scope.show = function(state) {
-        $scope.sidebar.last = $scope.sidebar.current;
+        $scope.state.push(state);
+        // $scope.sidebar.last = $scope.sidebar.current;
         $scope.sidebar.current = state;
     }
     $scope.share = function() {

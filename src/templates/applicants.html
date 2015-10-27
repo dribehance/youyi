@@ -50,7 +50,7 @@
                     <h4 class="modal-title text-center">{{"Payment" | translate}}</h4>
                     <div class="section bg-transparent text-center">
                         <p>{{"Going to Pay" | translate}}</p>
-                        <span class="text-very-large">{{payment_money.price_sign + payment_money.total_money}}</span>
+                        <span class="text-very-large">{{payment_money.price_sign}}{{payment_money.total_money | currency:""}}</span>
                     </div>
                 </div>
                 <div class="modal-body" style="padding:0;">
@@ -58,13 +58,13 @@
                         <div class="media">
                             <div class="media-left">
                                 <div class="circle icon-70">
-                                    <img class="media-object block full-width" ng-src="{{staticImageUrl + payment.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" alt="">
+                                    <img class="media-object block full-width" ng-src="{{staticImageUrl + payment_user.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" alt="">
                                 </div>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading text-ellipsis">{{payment.nickname}}</h4>
-                                <div>语种：{{payment.return_language}}</div>
-                                <div>所在地：{{payment.address}}</div>
+                                <h4 class="media-heading text-ellipsis">{{payment_user.nickname}}</h4>
+                                <div>语种：{{payment_user.return_language}}</div>
+                                <div>所在地：{{payment_user.address}}</div>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         </span>
                     </div>
                     <div class="section large">
-                        当前可用余额{{payment.price_sign + payment.current_money}}
+                        当前可用余额 <span class="text-primary">{{payment_money.price_sign}}{{payment_money.current_money |currency:""}}</span>
                     </div>
                     <div class="section large bg-gray-lighter text-primary clearfix">
                         {{"Payment Method" | translate}}
@@ -90,22 +90,25 @@
                     <div class="list-group">
                         <label class="list-group-item">
                             {{"Unionpay" | translate}}
-                            <input type="radio" class="hidden" ng-model="payment.channel" value="yinlian">
-                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payment.channel == 'yinlian' && !payment.balance)}"></i>
+                            <input type="radio" class="hidden" ng-model="payway.channel" value="yinlian">
+                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payway.channel == 'yinlian' && !payway.balance)}"></i>
                         </label>
                         <label class="list-group-item">
                             {{"WeChat" | translate}}
-                            <input type="radio" class="hidden" ng-model="payment.channel" value="weixin">
-                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payment.channel == 'weixin' && !payment.balance)}"></i>
+                            <input type="radio" class="hidden" ng-model="payway.channel" value="weixin">
+                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payway.channel == 'weixin' && !payway.balance)}"></i>
                         </label>
                         <label class="list-group-item">
                             {{"AliPay" | translate}}
-                            <input type="radio" class="hidden" ng-model="payment.channel" value="alipay">
-                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payment.channel == 'alipay' && !payment.balance)}"></i>
+                            <input type="radio" class="hidden" ng-model="payway.channel" value="alipay">
+                            <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payway.channel == 'alipay' && !payway.balance)}"></i>
                         </label>
                     </div>
                     <div class="section text-center">
-                        <button type="submit" class="btn btn-primary" ng-disabled="paymentForm.edit.$invalid">确认并支付</button>
+                        <p class="section large bg-transparent" ng-if="wallet.is_setPayPwd == 0">
+                            请先设置交易密码
+                        </p>
+                        <button type="submit" class="btn btn-primary" ng-disabled="paymentForm.edit.$invalid || wallet.is_setPayPwd == 0">确认并支付</button>
                     </div>
                 </div>
             </div>

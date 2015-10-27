@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var applicantsController = function($scope, $route, $routeParams, $location, $filter, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var applicantsController = function($scope, $route, $routeParams, $location, $filter, walletServices, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.applicants = [];
     $scope.input = {
         password: "",
@@ -47,7 +47,7 @@ var applicantsController = function($scope, $route, $routeParams, $location, $fi
                 toastServices.hide()
                 if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                     SharedState.turnOn("payment_panel");
-                    $scope.payment = data.Result.user;
+                    $scope.payment_user = data.Result.user;
                     $scope.payment_money = data.Result.money;
                     $scope.accept_applicant = applicant;
                 } else {
@@ -82,11 +82,12 @@ var applicantsController = function($scope, $route, $routeParams, $location, $fi
     };
     // preview translator
     $scope.preview_translator = function(translator_id) {
-        $location.path("translators/" + translator_id).search("from", "tasks")
+        $location.path("translators/" + translator_id).search("to", "preview")
     };
     // payway balance or third part payment
     $scope.payway = {
         balance: true,
+        channel: "",
     };
     $scope.togglePayway = function() {
         $scope.payway.balance = !$scope.payway.balance;
@@ -140,6 +141,15 @@ var applicantsController = function($scope, $route, $routeParams, $location, $fi
         }
         if ($scope.input.password.length > 6) {
             $scope.input.password = $filter("limitTo")($scope.input.password, 6)
+        }
+    });
+    // get wallet;
+    walletServices.query().then(function(data) {
+        toastServices.hide()
+        if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+            $scope.wallet = data.MyMoneyResponse;
+        } else {
+            errorServices.autoHide(data.message);
         }
     })
 }

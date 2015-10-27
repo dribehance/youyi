@@ -154,6 +154,11 @@ angular.module("Youyi", [
                 reloadOnSearch: false,
                 controller: adController
             })
+            .when("/contact", {
+                templateUrl: "contact.html",
+                reloadOnSearch: false,
+                controller: contactController
+            })
             .when("/:task_id/comment", {
                 templateUrl: "comment.html",
                 reloadOnSearch: false,

@@ -18,7 +18,7 @@ angular.module("Youyi").controller("authenLanguageUploadController", function($s
         }
         // upload
         flow.opts.target = config.url + "/app/Person/uploadLanguageIdentity";
-        flow.opts.testChunks = false;
+        // flow.opts.testChunks = false;
         flow.opts.fileParameterName = "language_identity";
         flow.opts.query = {
             "token": localStorageService.get("token"),

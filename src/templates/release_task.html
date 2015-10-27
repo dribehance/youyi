@@ -78,7 +78,7 @@
                 </div>
                 <div class="kk-line kk-5 kk-horizon"></div>
                 <div class="section large">
-                    <div class="semi-auto semi-icon-bar">
+                    <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left semi-wide-40">
                             <div class="section section-wide text-ellipsis">
                                 {{"Title" | translate}}<span class="text-danger">*</span>
@@ -87,9 +87,9 @@
                         <div>
                             <input type="text" class="form-control youyi-flat-input text-right" name="title" ng-model="input.title" required placeholder="请输入标题">
                         </div>
-                        <div class="semi-fixed-right semi-wide-40">
+                        <!-- <div class="semi-fixed-right semi-wide-40">
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="kk-line kk-horizon"></div>
@@ -146,7 +146,7 @@
                 </div>
                 <div class="kk-line kk-5 kk-horizon"></div>
                 <div class="section large">
-                    <div class="semi-auto semi-icon-bar">
+                    <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left">
                             <div class="section section-wide text-ellipsis">
                                 {{"Task Details" | translate}}<span class="text-danger">*</span>
@@ -155,9 +155,9 @@
                         <div>
                             <input type="text" class="form-control youyi-flat-input text-right" name="content" ng-model="input.content" required placeholder="请填写">
                         </div>
-                        <div class="semi-fixed-right semi-wide-40">
+                        <!-- <div class="semi-fixed-right semi-wide-40">
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="section large bg-transparent">
@@ -277,7 +277,7 @@
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="district_panel">
                         <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
                     </div>
-                    <span class="pull-right" style="position:relative;top:3px" ui-turn-off="district_panel">{{"Save" | translate}}</span>
+                    <!-- <span class="pull-right" style="position:relative;top:3px" ui-turn-off="district_panel">{{"Save" | translate}}</span> -->
                     <h4 class="modal-title text-center">{{"Place" | translate}}</h4>
                 </div>
                 <div class="modal-body" style="padding:0">
@@ -301,14 +301,14 @@
     </div>
     <div class="modal" ui-if="modal2" ui-state='modal2'>
         <div class="modal-backdrop in"></div>
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="margin-top:50%;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">温馨提示</h4>
+                    <h4 class="modal-title">{{tips}}</h4>
                 </div>
-                <div class="modal-body">
+                <!-- <div class="modal-body">
                     <p>{{tips}}</p>
-                </div>
+                </div> -->
                 <div class="modal-footer text-center">
                     <a ng-href="#/recommands?task_id={{task_id}}" class="btn btn-primary" ng-if="recommands > 0">{{"Our Recommendations" | translate}}</a>
                     <button class="btn btn-default" ng-click="close()">关闭</button>

@@ -67,6 +67,10 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
             errorServices.autoHide(data.message);
         }
     });
+    $scope.$watch("choosen.city.name",function(n,o) {
+        if (n === undefined) return;
+        SharedState.turnOff("district_panel")
+    },true)
     $scope.next = function(step) {
         if ($scope.input.from_date == null || $scope.input.from_time == null || $scope.input.to_date == null || $scope.input.to_time == null) {
             errorServices.autoHide("请选择时间");

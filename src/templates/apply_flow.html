@@ -72,7 +72,7 @@
                 </div>
                 <div class="kk-line kk-5 kk-horizon"></div>
                 <div class="section large">
-                    <div class="semi-auto semi-icon-bar">
+                    <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left semi-wide-40">
                             <div class="section section-wide">
                                 {{"Title" | translate}}<span class="text-danger">*</span>
@@ -81,9 +81,9 @@
                         <div>
                             <input type="text" class="form-control youyi-flat-input text-right" name="title" ng-model="input.title" required placeholder="请输入标题">
                         </div>
-                        <div class="semi-fixed-right semi-wide-40">
+                        <!-- <div class="semi-fixed-right semi-wide-40">
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="kk-line kk-horizon"></div>
@@ -124,7 +124,7 @@
                 </div>
                 <div class="kk-line kk-horizon"></div>
                 <div class="section large" ui-turn-on="district_panel">
-                    <div class="semi-auto semi-icon-bar">
+                    <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left semi-wide-40">
                             <div class="section section-wide">
                                 {{"Place" | translate}}<span class="text-danger">*</span>
@@ -134,9 +134,9 @@
                             {{choosen.city.country+choosen.city.name}}
                         </div>
 
-                        <div class="semi-fixed-right semi-wide-40">
+                        <!-- <div class="semi-fixed-right semi-wide-40">
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="kk-line kk-5 kk-horizon"></div>
@@ -296,14 +296,14 @@
     </div>
      <div class="modal" ui-if="modal2" ui-state='modal2'>
         <div class="modal-backdrop in"></div>
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="margin-top:50%;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">温馨提示</h4>
+                    <h4 class="modal-title">{{tips}}</h4>
                 </div>
-                <div class="modal-body">
+                <!-- <div class="modal-body">
                     <p>恭喜,你的申请已经发送，是否创建任务！</p>
-                </div>
+                </div> -->
                 <div class="modal-footer text-center">
                     <button class="btn btn-default" ng-click="close()">不创建，返回</button>
                     <button class="btn btn-primary" ng-click="create()">创建</button>

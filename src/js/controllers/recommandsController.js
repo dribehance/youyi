@@ -67,4 +67,8 @@ var recommandsController = function($scope,$routeParams,$location, taskServices,
             }
         })
     }
+    // preview translator
+    $scope.preview_translator = function(translator_id) {
+        $location.path("translators/" + translator_id).search("to", "preview")
+    };
 }

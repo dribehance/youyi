@@ -20,22 +20,14 @@
         </div>
     </div>
     <div class="scrollable-content">
-        <div class="btn task-section text-left section section-wide section-condensed" ng-repeat="task in tasks">
+        <div class="task-section text-left section section-wide section-condensed" ng-repeat="task in tasks">
             <div class="section">
                 <div class="semi-auto semi-right-80">
                     <div class="text-ellipsis">
                         <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" class="circle icon" alt=""> {{task.title}}
                     </div>
                     <div class="semi-fixed-right semi-wide-80 text-right" ng-click="action(task)">
-                        <div class="btn-group">
-                            <a>
-                                <span class="">{{task.status_message}}</span>
-                            </a>
-                            <ul class="dropdown-menu" ui-outer-click="Ui.turnOff('task'+task.task_id)" ui-outer-click-if="Ui.active('task'+task.task_id)" role="menu" ui-show="task{{task.task_id}}" ui-state="task{{task.task_id}}" ui-turn-off="task{{task.task_id}}">
-                                <li ng-click="agree(task)"><a>同意</a></li>
-                                <li ng-click="reject(task)"><a>拒绝</a></li>
-                            </ul>
-                        </div>
+                        <span class="task-status-{{task.oper_status}}">{{task.status_message}}</span>
                     </div>
                 </div>
             </div>
@@ -61,14 +53,33 @@
                     详细要求：{{task.description}}
                 </div>
             </div>
-            <div class="section" ng-repeat="applicant in task.request_users track by $index" ng-if="$index==0">
-                <a ng-href="#/{{task.task_id}}/applicants" class="block text-gray">
-                    <img ng-src="{{staticImageUrl + applicant.avatar || '../images/avatar.png'}}" alt="" class="circle icon">{{applicant.nickname}}
-                </a>
-            </div>
+            <a ng-href="#/{{task.task_id}}/applicants" class="block section text-gray" ng-if="task.request_users.length>0">
+                <span ng-repeat="applicant in task.request_users track by $index" ng-if="$index<5">
+                    <img ng-src="{{staticImageUrl + applicant.avatar || '../images/avatar.png'}}" alt="" class="circle icon">
+                </span>
+                <i class="text-gray-light fa fa-chevron-right pull-right" style="position:relative;top:4px"></i>
+            </a>
         </div>
         <div class="section section-large m text-center" ng-click="loadMore()">
             {{page.message}}
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal" ui-if="agree_panel" ui-state='agree_panel'>
+        <div class="modal-backdrop in" ui-turn-off="agree_panel"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">是否同意该任务？</h4>
+                </div>
+                <div class="modal-footer text-center">
+                    <div class="btn-group justified">
+                        <span class="btn btn-default" ng-click="reject(current_task)">拒绝</span>
+                        <span class="btn btn-primary" ng-click="agree(current_task)">同意</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -62,6 +62,10 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
             errorServices.autoHide(data.message);
         }
     });
+    $scope.$watch("choosen.city.name",function(n,o) {
+        if (n === undefined) return;
+        SharedState.turnOff("district_panel")
+    },true)
     $scope.next = function(step) {
         if ($scope.input.from_date == null || $scope.input.from_time == null || $scope.input.to_date == null || $scope.input.to_time == null) {
             errorServices.autoHide("请选择时间");
@@ -105,6 +109,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 // $rootScope.cover.show = true;
+                $scope.tips = data.message;
                 $scope.task_id = data.task_id;
                 SharedState.turnOn("modal2");
             } else {

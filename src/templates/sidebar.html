@@ -37,7 +37,7 @@
 <!-- signin section -->
 <div class="scrollable" ng-show="sidebar.current=='signin'">
     <div class="scrollable-content">
-        <div ng-click="prev()" ng-show="sidebar.last != ''" class="section text-primary large" style="position:absolute;top:6px"><i class="fa fa-chevron-left"></i>返回</div>
+        <div ng-click="prev()" class="section text-primary large" style="position:absolute;top:6px"><i class="fa fa-chevron-left"></i>返回</div>
         <div class="text-center">
             <img ng-src="../images/logo_signin.png" alt="">
         </div>
@@ -60,7 +60,7 @@
 <!-- signup section -->
 <div class="scrollable" ng-show="sidebar.current=='signup'">
     <div class="scrollable-content">
-        <div ng-click="prev()" ng-show="sidebar.last != ''" class="section text-primary large" style="position:absolute;top:6px"><i class="fa fa-chevron-left"></i>返回</div>
+        <div ng-click="prev()" class="section text-primary large" style="position:absolute;top:6px"><i class="fa fa-chevron-left"></i>返回</div>
         <div class="text-center">
             <img ng-src="../images/logo_signin.png" alt="">
         </div>
@@ -97,13 +97,13 @@
 <!-- signup email section -->
 <div class="scrollable" ng-show="sidebar.current=='signup_email'">
     <div class="scrollable-content">
-        <div ng-click="prev()" ng-show="sidebar.last != ''" class="section text-primary large" style="position:absolute;top:6px"><i class="fa fa-chevron-left"></i>返回</div>
+        <div ng-click="prev()" class="section text-primary large" style="position:absolute;top:6px"><i class="fa fa-chevron-left"></i>返回</div>
         <div class="text-center">
             <img ng-src="../images/logo_signin.png" alt="">
         </div>
         <form ng-submit="ajaxForm('signup_by_email')" name="signupEmailForm">
             <div class="kk-input-group flat">
-                <input type="email" name="email" class="form-control" placeholder="{{'Enter Email Address' | translate}}" ng-model="input.email" required >
+                <input type="email" name="email" class="form-control" placeholder="{{'Enter Email Address' | translate}}" ng-model="input.email" required>
                 <!-- <span class="tip text-warning" ng-show="signupEmailForm.email.$invalid && signupEmailForm.email.$dirty">必填,邮箱格式xx@xx</span> -->
             </div>
             <div class="kk-input-group flat">
@@ -129,7 +129,7 @@
 <!-- forget password -->
 <div class="scrollable" ng-show="sidebar.current=='forget'">
     <div class="scrollable-content">
-        <div ng-click="prev()" ng-show="sidebar.last != ''" class="section text-primary large" style="position:absolute;top:6px"><i class="fa fa-chevron-left"></i>返回</div>
+        <div ng-click="prev()" class="section text-primary large" style="position:absolute;top:6px"><i class="fa fa-chevron-left"></i>返回</div>
         <div class="text-center">
             <img ng-src="../images/logo_signin.png" alt="">
         </div>
@@ -226,10 +226,10 @@
 <!-- agreement -->
 <div class="scrollable" ng-show="sidebar.current=='agreement'">
     <div class="scrollable-content">
-        <div class="section" style="padding:20px 15px 0">
-            <h3>用户使用协议</h3>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta sequi suscipit, voluptatem aliquid eius ad laboriosam natus rem laudantium, cumque tenetur facilis, ab distinctio hic voluptates temporibus voluptate doloremque.
+        <div class="section" ng-include="'_privacy.html'" style="padding:20px 15px 0">
         </div>
+    </div>
+    <div class="scrollable-footer">
         <div class="section text-center">
             <button class="btn btn-primary full-width" ng-click="prev()">{{"Agree and Register" | translate}}</button>
         </div>

@@ -79,7 +79,7 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 task.oper_status = data.oper_status;
                 task.status_message = data.status_message;
-                SharedState.turnOff("task"+task.task_id);
+                SharedState.turnOff("agree_panel");
             } else {
                 errorServices.autoHide(data.message);
             }
@@ -94,13 +94,14 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 task.oper_status = data.oper_status;
                 task.status_message = data.status_message;
-                SharedState.turnOff("task"+task.task_id);
+                SharedState.turnOff("agree_panel");
             } else {
                 errorServices.autoHide(data.message);
             }
         })
     }
     $scope.action = function(task) {
+        $scope.current_task = task;
         // comment;
         if (task.oper_status == '2') {
             var path = task.task_id + "/comment";
@@ -110,7 +111,7 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
         // agree;
         // reject;
         if (task.oper_status == '-1') {
-            SharedState.turnOn('task' + task.task_id);
+            SharedState.turnOn("agree_panel");
             return;
         }
         return;

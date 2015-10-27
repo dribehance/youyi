@@ -168,20 +168,24 @@
     select {
         border: none;
         -webkit-appearance: none;
+        background-image: url("../images/select_carset.png");
+        background-repeat: no-repeat;
+        background-position: right center;
+
     }
-    &:before {
-        font: normal normal normal 14px/1 FontAwesome;
-        content: "\f0d7";
-        display: inline-block;
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 32px;
-        line-height: 31px;
-        text-align: center;
-        color: @brand-warning;
-        border-left: 1px solid @brand-warning;
-    }
+    // &:before {
+    //     font: normal normal normal 14px/1 FontAwesome;
+    //     content: "\f0d7";
+    //     display: inline-block;
+    //     position: absolute;
+    //     right: 0;
+    //     top: 0;
+    //     width: 32px;
+    //     line-height: 31px;
+    //     text-align: center;
+    //     color: @brand-warning;
+    //     border-left: 1px solid @brand-warning;
+    // }
 }
 
 // margin section
@@ -195,6 +199,16 @@
     -webkit-border-radius: 5px;
     overflow: hidden;
     color: @gray;
+    .task-status-2,.task-status--1 {
+        padding: 3px 12px;
+        color: @brand-primary;
+        border: 1px solid @brand-primary;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+    }
+    .task-status-1,.task-status-7 {
+        color: @brand-success;
+    }
     .detail-collapse {
         white-space: normal;
     }
