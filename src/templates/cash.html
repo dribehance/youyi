@@ -37,7 +37,7 @@
             {{"Once your application is approved, money will be transferred to you account after 2-3 working days. Any inquiries, Pls. Contact xxxx" | translate}}
         </p>
         <p class="section large bg-transparent" ng-if="wallet.is_setPayPwd == 0">
-            <button type="button" class="btn bg-gray block full-width text-white">请先设置交易密码</button>
+            <button type="button" class="btn bg-gray block full-width text-white">{{"Please Set Transaction Password First" | translate}}</button>
         </p>
         <p class="section large bg-transparent" ng-if="wallet.is_setPayPwd == 1">
             <button type="button" class="btn btn-primary block full-width" ng-disabled="cashForm.$invalid" ui-turn-on="password_panel">{{"Submit" | translate}}</button>
@@ -51,7 +51,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close text-primary" ui-turn-off="password_panel">&times;</button>
-                    <h4 class="modal-title text-center">请输入支付密码</h4>
+                    <h4 class="modal-title text-center">{{"Enter Transaction Password" | translate}}</h4>
                 </div>
                 <div class="modal-body">
                     <span class="password-input">
@@ -62,8 +62,8 @@
                 </div>
                 <div class="modal-footer text-center">
                     <div class="btn-group justified">
-                        <a ui-turn-off="password_panel" class="btn btn-default">取消</a>
-                        <a ng-click="ajaxForm()" ng-disabled="input.password == ''" class="btn btn-primary">确定<i class="fa fa-refresh" ng-show="input.paying"></i></a>
+                        <a ui-turn-off="password_panel" class="btn btn-default">{{"Cancel" | translate}}</a>
+                        <a ng-click="ajaxForm()" ng-disabled="input.password == ''" class="btn btn-primary">{{"Confirm" | translate}}<i class="fa fa-refresh" ng-show="input.paying"></i></a>
                     </div>
                 </div>
             </div>

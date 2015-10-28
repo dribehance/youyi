@@ -71,5 +71,5 @@ var translatorController = function($scope, $routeParams, $location, SharedState
         weixin: false,
         sina: config.share.gateway + "?webid=tsina&appkey=" + config.share.appkey.sina + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
         facebook: config.share.gateway + "?webid=fb&appkey=" + config.share.appkey.facebook + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
-    }
+    };
 }

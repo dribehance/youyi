@@ -9,11 +9,11 @@
         <div class="translator-cover" ng-click="go('/me_info')">
             <imageview data-rate="750/422" src="staticImageUrl + user.bg_image"></imageview>
             <div class="translator-info left">
-                <span class="h3 block">{{user.nickname || user.telephone || user.email || '未填写'}}<i class="kk kk-icon" ng-class="{'kk-male':user.gender=='1','kk-female':user.gender !='1'}"></i></span>
-                <span class="block">已有{{user.foucus_count || "0"}}人关注TA</span>
+                <span class="h3 block">{{user.nickname || user.telephone || user.email}}<i class="kk kk-icon" ng-class="{'kk-male':user.gender=='1','kk-female':user.gender !='1'}"></i></span>
+                <span class="block">{{"Followed by XXX" | translate:translate_with_value(user.foucus_count)}}</span>
             </div>
             <div class="translator-info right">
-                <span class="block">{{user.profession || "暂无填写"}}</span>
+                <span class="block">{{user.profession}}</span>
                 <span class="block">{{user.country + user.city}}</span>
             </div>
             <div class="translator-avatar">
@@ -33,7 +33,7 @@
                 </div>
                 <div class="pull-right">
                     <span class="btn btn-danger bg-white text-danger section section-condensed" ng-click="removeLanguage(language)">
-                        删除
+                        {{"Remove" | translate}}
                     </span>
                 </div>
             </div>
@@ -43,8 +43,8 @@
             <div class="data-picker" ui-state="single_picker" ui-show="single_picker" ui-outer-click="Ui.turnOff('single_picker')" ui-outer-click-if="Ui.active('single_picker')">
                 <div class="picker-header">
                     <div class="btn-group justified text-primary">
-                        <span class="btn">语言</span>
-                        <span class="btn">语言程度</span>
+                        <span class="btn">{{"Language"| translate}}</span>
+                        <span class="btn">{{"Language Level" | translate}}</span>
                     </div>
                 </div>
                 <div class="picker-left picker-column">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="picker-footer">
-                    <span class="block text-center" ng-click="pickLanguage()" ui-turn-off="single_picker">确定</span>
+                    <span class="block text-center" ng-click="pickLanguage()" ui-turn-off="single_picker">{{"Confirm" | translate}}</span>
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="pull-right">
                     <span class="btn btn-danger bg-white text-danger section section-condensed" ng-click="removeTranslateType(translate_type)">
-                        删除
+                        {{"remove"|translate}}
                     </span>
                 </div>
             </div>
@@ -91,8 +91,8 @@
             <div class="data-picker" ui-state="multiple_picker" ui-show="multiple_picker" ui-outer-click="Ui.turnOff('multiple_picker')" ui-outer-click-if="Ui.active('multiple_picker')">
                 <div class="picker-header">
                     <div class="btn-group justified text-primary">
-                        <span class="btn">翻译类型</span>
-                        <span class="btn">擅长领域</span>
+                        <span class="btn">{{"Type"|translate}}</span>
+                        <span class="btn">{{"Good at" | translate}}</span>
                     </div>
                 </div>
                 <div class="picker-left picker-column">
@@ -111,7 +111,7 @@
                     </div>
                 </div>
                 <div class="picker-footer">
-                    <span class="block text-center" ng-click="pickTranslateType()" ui-turn-off="multiple_picker">确定</span>
+                    <span class="block text-center" ng-click="pickTranslateType()" ui-turn-off="multiple_picker">{{"Confirm" | translate}}</span>
                 </div>
             </div>
         </div>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="pull-right">
                     <span class="list-group-item-text" ng-if="!user.identity_front">{{"Upload ID Card" | translate}}</span>
-                    <span class="list-group-item-text" ng-if="user.identity_front">查看</span>
+                    <span class="list-group-item-text" ng-if="user.identity_front">{{"Preview"| translate}}</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>
@@ -138,7 +138,7 @@
                 </div>
                 <div class="pull-right">
                     <span class="list-group-item-text" ng-if="!user.language_identity">{{"Upload Certificate" | translate}}</span>
-                    <span class="list-group-item-text" ng-if="user.language_identity">查看</span>
+                    <span class="list-group-item-text" ng-if="user.language_identity">{{"Preview"| translate}}</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>
@@ -148,20 +148,20 @@
                 </div>
                 <div class="pull-right">
                     <span class="list-group-item-text" ng-if="!user.profession_identity">{{"Upload Qualification" | translate}}</span>
-                    <span class="list-group-item-text" ng-if="user.profession_identity">查看</span>
+                    <span class="list-group-item-text" ng-if="user.profession_identity">{{"Preview"| translate}}</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>
-            <a ng-href="#/authen_member" class="list-group-item clearfix">
+            <!-- <a ng-href="#/authen_member" class="list-group-item clearfix">
                 <div class="pull-left">
                     {{"Membership" | translate}}
                 </div>
                 <div class="pull-right">
                     <span class="list-group-item-text" ng-if="!user.advanced_identity">{{"Join" | translate}}</span>
-                    <span class="list-group-item-text" ng-if="user.advanced_identity">查看</span>
+                    <span class="list-group-item-text" ng-if="user.advanced_identity">{{"Preview"| translate}}</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
-            </a>
+            </a> -->
         </div>
         <!-- 我的工作日 -->
         <div class="list-group" style="margin:10px" ui-turn-on="workday_panel">

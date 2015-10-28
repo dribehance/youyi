@@ -1,41 +1,64 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">行业认证</div>
-<div ui-content-for="navbarAction"></div>
+<div ui-content-for="title">{{"Professional Qualification" | translate}}</div>
+<div ui-content-for="navbarAction">
+    <span class="btn" ui-turn-on="upload_panel">添加</span>
+</div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		
-		
-        <div flow-init ng-controller="authenIndustryUploadController" class="uploader" ng-if="!user.profession_identity">
-            <div class="section large"></div>
-            <div class="section large text-center">
-                <span class="block full-width flow-btn text-center">
-                    <img src="../images/upload_3.png" ng-show="!$flow.files.length" alt="">
-                    <div ng-repeat="file in $flow.files" class="preview-box">
-                        <span class="remove-btn" ng-click="file.cancel()"></span>
-		                <img flow-img="file" alt="">
-		            </div>
-            	</span>
-        	</div>
-        <div class="section large">
-            <div class="btn-group justified">
-                <span flow-btn flow-attrs="{accept:'image/*'}" class="btn btn-primary needsclick" >添加证书</span>
-                <span class="btn btn-danger" ng-click="ajaxForm($flow)" ng-show="$flow.files.length > 0">提交审核</span>
+    <div class="scrollable-content">
+        <div class="section large text-center">
+            <div class="section" ng-repeat="authen in authen_entries">
+                <img ng-src="{{staticImageUrl + authen.cover}}" class="block full-width" alt="">
+                <div class="section"></div>
+                <div class="section section-wide text-left authen-status-{{authen.status}}" ng-click="reupload(authen)">
+                    证书名称:{{authen.title}},{{authen.status_message}}
+                </div>
+            </div>
+            <div class="section" ng-if="authen_entries.length == 0">暂无认证信息</div>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal modal-overlay" ui-if="upload_panel" ui-state='upload_panel'>
+        <div class="modal-dialog" style="margin:0">
+            <div class="modal-content">
+                <div class="modal-header bg-primary clearfix">
+                    <div class="pull-left section section-condensed bg-transparent" ui-turn-off="upload_panel">
+                        <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
+                    </div>
+                    <h4 class="modal-title text-center">{{"Add Photo" | translate}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div flow-init="{singleFile:true}" ng-controller="authenLanguageUploadController" class="uploader">
+                        <div class="section text-center">
+                            <div class="block full-width flow-btn text-center">
+                                <!-- <img flow-btn flow-attrs="{accept:'image/*'}" class="needsclick" ng-src="../images/upload_1.png" ng-show="!$flow.files.length" alt=""> -->
+                                <div class="preview-btn needsclick" flow-btn flow-attrs="{accept:'image/*'}" ng-show="!$flow.files.length">
+                                    {{"Please choose" | translate}}
+                                </div>
+                                <div class="preview-box" ng-show="$flow.files.length">
+                                    <span class="remove-btn" ng-click="$flow.files[0].cancel()"></span>
+                                    <img flow-img="$flow.files[0]">
+                                </div>
+                            </div>
+                            <div class="progress progress-striped rectangle" ng-class="{active: $flow.files[0].isUploading()}">
+                                <div class="progress-bar" role="progressbar" ng-style="{width: ($flow.files[0].progress() * 100) + '%'}">{{}}</div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <input type="text" class="form-control rectangle" ng-model="input.title" required placeholder="请输入描述">
+                        </div>
+                        <div class="section">
+                            <button type="button" class="btn btn-danger full-width" ng-click="ajaxForm($flow)" ng-disabled="$flow.files.length < 1 || input.title == ''">{{"Submit to Authentication" | translate}}</button>
+                        </div>
+                        <div class="section large text-grey text-center text-small">
+                            {{"Information Authentication will be finish in two day" | translate}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="section large text-grey text-center text-small">
-            我们将在1-2个工作日内完成信息审核
-        </div>
     </div>
-    <div class="section large text-center" ng-if="user.profession_identity">
-        <h4 class="text-center"><p>恭喜您，通过行业认证</p>下面是您的认证信息</h4>
-        <div class="preview-box">
-            <img ng-src="{{staticImageUrl + user.profession_identity}}" alt="" style="margin-bottom:5px;" class="block full-width">
-        </div>
-    </div>
-
-	
-	</div>
 </div>

@@ -1,5 +1,5 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">申请人列表</div>
+<div ui-content-for="title">{{"Applicants" | translate}}</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
     <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
@@ -12,9 +12,9 @@
                     {{applicant.nickname}} <i class="kk kk-icon" ng-class="{'kk-male':applicant.gender=='1','kk-female':applicant.gender !='1'}"></i>
                 </div>
                 <div class="recommand-body">
-                    <div>语种：{{applicant.return_language}}</div>
-                    <p>所在地：{{applicant.address}}</p>
-                    <p>个人简介：{{applicant.introduction}}</p>
+                    <div>{{"Language" | translate}}：{{applicant.return_language}}</div>
+                    <p>{{"Place" | translate}}：{{applicant.address}}</p>
+                    <p>{{"Profile" | translate}}{{applicant.introduction}}</p>
                     <div class="clearfix">
                         <div class="pull-left">
                             <a ng-click="like(applicant)" class="btn btn-default" ng-if="applicant.is_collect == '0'">
@@ -63,8 +63,8 @@
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading text-ellipsis">{{payment_user.nickname}}</h4>
-                                <div>语种：{{payment_user.return_language}}</div>
-                                <div>所在地：{{payment_user.address}}</div>
+                                <div>{{"Language" | translate}}：{{payment_user.return_language}}</div>
+                                <div>{{"Place" | translate}}：{{payment_user.address}}</div>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         </span>
                     </div>
                     <div class="section large">
-                        当前可用余额 <span class="text-primary">{{payment_money.price_sign}}{{payment_money.current_money |currency:""}}</span>
+                        {{"Balance Available is" | translate}} <span class="text-primary">{{payment_money.price_sign}}{{payment_money.current_money |currency:""}}</span>
                     </div>
                     <div class="section large bg-gray-lighter text-primary clearfix">
                         {{"Payment Method" | translate}}
@@ -106,9 +106,9 @@
                     </div>
                     <div class="section text-center">
                         <p class="section large bg-transparent" ng-if="wallet.is_setPayPwd == 0">
-                            请先设置交易密码
+                            {{"Please Set Transaction Password First" | translate}}
                         </p>
-                        <button type="submit" class="btn btn-primary" ng-disabled="paymentForm.edit.$invalid || wallet.is_setPayPwd == 0">确认并支付</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="paymentForm.edit.$invalid || wallet.is_setPayPwd == 0">{{"Confirm And Pay" | translate}}</button>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close text-primary" ui-turn-off="password_panel">&times;</button>
-                    <h4 class="modal-title text-center">请输入支付密码</h4>
+                    <h4 class="modal-title text-center">{{"Enter Transaction Password" | translate}}</h4>
                 </div>
                 <div class="modal-body">
                     <span class="password-input">
@@ -131,8 +131,8 @@
                 </div>
                 <div class="modal-footer text-center">
                     <div class="btn-group justified">
-                        <a ui-turn-off="password_panel" class="btn btn-default">取消</a>
-                        <a ng-click="ajaxForm()" ng-disabled="input.password == ''" class="btn btn-primary">确定<i class="fa fa-refresh" ng-show="input.paying"></i></a>
+                        <a ui-turn-off="password_panel" class="btn btn-default">{{"Cancel" | translate}}</a>
+                        <a ng-click="ajaxForm()" ng-disabled="input.password == ''" class="btn btn-primary">{{"Confirm"|translate}}<i class="fa fa-refresh" ng-show="input.paying"></i></a>
                     </div>
                 </div>
             </div>

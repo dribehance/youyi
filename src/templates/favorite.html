@@ -9,7 +9,7 @@
         <div class="recommands">
             <div class="recommand" ng-repeat="translator in translators">
                 <div class="recommand-header">
-                    {{translator.nickname}} <i class="kk kk-icon" ng-class="{'kk-male':translator.sex=='男','kk-female':translator.sex !='男'}"></i>
+                    {{translator.nickname}} <i class="kk kk-icon" ng-class="{'kk-male':translator.gender=='1','kk-female':translator.gender !='1'}"></i>
                 </div>
                 <div class="recommand-body">
                     <div>{{"Language" | translate}}：{{translator.return_language}}</div>

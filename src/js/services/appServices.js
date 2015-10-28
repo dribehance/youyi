@@ -78,7 +78,13 @@
              $translate.use(localStorageService.get("language"));
              // index dialog tips
              $rootScope.showDialog = function() {
-                errorServices.autoHide("请下载悠译人APP使用完整的功能");
+                 errorServices.autoHide("请下载悠译人APP使用完整的功能");
+             };
+             // translate
+             $rootScope.translate_with_value = function(translate_value) {
+                 return {
+                     value: translate_value
+                 };
              }
          }
      }

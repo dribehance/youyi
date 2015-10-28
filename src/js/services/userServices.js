@@ -380,18 +380,18 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
             },
         },
         authen: {
-            realname: {
-                query: function(input) {},
-                upload: function(input) {}
-            },
-            member: {
-                query: function(input) {},
-            },
-            language: {
-                query: function(input) {},
-            },
-            industry: {
-                query: function(input) {},
+            query:function (type) {
+                return $http({
+                    // by dribehance <dribehance.kksdapp.com>
+                    url: config.url + "/app/Person/userIdentity",
+                    method: "GET",
+                    params: angular.extend({}, config.common_params, {
+                        "token": localStorageService.get("token"),
+                        "type":type
+                    })
+                }).then(function(data) {
+                    return data.data;
+                });
             }
         }
     }

@@ -15,11 +15,11 @@
                     {{translator.nickname}}
                     <i class="kk kk-icon" ng-class="{'kk-male':translator.gender=='1','kk-female':translator.gender !='1'}"></i>
                 </span>
-                <span class="block">已有{{translator.foucus_count}}人关注TA</span>
+                <span class="block">{{"Followed by XXX" | translate:translate_with_value(translator.foucus_count)}}</span>
             </div>
             <div class="translator-info right">
                 <span class="block">{{translator.profession}}</span>
-                <span class="block">长居住地：{{translator.address}}</span>
+                <span class="block">{{"Place" | translate}}：{{translator.address}}</span>
             </div>
             <div class="translator-avatar">
                 <img ng-src="{{staticImageUrl + translator.avatar || '../images/avatar_1.png'}}" err-src="../images/avatar_1.png" alt="">
