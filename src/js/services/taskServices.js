@@ -128,6 +128,37 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 return data.data;
             });
         },
+        // apply translator
+        queryLanguageByTranslator: function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/PublishTask/yyLanguageList",
+                method: "GET",
+                cache: true,
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "language_app": localStorageService.get("language"),
+                    "yy_user_id": input.yy_user_id
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        // category;
+        queryCategoryByTranslator: function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/PublishTask/yyInfo",
+                method: "GET",
+                cache: true,
+                params: angular.extend({}, config.common_params, {
+                    "language_app": localStorageService.get("language"),
+                    "yy_user_id": input.yy_user_id
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         // calculate total price by time
         queryTotalByDay: function(input) {
             return $http({

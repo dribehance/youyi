@@ -27,7 +27,7 @@
                         <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" class="circle icon" alt=""> {{task.title}}
                     </div>
                     <div class="semi-fixed-right semi-wide-80 text-right" ng-click="action(task)">
-                        <span class="task-status-{{task.oper_status}}">{{task.status_message}}</span>
+                        <span class="task-status-{{task.oper_status}}" style="white-space:nowrap">{{task.status_message}}</span>
                     </div>
                 </div>
             </div>
@@ -44,13 +44,13 @@
                     </div>
                 </div>
                 <div class="section section-wide bg-gray-lighter task_cost text-ellipsis">
-                    {{task.currency_type}} {{task.price_for_day}}/天 (约{{task.to_currency_type}} {{task.to_price_for_day}}/天)
+                    {{task.currency_type}} {{task.price_for_day}}/{{"Day" | translate}} (~{{task.to_currency_type}} {{task.to_price_for_day}}/{{"Day" | translate}})
                 </div>
                 <div class="task_day section-wide bg-gray-lighter text-ellipsis">
                     {{task.start_time}}——{{task.end_time}}
                 </div>
                 <div class="task_detail section-wide bg-gray-lighter text-ellipsis" ng-class="{'detail-collapse': task.task_id == input.collapse_id}">
-                    详细要求：{{task.description}}
+                    {{"Detail Description" | translate}}：{{task.description}}
                 </div>
             </div>
             <a ng-href="#/{{task.task_id}}/applicants" class="block section text-gray" ng-if="task.request_users.length>0">
@@ -71,12 +71,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">是否同意该任务？</h4>
+                    <h4 class="modal-title">{{"Agree Or Not?"| translate}}</h4>
                 </div>
                 <div class="modal-footer text-center">
                     <div class="btn-group justified">
-                        <span class="btn btn-default" ng-click="reject(current_task)">拒绝</span>
-                        <span class="btn btn-primary" ng-click="agree(current_task)">同意</span>
+                        <span class="btn btn-default" ng-click="reject(current_task)">{{"Reject" | translate}}</span>
+                        <span class="btn btn-primary" ng-click="agree(current_task)">{{"Accept" | translate}}</span>
                     </div>
                 </div>
             </div>

@@ -107,36 +107,25 @@
                 <div class="section large">
                     <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left semi-wide-40">
-                            <div class="section section-wide">
-                                {{"Price" | translate}}<span class="text-danger">*</span>
-                            </div>
+                            {{"Price" | translate}}<span class="text-danger">*</span>
                         </div>
                         <div class="semi-auto semi-icon-bar">
-                            <span class="semi-fixed-left semi-wide-40 text-center">
-                                <i class="kk kk-25 kk-checked" ng-class="{'active':input.price !=''}"></i>
-                            </span>
-                            <input type="number" class="form-control rectangle youyi-flat-input text-right" name="price" ng-model="input.price" placeholder="{{'Please fill in' | translate}}" required>
+                            <div class="text-right">{{input.price}}</div>
                             <span class="semi-fixed-right semi-wide-40 text-center">
-                                <span class="btn">/{{"Day" | translate}}</span>
+                                <span class="">/{{"Day" | translate}}</span>
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class="kk-line kk-horizon"></div>
-                <div class="section large" ui-turn-on="district_panel">
+                <div class="section large">
                     <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left semi-wide-40">
-                            <div class="section section-wide">
-                                {{"Place" | translate}}<span class="text-danger">*</span>
-                            </div>
+                            {{"Place" | translate}}<span class="text-danger">*</span>
                         </div>
                         <div class="section large text-right">
-                            {{choosen.city.country+choosen.city.name}}
+                            {{choosen.city.name}}
                         </div>
-
-                        <!-- <div class="semi-fixed-right semi-wide-40">
-                            <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
-                        </div> -->
                     </div>
                 </div>
                 <div class="kk-line kk-5 kk-horizon"></div>
@@ -264,36 +253,6 @@
     </div>
 </div>
 <div ui-content-for="modals">
-    <div class="modal modal-overlay" ui-if="district_panel" ui-state='district_panel'>
-        <!-- <div class="modal-backdrop in"></div> -->
-        <div class="modal-dialog" style="margin:0">
-            <div class="modal-content">
-                <div class="modal-header text-primary clearfix">
-                    <div class="pull-left section section-condensed bg-transparent" ui-turn-off="district_panel">
-                        <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
-                    </div>
-                    <span class="pull-right" style="position:relative;top:3px" ui-turn-off="district_panel">{{"Save" | translate}}</span>
-                    <h4 class="modal-title text-center">{{"Place"| translate}}</h4>
-                </div>
-                <div class="modal-body" style="padding:0">
-                    <div class="country">
-                        <div ng-repeat="country in countries track by $index">
-                            <div class="country-header">
-                                {{country.country}}
-                            </div>
-                            <div class="section section-condensed">
-                                <div class="row">
-                                    <label class="col-xs-4 btn btn-default rectangle" ng-class="{'btn-primary':choosen.city.name == city.city }" ng-repeat="city in country.cities">
-                                        <input type="radio" class="hidden" ng-model="choosen.city" ng-value="{'name':city.city,'country':country.country,'group_id':city.group_id}">{{city.city}}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
      <div class="modal" ui-if="modal2" ui-state='modal2'>
         <div class="modal-backdrop in"></div>
         <div class="modal-dialog" style="margin-top:50%;">

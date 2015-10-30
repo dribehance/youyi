@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="list-group-item">
-                    <span class="text-small">{{"Personal Identity" | translate}}： {{authens.length}}项</span>
+                    <span class="text-small">{{"Personal Identity" | translate}}：{{authens.length}}</span>
                     <div class="btn-group justified text-left">
                         <span ng-if="translator.identity_front !=''"><i class="kk kk-40 kk-authen-1"></i></span>
                         <span ng-if="translator.language_identity !=''"><i class="kk kk-40 kk-authen-2" ></i></span>
@@ -62,11 +62,11 @@
                         <span ng-if="translator.advanced_identity !=''"><i class="kk kk-40 kk-authen-4" ></i></span>
                     </div>
                     <div class="text-right" ng-show="authens.length >0" ui-turn-on="authen_panel">
-                        查看详细
+                        {{"Preview Detail" | translate}}
                     </div>
                 </div>
                 <div class="list-group-item">
-                    <p class="text-small">评价标签</p>
+                    <p class="text-small">{{"Comment Tags" | translate}}</p>
                     <div class="row grid-gutter">
                         <div class="col-xs-4" ng-repeat="tag in translator.commentTags">
                             <span class="btn btn-primary bg-transparent text-primary rectangle full-width text-ellipsis">{{tag.tag_name}}x{{tag.tag_count}}</span>
@@ -125,7 +125,7 @@
                     </div>
                 </div>
                 <div class="list-group-item">
-                    <span class="text-small">{{translator.commentUsers.length}}条评价</span>
+                    <span class="text-small">{{translator.commentUsers.length}}{{"Comments Count" | translate}}</span>
                     <div class="media" ng-repeat="comment in translator.commentUsers track by $index">
                         <div class="media-body">
                             <h4 class="media-heading">
@@ -156,7 +156,7 @@
     <div class="scrollable-footer" ng-hide="(to =='preview')">
         <div class="btn-group justified" ng-if="translator.user_id">
             <div class="btn btn-success rectangle">
-                <span ui-turn-on="share_panel">将我分享给朋友</span>
+                <span ui-turn-on="share_panel">{{"Share the App" | translate}}</span>
                 <ul class="dropdown-menu top" ui-outer-click="Ui.turnOff('share_panel')" ui-outer-click-if="Ui.active('share_panel')" role="menu" ui-show="share_panel" ui-state="share_panel" ui-turn-off="share_panel">
                     <li>
                         <a ng-href="{{share_footer.share.sina}}">
@@ -184,7 +184,7 @@
                 {{"Apply" | translate}}
             </a>
             <a class="btn btn-danger rectangle" ng-if="translator.apply_status ==1">
-                已经申请
+                {{"Applyed" | translate}}
             </a>
             <span class="btn bg-gray text-white rectangle" ng-click="like()" ng-if="translator.is_collection == 0">
                 {{"Follow" | translate}}
@@ -204,7 +204,7 @@
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="authen_panel">
                         <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
                     </div>
-                    <h4 class="modal-title text-center">认证详情</h4>
+                    <h4 class="modal-title text-center">{{"Authentication Detail" | translate}}</h4>
                 </div>
                 <div class="modal-body">
                     <img ng-src="{{staticImageUrl+authen}}" class="block full-width" ng-repeat="authen in authens" />

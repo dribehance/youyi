@@ -30,7 +30,7 @@
             <a ng-href="#/modify_trade_password" class="list-group-item">
                 <span class="list-group-item-text">{{"Payment Password" | translate}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
-                <span class="pull-right text-primary" ng-if="wallet.is_setPayPwd == 0">未设置</span>
+                <span class="pull-right text-primary" ng-if="wallet.is_setPayPwd == 0">{{"Not Set" | translate}}</span>
                 <span class="pull-right text-primary" ng-if="wallet.is_setPayPwd == 1">{{"Change Transaction Password" | translate}}</span>
             </a>
         </div>

@@ -7,7 +7,7 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
         to_time: "",
         title: "",
         category: {},
-        price: 100,
+        price: "",
         total: 0,
         address: "请选择",
         content: "",
@@ -87,6 +87,7 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 SharedState.set(step);
                 $scope.input.total = data.total_money;
+                $scope.input.total_money_message = data.total_money_message;
             } else {
                 errorServices.autoHide(data.message);
             }
@@ -115,21 +116,9 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
         taskServices.release(input).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                // $rootScope.cover.show = true;
-                // SharedState.turnOn("modal2");
                 $scope.task_id = data.task_id;
                 $scope.tips = data.message;
-                return taskServices.queryRecommandTask(angular.extend({}, {
-                    pn: 1,
-                    page_size: 10
-                }, input));
-            } else {
-                errorServices.autoHide(data.message);
-            }
-        }).then(function(data) {
-            if (data && data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                $scope.recommands = data.Result.recommends.totalRow;
-                // $rootScope.cover.show = true;
+                $scope.has_recommend = data.has_recommend;
                 SharedState.turnOn("modal2");
             } else {
                 errorServices.autoHide(data.message);

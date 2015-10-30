@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var meController = function($scope, $rootScope, SharedState, userServices, errorServices, toastServices, localStorageService, config) {
+var meController = function($scope, $rootScope,$location,$timeout, SharedState, userServices, errorServices, toastServices, localStorageService, config) {
     toastServices.show();
     // basic info
     userServices.info.basic({}).then(function(data) {
@@ -25,13 +25,16 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
     });
     $scope.input = {};
     $scope.removeLanguage = function(language) {
+        toastServices.show();
         userServices.languages.remove({
             "user_language_id": language.user_language_id
         }).then(function(data) {
+            toastServices.hide();
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $rootScope.user.languages = $rootScope.user.languages.filter(function(lang) {
                     return (lang != language);
-                })
+                });
+                errorServices.autoHide(data.message);
             } else {
                 errorServices.autoHide(data.message);
             }
@@ -44,14 +47,17 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
         if (angular.equals({}, $scope.input.choosen_language) || angular.equals({}, $scope.input.choosen_language_level)) {
             return;
         }
+        toastServices.show();
         userServices.languages.create({
             "from_language_group_id": $scope.input.choosen_language.from_language_group_id,
             "to_language_group_id": $scope.input.choosen_language.to_language_group_id,
             "group_id": $scope.input.choosen_language_level.group_id
         }).then(function(data) {
+            toastServices.hide();
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                $rootScope.user.languages.push(angular.extend({}, $scope.input.choosen_language, $scope.input.choosen_language_level))
-                $scope.choosen_language = {}
+                $rootScope.user.languages.push(angular.extend({}, $scope.input.choosen_language, $scope.input.choosen_language_level,{"user_language_id":data.user_language_id}))
+                $scope.choosen_language = {};
+                errorServices.autoHide(data.message);
             } else {
                 errorServices.autoHide(data.message);
             }
@@ -177,5 +183,19 @@ var meController = function($scope, $rootScope, SharedState, userServices, error
     $scope.sync_back = function() {
         userServices.sync();
         $rootScope.back();
+    };
+    // become translate intro
+    if ($rootScope.user.is_translate != '1') {
+        $timeout(function(){
+            SharedState.turnOn("is_translator_panel");
+        },3000)
+    }
+    $scope.completeProfile = function () {
+        if ($rootScope.user.is_translate == '-2') {
+            $location.path("me_info");
+        }
+        else {
+            SharedState.turnOff("is_translator_panel");
+        }
     }
 }

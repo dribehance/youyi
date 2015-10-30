@@ -30,11 +30,14 @@ var recommandsController = function($scope,$routeParams,$location, taskServices,
 
     }
     $scope.loadMore();
-    $scope.apply = function(id) {
+    $scope.apply = function(recommend) {
+        if (recommend != "0") {
+            return;
+        }
         toastServices.show();
         taskServices.invite({
             "task_id": $routeParams.task_id,
-            "yy_user_id":id,
+            "yy_user_id":recommend.user_id,
         }).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {

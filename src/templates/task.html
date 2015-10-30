@@ -34,10 +34,10 @@
             <div class="section">
 				<div class="semi-auto semi-left-80">
 					<div class="semi-fixed-left text-center">
-						日期：
+						{{"Date" | translate}}：
 					</div>
 					<div style="padding-bottom:8px;">
-						<p>{{task.start_time}} 至</p>
+						<p>{{task.start_time}} {{"To"|translate}}</p>
 						{{task.end_time}}
 					</div>
 					<div class="kk-line kk-horizon bg-gray-lighter"></div>
@@ -68,7 +68,7 @@
             <div class="section" style="padding-bottom:0">
 				<div class="semi-auto semi-left-80">
 					<div class="semi-fixed-left text-center">
-						总价格：
+						{{"Total Price" | translate}}：
 					</div>
 					<div style="padding-bottom:8px;">
 						{{task.currency_type +" "+ task.total_money}} (约{{task.to_total_money}} )

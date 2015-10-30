@@ -25,7 +25,7 @@
             <div class="list-group-item" ui-turn-on="discripe_panel">
                 <span class="list-group-item-text">{{"Detail Description" | translate}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
-                <span class="pull-right" ng-show="input.details == ''">请填写</span>
+                <span class="pull-right" ng-show="input.details == ''">{{"Please Fill in" | translate}}</span>
                 <div class="section section-wide" ng-show="input.details != ''">{{input.details}}</div>
             </div>
             <div class="list-group-item" flow-btn flow-attrs="{accept:'image/*'}">
@@ -39,7 +39,7 @@
     </div>
     <div class="scrollable-footer">
         <div class="section text-center">
-            <a class="btn btn-primary full-width" ng-click="ajaxForm($flow)">提交</a>
+            <a class="btn btn-primary full-width" ng-click="ajaxForm($flow)">{{"Confirm" | translate}}</a>
         </div>
     </div>
 </div>
@@ -52,16 +52,16 @@
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="discripe_panel">
                         <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
                     </div>
-                    <h4 class="modal-title text-center">详细描述</h4>
+                    <h4 class="modal-title text-center">{{"Detail Description"| translate}}</h4>
                 </div>
                 <div class="modal-body">
-                    <textarea class="form-control" placeholder="请填写" ng-model="input.details" name="edit" required ng-if="input.editable_key != 'pay_day'"></textarea>
-                    <input class="form-control" type="number" placeholder="请填写" name="salary" ng-model="input.details" required ng-if="input.editable_key == 'pay_day'">
-                    <span class="text-primary" ng-show="editForm.salary.$invalid && editForm.salary.$dirty">必填,数字</span>
+                    <textarea class="form-control" placeholder="{{'Please Fill in' | translate}}" ng-model="input.details" name="edit" required ng-if="input.editable_key != 'pay_day'"></textarea>
+                    <input class="form-control" type="number" placeholder="{{'Please Fill in' | translate}}" name="salary" ng-model="input.details" required ng-if="input.editable_key == 'pay_day'">
+                    <!-- <span class="text-primary" ng-show="editForm.salary.$invalid && editForm.salary.$dirty">必填,数字</span> -->
                 </div>
                 <div class="modal-footer">
-                    <button ui-turn-off="discripe_panel" class="btn btn-default">取消</button>
-                    <button type="submit" class="btn btn-primary" ui-turn-off="discripe_panel" ng-disabled="editForm.edit.$invalid">保存</button>
+                    <button ui-turn-off="discripe_panel" class="btn btn-default">{{"Cancel"| translate}}</button>
+                    <button type="submit" class="btn btn-primary" ui-turn-off="discripe_panel" ng-disabled="editForm.edit.$invalid">{{"Confirm" | translate}}</button>
                 </div>
             </div>
         </form>

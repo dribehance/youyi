@@ -7,13 +7,13 @@
 <div class="scrollable">
 	<div class="scrollable-content">
 		<div class="section large m" ng-repeat="record in records">
-			<p>提现提醒</p>
+			<p>{{"Withdraw Notice" | translate}}</p>
 			<p>{{record.post_time}}</p>
 			<div class="section section-wide">
 				dribehanceLorem	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero rerum alias libero dolores, ea, nihil culpa excepturi a nobis aspernatur officia eligendi, quaerat ut laborum, nostrum. Aspernatur doloribus, iure accusamus.
 			</div>
 			<div class="section"></div>
-			<p>申请提现金额：<span class="text-danger">{{record.currency_type}}50</span></p>
+			<p>{{"Withdraw Money" | translate}}：<span class="text-danger">{{record.currency_type}}{{record.money}}</span></p>
 			<p>收款银行：<span class="text-gray-light">{{record.bank}}</span></p>
 			<p>收款卡号：<span class="text-gray-light">{{record.bankcard}}</span></p>
 			<p>开户人：<span class="text-gray-light">{{record.nickname}}</span></p>

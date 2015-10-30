@@ -7,7 +7,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
         to_time: "",
         title: "",
         category: {},
-        price: 100,
+        price: 0,
         total: 0,
         address: "请选择",
         content: "",
@@ -30,10 +30,12 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
     $scope.languages = [];
     $scope.choosen_language = {};
     toastServices.show();
-    taskServices.queryLanguageByTask().then(function(data) {
+    taskServices.queryLanguageByTranslator({
+        yy_user_id:$routeParams.translator_id
+    }).then(function(data) {
         toastServices.hide()
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-            $scope.languages = data.languageList;
+            $scope.languages = data.Result.list;
             $scope.choosen_language.from = $scope.languages[0];
             $scope.choosen_language.to = $scope.languages[0];
         } else {
@@ -42,9 +44,16 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
     });
     // step 2
     // get category;
-    taskServices.category().then(function(data) {
+    taskServices.queryCategoryByTranslator({
+        "yy_user_id":$routeParams.translator_id
+    }).then(function(data) {
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
             $scope.categories = data.Result.type;
+            // $scope.apply_translator_info = data.Result.yyInfo;
+            $scope.input.price = data.Result.yyInfo.pay_day;
+            $scope.input.currency_type = data.Result.yyInfo.currency_type;
+            $scope.choosen.city.name = data.Result.yyInfo.address;
+            $scope.choosen.city.city_dict_group_id = data.Result.yyInfo.city_dict_group_id;
             $scope.input.category = $scope.categories[0]
         } else {
             errorServices.autoHide(data.message);
@@ -62,10 +71,10 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
             errorServices.autoHide(data.message);
         }
     });
-    $scope.$watch("choosen.city.name",function(n,o) {
-        if (n === undefined) return;
-        SharedState.turnOff("district_panel")
-    },true)
+    // $scope.$watch("choosen.city.name",function(n,o) {
+    //     if (n === undefined) return;
+    //     SharedState.turnOff("district_panel")
+    // },true)
     $scope.next = function(step) {
         if ($scope.input.from_date == null || $scope.input.from_time == null || $scope.input.to_date == null || $scope.input.to_time == null) {
             errorServices.autoHide("请选择时间");
@@ -99,7 +108,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
             "task_type_group_id": $scope.input.category.group_id,
             "other_type_note": $scope.input.other,
             "total_money": $scope.input.total,
-            "city_dict_group_id": $scope.choosen.city.group_id,
+            "city_dict_group_id": $scope.choosen.city.city_dict_group_id,
             "description": $scope.input.content,
             "yy_user_id": $routeParams.translator_id,
             "is_apply": "0",

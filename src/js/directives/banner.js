@@ -22,9 +22,9 @@ angular.module("Youyi").directive('banner', function() {
                 "background-position":"center center",
                 "background-size":"100%"
             }
+            $(element).css(style);
             options = angular.extend({},options,scope.$eval($(element).attr('data-options')));
             scope.$on('repeat_done', function() {
-                $(element).find(".image-holder").css(style)
                 // carousel init
                 $(element).owlCarousel(options);
             });

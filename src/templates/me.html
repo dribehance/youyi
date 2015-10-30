@@ -32,7 +32,7 @@
                     {{language.from_language}}-{{language.to_language}}---{{language.level}}
                 </div>
                 <div class="pull-right">
-                    <span class="btn btn-danger bg-white text-danger section section-condensed" ng-click="removeLanguage(language)">
+                    <span class="btn btn-danger bg-white text-danger section section-condensed" ng-if="$index>1" ng-click="removeLanguage(language)">
                         {{"Remove" | translate}}
                     </span>
                 </div>
@@ -208,7 +208,7 @@
                 </div>
                 <div class="pull-right" ng-click="removeTranslateExperience(translate_experience)">
                     <span class="btn btn-danger bg-white text-danger section section-condensed">
-                        删除
+                        {{"remove"|translate}}
                     </span>
                 </div>
             </div>
@@ -271,8 +271,8 @@
                     <textarea class="form-control" placeholder="请填写" name="experience" ng-model="input.experience" required></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button ui-turn-off="create_panel" class="btn btn-default">取消</button>
-                    <button type="submit" class="btn btn-primary" ng-disabled="createForm.experience.$invalid">保存</button>
+                    <button ui-turn-off="create_panel" class="btn btn-default">{{"Cancel"|translate}}</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="createForm.experience.$invalid">{{"Save"|translate}}</button>
                 </div>
             </div>
         </form>
@@ -286,37 +286,57 @@
                         <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
                     </div>
                     <span class="pull-right" style="position:relative;top:3px"></span>
-                    <h4 class="modal-title text-center">工作日</h4>
+                    <h4 class="modal-title text-center">{{"Working Days"|translate}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row grid-gutter">
                         <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_monday')" ng-class="{'btn-primary':user.work_monday == 1}">周一</span>
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_monday')" ng-class="{'btn-primary':user.work_monday == 1}">{{"Monday"|translate}}</span>
                         </div>
                         <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_tuesday')" ng-class="{'btn-primary':user.work_tuesday == 1}">周二</span>
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_tuesday')" ng-class="{'btn-primary':user.work_tuesday == 1}">{{"Tuesday"|translate}}</span>
                         </div>
                         <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_wednesday')" ng-class="{'btn-primary':user.work_wednesday == 1}">周三</span>
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_wednesday')" ng-class="{'btn-primary':user.work_wednesday == 1}">{{"Wednesday"|translate}}</span>
                         </div>
                         <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_thursday')" ng-class="{'btn-primary':user.work_thursday == 1}">周四</span></div>
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_thursday')" ng-class="{'btn-primary':user.work_thursday == 1}">{{"Thursday" |translate}}</span></div>
                         <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_friday')" ng-class="{'btn-primary':user.work_friday == 1}">周五</span></div>
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_friday')" ng-class="{'btn-primary':user.work_friday == 1}">{{"Friday"|translate}}</span></div>
                         <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_saturday')" ng-class="{'btn-primary':user.work_saturday == 1}">周六</span></div>
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_saturday')" ng-class="{'btn-primary':user.work_saturday == 1}">{{"Saturday"|translate}}</span></div>
                         <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_sunday')" ng-class="{'btn-primary':user.work_sunday == 1}">周日</span>
+                            <span class="btn btn-default rectangle full-width text-ellipsis" ng-click="toggleWorkday('work_sunday')" ng-class="{'btn-primary':user.work_sunday == 1}">{{"Sunday"|translate}}</span>
                         </div>
                     </div>
-                    <div class="section">说明</div>
+                    <div class="section">{{"Introduction"|translate}}</div>
                     <div class="row grid-gutter">
                         <div class="col-xs-4">
-                            <span class="btn btn-primary rectangle full-width text-ellipsis">工作日</span>
+                            <span class="btn btn-primary rectangle full-width text-ellipsis">{{"Working Days"|translate}}</span>
                         </div>
                         <div class="col-xs-4">
-                            <span class="btn btn-default rectangle full-width text-ellipsis">非工作日</span>
+                            <span class="btn btn-default rectangle full-width text-ellipsis">{{"Non-working Days"| translate}}</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" ui-if="is_translator_panel" ui-state='is_translator_panel'>
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog" style="margin-top:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-primary">{{user.is_translate_message}}</h4>
+                </div>
+                <div class="modal-footer text-center">
+                    <div class="btn-group justified">
+                        <span class="btn btn-default" ng-click="back()">
+                            {{"Quit"}}
+                        </span>
+                        <span class="btn btn-primary" ng-click="completeProfile()">
+                            {{"Go Complete Profile"}}
+                        </span>
                     </div>
                 </div>
             </div>
