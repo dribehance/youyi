@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var commentController = function($scope, $routeParams, commentServices, errorServices, toastServices, localStorageService, config) {
+var commentController = function($scope, $routeScope, $routeParams, commentServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {
         task_id: $routeParams.task_id,
         note: "",
@@ -77,7 +77,7 @@ angular.module("Youyi").controller("commentUploadController", function($rootScop
         flow.opts.fileParameterName = "pic";
         flow.opts.query = {
             "token": localStorageService.get("token"),
-            "language_app":localStorageService.get("language"),
+            "language_app": localStorageService.get("language"),
             "task_id": $scope.input.task_id,
             "group_id": $scope.input.level.group_id,
             "note": $scope.input.note,
@@ -95,5 +95,6 @@ angular.module("Youyi").controller("commentUploadController", function($rootScop
     $scope.$on("flow::fileSuccess", function(file, message, chunk) {
         toastServices.hide();
         errorServices.autoHide("上传成功");
+        $rootScope.back();
     })
 });

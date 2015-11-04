@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var favoriteController = function($scope, myLoveServices, errorServices, toastServices, localStorageService, config) {
+var favoriteController = function($scope,$location, myLoveServices, errorServices, toastServices, localStorageService, config) {
     $scope.translators = [];
     $scope.page = {
         number: 1,
@@ -36,10 +36,19 @@ var favoriteController = function($scope, myLoveServices, errorServices, toastSe
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.translators = $scope.translators.filter(function(t) {
                     return t.collection_id != translator.collection_id;
-                })
+                });
+                errorServices.autoHide(data.message)
             } else {
                 errorServices.autoHide(data.message);
             }
         })
+    };
+    // apply
+    $scope.apply = function(translator_id) {
+        if (!localStorageService.get("token")) {
+            $location.search("uiSidebarLeft");
+            return;
+        }
+        $location.path("apply_flow").search("translator_id", translator_id);
     };
 }

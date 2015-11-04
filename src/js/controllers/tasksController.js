@@ -103,7 +103,7 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
     $scope.action = function(task) {
         $scope.current_task = task;
         // comment;
-        if (task.oper_status == '2') {
+        if (task.oper_status == '8') {
             var path = task.task_id + "/comment";
             $location.path(path)
             return;
