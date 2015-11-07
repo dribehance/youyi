@@ -60,21 +60,23 @@
                 <!-- <span class="tip text-warning">error</span> -->
                 </span>
             </div>
-            <div class="list-group-item clearfix kk-input-group">
+            <div class="list-group-item clearfix kk-input-group" ng-click="modify('0')">
                 <span class="btn col-xs-3 section-wide text-left">{{"Mobile No." | translate}}</span>
                 <span class="col-xs-9 section-wide">
                     <!-- <input type="text" name="telephone" class="form-control youyi-flat-input col-xs-8" placeholder="请输入手机" ng-model="user.telephone"> -->
                 <!-- <span class="tip text-warning">error</span> -->
                 <span class="btn">{{user.telephone}}</span>
+                <i class="text-gray-light btn fa fa-chevron-right pull-right"></i>
                 </span>
             </div>
-            <div class="list-group-item clearfix kk-input-group">
+            <div class="list-group-item clearfix kk-input-group" ng-click="modify('1')">
                 <span class="btn col-xs-3 section-wide text-left">{{"Email" | translate}}</span>
                 <span class="col-xs-9 section-wide">
 
                     <!-- <input type="email" name="email" class="form-control youyi-flat-input col-xs-8" placeholder="请输入邮箱" ng-model="user.email"> -->
                 <!-- <span class="tip text-warning">error</span> -->
                 <span class="btn">{{user.email}}</span>
+                <i class="text-gray-light btn fa fa-chevron-right pull-right"></i>
                 </span>
             </div>
         </div>
@@ -86,7 +88,7 @@
 <div ui-content-for="modals">
     <div class="modal modal-overlay" ui-if="district_panel" ui-state='district_panel'>
         <!-- <div class="modal-backdrop in"></div> -->
-        <div class="modal-dialog" style="margin:0">
+        <div class="modal-dialog scrollable-dialog" style="margin:0">
             <div class="modal-content">
                 <div class="modal-header text-primary clearfix">
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="district_panel">

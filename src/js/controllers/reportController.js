@@ -2,7 +2,7 @@
 var reportController = function($scope, $routeParams, errorServices, toastServices, localStorageService, config) {
     $scope.reports = [{
         title: "态度恶劣，出现侮辱性语言",
-        selected: false,
+        selected: true,
         type: 1,
     }, {
         title: "欺骗行为",
@@ -24,6 +24,12 @@ var reportController = function($scope, $routeParams, errorServices, toastServic
     };
     $scope.toggle = function(report) {
         report.selected = !report.selected;
+        var selected = $scope.reports.filter(function(report) {
+            return report.selected;
+        })
+        if(selected.length == 0) {
+            report.selected = true;
+        }
         if ($scope.reports[3].selected) {
             $scope.input.other_show = true;
         } else {
@@ -31,11 +37,11 @@ var reportController = function($scope, $routeParams, errorServices, toastServic
         }
     }
 }
-angular.module("Youyi").controller("reportUploadController", function($scope, toastServices, errorServices, localStorageService, config) {
+angular.module("Youyi").controller("reportUploadController", function($scope,$rootScope, toastServices, errorServices, localStorageService, config) {
     $scope.$on("flow::fileSuccess", function(file, message, chunk) {
-        console.log(message)
         toastServices.hide();
         errorServices.autoHide("上传成功");
+        $rootScope.back();
     })
     $scope.$on("flow::fileError", function(file, message, chunk) {
         toastServices.hide();
@@ -49,6 +55,10 @@ angular.module("Youyi").controller("reportUploadController", function($scope, to
         }).join(",")
         if (flow.files.length == 0) {
             errorServices.autoHide("至少上传一张图片证据");
+            return;
+        }
+        if ($scope.input.details =="") {
+            errorServices.autoHide("详细描述您遇到的问题我们才能帮到您哦！");
             return;
         }
         flow.opts.target = config.url + "/app/TaskUser/complaint";

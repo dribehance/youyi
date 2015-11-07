@@ -12,8 +12,8 @@
             <div class="section" ng-repeat="authen in authen_entries">
                 <img ng-src="{{staticImageUrl + authen.cover}}" class="block full-width" alt="">
                 <div class="section"></div>
-                <div class="section section-wide text-left authen-status-{{authen.status}}" ng-click="reupload(authen)">
-                    证书名称:{{authen.title}},{{authen.status_message}}
+                <div class="section section-wide text-left" ng-click="reupload(authen)">
+                    证书名称：{{authen.title}}, <span class="authen-status-{{authen.status}}">{{authen.status_message}}</span>
                 </div>
             </div>
             <div class="section" ng-if="authen_entries.length == 0">暂无认证信息</div>
@@ -22,7 +22,7 @@
 </div>
 <div ui-content-for="modals">
     <div class="modal modal-overlay" ui-if="upload_panel" ui-state='upload_panel'>
-        <div class="modal-dialog" style="margin:0">
+        <div class="modal-dialog scrollable-dialog" style="margin:0">
             <div class="modal-content">
                 <div class="modal-header bg-primary clearfix">
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="upload_panel">
@@ -36,7 +36,7 @@
                             <div class="block full-width flow-btn text-center">
                                 <!-- <img flow-btn flow-attrs="{accept:'image/*'}" class="needsclick" ng-src="../images/upload_1.png" ng-show="!$flow.files.length" alt=""> -->
                                 <div class="preview-btn needsclick" flow-btn flow-attrs="{accept:'image/*'}" ng-show="!$flow.files.length">
-                                    {{"Please choose" | translate}}
+                                    
                                 </div>
                                 <div class="preview-box" ng-show="$flow.files.length">
                                     <span class="remove-btn" ng-click="$flow.files[0].cancel()"></span>

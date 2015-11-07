@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var meInfoController = function($scope, $rootScope, $timeout, SharedState, userServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var meInfoController = function($scope, $rootScope,$location, $timeout, SharedState, userServices, taskServices, errorServices, toastServices, localStorageService, config) {
     // location
     $scope.countries = [];
     taskServices.location().then(function(data) {
@@ -10,6 +10,7 @@ var meInfoController = function($scope, $rootScope, $timeout, SharedState, userS
             errorServices.autoHide(data.message);
         }
     });
+    // input;
     $scope.input = {};
     $scope.input.choosen_city = {};
     $scope.ajaxForm = function() {
@@ -38,6 +39,9 @@ var meInfoController = function($scope, $rootScope, $timeout, SharedState, userS
     $scope.sync_back = function() {
         userServices.sync();
         $rootScope.back();
+    }
+    $scope.modify = function (type) {
+        $location.path("modify_phone_email").search("type",type)
     }
 }
 angular.module("Youyi").controller("avatarController", function($scope, localStorageService, config) {

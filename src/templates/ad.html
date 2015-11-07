@@ -10,9 +10,9 @@
             <form name="adForm" ng-submit="ajaxForm()">
                 <p>{{ "Please contact us for any advertisement enquiry or quotation." | translate}} </p>
                 <p>
-                	<textarea class="form-control" rows="10" placeholder="{{ 'Please briefly describe your business and advertisement needs here. We will get back to you soon.'| translate}}" required></textarea>
+                	<textarea class="form-control" rows="10" placeholder="{{ 'Please briefly describe your business and advertisement needs here. We will get back to you soon.'| translate}}" ng-model="input.content" required></textarea>
                 </p>
-				<button type="submit" class="btn btn-primary full-width">{{"Confirm" | translate}}</button>
+				<button type="submit" class="btn btn-primary full-width" ng-disabled="adForm.$invalid">{{"Confirm" | translate}}</button>
             </form>
         </div>
     </div>

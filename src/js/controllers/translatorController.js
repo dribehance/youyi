@@ -14,6 +14,7 @@ var translatorController = function($scope, $routeParams, $location, SharedState
             $scope.translator.experiences = data.YyPersonInfo.experiences
             $scope.translator.commentTags = data.YyPersonInfo.commentTags;
             $scope.translator.commentUsers = data.YyPersonInfo.commentUsers;
+            $scope.translator.userIdentities = data.YyPersonInfo.userIdentities;
             $scope.authens.push($scope.translator.identity_front, $scope.translator.language_identity, $scope.translator.profession_identity, $scope.translator.advanced_identity);
             $scope.authens = $scope.authens.filter(function(authen) {
                 return authen != "";

@@ -22,7 +22,7 @@
 </div>
 <div ui-content-for="modals">
     <div class="modal modal-overlay" ui-if="upload_panel" ui-state='upload_panel'>
-        <div class="modal-dialog" style="margin:0">
+        <div class="modal-dialog scrollable-dialog" style="margin:0">
             <div class="modal-content">
                 <div class="modal-header bg-primary clearfix">
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="upload_panel">
@@ -31,12 +31,11 @@
                     <h4 class="modal-title text-center">{{"Add Photo" | translate}}</h4>
                 </div>
                 <div class="modal-body">
-                    <div flow-init="{singleFile:true}" ng-controller="authenLanguageUploadController" class="uploader">
+                    <div flow-init="{singleFile:true}" ng-controller="authenIndustryUploadController" class="uploader">
                         <div class="section text-center">
                             <div class="block full-width flow-btn text-center">
                                 <!-- <img flow-btn flow-attrs="{accept:'image/*'}" class="needsclick" ng-src="../images/upload_1.png" ng-show="!$flow.files.length" alt=""> -->
                                 <div class="preview-btn needsclick" flow-btn flow-attrs="{accept:'image/*'}" ng-show="!$flow.files.length">
-                                    {{"Please choose" | translate}}
                                 </div>
                                 <div class="preview-box" ng-show="$flow.files.length">
                                     <span class="remove-btn" ng-click="$flow.files[0].cancel()"></span>

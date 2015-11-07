@@ -28,7 +28,7 @@ var authenIndustryController = function($scope, userServices, SharedState, error
         }
     }
 }
-angular.module("Youyi").controller("authenLanguageUploadController", function($scope, $rootScope, $timeout,$route, toastServices, localStorageService, errorServices, config) {
+angular.module("Youyi").controller("authenIndustryUploadController", function($scope, $rootScope, $timeout,$route, toastServices, localStorageService, errorServices, config) {
     $scope.$on("flow::fileSuccess", function() {
         $timeout(function() {
             $scope.input.replace_user_identity_id = undefined;

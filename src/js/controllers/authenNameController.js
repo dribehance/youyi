@@ -11,11 +11,6 @@ angular.module("Youyi").controller("authenUploadController", function($scope, $r
         }, 2000);
     })
     $scope.ajaxForm = function(flow) {
-        if (flow.files.length > 2) {
-            flow.cancel();
-            errorServices.autoHide("上传文件个数过多");
-            return;
-        }
         // upload
         flow.opts.target = config.url + "/app/Person/uploadIdentity";
         flow.opts.testChunks = false;

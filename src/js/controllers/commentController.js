@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var commentController = function($scope, $routeScope, $routeParams, commentServices, errorServices, toastServices, localStorageService, config) {
+var commentController = function($scope, $rootScope, $routeParams, commentServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {
         task_id: $routeParams.task_id,
         note: "",

@@ -185,7 +185,8 @@ var meController = function($scope, $rootScope,$location,$timeout, SharedState, 
         $rootScope.back();
     };
     // become translate intro
-    if ($rootScope.user.is_translate != '1') {
+    console.log($rootScope.user.is_translate)
+    if ($rootScope.user.is_translate != undefined && $rootScope.user.is_translate != '1') {
         $timeout(function(){
             SharedState.turnOn("is_translator_panel");
         },3000)

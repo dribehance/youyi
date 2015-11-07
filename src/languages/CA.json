@@ -145,7 +145,7 @@
     "Evidence": "Evidence",
     "Detail Description": "Detail Description",
     "Upload Photos": "Upload Photos",
-    "Followed by XXX": "Followed by XXX",
+    "Followed by XXX": "Followed by {{value}}",
     "Number of Tasks Completed": "Number of Tasks Completed",
     "Completion Rate": "Completion Rate",
     "Apply": "Apply",

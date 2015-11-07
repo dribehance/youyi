@@ -134,6 +134,11 @@ angular.module("Youyi", [
                 reloadOnSearch: false,
                 controller: modifyTradePasswordController
             })
+            .when("/modify_phone_email", {
+                templateUrl: "modify_phone_email.html",
+                reloadOnSearch: false,
+                controller: modifyPhoneOrEmailController
+            })
             .when("/privacy", {
                 templateUrl: "privacy.html",
                 reloadOnSearch: false,

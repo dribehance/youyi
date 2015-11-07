@@ -90,6 +90,23 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
                 return data.data;
             });
         },
+        modifyPhoneOrEmail: function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/UserCenter/updateName",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token":localStorageService.get("token"),
+                    "language_app": localStorageService.get("language"),
+                    "name": input.username,
+                    "old_password": input.password,
+                    "msg_code": input.verifycode,
+                    "type":input.type
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         sync: function() {
             $rootScope.user = $rootScope.user || {};
             var self = this;

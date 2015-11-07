@@ -6,11 +6,67 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
+        <div class="section large text-center">
+            <div class="section section-wide" ng-if="user.identity_status ==0">
+                暂无认证，<span class="text-primary" ui-turn-on="upload_panel">马上认证</span>
+            </div>
+            <div class="section" ng-if="user.identity_status !=0">
+                <div class="preview-box">
+                    <img ng-src="{{staticImageUrl + user.identity_front}}" alt="" style="margin-bottom:5px;" class="block full-width">
+                </div>
+                <div class="section" ng-if="user.identity_status ==1">审核中</div>
+                <div class="section" ng-if="user.identity_status ==2" ui-turn-on="upload_panel">审核未通过,重新认证</div>
+                <div class="section" ng-if="user.identity_status ==3">认证通过</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal modal-overlay" ui-if="upload_panel" ui-state='upload_panel'>
+        <div class="modal-dialog scrollable-dialog" style="margin:0">
+            <div class="modal-content">
+                <div class="modal-header bg-primary clearfix">
+                    <div class="pull-left section section-condensed bg-transparent" ui-turn-off="upload_panel">
+                        <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
+                    </div>
+                    <h4 class="modal-title text-center">{{"Add Photo" | translate}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div flow-init="{singleFile:true}" ng-controller="authenUploadController" class="uploader">
+                        <div class="section text-center">
+                            <div class="block full-width flow-btn text-center">
+                                <!-- <img flow-btn flow-attrs="{accept:'image/*'}" class="needsclick" ng-src="../images/upload_1.png" ng-show="!$flow.files.length" alt=""> -->
+                                <div class="preview-btn needsclick" flow-btn flow-attrs="{accept:'image/*'}" ng-show="!$flow.files.length">
+                                </div>
+                                <div class="preview-box" ng-show="$flow.files.length">
+                                    <span class="remove-btn" ng-click="$flow.files[0].cancel()"></span>
+                                    <img flow-img="$flow.files[0]">
+                                </div>
+                            </div>
+                            <div class="progress progress-striped rectangle" ng-class="{active: $flow.files[0].isUploading()}">
+                                <div class="progress-bar" role="progressbar" ng-style="{width: ($flow.files[0].progress() * 100) + '%'}"></div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <p>示例</p>
+                            <img ng-src="../images/aobama.jpg" class="block full-width" alt="">
+                        </div>
+                        <div class="section">
+                            <button type="button" class="btn btn-danger full-width" ng-click="ajaxForm($flow)" ng-disabled="$flow.files.length < 1 ">{{"Submit to Authentication" | translate}}</button>
+                        </div>
+                        <div class="section large text-grey text-center text-small">
+                            {{"Information Authentication will be finish in two day" | translate}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="scrollable">
+    <div class="scrollable-content">
         <div flow-init ng-controller="authenUploadController" class="uploader" ng-if="!user.identity_front">
             <div class="section large"></div>
-            <div class="section large">
-                <h4 class="text-center"><p>完成实名认证信息</h4>
-            </div>
             <div class="section large text-center">
                 <span class="block full-width flow-btn text-center">
                     <img src="../images/upload_2.png" ng-show="!$flow.files.length" alt="">
@@ -41,3 +97,4 @@
     </div>
 </div>
 </div>
+ -->

@@ -147,7 +147,7 @@
     "Evidence": "请补充证据",
     "Detail Description": "详细说明",
     "Upload Photos": "上传图片证据",
-    "Followed by XXX": "已有xx人关注",
+    "Followed by XXX": "已有{{value}}人关注",
     "Number of Tasks Completed": "任务完成数量",
     "Completion Rate": "任务完成率",
     "Apply": "提出申请",
@@ -227,5 +227,9 @@
     "Introduction":"说明",
     "Non-working Days":"非工作日",
     "Go Complete Profile":"完善资料",
-    "Quit":"放弃"
+    "Quit":"放弃",
+    "Bad Attitude":"态度恶劣，出现侮辱性语言",
+    "Cheating":"欺骗行为",
+    "Infringement":"侵犯行为",
+    "Other Reasons":"其他原因"
 }

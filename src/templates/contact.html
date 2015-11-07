@@ -9,18 +9,18 @@
         <div class="section large">
             <form name="contactForm" ng-submit="ajaxForm()">
                 <p class="btn-group justified">
-                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == 'issue_1'}"><input type="radio" class="hide" ng-model="input.issue" value="issue_1">{{"Authentication" | translate}}</label>
-                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == 'issue_2'}"><input type="radio" class="hide" ng-model="input.issue" value="issue_2">{{"Payment"| translate}}</label>
-                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == 'issue_3'}"><input type="radio" class="hide" ng-model="input.issue" value="issue_3">{{"Settlement" | translate}}</label>
+                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == '0'}"><input type="radio" class="hide" ng-model="input.issue" value="0">{{"Authentication" | translate}}</label>
+                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == '1'}"><input type="radio" class="hide" ng-model="input.issue" value="1">{{"Payment"| translate}}</label>
+                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == '2'}"><input type="radio" class="hide" ng-model="input.issue" value="2">{{"Settlement" | translate}}</label>
                 </p>
                 <p class="btn-group justified">
-                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == 'issue_4'}"><input type="radio" class="hide" ng-model="input.issue" value="issue_4">{{"Events" | translate}}</label>
-                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == 'issue_5'}"><input type="radio" class="hide" ng-model="input.issue" value="issue_5">{{"Others"| translate}}</label>
+                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == '3'}"><input type="radio" class="hide" ng-model="input.issue" value="3">{{"Events" | translate}}</label>
+                    <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == '4'}"><input type="radio" class="hide" ng-model="input.issue" value="4">{{"Others"| translate}}</label>
                 </p>
                 <p>
-                    <textarea class="form-control" rows="10" placeholder="{{ 'Please briefly describe your business and advertisement needs here. We will get back to you soon.'| translate}}" name="issue_content" ng-model="input.issue_content" required></textarea>
+                    <textarea class="form-control" rows="10" placeholder="{{ 'Please briefly describe your business and advertisement needs here. We will get back to you soon.'| translate}}" name="issue_content" ng-model="input.content" required></textarea>
                 </p>
-                <button type="submit" class="btn btn-primary full-width">{{"Confirm" | translate}}</button>
+                <button type="submit" class="btn btn-primary full-width" ng-disabled="contactForm.$invalid">{{"Confirm" | translate}}</button>
             </form>
         </div>
     </div>

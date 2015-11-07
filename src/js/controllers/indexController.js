@@ -117,22 +117,52 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
         $scope.loadMore();
     };
     $scope.reset_location = function() {
+        $scope.filter.name = "";
         $scope.choosen.city = {
             name: ""
         };
-        $scope.filter.name = "";
+        // reset;
+        $scope.tasks = [];
+        $scope.no_more = false;
+        $scope.page = angular.extend({}, $scope.page, {
+            pn: 1,
+            page_size: 10,
+            message: "点击加载更多",
+            filter_place_group_id: "",
+        });
+        $scope.loadMore();
     }
     $scope.reset_price = function() {
+        $scope.filter.name = "";
         $scope.choosen.price = {
             range: ""
         };
-        $scope.filter.name = "";
+        // reset;
+        $scope.tasks = [];
+        $scope.no_more = false;
+        $scope.page = angular.extend({}, $scope.page, {
+            pn: 1,
+            page_size: 10,
+            message: "点击加载更多",
+            filter_money: "",
+        });
+        $scope.loadMore();
     }
     $scope.reset_category = function() {
+        $scope.filter.name = "";
         $scope.choosen.category = {
             name: ""
         };
-        $scope.filter.name = "";
+        // reset;
+        $scope.tasks = [];
+        $scope.no_more = false;
+        $scope.page = angular.extend({}, $scope.page, {
+            pn: 1,
+            page_size: 10,
+            message: "点击加载更多",
+            filter_type_group_id: "",
+        });
+        $scope.loadMore();
     }
     $scope.toggle_language = function(language) {
         if (language.checked) {

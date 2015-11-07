@@ -52,7 +52,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/Home/task",
                 method: "GET",
-                cache: true,
+                // cache: true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
