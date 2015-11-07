@@ -5,7 +5,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
     $scope.page = {
         pn: 1,
         page_size: 10,
-        message: "点击加载更多",
+        message: "Load More",
         filter_language_group_id: "",
         filter_place_group_id: "",
         filter_type_group_id: "",
@@ -17,10 +17,10 @@ var translatorsController = function($scope, $location, SharedState, translatorS
             return;
         }
         toastServices.show();
-        $scope.page.message = "正在加载...";
+        $scope.page.message = "Loading";
         translatorServices.query($scope.page).then(function(data) {
             toastServices.hide();
-            $scope.page.message = "点击加载更多";
+            $scope.page.message = "Load More";
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.translators = $scope.translators.concat(data.Result.persons.list);
                 $scope.no_more = $scope.translators.length == data.Result.persons.totalRow ? true : false;
@@ -28,7 +28,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
                 errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
-                $scope.page.message = "没有了";
+                $scope.page.message = "No More";
             }
             $scope.page.pn++;
         })
@@ -84,7 +84,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_language_group_id: language_ids,
         });
         $scope.loadMore();
@@ -102,7 +102,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_language_group_id: "",
         });
         $scope.loadMore();
@@ -118,7 +118,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_place_group_id: "",
         });
         $scope.loadMore();
@@ -134,7 +134,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_money: "",
         });
         $scope.loadMore();
@@ -150,7 +150,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_type_group_id: "",
         });
         $scope.loadMore();
@@ -198,7 +198,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_place_group_id: location_id,
         });
         $scope.loadMore();
@@ -260,7 +260,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_money: money,
         });
         $scope.loadMore();
@@ -297,7 +297,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
             $scope.page = angular.extend({}, $scope.page, {
                 pn: 1,
                 page_size: 10,
-                message: "点击加载更多",
+                message: "Load More",
                 filter_type_group_id: $scope.choosen.category.group_id,
             });
             $scope.loadMore();

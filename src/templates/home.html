@@ -55,17 +55,17 @@
                     </div>
                 </div>
                 <div class="section section-wide bg-gray-lighter task_cost text-ellipsis">
-                    {{task.currency_type}} {{task.price_for_day}}/天 (约{{task.to_currency_type}} {{task.to_price_for_day}}/天)
+                    {{task.currency_type}} {{task.price_for_day}}/{{"Day"|translate}} ({{task.to_currency_type}} {{task.to_price_for_day}}/{{"Day"|translate}})
                 </div>
                 <div class="task_day section-wide bg-gray-lighter text-ellipsis">
                     {{task.start_time}}——{{task.end_time}}
                 </div>
                 <div class="task_detail section-wide bg-gray-lighter text-ellipsis">
-                    详细要求：{{task.description}}
+                    {{"Detail Description"|translate}}：{{task.description}}
                 </div>
             </div>
         </a>
-        <div class="section text-center m" ng-click="loadMore()">{{page.message}}</div>
+        <div class="section text-center m" ng-click="loadMore()">{{page.message | translate}}</div>
         <!-- hide content -->
         <div ng-include="'language.html'" ng-if="filter.name == 'language'"></div>
         <div ng-include="'location.html'" ng-if="filter.name == 'location'"></div>

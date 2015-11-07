@@ -64,14 +64,14 @@
             </span>
         </div>
         <div class="section section-large m text-center" ng-click="loadMore()">
-            {{page.message}}
+            {{page.message | translate}}
         </div>
     </div>
 </div>
 <div ui-content-for="modals">
     <div class="modal" ui-if="agree_panel" ui-state='agree_panel'>
         <div class="modal-backdrop in" ui-turn-off="agree_panel"></div>
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="margin-top:50%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">{{"Agree Or Not?"| translate}}</h4>

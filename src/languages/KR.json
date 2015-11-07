@@ -89,6 +89,7 @@
     "Travel": "여행",
     "商务":"비즈니스",
     "旅行":"여행",
+    "其它":"기타등등",
     "Task Details": "작업 정보",
     "Home": "홈페이지",
     "Create Task": "작업 생성",
@@ -188,7 +189,7 @@
     "Change Transaction Password": "결제 비밀번호 변경",
     "Back":"후퇴하다",
     "Loading":"로드 중",
-    "More":"좀 더 이상",
+    "Load More":"좀 더 이상",
     "No More":"더 이상",
     "Setting":"설정",
     "Change Password":"비밀번호 변경",
@@ -199,5 +200,6 @@
     "Accept":"받고",
     "Reject":"거절하다",
     "Reset":"초기화",
-    "Enter Transaction Password":"거래 암호를 입력하십시오"
+    "Enter Transaction Password":"거래 암호를 입력하십시오",
+    "Unit":"KPW"
 }

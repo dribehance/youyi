@@ -89,6 +89,7 @@
     "Travel": "旅行",
     "商务": "ビジネス",
     "旅行": "旅行",
+    "其它":"その他",
     "Task Details": "具体的な仕事内容",
     "Home": "ホームページ",
     "Create Task": "新しい仕事を発注",
@@ -188,7 +189,7 @@
     "Change Transaction Password": "パスワードを変更する",
     "Back": "後退",
     "Loading": "加載中",
-    "More": "より多くを見てください",
+    "Load More": "より多くを見てください",
     "No More": "ノーモア",
     "Setting": "設定",
     "Change Password": "パスワードの変更",
@@ -199,5 +200,6 @@
     "Accept": "を受け入れる",
     "Reject": "断る",
     "Reset": "リセット",
-    "Enter Transaction Password": "取引のパスワードを入力してください"
+    "Enter Transaction Password": "取引のパスワードを入力してください",
+    "Unit":"JPY"
 }

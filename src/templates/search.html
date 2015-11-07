@@ -44,7 +44,7 @@
                 </div>
             </div>
         </a>
-        <div class="section text-center m" ng-click="loadMore()" ng-show="tasks.length > 0">{{page.message}}</div>
+        <div class="section text-center m" ng-click="loadMore()" ng-show="tasks.length > 0">{{page.message | translate}}</div>
         <div class="section text-center m" ng-click="loadMore()" ng-show="tasks.length == 0">{{"Try Another" | translate}}</div>
     </div>
 </div>

@@ -14,7 +14,7 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
     $scope.page = {
         pn: 1,
         page_size: 10,
-        message: "点击加载更多",
+        message: "Load More",
         filter_language_group_id: "",
         filter_place_group_id: "",
         filter_type_group_id: "",
@@ -26,10 +26,10 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
             return;
         }
         toastServices.show();
-        $scope.page.message = "正在加载...";
+        $scope.page.message = "Loading";
         taskServices.query($scope.page).then(function(data) {
             toastServices.hide();
-            $scope.page.message = "点击加载更多";
+            $scope.page.message = "Load More";
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.tasks = $scope.tasks.concat(data.Result.tasks.list);
                 $scope.no_more = $scope.tasks.length == data.Result.tasks.totalRow ? true : false;
@@ -37,7 +37,7 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
                 errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
-                $scope.page.message = "没有了";
+                $scope.page.message = "No More";
             }
             $scope.page.pn++;
         })
@@ -93,7 +93,7 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_language_group_id: language_ids,
         });
         $scope.loadMore();
@@ -111,7 +111,7 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_language_group_id: "",
         });
         $scope.loadMore();
@@ -127,7 +127,7 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_place_group_id: "",
         });
         $scope.loadMore();
@@ -143,7 +143,7 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_money: "",
         });
         $scope.loadMore();
@@ -159,7 +159,7 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_type_group_id: "",
         });
         $scope.loadMore();
@@ -207,7 +207,7 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_place_group_id: location_id,
         });
         $scope.loadMore();
@@ -269,7 +269,7 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_money: money,
         });
         $scope.loadMore();
@@ -306,7 +306,7 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多",
+            message: "Load More",
             filter_type_group_id: $scope.choosen.category.group_id,
         });
         $scope.loadMore();

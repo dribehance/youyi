@@ -87,6 +87,9 @@
     "/day": "/day",
     "Business": "Business",
     "Travel": "Travel",
+    "商务": "Business",
+    "旅行": "Travel",
+    "其它": "Others",
     "Task Details": "Task Details",
     "Home": "Home",
     "Create Task": "Create Task",
@@ -183,5 +186,6 @@
     "Received Comment": "Received Comment",
     "Received Invitation": "Received Invitation",
     "My Followings": "My Followings",
-    "Change Transaction Password": "Change Transaction Password"
+    "Change Transaction Password": "Change Transaction Password",
+    "Unit":"USD"
 }

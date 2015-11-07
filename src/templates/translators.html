@@ -42,7 +42,7 @@
             <span class="block text-ellipsis">{{translator.introduction}}</span>
             </span>
         </a>
-        <div class="section text-center m" ng-click="loadMore()">{{page.message}}</div>
+        <div class="section text-center m" ng-click="loadMore()">{{page.message | translate}}</div>
         <!-- hide content -->
         <div ng-include="'language.html'" ng-if="filter.name == 'language'"></div>
         <div ng-include="'location.html'" ng-if="filter.name == 'location'"></div>

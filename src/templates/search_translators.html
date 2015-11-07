@@ -29,7 +29,7 @@
             <span class="block text-ellipsis">{{translator.introduction}}</span>
             </span>
         </a>
-        <div class="section text-center m" ng-click="loadMore()" ng-show="translators.length > 0">{{page.message}}</div>
+        <div class="section text-center m" ng-click="loadMore()" ng-show="translators.length > 0">{{page.message | translate}}</div>
         <div class="section text-center m" ng-click="loadMore()" ng-show="translators.length == 0">{{"Try Another" | translate}}</div>
     </div>
 </div>

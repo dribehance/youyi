@@ -1,7 +1,7 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
 <div ui-content-for="title">{{"Language Certificate" | translate}}</div>
 <div ui-content-for="navbarAction">
-    <span class="btn" ui-turn-on="upload_panel">添加</span>
+    <span class="btn" ui-turn-on="upload_panel">{{"Add" | translate}}</span>
 </div>
 <div ui-content-for="backAction">
     <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
@@ -13,10 +13,10 @@
                 <img ng-src="{{staticImageUrl + authen.cover}}" class="block full-width" alt="">
                 <div class="section"></div>
                 <div class="section section-wide text-left" ng-click="reupload(authen)">
-                    证书名称：{{authen.title}}, <span class="authen-status-{{authen.status}}">{{authen.status_message}}</span>
+                    {{"Certificate name" | translate}}：{{authen.title}}, <span class="authen-status-{{authen.status}}">{{authen.status_message}}</span>
                 </div>
             </div>
-            <div class="section" ng-if="authen_entries.length == 0">暂无认证信息</div>
+            <div class="section" ng-if="authen_entries.length == 0">{{"No Authenication Information" | translate}}</div>
         </div>
     </div>
 </div>

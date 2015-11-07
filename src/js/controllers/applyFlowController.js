@@ -9,7 +9,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
         category: {},
         price: 0,
         total: 0,
-        address: "请选择",
+        address: "Please Choose",
         content: "",
         other: "",
         from_date_options: {
@@ -61,7 +61,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
     });
     // get location;
     $scope.choosen.city = {
-        country: "请选择",
+        country: "Please Choose",
         name: "",
     };
     taskServices.location().then(function(data) {

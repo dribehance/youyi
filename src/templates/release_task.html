@@ -50,10 +50,10 @@
                             <div>
                                 <div class="row">
                                     <div class="col-xs-7 section-wide">
-                                        <input type="text" class="youyi-date form-control col-xs-8" name="from_date" pick-a-date="input.from_date" pick-a-date-options="input.from_date_options" placeholder="{{'Please Fill in' | translate}}" required>
+                                        <input type="text" class="youyi-date form-control col-xs-8" name="from_date" pick-a-date="input.from_date" pick-a-date-options="input.from_date_options" placeholder="{{'Please enter' | translate}}" required>
                                     </div>
                                     <div class="col-xs-5 section-wide">
-                                        <input type="text" class="youyi-time form-control col-xs-4" name="from_time" pick-a-time="input.from_time" pick-a-time-options="input.time_options" placeholder="{{'Please Fill in' | translate}}" required>
+                                        <input type="text" class="youyi-time form-control col-xs-4" name="from_time" pick-a-time="input.from_time" pick-a-time-options="input.time_options" placeholder="{{'Please enter' | translate}}" required>
                                     </div>
                                 </div>
                             </div>
@@ -66,10 +66,10 @@
                             <div>
                                 <div class="row">
                                     <div class="col-xs-7 section-wide">
-                                        <input type="text" class="youyi-date form-control col-xs-8" name="to_date" pick-a-date="input.to_date" pick-a-date-options="input.to_date_options" placeholder="{{'Please Fill in' | translate}}" required>
+                                        <input type="text" class="youyi-date form-control col-xs-8" name="to_date" pick-a-date="input.to_date" pick-a-date-options="input.to_date_options" placeholder="{{'Please enter' | translate}}" required>
                                     </div>
                                     <div class="col-xs-5 section-wide">
-                                        <input type="text" class="youyi-time form-control col-xs-4" name="to_time" pick-a-time="input.to_time" pick-a-time-options="input.to_time_options" placeholder="{{'Please Fill in' | translate}}" required>
+                                        <input type="text" class="youyi-time form-control col-xs-4" name="to_time" pick-a-time="input.to_time" pick-a-time-options="input.to_time_options" placeholder="{{'Please enter' | translate}}" required>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <div>
-                            <input type="text" class="form-control youyi-flat-input text-right" name="title" ng-model="input.title" required placeholder="{{'Please Fill in Title' | translate}}">
+                            <input type="text" class="form-control youyi-flat-input text-right" name="title" ng-model="input.title" required placeholder="{{'Please enter Title' | translate}}">
                         </div>
                         <!-- <div class="semi-fixed-right semi-wide-40">
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="btn-group justified">
                             <label class="btn rectangle" ng-class="{'text-primary':input.category.name ==category.name,'bg-gray-lighter':input.category.name  != category.name}" ng-repeat="category in categories">
-                                <input type="radio" class="hide" name="category" ng-model="input.category " ng-value="category">{{category.name}}</label>
+                                <input type="radio" class="hide" name="category" ng-model="input.category " ng-value="category">{{category.name |translate}}</label>
                         </div>
                         <div class="section section-wide" ng-show="input.category.name  =='其它'">
                             <input type="text" class="form-control rectangle" name="other" ng-model="other">
@@ -121,7 +121,7 @@
                             <!-- <span class="semi-fixed-left semi-wide-40 text-center">
                                 <i class="kk kk-25 kk-checked" ng-class="{'active':input.price !=''}"></i>
                             </span> -->
-                            <input type="number" class="form-control rectangle youyi-flat-input text-right" name="price" ng-model="input.price" placeholder="{{'Please Fill in' | translate}}" required>
+                            <input type="number" class="form-control rectangle youyi-flat-input text-right" name="price" ng-model="input.price" placeholder="{{'Please enter' | translate}}" required>
                             <span class="semi-fixed-right semi-wide-40 text-center">
                                 <span class="btn">/{{"Day" | translate}}</span>
                             </span>
@@ -153,7 +153,7 @@
                             </div>
                         </div>
                         <div>
-                            <input type="text" class="form-control youyi-flat-input text-right" name="content" ng-model="input.content" required placeholder="{{'Please Fill in' | translate}}">
+                            <input type="text" class="form-control youyi-flat-input text-right" name="content" ng-model="input.content" required placeholder="{{'Please enter' | translate}}">
                         </div>
                         <!-- <div class="semi-fixed-right semi-wide-40">
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>

@@ -143,7 +143,7 @@
                     <timer id="kkcountdown" interval="1000" countdown="60" auto-start='false' ng-show="callbackTimer.counting" finish-callback="callbackTimer.finish()">{{countdown + 1}}</timer>
                     {{"Get Verification Code" | translate}}
                 </button>
-                <input type="text" name="verifycode" class="form-control" placeholder="请输入验证码" ng-model="input.verifycode" required>
+                <input type="text" name="verifycode" class="form-control" placeholder="{{'Enter Verification Code' | translate}}" ng-model="input.verifycode" required>
                 <!-- <span class="tip text-warning" ng-show="forgetForm.verifycode.$invalid && forgetForm.verifycode.$dirty">必填,验证码6位</span> -->
             </div>
             <div class="kk-input-group flat">
@@ -152,7 +152,7 @@
                 <span class="tip text-warning" ng-show="sidebar.error.show">{{sidebar.error.message}}</span>
             </div>
             <div class="kk-input-group">
-                <button type="submit" class="btn btn-warning block full-width" ng-disabled="forgetForm.$invalid">找回密码</button>
+                <button type="submit" class="btn btn-warning block full-width" ng-disabled="forgetForm.$invalid">{{"Forgot Password"|translate}}</button>
             </div>
         </form>
     </div>

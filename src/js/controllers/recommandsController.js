@@ -4,7 +4,7 @@ var recommandsController = function($scope,$routeParams,$location, taskServices,
     $scope.page = {
         number: 1,
         page_size: 10,
-        message: "点击加载更多"
+        message: "Load More"
     }
     $scope.page = angular.extend({}, $scope.page, localStorageService.get("recommand"))
     $scope.loadMore = function() {
@@ -12,10 +12,10 @@ var recommandsController = function($scope,$routeParams,$location, taskServices,
             return;
         }
         toastServices.show();
-        $scope.page.message = "正在加载...";
+        $scope.page.message = "Loading";
         taskServices.queryRecommandTask($scope.page).then(function(data) {
             toastServices.hide();
-            $scope.page.message = "点击加载更多";
+            $scope.page.message = "Load More";
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.recommands = $scope.recommands.concat(data.Result.recommends.list);
                 $scope.no_more = $scope.recommands.length == data.Result.recommends.totalRow ? true : false;
@@ -23,7 +23,7 @@ var recommandsController = function($scope,$routeParams,$location, taskServices,
                 errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
-                $scope.page.message = "没有了";
+                $scope.page.message = "No More";
             }
             $scope.page.number++;
         })

@@ -1,5 +1,5 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">实名认证</div>
+<div ui-content-for="title">{{"ID Verification" | translate}}</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
     <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
@@ -8,15 +8,15 @@
     <div class="scrollable-content">
         <div class="section large text-center">
             <div class="section section-wide" ng-if="user.identity_status ==0">
-                暂无认证，<span class="text-primary" ui-turn-on="upload_panel">马上认证</span>
+                {{"No authentication"|translate}}，<span class="text-primary" ui-turn-on="upload_panel">{{"Immediately certification"| translate}}</span>
             </div>
             <div class="section" ng-if="user.identity_status !=0">
                 <div class="preview-box">
                     <img ng-src="{{staticImageUrl + user.identity_front}}" alt="" style="margin-bottom:5px;" class="block full-width">
                 </div>
-                <div class="section" ng-if="user.identity_status ==1">审核中</div>
-                <div class="section" ng-if="user.identity_status ==2" ui-turn-on="upload_panel">审核未通过,重新认证</div>
-                <div class="section" ng-if="user.identity_status ==3">认证通过</div>
+                <div class="section" ng-if="user.identity_status ==1">{{"In the audit"| translate}}</div>
+                <div class="section" ng-if="user.identity_status ==2" ui-turn-on="upload_panel">{{"Audit did not pass, re certification"|translate}}</div>
+                <div class="section" ng-if="user.identity_status ==3">{{"Authentication Pass"|translate}}</div>
             </div>
         </div>
     </div>
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <div class="section">
-                            <p>示例</p>
+                            <p>{{"Example"| translate}}</p>
                             <img ng-src="../images/aobama.jpg" class="block full-width" alt="">
                         </div>
                         <div class="section">

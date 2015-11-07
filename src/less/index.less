@@ -92,9 +92,9 @@
         padding-left: 30px;
     }
 }
-.modal .search-input {
-    
-}
+
+.modal .search-input {}
+
 .language-content {
     position: absolute;
     top: 0px;
@@ -171,7 +171,6 @@
         background-image: url("../images/select_carset.png");
         background-repeat: no-repeat;
         background-position: right center;
-
     }
     // &:before {
     //     font: normal normal normal 14px/1 FontAwesome;
@@ -199,14 +198,16 @@
     -webkit-border-radius: 5px;
     overflow: hidden;
     color: @gray;
-    .task-status--1,.task-status-8 {
+    .task-status--1,
+    .task-status-8 {
         padding: 3px 12px;
         color: @brand-primary;
         border: 1px solid @brand-primary;
         border-radius: 4px;
         -webkit-border-radius: 4px;
     }
-    .task-status-1,.task-status-7 {
+    .task-status-1,
+    .task-status-7 {
         color: @brand-success;
     }
     .detail-collapse {
@@ -344,6 +345,14 @@
             max-width: 100%;
         }
     }
+    .tranlator-intro-bg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 67px;
+        background-color: fade(@gray-base, 50%);
+    }
 }
 
 .recommand {
@@ -471,12 +480,14 @@
         overflow: scroll;
     }
 }
+
 .dropdown-menu.top {
     top: auto;
     bottom: 100%;
     // min-width: 108px;
 }
-.password-input{
+
+.password-input {
     display: block;
     position: relative;
     width: 260px;
@@ -517,18 +528,19 @@
         &.dot_5 {
             left: 233px;
         }
-
     }
     input {
-        border:none;
+        border: none;
         outline: 0;
         background-color: transparent;
         color: transparent;
     }
 }
+
 .authen-status-1 {
     color: @brand-success;
 }
+
 .authen-status-2 {
     color: @brand-warning;
 }

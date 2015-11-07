@@ -7,12 +7,12 @@
     <div class="list-group">
         <label class="list-group-item" ng-repeat="price in prices" ng-class="{'list-group-item-warning':price == choosen.price}">
             <input type="radio" class="hidden" ng-model="choosen.price" ng-value="price">
-            {{price.unit +  "-" + price.range}}
+            {{"Unit"|translate}}{{price.range}}
         </label>
     </div>
 </div>
 <div class="location-footer">
     <div class="btn-group justified">
-        <span class="btn btn-primary rectangle" ng-click="reset_price()">重置</span>
+        <span class="btn btn-primary rectangle" ng-click="reset_price()">{{"Reset" | translate}}</span>
     </div>
 </div>

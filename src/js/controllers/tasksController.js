@@ -7,7 +7,7 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
     $scope.page = {
         pn: 1,
         page_size: 10,
-        message: "点击加载更多"
+        message: "Load More"
     }
     $scope.$watch("task_tab.name", function(n, o) {
         if (n === undefined || o === undefined) {
@@ -17,7 +17,7 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
         $scope.page = {
             pn: 1,
             page_size: 10,
-            message: "点击加载更多"
+            message: "Load More"
         }
         $scope.no_more = false;
         $scope.loadMore();
@@ -26,7 +26,7 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
         if ($scope.no_more) {
             return;
         }
-        $scope.page.message = "正在加载...";
+        $scope.page.message = "Loading";
         if ($scope.task_tab.name == "release") {
             $scope.loadRelease();
         } else {
@@ -39,7 +39,7 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
         toastServices.show();
         taskServices.queryTaskByRelease($scope.page).then(function(data) {
             toastServices.hide();
-            $scope.page.message = "点击加载更多";
+            $scope.page.message = "Load More";
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.tasks = $scope.tasks.concat(data.Result.tasks.list);
                 $scope.no_more = $scope.tasks.length == data.Result.tasks.totalRow ? true : false;
@@ -47,7 +47,7 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
                 errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
-                $scope.page.message = "没有了";
+                $scope.page.message = "No More";
             }
             $scope.page.pn++;
         })
@@ -57,7 +57,7 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
         toastServices.show();
         taskServices.queryTaskByAccept($scope.page).then(function(data) {
             toastServices.hide();
-            $scope.page.message = "点击加载更多";
+            $scope.page.message = "Load More";
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.tasks = $scope.tasks.concat(data.Result.tasks.list);
                 $scope.no_more = $scope.tasks.length == data.Result.tasks.totalRow ? true : false;
@@ -65,7 +65,7 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
                 errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
-                $scope.page.message = "没有了";
+                $scope.page.message = "No More";
             }
             $scope.page.pn++;
         })

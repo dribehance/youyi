@@ -4,17 +4,17 @@ var favoriteController = function($scope,$location, myLoveServices, errorService
     $scope.page = {
         number: 1,
         page_size: 10,
-        message: "点击加载更多"
+        message: "Load More"
     }
     $scope.loadMore = function() {
         if ($scope.no_more) {
             return;
         }
         toastServices.show();
-        $scope.page.message = "正在加载...";
+        $scope.page.message = "Loading";
         myLoveServices.query($scope.page).then(function(data) {
             toastServices.hide();
-            $scope.page.message = "点击加载更多";
+            $scope.page.message = "Load More";
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.translators = $scope.translators.concat(data.CollectionList.list);
                 $scope.no_more = $scope.translators.length == data.CollectionList.totalRow ? true : false;
@@ -22,7 +22,7 @@ var favoriteController = function($scope,$location, myLoveServices, errorService
                 errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
-                $scope.page.message = "没有了";
+                $scope.page.message = "No More";
             }
             $scope.page.number++;
         })

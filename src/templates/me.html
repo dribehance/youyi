@@ -7,6 +7,7 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="translator-cover" ng-click="go('/me_info')">
+            <div class="tranlator-intro-bg"></div>
             <imageview data-rate="750/422" src="staticImageUrl + user.bg_image"></imageview>
             <div class="translator-info left">
                 <span class="h3 block">{{user.nickname || user.telephone || user.email}}<i class="kk kk-icon" ng-class="{'kk-male':user.gender=='1','kk-female':user.gender !='1'}"></i></span>
@@ -128,7 +129,7 @@
                 </div>
                 <div class="pull-right">
                     <span class="list-group-item-text" ng-if="!user.identity_front">{{"Upload ID Card" | translate}}</span>
-                    <span class="list-group-item-text" ng-if="user.identity_front">{{"Preview"| translate}}</span>
+                    <span class="list-group-item-text" ng-if="user.identity_front">{{"Preview Detail"| translate}}</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>
@@ -138,7 +139,7 @@
                 </div>
                 <div class="pull-right">
                     <span class="list-group-item-text" ng-if="!user.language_identity">{{"Upload Certificate" | translate}}</span>
-                    <span class="list-group-item-text" ng-if="user.language_identity">{{"Preview"| translate}}</span>
+                    <span class="list-group-item-text" ng-if="user.language_identity">{{"Preview Detail"| translate}}</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>
@@ -148,7 +149,7 @@
                 </div>
                 <div class="pull-right">
                     <span class="list-group-item-text" ng-if="!user.profession_identity">{{"Upload Qualification" | translate}}</span>
-                    <span class="list-group-item-text" ng-if="user.profession_identity">{{"Preview"| translate}}</span>
+                    <span class="list-group-item-text" ng-if="user.profession_identity">{{"Preview Detail"| translate}}</span>
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </div>
             </a>
@@ -183,12 +184,12 @@
         <div class="list-group" style="margin:10px">
             <div class="list-group-header">
                 <div class="section bg-transparent">
-                    收费标准
+                    {{"Cost Fee" | translate}}
                 </div>
             </div>
             <div class="list-group-item clearfix" ng-click="edit({'pay_day':user.pay_day})">
                 <div class="pull-left">
-                    日薪{{user.pay_day}}
+                    {{user.pay_day}}{{"Day"|translate}}
                 </div>
                 <div class="pull-right">
                     <i class="text-gray-light fa fa-chevron-right pull-right"></i>
@@ -243,11 +244,11 @@
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="editable_panel">
                         <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
                     </div>
-                    <h4 class="modal-title text-center">信息编辑</h4>
+                    <h4 class="modal-title text-center">{{"Edit"|translate}}</h4>
                 </div>
                 <div class="modal-body">
-                    <textarea class="form-control" placeholder="请填写" ng-model="input.editable_content" name="edit" required ng-if="input.editable_key != 'pay_day'"></textarea>
-                    <input class="form-control" type="number" placeholder="请填写" name="salary" ng-model="input.editable_content" required ng-if="input.editable_key == 'pay_day'">
+                    <textarea class="form-control" placeholder="{{'Please enter' | translate}}" ng-model="input.editable_content" name="edit" required ng-if="input.editable_key != 'pay_day'"></textarea>
+                    <input class="form-control" type="number" placeholder="{{'Please enter' | translate}}" name="salary" ng-model="input.editable_content" required ng-if="input.editable_key == 'pay_day'">
                     <span class="text-primary" ng-show="editForm.salary.$invalid && editForm.salary.$dirty">必填,数字</span>
                 </div>
                 <div class="modal-footer">
@@ -268,7 +269,7 @@
                     <h4 class="modal-title text-center">{{"Add Experience" | translate}}</h4>
                 </div>
                 <div class="modal-body">
-                    <textarea class="form-control" placeholder="请填写" name="experience" ng-model="input.experience" required></textarea>
+                    <textarea class="form-control" placeholder="{{'Please enter' | translate}}" name="experience" ng-model="input.experience" required></textarea>
                 </div>
                 <div class="modal-footer">
                     <button ui-turn-off="create_panel" class="btn btn-default">{{"Cancel"|translate}}</button>

@@ -96,7 +96,7 @@
                         </div>
                         <div class="btn-group justified">
                             <label class="btn rectangle" ng-class="{'text-primary':input.category.name ==category.name,'bg-gray-lighter':input.category.name  != category.name}" ng-repeat="category in categories">
-                                <input type="radio" class="hide" name="category" ng-model="input.category " ng-value="category">{{category.name}}</label>
+                                <input type="radio" class="hide" name="category" ng-model="input.category " ng-value="category">{{category.name | translate}}</label>
                         </div>
                         <div class="section section-wide" ng-show="input.category.name  =='其它'">
                             <input type="text" class="form-control rectangle" name="other" ng-model="other">
@@ -137,7 +137,7 @@
                             </div>
                         </div>
                         <div>
-                            <input type="text" class="form-control youyi-flat-input text-right" name="content" ng-model="input.content" required placeholder="{{'Please fill in' | translate}}">
+                            <input type="text" class="form-control youyi-flat-input text-right" name="content" ng-model="input.content" required placeholder="{{'Please enter' | translate}}">
                         </div>
                         <div class="semi-fixed-right semi-wide-40">
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>

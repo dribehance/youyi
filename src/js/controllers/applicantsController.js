@@ -9,7 +9,7 @@ var applicantsController = function($scope, $route, $routeParams, $location, $fi
     $scope.page = {
         pn: 1,
         page_size: 10,
-        message: "点击加载更多",
+        message: "Load More",
         task_id: $routeParams.task_id
     }
     $scope.loadMore = function() {
@@ -17,10 +17,10 @@ var applicantsController = function($scope, $route, $routeParams, $location, $fi
             return;
         }
         toastServices.show();
-        $scope.page.message = "正在加载...";
+        $scope.page.message = "Loading";
         taskServices.queryApplicantsByTask($scope.page).then(function(data) {
             toastServices.hide();
-            $scope.page.message = "点击加载更多";
+            $scope.page.message = "Load More";
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.applicants = $scope.applicants.concat(data.RequestList.list);
                 // $scope.payment = data.money;
@@ -29,7 +29,7 @@ var applicantsController = function($scope, $route, $routeParams, $location, $fi
                 errorServices.autoHide(data.message);
             }
             if ($scope.no_more) {
-                $scope.page.message = "没有了";
+                $scope.page.message = "No More";
             }
             $scope.page.pn++;
         })
