@@ -113,7 +113,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
             name: ""
         };
         // reset;
-        $scope.tasks = [];
+        $scope.translators = [];
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
@@ -129,7 +129,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
             range: ""
         };
         // reset;
-        $scope.tasks = [];
+        $scope.translators = [];
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
@@ -145,7 +145,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
             name: ""
         };
         // reset;
-        $scope.tasks = [];
+        $scope.translators = [];
         $scope.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,

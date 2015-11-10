@@ -87,6 +87,7 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 SharedState.set(step);
                 $scope.input.total = data.total_money;
+                $scope.input.total_money_symbol = data.total_money_symbol;
                 $scope.input.total_money_message = data.total_money_message;
             } else {
                 errorServices.autoHide(data.message);
