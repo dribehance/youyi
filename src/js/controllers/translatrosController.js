@@ -243,7 +243,7 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         range: "5000以上"
     }]
     // $scope.prices = price_by_hour;
-    $scope.price = price_by_day;
+    $scope.prices = price_by_day;
     // $scope.price_tab = {};
     // $scope.price_tab.name = "by_hour";
     $scope.choosen.price = {
