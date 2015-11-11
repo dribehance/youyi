@@ -60,6 +60,9 @@
                 <div class="task_day section-wide bg-gray-lighter text-ellipsis">
                     {{task.start_time}}——{{task.end_time}}
                 </div>
+                <div class="task_day section-wide bg-gray-lighter text-ellipsis text-danger" ng-if="task.date_message != ''">
+                    {{task.date_message}}
+                </div>
                 <div class="task_detail section-wide bg-gray-lighter text-ellipsis">
                     {{"Detail Description"|translate}}：{{task.description}}
                 </div>

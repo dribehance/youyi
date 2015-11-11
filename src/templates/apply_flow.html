@@ -1,5 +1,5 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">{{"Apply Youyi translator" | translate}}</div>
+<div ui-content-for="title">{{"Select Language" | translate}}</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
 	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
@@ -21,11 +21,12 @@
                     </select>
                 </div>
                 <div class="text-right section large bg-transparent" style="margin-top:150px">
-                    <button type="button" class="btn btn-success" ui-set="{step:2}">{{"Next" | translate}}</button>
+                    <button type="button" class="btn btn-success" ng-disabled="!(choosen_language.to && choosen_language.from) || choosen_language.to == choosen_language.from" ui-set="{step:2}">{{"Next" | translate}}</button>
                 </div>
             </div>
             <!-- step 2 -->
             <div ui-if="step == '2'">
+                <div ui-content-for="title">{{"Task Details" | translate}}</div>
                 <div class="text-center" style="margin:50px auto 50px">
                     <img src="../images/step_2.png" alt="">
                 </div>

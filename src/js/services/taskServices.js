@@ -286,6 +286,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     // "description": input.description,
                     "pn": input.pn,
                     "page_size": input.page_size,
+                    "task_id":input.task_id
                 })
             }).then(function(data) {
                 return data.data;

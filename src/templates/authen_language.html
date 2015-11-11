@@ -1,18 +1,23 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
 <div ui-content-for="title">{{"Language Certificate" | translate}}</div>
 <div ui-content-for="navbarAction">
-    <span class="btn" ui-turn-on="upload_panel">{{"Add" | translate}}</span>
+    <!-- <span class="btn" ui-turn-on="upload_panel">{{"Add" | translate}}</span> -->
 </div>
 <div ui-content-for="backAction">
     <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div>
 <div class="scrollable">
+    <div class="scrollable-header">
+        <div class="section large" ui-turn-on="upload_panel">
+            <i class="fa fa-plus-circle text-primary"></i> {{"Add" | translate}}
+        </div>
+    </div>
     <div class="scrollable-content">
-        <div class="section large text-center">
-            <div class="section" ng-repeat="authen in authen_entries">
+        <div class="section bg-transparent text-center">
+            <div class="section bg-transparent" ng-repeat="authen in authen_entries">
                 <img ng-src="{{staticImageUrl + authen.cover}}" class="block full-width" alt="">
                 <div class="section"></div>
-                <div class="section section-wide text-left" ng-click="reupload(authen)">
+                <div class="section section-wide bg-transparent text-left" ng-click="reupload(authen)" style="padding-bottom:0;padding-top:16px">
                     {{"Certificate name" | translate}}：{{authen.title}}, <span class="authen-status-{{authen.status}}">{{authen.status_message}}</span>
                 </div>
             </div>
@@ -36,11 +41,10 @@
                             <div class="block full-width flow-btn text-center">
                                 <!-- <img flow-btn flow-attrs="{accept:'image/*'}" class="needsclick" ng-src="../images/upload_1.png" ng-show="!$flow.files.length" alt=""> -->
                                 <div class="preview-btn needsclick" flow-btn flow-attrs="{accept:'image/*'}" ng-show="!$flow.files.length">
-                                    
                                 </div>
                                 <div class="preview-box" ng-show="$flow.files.length">
                                     <span class="remove-btn" ng-click="$flow.files[0].cancel()"></span>
-                                    <img flow-img="$flow.files[0]" >
+                                    <img flow-img="$flow.files[0]">
                                 </div>
                             </div>
                             <div class="progress progress-striped rectangle" ng-class="{active: $flow.files[0].isUploading()}">

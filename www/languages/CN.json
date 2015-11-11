@@ -230,6 +230,7 @@
     "Introduction": "说明",
     "Non-working Days": "非工作日",
     "Go Complete Profile": "完善资料",
+    "Modify Profile":"修改资料",
     "Quit": "放弃",
     "Bad Attitude": "态度恶劣，出现侮辱性语言",
     "Cheating": "欺骗行为",
@@ -252,5 +253,7 @@
     "Account holder": "开户人",
     "Status": "状态",
     "Audit pass, transfer": "审核通过，已转账",
-    "Withdrawal time": "提现时间"
+    "Withdrawal time": "提现时间",
+    "Edit":"编辑",
+    "Close":"关闭"
 }

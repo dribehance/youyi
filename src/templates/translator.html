@@ -55,14 +55,13 @@
                     </div>
                 </div>
                 <div class="list-group-item">
-                    <span class="text-small">{{"Personal Identity" | translate}}：{{authens.length}}</span>
-                    <div class="btn-group justified text-left">
-                        <span ng-if="translator.identity_front !=''"><i class="kk kk-40 kk-authen-1"></i></span>
-                        <span ng-if="translator.language_identity !=''"><i class="kk kk-40 kk-authen-2" ></i></span>
-                        <span ng-if="translator.profession_identity"><i class="kk kk-40 kk-authen-3" ></i></span>
-                        <span ng-if="translator.advanced_identity !=''"><i class="kk kk-40 kk-authen-4" ></i></span>
+                    <span class="text-small">{{"Personal Identity" | translate}}：({{authen_count}})</span>
+                    <div class="row">
+                        <span class="col-xs-4" ng-if="translator.identity_status =='3'"><i class="kk kk-40 kk-authen-1"></i></span>
+                        <span class="col-xs-4" ng-if="pass_language_authen"><i class="kk kk-40 kk-authen-2" ></i></span>
+                        <span class="col-xs-4" ng-if="pass_industry_authen"><i class="kk kk-40 kk-authen-3" ></i></span>
                     </div>
-                    <div class="text-right" ng-show="authens.length >0" ui-turn-on="authen_panel">
+                    <div class="text-right" ng-show="pass_language_authen || pass_industry_authen" ui-turn-on="authen_panel">
                         {{"Preview Detail" | translate}}
                     </div>
                 </div>

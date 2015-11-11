@@ -204,25 +204,25 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         $scope.loadMore();
     });
     // price
-    var price_by_hour = [{
-        unit: "CNY",
-        range: "0-100"
-    }, {
-        unit: "CNY",
-        range: "100-200"
-    }, {
-        unit: "CNY",
-        range: "200-300"
-    }, {
-        unit: "CNY",
-        range: "300-400"
-    }, {
-        unit: "CNY",
-        range: "400-500"
-    }, {
-        unit: "CNY",
-        range: "500以上"
-    }];
+    // var price_by_hour = [{
+    //     unit: "CNY",
+    //     range: "0-100"
+    // }, {
+    //     unit: "CNY",
+    //     range: "100-200"
+    // }, {
+    //     unit: "CNY",
+    //     range: "200-300"
+    // }, {
+    //     unit: "CNY",
+    //     range: "300-400"
+    // }, {
+    //     unit: "CNY",
+    //     range: "400-500"
+    // }, {
+    //     unit: "CNY",
+    //     range: "500以上"
+    // }];
     var price_by_day = [{
         unit: "CNY",
         range: "0-1000"
@@ -242,9 +242,10 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         unit: "CNY",
         range: "5000以上"
     }]
-    $scope.prices = price_by_hour;
-    $scope.price_tab = {};
-    $scope.price_tab.name = "by_hour";
+    // $scope.prices = price_by_hour;
+    $scope.price = price_by_day;
+    // $scope.price_tab = {};
+    // $scope.price_tab.name = "by_hour";
     $scope.choosen.price = {
         range: ""
     };
@@ -265,16 +266,16 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         });
         $scope.loadMore();
     })
-    $scope.$watch("price_tab.name", function(n, o) {
-        if (n === undefined || o === undefined) {
-            return;
-        }
-        if (n == "by_hour") {
-            $scope.prices = price_by_hour;
-        } else {
-            $scope.prices = price_by_day
-        }
-    });
+    // $scope.$watch("price_tab.name", function(n, o) {
+    //     if (n === undefined || o === undefined) {
+    //         return;
+    //     }
+    //     if (n == "by_hour") {
+    //         $scope.prices = price_by_hour;
+    //     } else {
+    //         $scope.prices = price_by_day
+    //     }
+    // });
     // category
     taskServices.category().then(function(data) {
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {

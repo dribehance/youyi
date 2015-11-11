@@ -4,7 +4,8 @@ var recommandsController = function($scope,$routeParams,$location, taskServices,
     $scope.page = {
         number: 1,
         page_size: 10,
-        message: "Load More"
+        message: "Load More",
+        task_id:$routeParams.task_id
     }
     $scope.page = angular.extend({}, $scope.page, localStorageService.get("recommand"))
     $scope.loadMore = function() {
@@ -31,7 +32,7 @@ var recommandsController = function($scope,$routeParams,$location, taskServices,
     }
     $scope.loadMore();
     $scope.apply = function(recommend) {
-        if (recommend != "0") {
+        if (recommend.apply_status != "0") {
             return;
         }
         toastServices.show();

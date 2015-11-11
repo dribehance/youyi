@@ -247,13 +247,23 @@
                     <h4 class="modal-title text-center">{{"Edit"|translate}}</h4>
                 </div>
                 <div class="modal-body">
-                    <textarea class="form-control" placeholder="{{'Please enter' | translate}}" ng-model="input.editable_content" name="edit" required ng-if="input.editable_key != 'pay_day'"></textarea>
+                    <div class="section bg-transparent" ng-if="input.editable_key != 'pay_day'">
+                        <p>请介绍自己，如专长、特点等，让别人更快认识你。</p>
+                        也请描述下：
+                        <ul>
+                            <li>每日服务时长，是否有超时收费；</li>
+                            <li>接受哪些地区的任务；</li>
+                            <li>是否提供如包车、接机等其他服务，以及其他服务的额外收费；</li>
+                            <li>其他特别提示，也请注明。</li>
+                        </ul>
+                    </div>
+                    <textarea class="form-control" placeholder="{{'Please enter' | translate}}" ng-model="input.editable_content" name="edit" rows="10" required ng-if="input.editable_key != 'pay_day'"></textarea>
                     <input class="form-control" type="number" placeholder="{{'Please enter' | translate}}" name="salary" ng-model="input.editable_content" required ng-if="input.editable_key == 'pay_day'">
-                    <span class="text-primary" ng-show="editForm.salary.$invalid && editForm.salary.$dirty">必填,数字</span>
+                    <!-- <span class="text-primary" ng-show="editForm.salary.$invalid && editForm.salary.$dirty">必填,数字</span> -->
                 </div>
                 <div class="modal-footer">
-                    <button ui-turn-off="editable_panel" class="btn btn-default">取消</button>
-                    <button type="submit" class="btn btn-primary" ng-disabled="editForm.edit.$invalid">保存</button>
+                    <button ui-turn-off="editable_panel" class="btn btn-default">{{"Cancel"|translate}}</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="editForm.edit.$invalid">{{"Save" |translate}}</button>
                 </div>
             </div>
         </form>
@@ -269,7 +279,7 @@
                     <h4 class="modal-title text-center">{{"Add Experience" | translate}}</h4>
                 </div>
                 <div class="modal-body">
-                    <textarea class="form-control" placeholder="{{'Please enter' | translate}}" name="experience" ng-model="input.experience" required></textarea>
+                    <textarea class="form-control" placeholder="{{'Please enter' | translate}}" name="experience" rows="10" ng-model="input.experience" required></textarea>
                 </div>
                 <div class="modal-footer">
                     <button ui-turn-off="create_panel" class="btn btn-default">{{"Cancel"|translate}}</button>

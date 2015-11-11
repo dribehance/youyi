@@ -26,8 +26,9 @@
                         </div>
                         <div class="pull-right">
                             <!-- ng-href="#/apply_flow" -->
-                            <a ng-click="apply(recommand.user_id)" class="btn btn-default">
-                                <i class="kk kk-accept" ng-class="{'active':recommand.status == '1'}"></i> {{"Apply" | translate}}
+                            <a ng-click="apply(recommand)" class="btn btn-default">
+                                <i class="kk kk-accept" ng-class="{'active':recommand.status == '1'}"></i>
+                                {{recommand.apply_message}}
                             </a>
                         </div>
                     </div>

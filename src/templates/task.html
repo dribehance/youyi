@@ -38,8 +38,12 @@
 					</div>
 					<div style="padding-bottom:8px;">
 						<p>{{task.start_time}} {{"To"|translate}}</p>
-						{{task.end_time}}
+						<p>{{task.end_time}}</p>
+						<span class="text-danger">
+							{{task.date_message}}
+						</span>
 					</div>
+
 					<div class="kk-line kk-horizon bg-gray-lighter"></div>
 				</div>
             </div>

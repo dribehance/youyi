@@ -27,7 +27,7 @@
                     </select>
                 </div>
                 <div class="text-right section large bg-transparent" style="margin-top:150px">
-                    <button type="button" class="btn btn-success" ng-disabled="!(choosen_language.to && choosen_language.from)" ui-set="{step:2}">{{"Next" | translate}}</button>
+                    <button type="button" class="btn btn-success" ng-disabled="!(choosen_language.to && choosen_language.from) || choosen_language.to == choosen_language.from" ui-set="{step:2}">{{"Next" | translate}}</button>
                 </div>
             </div>
             <!-- step 2 -->
@@ -121,7 +121,7 @@
                             <!-- <span class="semi-fixed-left semi-wide-40 text-center">
                                 <i class="kk kk-25 kk-checked" ng-class="{'active':input.price !=''}"></i>
                             </span> -->
-                            <input type="number" class="form-control rectangle youyi-flat-input text-right" name="price" ng-model="input.price" placeholder="{{'Please enter' | translate}}" required>
+                            <input type="number" class="form-control rectangle youyi-flat-input text-right" name="price" ng-model="input.price" min="1" placeholder="{{'Please enter' | translate}}" required>
                             <span class="semi-fixed-right semi-wide-40 text-center">
                                 <span class="btn">/{{"Day" | translate}}</span>
                             </span>
@@ -145,7 +145,7 @@
                     </div>
                 </div>
                 <div class="kk-line kk-5 kk-horizon"></div>
-                <div class="section large">
+                <!-- <div class="section large">
                     <div class="semi-auto semi-left-40">
                         <div class="semi-fixed-left">
                             <div class="section section-wide text-ellipsis">
@@ -155,10 +155,18 @@
                         <div>
                             <input type="text" class="form-control youyi-flat-input text-right" name="content" ng-model="input.content" required placeholder="{{'Please enter' | translate}}">
                         </div>
-                        <!-- <div class="semi-fixed-right semi-wide-40">
-                            <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
-                        </div> -->
                     </div>
+                </div> -->
+                <div class="section large">
+                    {{"Task Details" | translate}}<span class="text-danger">*</span>
+                </div>
+                <div class="kk-line kk-5 kk-horizon"></div>
+                <div class="section large">
+                    <textarea name="content" cols="30" rows="10" class="form-control" ng-model="input.content" required placeholder="{{'Please enter' | translate}}"></textarea>
+                </div>
+                <div class="section large bg-transparent">
+                    请详细描述任务的内容，行程和要求；是否需其他服务（例如，接送机或包车等）。
+                    <p> 注意：其他服务所产生的开销和其他额外花费（例如，景点门票或跨城市交通等）不包含在翻译任务价钱中，并应由任务发布人承担，请待任务确认后自行与翻译者商讨。</p>
                 </div>
                 <div class="section large bg-transparent">
                     <button type="button" class="btn btn-default pull-left" ui-set="{step:1}">{{"Previous" | translate}}</button>
@@ -270,6 +278,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="section bg-transparent">
+                    <p>敬请留意：</p>
+                    <p>悠译仅提供平台，不是服务提供商，悠译并不参与当地服务供应，请用户自行甄别和选择，悠译概不负责。如行程中有未注明的非自愿活动或购物，请举报。</p>
                 </div>
                 <div class="section large bg-transparent">
                     <button type="button" class="btn btn-default pull-left" ui-set="{step:2}">{{"Previous" | translate}}</button>
