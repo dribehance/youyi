@@ -1,19 +1,19 @@
 // by dribehance <dribehance.kksdapp.com>
 var reportController = function($scope, $routeParams, errorServices, toastServices, localStorageService, config) {
     $scope.reports = [{
-        title: "态度恶劣，出现侮辱性语言",
+        title: "Bad Attitude",
         selected: true,
         type: 1,
     }, {
-        title: "欺骗行为",
+        title: "Cheating",
         selected: false,
         type: 2,
     }, {
-        title: "侵犯行为",
+        title: "Infringement",
         selected: false,
         type: 3,
     }, {
-        title: "其他原因",
+        title: "Other Reasons",
         selected: false,
         type: 4,
     }];

@@ -17,7 +17,7 @@
             <p>{{"Due Bank"|translate}}：<span class="text-gray-light">{{record.bank}}</span></p>
             <p>{{"Due Bank Card"|translate}}：<span class="text-gray-light">{{record.bankcard}}</span></p>
             <p>{{"Account holder"|translate}}：<span class="text-gray-light">{{record.nickname}}</span></p>
-            <p ng-show="{{record.status == '1'}}">{{"Status"|translate}}：<span class="text-danger">{{"In the audit"}}</span></p>
+            <p ng-show="{{record.status == '1'}}">{{"Status"|translate}}：<span class="text-danger">{{"In the audit"|translate}}</span></p>
             <p ng-show="{{record.status == '2'}}">{{"Status"|translate}}：<span class="text-danger">{{"Audit pass, transfer"|translate}}</span></p>
             <p ng-show="{{record.status == '2'}}">{{"Withdrawal time"|translate}}：{{record.pay_time}}</p>
         </div>

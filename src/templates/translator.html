@@ -9,18 +9,19 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="translator-cover">
-            <div class="tranlator-intro-bg"></div>
-            <imageview data-rate="750/422" src="staticImageUrl+translator.bg_image"></imageview>
-            <div class="translator-info left">
-                <span class="h3 block">
+            <imageview data-rate="auto" src="staticImageUrl+translator.bg_image"></imageview>
+            <div class="tranlator-intro-bg">
+                <div class="translator-info left">
+                    <span class="h3 block">
                     {{translator.nickname}}
                     <i class="kk kk-icon" ng-class="{'kk-male':translator.gender=='1','kk-female':translator.gender !='1'}"></i>
                 </span>
-                <span class="block">{{"Followed by XXX" | translate:translate_with_value(translator.foucus_count)}}</span>
-            </div>
-            <div class="translator-info right">
-                <span class="block">{{translator.profession}}</span>
-                <span class="block">{{"Place" | translate}}：{{translator.address}}</span>
+                    <span class="block">{{"Followed by XXX" | translate:translate_with_value(translator.foucus_count)}}</span>
+                </div>
+                <div class="translator-info right">
+                    <span class="block">{{translator.profession}}</span>
+                    <span class="block">{{"Place" | translate}}：{{translator.address}}</span>
+                </div>
             </div>
             <div class="translator-avatar">
                 <img ng-src="{{staticImageUrl + translator.avatar || '../images/avatar_1.png'}}" err-src="../images/avatar_1.png" alt="">

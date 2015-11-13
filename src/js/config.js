@@ -1,6 +1,6 @@
 angular.module("Youyi").constant("config", {
-    url: "http://120.24.237.130:8080",
-    imageUrl: "http://120.24.237.130:8080/files/image?name=",
+    url: "http://120.24.237.130",
+    imageUrl: "http://120.24.237.130/files/image?name=",
     request: {
         "SUCCESS": "200",
         "TOKEN_INVALID": "405"

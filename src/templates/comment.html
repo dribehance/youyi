@@ -43,19 +43,19 @@
                 <div class="row" style="margin-bottom:8px">
                     <div class="col-xs-3">{{"Service Attitude" | translate}}</div>
                     <div class="col-xs-9">
-                        <i class="fa fa-star text-gray-light" ng-repeat="s in fiveStar() track by $index" ng-click="rate('service',$index)" ng-class="{'text-primary':!(input.star.service<$index)}"></i>
+                        <i class="fa fa-star text-gray-light text-large" style="padding-right:8px" ng-repeat="s in fiveStar() track by $index" ng-click="rate('service',$index)" ng-class="{'text-primary':!(input.star.service<$index)}"></i>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:8px">
                     <div class="col-xs-3">{{"Proficiency" | translate}}</div>
                     <div class="col-xs-9">
-                        <i class="fa fa-star text-gray-light" ng-repeat="s in fiveStar() track by $index" ng-click="rate('profession',$index)" ng-class="{'text-primary':!(input.star.profession<$index)}"></i>
+                        <i class="fa fa-star text-gray-light text-large" style="padding-right:8px" ng-repeat="s in fiveStar() track by $index" ng-click="rate('profession',$index)" ng-class="{'text-primary':!(input.star.profession<$index)}"></i>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-3">{{"Language Skill" | translate}}</div>
                     <div class="col-xs-9">
-                        <i class="fa fa-star text-gray-light" ng-repeat="s in fiveStar() track by $index" ng-click="rate('language',$index)" ng-class="{'text-primary':!(input.star.language<$index)}"></i>
+                        <i class="fa fa-star text-gray-light text-large" style="padding-right:8px" ng-repeat="s in fiveStar() track by $index" ng-click="rate('language',$index)" ng-class="{'text-primary':!(input.star.language<$index)}"></i>
                     </div>
                 </div>
             </div>

@@ -61,7 +61,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
     });
     // get location;
     $scope.choosen.city = {
-        country: "Please Choose",
+        country: "",
         name: "",
     };
     taskServices.location().then(function(data) {
@@ -77,7 +77,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
     // },true)
     $scope.next = function(step) {
         if ($scope.input.from_date == null || $scope.input.from_time == null || $scope.input.to_date == null || $scope.input.to_time == null) {
-            errorServices.autoHide("请选择时间");
+            // errorServices.autoHide("请选择时间");
             return;
         }
         var input = {

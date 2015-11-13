@@ -7,18 +7,24 @@ angular.module("Youyi").directive('imageview', function() {
         },
         template: "<img ng-src='{{src}}'>",
         link: function(scope, element, attrs) {
-            var rate = parseFloat(scope.$eval($(element).attr('data-rate')));
+            var rate = parseFloat(scope.$eval($(element).attr('data-rate'))) || "auto";
             var style = {
                 display: "block",
                 width: $(element).width() || $(window).width(),
-                height: ($(element).width() || $(window).width()) / rate,
                 overflow: "hidden",
                 "text-align":"center",
-                "line-height":($(element).width() || $(window).width()) / rate +"px",
                 "background-image": "url('../images/banner_1.png')",
-                "background-size":"100%",
+                // "background-size":"100%",
                 "background-position":"center center",
-                "background-repeat":"no-repeat"
+                "background-repeat":"repeat"
+            }
+            if (rate == 'auto') {
+                style["line-height"] = ($(element).width() || $(window).width()) / 2 +"px";
+                style["min-height"] = ($(element).width() || $(window).width()) / 2;
+            }
+            else {
+                style["line-height"] = ($(element).width() || $(window).width()) / rate +"px";
+                style["height"] = ($(element).width() || $(window).width()) / rate;
             }
             $(element).css(style);
         }

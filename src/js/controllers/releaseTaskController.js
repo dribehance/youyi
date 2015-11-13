@@ -9,7 +9,7 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
         category: {},
         price: "",
         total: 0,
-        address: "Please Choose",
+        address: "Please choose",
         content: "",
         other: "",
         from_date_options: {
@@ -57,7 +57,7 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
     });
     // get location;
     $scope.choosen.city = {
-        country: "Please Choose",
+        country: "",
         name: "",
     };
     taskServices.location().then(function(data) {

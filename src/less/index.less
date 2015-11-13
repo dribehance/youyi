@@ -308,16 +308,19 @@
     margin-bottom: 50px;
     background-color: rgb(166, 208, 122);
     .translator-info {
-        position: absolute;
+        // position: absolute;
         bottom: 0;
         padding: 8px;
         color: white;
+        width: 114px;
     }
     .left {
-        left: 0;
+        float: left;
     }
     .right {
         right: 0;
+        position: absolute;
+        float: right;
         text-align: right;
     }
     .translator-avatar {
@@ -335,13 +338,13 @@
     }
     .translator-bg {
         display: block;
-        height: 158px;
-        line-height: 158px;
+        // min-height: 158px;
+        // line-height: 158px;
         overflow: hidden;
         text-align: center;
         img {
             min-width: 300px;
-            min-height: 300px;
+            min-height: 180px;
             max-width: 100%;
         }
     }
@@ -350,7 +353,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        height: 67px;
+        // height: 67px;
         background-color: fade(@gray-base, 50%);
     }
 }
@@ -544,4 +547,7 @@
 
 .authen-status-2 {
     color: @brand-warning;
+}
+.modal-header .pull-left {
+    padding-right:20px;
 }

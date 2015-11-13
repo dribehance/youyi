@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div>
-                            <input type="text" class="form-control youyi-flat-input text-right" name="title" ng-model="input.title" required placeholder="{{'Please fill title' | translate}}">
+                            <input type="text" class="form-control youyi-flat-input text-right" name="title" ng-model="input.title" required placeholder="{{'Please enter Title' | translate}}">
                         </div>
                         <!-- <div class="semi-fixed-right semi-wide-40">
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
@@ -130,7 +130,7 @@
                     </div>
                 </div>
                 <div class="kk-line kk-5 kk-horizon"></div>
-                <div class="section large">
+                <!-- <div class="section large">
                     <div class="semi-auto semi-icon-bar">
                         <div class="semi-fixed-left">
                             <div class="section section-wide">
@@ -144,6 +144,16 @@
                             <span class="btn"><i class="fa fa-chevron-right text-gray-light"></i></span>
                         </div>
                     </div>
+                </div> -->
+                <div class="section large">
+                    {{"Task Details" | translate}}<span class="text-danger">*</span>
+                </div>
+                <div class="kk-line kk-5 kk-horizon"></div>
+                <div class="section large">
+                    <textarea name="content" cols="30" rows="10" class="form-control" ng-model="input.content" required placeholder="{{'Please enter' | translate}}"></textarea>
+                </div>
+                <div class="section large bg-transparent">
+                    {{"Please describe the task details, schedule, and requirements. If there is any request for other service (e.g. airport pick-up or vehicle), please specify.Note: any fee caused by other services and any additional fees(e.g.tickets for resorts, or intra - city transportation, etc.) are not included in the interpretering fee,and should be paid by the task owner.Please negotiate details with the interpreter after the task is confirmed."|translate}}
                 </div>
                 <div class="section large bg-transparent">
                     <button type="button" class="btn btn-default pull-left" ui-set="{step:1}">{{"Previous" | translate}}</button>
@@ -215,10 +225,21 @@
                     <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80">
                             <div class="semi-fixed-left text-center">
-                                {{"Total price" | translate}}：
+                                {{"Total Price" | translate}}：
                             </div>
                             <div style="padding-bottom:8px;">
                                 {{input.total_money_symbol}}{{input.total}}
+                            </div>
+                            <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                        </div>
+                    </div>
+                    <div class="section large" style="padding-bottom:0">
+                        <div class="semi-auto semi-left-80">
+                            <div class="semi-fixed-left text-center">
+                                {{"Introduction" | translate}}：
+                            </div>
+                            <div style="padding-bottom:8px;">
+                                {{input.total_money_message}}
                             </div>
                             <div class="kk-line kk-horizon bg-gray-lighter"></div>
                         </div>
@@ -244,6 +265,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="section bg-transparent">
+                    <p>{{"Important Notice"|translate}}：</p>
+                    {{"UE Lives provides this platform to facilitate transaction, but we are not a local service provider and do not provide local services. Users should select services wisely. UE Lives is not responsible for any lost. If there is any charge for non-voluntary activities or shopping, please report to us."|translate}}
                 </div>
                 <div class="section large bg-transparent">
                     <button type="button" class="btn btn-default pull-left" ui-set="{step:2}">{{"Previous" | translate}}</button>

@@ -23,18 +23,18 @@
             <div class="list-group-item clearfix kk-input-group">
                 <span class="btn col-xs-3 section-wide text-left">{{"Bank Account No." | translate}}</span>
                 <span class="col-xs-9 section-wide">
-                    <input type="text" name="bank_cardno" class="form-control youyi-flat-input col-xs-8" placeholder="请输入银行卡号" ng-model="input.bank_cardno" required>
+                    <input type="text" name="bank_cardno" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Please enter'|translate}}" ng-model="input.bank_cardno" required>
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
                 <span class="btn col-xs-3 section-wide text-left">{{"Cardholder Name" | translate}}</span>
                 <span class="col-xs-9 section-wide">
-                    <input type="text" name="realname" class="form-control youyi-flat-input col-xs-8" placeholder="请输入开户人姓名" ng-model="input.realname" required>
+                    <input type="text" name="realname" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Please enter'|translate}}" ng-model="input.realname" required>
                 </span>
             </div>
         </div>
         <p class="section large bg-transparent">
-            {{"Once your application is approved, money will be transferred to you account after 2-3 working days. Any inquiries, Pls. Contact xxxx" | translate}}
+            {{"Once your application is approved, money will be transferred to you account after 2-3 working days. Any inquiries, Pls. Contact xxxx" | translate:translate_with_value('+86 13691856695')}}
         </p>
         <p class="section large bg-transparent" ng-if="wallet.is_setPayPwd == 0">
             <button type="button" class="btn bg-gray block full-width text-white">{{"Please Set Transaction Password First" | translate}}</button>

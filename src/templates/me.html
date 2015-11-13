@@ -7,15 +7,16 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="translator-cover" ng-click="go('/me_info')">
-            <div class="tranlator-intro-bg"></div>
-            <imageview data-rate="750/422" src="staticImageUrl + user.bg_image"></imageview>
-            <div class="translator-info left">
-                <span class="h3 block">{{user.nickname || user.telephone || user.email}}<i class="kk kk-icon" ng-class="{'kk-male':user.gender=='1','kk-female':user.gender !='1'}"></i></span>
-                <span class="block">{{"Followed by XXX" | translate:translate_with_value(user.foucus_count)}}</span>
-            </div>
-            <div class="translator-info right">
-                <span class="block">{{user.profession}}</span>
-                <span class="block">{{user.country + user.city}}</span>
+            <imageview data-rate="auto" src="staticImageUrl + user.bg_image"></imageview>
+            <div class="tranlator-intro-bg">
+                <div class="translator-info left">
+                    <span class="h3 block">{{user.nickname || user.telephone || user.email}}<i class="kk kk-icon" ng-class="{'kk-male':user.gender=='1','kk-female':user.gender !='1'}"></i></span>
+                    <span class="block">{{"Followed by XXX" | translate:translate_with_value(user.foucus_count)}}</span>
+                </div>
+                <div class="translator-info right">
+                    <span class="block">{{user.profession}}</span>
+                    <span class="block">{{user.country + user.city}}</span>
+                </div>
             </div>
             <div class="translator-avatar">
                 <img ng-src="{{staticImageUrl + user.avatar || '../images/avatar_1.png'}}" err-src="../images/avatar_1.png" class="block full-width" alt="">
@@ -82,7 +83,7 @@
                 </div>
                 <div class="pull-right">
                     <span class="btn btn-danger bg-white text-danger section section-condensed" ng-if="user.translate_types.length>1" ng-click="removeTranslateType(translate_type)">
-                        {{"remove"|translate}}
+                        {{"Remove"|translate}}
                     </span>
                 </div>
             </div>
@@ -209,7 +210,7 @@
                 </div>
                 <div class="pull-right" ng-click="removeTranslateExperience(translate_experience)">
                     <span class="btn btn-danger bg-white text-danger section section-condensed">
-                        {{"remove"|translate}}
+                        {{"Remove"|translate}}
                     </span>
                 </div>
             </div>
@@ -248,13 +249,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="section bg-transparent" ng-if="input.editable_key != 'pay_day'">
-                        <p>请介绍自己，如专长、特点等，让别人更快认识你。</p>
-                        也请描述下：
+                        <p>{{"Please introduce yourself briefly, e.g. your skills and speciality, to let others know more about you."|translate}}</p>
+                        {{"Kindly describe"|translate}}：
                         <ul>
-                            <li>每日服务时长，是否有超时收费；</li>
-                            <li>接受哪些地区的任务；</li>
-                            <li>是否提供如包车、接机等其他服务，以及其他服务的额外收费；</li>
-                            <li>其他特别提示，也请注明。</li>
+                            <li>{{"working hours, and whether there is charge for extra hour(s);"|translate}}</li>
+                            <li>{{"working areas (which city/cities);"|translate}}</li>
+                            <li>{{"other services available, such as vehicle, airport pick-up/deliver, and etc., and the charges accordingly;"|translate}}</li>
+                            <li>{{"other remarks, please sepcify."|translate}}</li>
                         </ul>
                     </div>
                     <textarea class="form-control" placeholder="{{'Please enter' | translate}}" ng-model="input.editable_content" name="edit" rows="10" required ng-if="input.editable_key != 'pay_day'"></textarea>

@@ -34,15 +34,16 @@ var commentController = function($scope, $rootScope, $routeParams, commentServic
         $scope.input.level = level;
     }
     $scope.rate = function(name, index) {
+        console.log(index)
         switch (name) {
             case "service":
-                $scope.input.star.service = index + 1;
+                $scope.input.star.service = index ;
                 break;
             case "profession":
-                $scope.input.star.profession = index + 1;
+                $scope.input.star.profession = index;
                 break;
             case "language":
-                $scope.input.star.language = index + 1;
+                $scope.input.star.language = index;
                 break;
             default:
                 ;
