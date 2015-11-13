@@ -34,7 +34,6 @@ var commentController = function($scope, $rootScope, $routeParams, commentServic
         $scope.input.level = level;
     }
     $scope.rate = function(name, index) {
-        console.log(index)
         switch (name) {
             case "service":
                 $scope.input.star.service = index ;
@@ -90,12 +89,12 @@ angular.module("Youyi").controller("commentUploadController", function($rootScop
 
         }
         toastServices.show();
-        errorServices.show("上传中");
+        errorServices.show("....");
         flow.upload();
     };
     $scope.$on("flow::fileSuccess", function(file, message, chunk) {
         toastServices.hide();
-        errorServices.autoHide("上传成功");
+        // errorServices.autoHide("上传成功");
         $rootScope.back();
     })
 });

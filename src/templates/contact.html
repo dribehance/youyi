@@ -18,7 +18,7 @@
                     <label class="btn btn-default text-ellipsis" ng-class="{'active':input.issue == '4'}"><input type="radio" class="hide" ng-model="input.issue" value="4">{{"Others"| translate}}</label>
                 </p>
                 <p>
-                    <textarea class="form-control" rows="10" placeholder="{{ 'Please briefly describe your business and advertisement needs here. We will get back to you soon.'| translate}}" name="issue_content" ng-model="input.content" required></textarea>
+                    <textarea class="form-control" rows="10" placeholder="{{ 'Any questions, suggestions, or problems can be input here, we will get back to you soon!'| translate}}" name="issue_content" ng-model="input.content" required></textarea>
                 </p>
                 <button type="submit" class="btn btn-primary full-width" ng-disabled="contactForm.$invalid">{{"Confirm" | translate}}</button>
             </form>
