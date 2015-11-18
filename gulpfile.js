@@ -175,7 +175,7 @@ gulp.task('fonts', function() {
 gulp.task('html', function() {
     var inject = [];
     if (typeof config.weinre === 'object') {
-        inject.push('<script src="http://' + config.weinre.boundHost + ':' + config.weinre.httpPort + '/target/target-script-min.js"></script>');
+        // inject.push('<script src="http://' + config.weinre.boundHost + ':' + config.weinre.httpPort + '/target/target-script-min.js"></script>');
     }
     if (config.cordova) {
         inject.push('<script src="cordova.js"></script>');
@@ -264,8 +264,8 @@ gulp.task('watch', function() {
 
 gulp.task('weinre', function() {
     if (typeof config.weinre === 'object') {
-        var weinre = require('./node_modules/weinre/lib/weinre');
-        weinre.run(config.weinre);
+        // var weinre = require('./node_modules/weinre/lib/weinre');
+        // weinre.run(config.weinre);
     } else {
         throw new Error('Weinre is not configured');
     }

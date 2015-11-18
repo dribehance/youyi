@@ -234,22 +234,22 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
     // }];
     var price_by_day = [{
         unit: "CNY",
-        range: "0-1000"
+        range: "0-500"
     }, {
         unit: "CNY",
-        range: "1000-2000"
+        range: "500-1000"
     }, {
         unit: "CNY",
-        range: "2000-3000"
+        range: "1000-1500"
     }, {
         unit: "CNY",
-        range: "3000-4000"
+        range: "1500-2000"
     }, {
         unit: "CNY",
-        range: "4000-5000"
+        range: "2000-2500"
     }, {
         unit: "CNY",
-        range: "5000以上"
+        range: "2500以上"
     }]
     // $scope.prices = price_by_hour;
     $scope.prices = price_by_day;

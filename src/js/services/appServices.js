@@ -1,6 +1,6 @@
  // by dribehance <dribehance.kksdapp.com>
  // EventHandle
- angular.module("Youyi").factory("appServices", function($rootScope, $window, $location, $translate, localStorageService, userServices, errorServices, toastServices, config) {
+ angular.module("Youyi").factory("appServices", function($rootScope, $window, $location, $translate, $timeout, localStorageService, userServices, errorServices, toastServices, config) {
      var routeChangeStart = function(e) {
          // do something white routechangestart,eg:
          // toastServices.show();
@@ -9,6 +9,8 @@
          // do something white routechangesuccess,eg:
          toastServices.hide();
          errorServices.hide();
+         $rootScope.current_path = $location.path();
+         console.log($rootScope.current_path)
          navBarHandler(e, currentRoute, prevRoute);
      }
      var routeChangeError = function(e, currentRoute, prevRoute) {
@@ -85,6 +87,12 @@
                  return {
                      value: translate_value
                  };
+             };
+             // jump to
+             $rootScope.to = function(path) {
+                 $timeout(function() {
+                     $location.path(path)
+                 }, 0)
              }
          }
      }

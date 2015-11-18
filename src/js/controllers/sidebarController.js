@@ -20,9 +20,8 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
     $scope.state = [];
     $scope.prev = function() {
         $scope.state = $scope.state.slice(0,$scope.state.length-1)
-        var state = $scope.state.pop();
-        if (!state) state = "entrance";
-        $scope.sidebar.current = state;
+        // var state = $scope.state.pop();
+        $scope.sidebar.current = $scope.state[$scope.state.length-1] || "entrance";
         $timeout(function() {
             SharedState.turnOn("uiSidebarLeft")
         }, 0)
@@ -205,10 +204,4 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
             angular.element("#kkcountdown")[0].resume();
         }
     })
-    $scope.to = function(path) {
-
-        $timeout(function() {
-            $location.path(path)
-        }, 0)
-    }
 })
