@@ -262,5 +262,15 @@
     "working hours, and whether there is charge for extra hour(s);": "메일 서비스 기간. 추가 시간당 요금;",
     "working areas (which city/cities);": "서비스 구역 (도시/지역);",
     "other services available, such as vehicle, airport pick-up/deliver, and etc., and the charges accordingly;": "기타 제공 서비스 (예. 렌터카, 공항픽업 등 서비스), 및 별도 서비스 요금;",
-    "other remarks, please sepcify.": "기타 특별주의사항을 표시하시기 바랍니다."
+    "other remarks, please sepcify.": "기타 특별주의사항을 표시하시기 바랍니다.",
+    "Area of expertise": "전문 분야",
+    "Language Level": "언어수준",
+    "Comments Count": "개인 평가",
+    "No Comments Submitted yet": "코멘트는 아직 제출",
+    "Upload at Least One Photo": "적어도 올린 사진 한 장",
+    "Pls. Enter description here": "설명을 입력하십시오",
+    "Submit to Authentication": "업로드 확인",
+    "Information Authentication will be finish in two day": "인증 정보를 에 이틀 내에 완성할 수 있을 것이다",
+    "Not Create,Back": "아니, 돌아 가기",
+    "Create": "만들기"
 }

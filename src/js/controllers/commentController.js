@@ -57,14 +57,16 @@ var commentController = function($scope, $rootScope, $routeParams, commentServic
         return tag;
     }
 }
-angular.module("Youyi").controller("commentUploadController", function($rootScope, $scope, errorServices, toastServices, localStorageService, config) {
+angular.module("Youyi").controller("commentUploadController", function($rootScope,$filter, $scope, errorServices, toastServices, localStorageService, config) {
     $scope.releaseComment = function(flow) {
         if ($scope.input.note == "") {
-            errorServices.autoHide("还未填写评价内容哦");
+            var tip = $filter("translate")("No Comments Submitted yet");
+            errorServices.autoHide(tip);
             return;
         }
         if (flow.files.length == 0) {
-            errorServices.autoHide("至少上传一张图片");
+            tip = $filter("translate")("Upload at Least One Photo");
+            errorServices.autoHide(tip);
             return;
         }
         $scope.input.tags = $scope.tags.filter(function(tag) {
