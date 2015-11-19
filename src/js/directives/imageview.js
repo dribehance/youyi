@@ -21,6 +21,7 @@ angular.module("Youyi").directive('imageview', function() {
             if (rate == 'auto') {
                 style["line-height"] = ($(element).width() || $(window).width()) / 2 +"px";
                 style["min-height"] = ($(element).width() || $(window).width()) / 2;
+                $(element).find("img").css({"width":"100%"})
             }
             else {
                 style["line-height"] = ($(element).width() || $(window).width()) / rate +"px";

@@ -9,17 +9,14 @@
         <div class="section large m" ng-repeat="record in records">
             <p>{{"Withdraw Notice" | translate}}</p>
             <p>{{record.post_time}}</p>
-            <div class="section section-wide">
-                dribehanceLorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero rerum alias libero dolores, ea, nihil culpa excepturi a nobis aspernatur officia eligendi, quaerat ut laborum, nostrum. Aspernatur doloribus, iure accusamus.
-            </div>
             <div class="section"></div>
             <p>{{"Withdraw Money" | translate}}：<span class="text-danger">{{record.currency_type}}{{record.money}}</span></p>
-            <p>{{"Due Bank"|translate}}：<span class="text-gray-light">{{record.bank}}</span></p>
-            <p>{{"Due Bank Card"|translate}}：<span class="text-gray-light">{{record.bankcard}}</span></p>
+            <p>{{"Bank Name"|translate}}：<span class="text-gray-light">{{record.bank}}</span></p>
+            <p>{{"Bank Account No."|translate}}：<span class="text-gray-light">{{record.bankcard}}</span></p>
             <p>{{"Account holder"|translate}}：<span class="text-gray-light">{{record.nickname}}</span></p>
             <p ng-show="{{record.status == '1'}}">{{"Status"|translate}}：<span class="text-danger">{{"In the audit"|translate}}</span></p>
             <p ng-show="{{record.status == '2'}}">{{"Status"|translate}}：<span class="text-danger">{{"Audit pass, transfer"|translate}}</span></p>
-            <p ng-show="{{record.status == '2'}}">{{"Withdrawal time"|translate}}：{{record.pay_time}}</p>
+            <p ng-show="{{record.status == '2'}}">{{"cash Time"|translate}}：{{record.pay_time}}</p>
         </div>
         <div class="section text-center m" ng-click="loadMore()">{{page.message | translate}}</div>
     </div>

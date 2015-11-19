@@ -40,6 +40,7 @@
             <span class="block">{{translator.return_language}}</span>
             <span class="block">{{"Place" | translate}}：{{translator.address}}</span>
             <span class="block text-ellipsis">{{translator.introduction}}</span>
+            <span class="block text-ellipsis" ng-if="translator.age_status == '1'">{{translator.age}}</span>
             </span>
         </a>
         <div class="section text-center m" ng-click="loadMore()">{{page.message | translate}}</div>

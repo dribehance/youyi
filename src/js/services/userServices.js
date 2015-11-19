@@ -272,6 +272,8 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
                         "is_men": input.gender,
                         "city_dict_group_id": input.city_dict_group_id,
                         "profession": input.profession,
+                        "age_status": input.age_status,
+                        "age_date": input.age_date
                     })
                 }).then(function(data) {
                     return data.data;

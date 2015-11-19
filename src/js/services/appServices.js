@@ -10,7 +10,6 @@
          toastServices.hide();
          errorServices.hide();
          $rootScope.current_path = $location.path();
-         console.log($rootScope.current_path)
          navBarHandler(e, currentRoute, prevRoute);
      }
      var routeChangeError = function(e, currentRoute, prevRoute) {
