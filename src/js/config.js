@@ -17,6 +17,17 @@ angular.module("Youyi").constant("config", {
         url: "http://dribehance.kksdapp.com",
     },
     common_params: {
-        invoke:"h5"
+        invoke: "h5"
     },
+    weixin: {
+        "base_url":"https://open.weixin.qq.com/connect/oauth2/authorize",
+        "access_token_url":"https://api.weixin.qq.com/sns/oauth2/access_token",
+        "userinfo_url":"https://api.weixin.qq.com/sns/userinfo",
+        "appid": "wxfc4845662ab85927",
+        "redirect_uri": "http://www.uelives.com/h5#/oauth",
+        "response_type": "code",
+        "scope": "snsapi_userinfo",
+        "state": "reject",
+        "wechat_redirect":"#wechat_redirect"
+    }
 });

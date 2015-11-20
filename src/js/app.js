@@ -11,7 +11,7 @@ angular.module("Youyi", [
         "ngSanitize",
         "angular-datepicker"
     ])
-    .config(function($routeProvider, $httpProvider, $translateProvider, localStorageServiceProvider) {
+    .config(function($routeProvider, $httpProvider, $translateProvider,$locationProvider, localStorageServiceProvider) {
         $routeProvider
             .when("/index", {
                 templateUrl: "home.html",
@@ -184,6 +184,11 @@ angular.module("Youyi", [
                 reloadOnSearch: false,
                 controller: searchTranslatorsController
             })
+            .when("/oauth",{
+                templateUrl:"oauth.html",
+                reloadOnSearch:true,
+                controller: oauthController
+            })
             .otherwise({
                 redirectTo: "/index"
             });
@@ -197,6 +202,7 @@ angular.module("Youyi", [
         // delete $httpProvider.defaults.headers.common["X-Requested-With"];
         // localStorageServiceProvider.setStorageCookie(1/50);
         $httpProvider.interceptors.push('tokenInterceptor');
+        // $locationProvider.html5Mode(true);
 
     }).run(function(appServices) {
         // init event such as routechangestart...

@@ -9,7 +9,8 @@
 
 var config = {
     dest: 'www',
-    cordova: true,
+    cordova: false,
+    weixin: true,
     less: {
         src: [
             './src/less/app.less'
@@ -180,6 +181,9 @@ gulp.task('html', function() {
     if (config.cordova) {
         inject.push('<script src="cordova.js"></script>');
     }
+    if (config.weixin) {
+        inject.push('<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>');
+    }
     gulp.src(['src/html/**/*.html'])
         .pipe(replace('<!-- inject:js -->', inject.join('\n    ')))
         .pipe(gulp.dest(config.dest));
@@ -277,7 +281,7 @@ gulp.task('weinre', function() {
 ======================================*/
 
 gulp.task('build', function(done) {
-    var tasks = ['html', 'fonts', 'images', 'less', 'js','languages'];
+    var tasks = ['html', 'fonts', 'images', 'less', 'js', 'languages'];
     seq('clean', tasks, done);
 });
 

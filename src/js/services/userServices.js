@@ -15,6 +15,22 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
                 return data.data;
             });
         },
+        signinByOauth: function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/UserCenter/thirdLogin",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "uid":input.uid,
+                    "u_type":input.u_type,
+                    "nickname":input.nickname,
+                    "icon_url":input.icon_url,
+                    "gender": input.gender
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         signupByTel: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -96,12 +112,12 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
                 url: config.url + "/app/UserCenter/updateName",
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
-                    "token":localStorageService.get("token"),
+                    "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
                     "name": input.username,
                     "old_password": input.password,
                     "msg_code": input.verifycode,
-                    "type":input.type
+                    "type": input.type
                 })
             }).then(function(data) {
                 return data.data;
@@ -111,18 +127,16 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
             $rootScope.user = $rootScope.user || {};
             var self = this;
             self.info.basic({}).then(function(data) {
-                if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                     $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
-                }
-                else {
+                } else {
                     self.exit();
                 }
             });
             self.info.sidebar({}).then(function(data) {
-                if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                     $rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
-                }
-                else {
+                } else {
                     self.exit();
                 }
             })
@@ -399,14 +413,14 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
             },
         },
         authen: {
-            query:function (type) {
+            query: function(type) {
                 return $http({
                     // by dribehance <dribehance.kksdapp.com>
                     url: config.url + "/app/Person/userIdentity",
                     method: "GET",
                     params: angular.extend({}, config.common_params, {
                         "token": localStorageService.get("token"),
-                        "type":type
+                        "type": type
                     })
                 }).then(function(data) {
                     return data.data;

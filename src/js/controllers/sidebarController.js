@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Youyi").controller("sidebarController", function($scope, $timeout, $rootScope, $location, $route, userServices, SharedState, errorServices, toastServices, localStorageService, config) {
+angular.module("Youyi").controller("sidebarController", function($scope, $timeout, $rootScope, $location, $route, weixinServices, userServices, SharedState, errorServices, toastServices, localStorageService, config) {
     $scope.sidebar = {
         current: "entrance",
         last: "",
@@ -19,9 +19,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
     }
     $scope.state = [];
     $scope.prev = function() {
-        $scope.state = $scope.state.slice(0,$scope.state.length-1)
-        // var state = $scope.state.pop();
-        $scope.sidebar.current = $scope.state[$scope.state.length-1] || "entrance";
+        $scope.state = $scope.state.slice(0, $scope.state.length - 1)
+            // var state = $scope.state.pop();
+        $scope.sidebar.current = $scope.state[$scope.state.length - 1] || "entrance";
         $timeout(function() {
             SharedState.turnOn("uiSidebarLeft")
         }, 0)
@@ -203,5 +203,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
             $scope.callbackTimer.counting = 0;
             angular.element("#kkcountdown")[0].resume();
         }
-    })
+    });
+    $scope.weixinLogin = function() {
+        weixinServices.queryAuthorizationCode();
+    };
+    // $scope.weixinOauthUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfc4845662ab85927&redirect_uri=http%3A%2F%2Fwww.uelives.com%2Fh5%23%2Foauth&response_type=code&scope=snsapi_userinfo&state=reject#wechat_redirect";
 })
