@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var translatorController = function($scope, $routeParams, $location, SharedState, translatorServices, myLoveServices, errorServices, toastServices, localStorageService, config) {
+var translatorController = function($scope, $routeParams, $location, facebookServices, SharedState, translatorServices, myLoveServices, errorServices, toastServices, localStorageService, config) {
     $scope.to = $routeParams.to;
     $scope.authens = [];
     toastServices.show();
@@ -78,6 +78,9 @@ var translatorController = function($scope, $routeParams, $location, SharedState
     };
     // share
     $scope.share_footer = {};
+    $scope.facebookShare = function() {
+        facebookServices.share($location.absUrl());
+    };
     // $scope.title = "【dribehance】";
     // $scope.summary = "share by dribehance";
     // $scope.imageUrl = "http://www.cto9.com/upFiles/infoImg/coll/20141030/OT20141030114721229.jpg";

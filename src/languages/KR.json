@@ -273,5 +273,9 @@
     "Submit to Authentication": "업로드 확인",
     "Information Authentication will be finish in two day": "인증 정보를 에 이틀 내에 완성할 수 있을 것이다",
     "Not Create,Back": "아니, 돌아 가기",
-    "Create": "만들기"
+    "Create": "만들기",
+    "age":"나이",
+    "age":"전체 공개",
+    "Private":"나만 보기",
+    "Date of Birth":"생년월일"
 }

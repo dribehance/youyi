@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Youyi").controller("sidebarController", function($scope, $timeout, $rootScope, $location, $route, weixinServices, facebookServices, userServices, SharedState, errorServices, toastServices, localStorageService, config) {
+angular.module("Youyi").controller("sidebarController", function($scope, $timeout, $rootScope, $location, $route, weiboServices, weixinServices, facebookServices, userServices, SharedState, errorServices, toastServices, localStorageService, config) {
     $scope.sidebar = {
         current: "entrance",
         last: "",
@@ -11,12 +11,12 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
     // $scope.title = "【dribehance】";
     // $scope.summary = "share by dribehance";
     // $scope.imageUrl = "http://www.cto9.com/upFiles/infoImg/coll/20141030/OT20141030114721229.jpg";
-    // $scope.sidebar.share = {
-    //     socialshare: false,
-    //     weixin: false,
-    //     sina: config.share.gateway + "?webid=tsina&appkey=" + config.share.appkey.sina + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
-    //     facebook: config.share.gateway + "?webid=fb&appkey=" + config.share.appkey.facebook + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
-    // }
+    $scope.sidebar.share = {
+        socialshare: false,
+        weixin: false,
+        // sina: config.share.gateway + "?webid=tsina&appkey=" + config.share.appkey.sina + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
+        // facebook: config.share.gateway + "?webid=fb&appkey=" + config.share.appkey.facebook + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
+    }
     $scope.state = [];
     $scope.prev = function() {
         $scope.state = $scope.state.slice(0, $scope.state.length - 1)
@@ -209,6 +209,15 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
     };
     $scope.facebookLogin = function() {
         facebookServices.login();
+    };
+    $scope.facebookShare = function() {
+        facebookServices.share();
+    }
+    $scope.weiboLogin = function() {
+        weiboServices.login();
+    };
+    $scope.weiboLogout = function() {
+        weiboServices.logout();
     };
     // $scope.weixinOauthUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfc4845662ab85927&redirect_uri=http%3A%2F%2Fwww.uelives.com%2Fh5%23%2Foauth&response_type=code&scope=snsapi_userinfo&state=reject#wechat_redirect";
 })

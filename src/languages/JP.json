@@ -273,5 +273,9 @@
     "Submit to Authentication": "確認をアップロード",
     "Information Authentication will be finish in two day": "認証情報は2日以内に完了します",
     "Not Create,Back": "いいえ。戻る",
-    "Create": "創建"
+    "Create": "創建",
+    "age":"年齢",
+    "age":"公開する",
+    "Private":"公開しない",
+    "Date of Birth":"誕生日"
 }

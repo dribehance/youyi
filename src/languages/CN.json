@@ -280,5 +280,9 @@
     "Submit to Authentication": "确认上传",
     "Information Authentication will be finish in two day": "认证信息将会于两天内完成",
     "Not Create,Back": "不。返回",
-    "Create": "创建"
+    "Create": "创建",
+    "age":"年龄",
+    "Public":"公开",
+    "Private":"非公开",
+    "Date of Birth":"出生日期"
 }
