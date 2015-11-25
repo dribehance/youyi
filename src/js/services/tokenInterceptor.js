@@ -27,7 +27,12 @@ angular.module("Youyi").factory("tokenInterceptor", function($location, $q, loca
             if (response.data.code && response.data.code == config.request.TOKEN_INVALID) {
                 console.log("TOKEN_INVALID")
                 localStorageService.remove("token");
-                $location.search("uiSidebarLeft");
+                // var search = angular.extend({}, {
+                //     "uiSidebarLeft": true
+                // }, $location.search);
+                var search = $location.search();
+                search["uiSidebarLeft"] = true;
+                $location.search(search);
                 // $location.path("/signIn").replace();
                 // return defer.promise;
                 return response;
@@ -39,7 +44,7 @@ angular.module("Youyi").factory("tokenInterceptor", function($location, $q, loca
         // optional method
         'responseError': function(rejection) {
             var defer = $q.defer();
-            errorServices.requestError(rejection.data,rejection.status,rejection.headers,rejection.config);
+            errorServices.requestError(rejection.data, rejection.status, rejection.headers, rejection.config);
             return defer.promise;
         }
     }

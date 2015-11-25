@@ -5,7 +5,7 @@ angular.module("Youyi").directive('imageview', function() {
         scope: {
             src: "="
         },
-        template: "<img ng-src='{{src}}'>",
+        template: "<img ng-src='{{src}}' show-on-loaded>",
         link: function(scope, element, attrs) {
             var rate = parseFloat(scope.$eval($(element).attr('data-rate'))) || "auto";
             var style = {
