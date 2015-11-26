@@ -62,8 +62,14 @@
                  $window.history.back();
              }
              $rootScope.go = function(path) {
-                 $location.path(path);
+                 $rootScope.to(path);
              };
+             // jump to
+             $rootScope.to = function(path) {
+                 $timeout(function() {
+                     $location.path(path).search("from",null)
+                 }, 0)
+             }
              // language cache
              if (!localStorageService.get("language")) {
                  localStorageService.set("language", "CN")
@@ -88,12 +94,6 @@
                      value: translate_value
                  };
              };
-             // jump to
-             $rootScope.to = function(path) {
-                 $timeout(function() {
-                     $location.path(path)
-                 }, 0)
-             }
          }
      }
  });
