@@ -53,15 +53,15 @@
                     {{"Detail Description" | translate}}：{{task.description}}
                 </div>
             </div>
-            <a ng-href="#/{{task.task_id}}/applicants" class="block section text-gray" ng-if="task.request_users.length>0 && task.contact_request_status ==0">
-                <span ng-repeat="applicant in task.request_users track by $index" ng-if="$index<5">
+            <a ng-href="#/{{task.task_id}}/applicants" class="block section text-gray" ng-if="task.request_users.length>0">
+                <span ng-repeat="applicant in task.request_users track by $index" ng-if="$index<5 && task.contact_request_status ==0">
                     <img ng-src="{{staticImageUrl + applicant.avatar || '../images/avatar.png'}}" alt="" class="circle icon">
+                </span>
+                <span class="text-gray" ng-if="task.contact_request_status == '1'">
+                    {{task.contact_request}}
                 </span>
                 <i class="text-gray-light fa fa-chevron-right pull-right" style="position:relative;top:4px"></i>
             </a>
-            <span class="block section text-gray" ng-if="task.contact_request_status == '1'">
-                {{task.contact_request}}
-            </span>
         </div>
         <div class="section section-large m text-center" ng-click="loadMore()">
             {{page.message | translate}}

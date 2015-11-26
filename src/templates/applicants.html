@@ -15,6 +15,7 @@
                     <div>{{"Language" | translate}}：{{applicant.return_language}}</div>
                     <p>{{"Place" | translate}}：{{applicant.address}}</p>
                     <p>{{"Profile" | translate}}{{applicant.introduction}}</p>
+                    <p ng-if="applicant.contact_request_status == '1'">{{applicant.contact_request}}</p>
                     <div class="clearfix">
                         <div class="pull-left">
                             <a ng-click="like(applicant)" class="btn btn-default" ng-if="applicant.is_collect == '0'">
@@ -44,7 +45,7 @@
         <form name="paymentForm" ng-submit="ajaxForm()" class="modal-dialog" style="margin:0">
             <div class="modal-content">
                 <div class="modal-header bg-primary clearfix">
-                    <div class="pull-left section section-condensed bg-transparent" ui-turn-off="payment_panel">
+                    <div class="pull-left section section-condensed bg-transparent" style="position:absolute" ui-turn-off="payment_panel">
                         <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
                     </div>
                     <h4 class="modal-title text-center">{{"Payment" | translate}}</h4>

@@ -92,6 +92,11 @@ var applicantsController = function($scope, $route, $routeParams, $location, $fi
     $scope.togglePayway = function() {
         $scope.payway.balance = !$scope.payway.balance;
     }
+    $scope.$watch("payway.channel",function(n,o){
+        if (n) {
+            $scope.payway.balance = false;
+        }
+    },true)
     $scope.ajaxForm = function() {
         if ($scope.payway.balance) {
             SharedState.turnOn("password_panel")
