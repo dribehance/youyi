@@ -81,13 +81,10 @@ var translatorController = function($scope, $routeParams, $location, facebookSer
     $scope.facebookShare = function() {
         facebookServices.share($location.absUrl());
     };
-    // $scope.title = "【dribehance】";
-    // $scope.summary = "share by dribehance";
-    // $scope.imageUrl = "http://www.cto9.com/upFiles/infoImg/coll/20141030/OT20141030114721229.jpg";
-    // $scope.share_footer.share = {
-    //     socialshare: false,
-    //     weixin: false,
-    //     sina: config.share.gateway + "?webid=tsina&appkey=" + config.share.appkey.sina + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
-    //     facebook: config.share.gateway + "?webid=fb&appkey=" + config.share.appkey.facebook + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
-    // };
+    $scope.share_footer.share = {
+        socialshare: false,
+        weixin: false,
+        sina: config.share.jiathis_gateway + "?webid=tsina&appkey=" + config.share.sina_appkey + "&url=" + encodeURIComponent($location.absUrl()) + "&title=" + config.share.title + "&summary=" + config.share.desc + "&pic=" + config.share.thumbnail,
+        facebook: config.share.jiathis_gateway + "?webid=fb&appkey=" + config.share.facebook_appkey + "&url=" + config.share.link + "&title=" + config.share.title + "&summary=" + config.share.desc + "&pic=" + config.share.thumbnail,
+    };
 }
