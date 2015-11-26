@@ -263,5 +263,6 @@
     "age":"age",
     "age":"age",
     "Private":"Private",
-    "Date of Birth":"Date of Birth"
+    "Date of Birth":"Date of Birth",
+    "Please Set Transaction Password First":"Please Set Transaction Password First"
 }

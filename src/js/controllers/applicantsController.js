@@ -98,7 +98,11 @@ var applicantsController = function($scope, $route, $routeParams, $location, $fi
         }
     },true)
     $scope.ajaxForm = function() {
-        if ($scope.payway.balance) {
+        if ($scope.payway.balance && $scope.wallet.is_setPayPwd == "0") {
+            $location.path("modify_trade_password");
+            return;
+        }
+        if ($scope.payway.balance && $scope.wallet.is_setPayPwd == "1") {
             SharedState.turnOn("password_panel")
             return;
         }

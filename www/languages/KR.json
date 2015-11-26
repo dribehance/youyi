@@ -277,5 +277,6 @@
     "age":"나이",
     "age":"전체 공개",
     "Private":"나만 보기",
-    "Date of Birth":"생년월일"
+    "Date of Birth":"생년월일",
+    "Please Set Transaction Password First":"먼저 거래비밀번호 설정"
 }

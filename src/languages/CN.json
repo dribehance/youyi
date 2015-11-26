@@ -284,5 +284,7 @@
     "age":"年龄",
     "Public":"公开",
     "Private":"非公开",
-    "Date of Birth":"出生日期"
+    "Date of Birth":"出生日期",
+    "Please Set Transaction Password First":"请先设置交易密码"
+
 }

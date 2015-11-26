@@ -9,6 +9,7 @@
          // do something white routechangesuccess,eg:
          toastServices.hide();
          errorServices.hide();
+         $rootScope.last_path = $rootScope.current_path || undefined;
          $rootScope.current_path = $location.path();
          navBarHandler(e, currentRoute, prevRoute);
      }

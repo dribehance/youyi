@@ -277,5 +277,6 @@
     "age":"年齢",
     "age":"公開する",
     "Private":"公開しない",
-    "Date of Birth":"誕生日"
+    "Date of Birth":"誕生日",
+    "Please Set Transaction Password First":"まず取引のパスワードを設定"
 }
