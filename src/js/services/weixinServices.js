@@ -13,7 +13,7 @@ angular.module("Youyi").factory("weixinServices", function($http, $location, $wi
         }
     });
     wx.ready(function() {
-        alert("initWeixinShareEvent")
+        // alert("initWeixinShareEvent")
         initWeixinShareEvent();
         // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
     });
@@ -27,7 +27,7 @@ angular.module("Youyi").factory("weixinServices", function($http, $location, $wi
             link: link || config.share.link, // 分享链接
             imgUrl: thumbnail || config.share.thumbnail, // 分享图标
             trigger: function() {
-                alert("分享朋友圈")
+                // alert("分享朋友圈")
             },
             success: function() {
                 // 用户确认分享后执行的回调函数
@@ -125,8 +125,8 @@ angular.module("Youyi").factory("weixinServices", function($http, $location, $wi
         },
         // payment
         pay: function(payment) {
-            alert(payment.prepayid+"prepayid")
-            console.log("发起微信支付")
+            // alert(payment.prepayid+"prepayid")
+            // console.log("发起微信支付")
             wx.chooseWXPay({
                 timestamp: payment.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
                 nonceStr: payment.noncestr, // 支付签名随机串，不长于 32 位
