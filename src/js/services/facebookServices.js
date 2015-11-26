@@ -10,9 +10,9 @@ angular.module("Youyi").factory("facebookServices", function($rootScope, $route,
     return {
         share: function(link) {
             FB.ui({
-                method: "feed",
-                link: link || config.share.link,
-                caption: "by dribehance",
+                method: "share",
+                href: link || config.share.link,
+                redirect_uri:config.share.link,
             }, function(response) {
                 $route.reload();
                 // SharedState.turnOff("uiSidebarLeft")
