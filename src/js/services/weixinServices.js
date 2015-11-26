@@ -88,9 +88,11 @@ angular.module("Youyi").factory("weixinServices", function($http, $location, $wi
         });
     }
     return {
+        // share
         initWeixinShareEvent: function(title, link, thumbnail, desc) {
             initWeixinShareEvent(title, link, thumbnail, desc);
         },
+        // login
         queryAuthorizationCode: function() {
             var url = config.weixin.base_url + "?" + "appid=" + config.weixin.appid + "&redirect_uri=" + encodeURIComponent(config.weixin.redirect_uri) + "&response_type=" + config.weixin.response_type + "&scope=" + config.weixin.scope + "&state=" + config.weixin.state + config.weixin.wechat_redirect;
             $window.location.href = url;
@@ -119,6 +121,24 @@ angular.module("Youyi").factory("weixinServices", function($http, $location, $wi
                 })
             }).then(function(data) {
                 return data.data;
+            });
+        },
+        // payment
+        pay: function(payment) {
+            alert(payment.prepayid+"prepayid")
+            console.log("发起微信支付")
+            wx.chooseWXPay({
+                timestamp: payment.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                nonceStr: payment.noncestr, // 支付签名随机串，不长于 32 位
+                package: "prepay_id="+payment.prepayid, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+                signType: "MD5", // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+                paySign: payment.sign, // 支付签名
+                success: function(res) {
+                    alert(res)
+                    alert("success");
+                    $location.path("tasks").replace();
+                    // 支付成功后的回调函数
+                }
             });
         }
     }

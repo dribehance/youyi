@@ -14,7 +14,8 @@ angular.module("Youyi").controller("sidebarController", function($scope, $timeou
     $scope.sidebar.share = {
         socialshare: false,
         weixin: false,
-        // sina: config.share.gateway + "?webid=tsina&appkey=" + config.share.appkey.sina + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
+        sina: config.share.sina_gateway + "?appkey=" + config.share.sina_appkey + "&url=" + config.share.link + "&title=" + config.share.title + "&summary=" + config.share.desc + "&pic=" + config.share.thumbnail,
+        // sina:"http://service.weibo.com/share/share.php?url=http%3A%2F%2Fopen.weibo.com%2Fsharebutton&type=button&language=zh_cn&appkey=622824244&searchPic=true&style=number",
         // facebook: config.share.gateway + "?webid=fb&appkey=" + config.share.appkey.facebook + "&url=" + config.share.url + "&title=" + $scope.title + "&summary=" + $scope.summary + "&pic=" + $scope.imageUrl,
     }
     $scope.state = [];

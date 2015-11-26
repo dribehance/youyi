@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var applicantsController = function($scope, $route, $routeParams, $location, $filter, walletServices, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var applicantsController = function($scope, $route, $routeParams, $location, $filter, walletServices, weixinServices, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.applicants = [];
     $scope.input = {
         password: "",
@@ -100,7 +100,29 @@ var applicantsController = function($scope, $route, $routeParams, $location, $fi
         $scope.thirdpart()
     }
     $scope.thirdpart = function() {
-        // $scope.thirdpart();
+        $scope.input.paying = true;
+        $scope.input.error_message = '';
+        toastServices.show();
+        taskServices.pay({
+                "user_id": $scope.accept_applicant.user_id,
+                "task_id": $routeParams.task_id,
+                "pay_type": "2",
+                "pay_total_money": $scope.payment_money.total_money,
+                "pay_password": $scope.input.password,
+            }).then(function(data) {
+                toastServices.hide();
+                $scope.input.paying = false;
+                if (data.code == config.request.SUCCESS) {
+                    console.log(data)
+                    weixinServices.pay(data);
+                    // weixinServices.pay()
+                    // $route.reload();
+                } else {
+                    $scope.input.error_message = data.message;
+                    // errorServices.autoHide(data.message);
+                }
+            })
+            // $scope.thirdpart();
     }
     $scope.pay = function() {
         if ($scope.input.password == "" || $scope.input.paying) {

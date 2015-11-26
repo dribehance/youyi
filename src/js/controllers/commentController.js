@@ -36,7 +36,7 @@ var commentController = function($scope, $rootScope, $routeParams, commentServic
     $scope.rate = function(name, index) {
         switch (name) {
             case "service":
-                $scope.input.star.service = index ;
+                $scope.input.star.service = index;
                 break;
             case "profession":
                 $scope.input.star.profession = index;
@@ -57,7 +57,7 @@ var commentController = function($scope, $rootScope, $routeParams, commentServic
         return tag;
     }
 }
-angular.module("Youyi").controller("commentUploadController", function($rootScope,$filter, $scope, errorServices, toastServices, localStorageService, config) {
+angular.module("Youyi").controller("commentUploadController", function($rootScope, $filter, $routeParams, $scope, errorServices, toastServices, localStorageService, config) {
     $scope.releaseComment = function(flow) {
         if ($scope.input.note == "") {
             var tip = $filter("translate")("No Comments Submitted yet");
@@ -86,7 +86,7 @@ angular.module("Youyi").controller("commentUploadController", function($rootScop
             "service": $scope.input.star.service,
             "profession": $scope.input.star.profession,
             "tongue": $scope.input.star.language,
-            "task_user_id": $rootScope.user.user_id,
+            "task_user_id": $routeParams.user_id,
             "tag_group_id_list": $scope.input.tags,
 
         }

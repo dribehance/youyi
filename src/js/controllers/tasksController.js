@@ -105,7 +105,7 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
         // comment;
         if (task.oper_status == '8') {
             var path = task.task_id + "/comment";
-            $location.path(path)
+            $location.path(path).search("user_id",task.request_users[0].user_id)
             return;
         }
         // agree;

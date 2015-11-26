@@ -14,8 +14,10 @@ angular.module("Youyi").constant("config", {
     share:{
         title:"测试通过",
         thumbnail:"http://www.uelives.com/youyi/images/ue_logo.png",
-        link:"http://www.uelives.com",
-        desc:"悠译平台实现了不论消费者以何种目的出境（商务、旅行或其他），都可以随时随地发布翻译任务、搜索境外当地的翻译者——“悠译人”，需要翻译的顾客能与具备语言专长并且了解当地的“悠译人” 进行配对、轻松交易，从而打破语言和文化的壁垒，让出境更加容易，也让世界沟通无限。"
+        link:"http://www.uelives.com/h5",
+        desc:"悠译平台实现了不论消费者以何种目的出境（商务、旅行或其他），都可以随时随地发布翻译任务、搜索境外当地的翻译者——“悠译人”，需要翻译的顾客能与具备语言专长并且了解当地的“悠译人” 进行配对、轻松交易，从而打破语言和文化的壁垒，让出境更加容易，也让世界沟通无限。",
+        sina_gateway:"http://service.weibo.com/share/share.php",
+        sina_appkey:"622824244"      
     },
     weixin: {
         "base_url":"https://open.weixin.qq.com/connect/oauth2/authorize",
