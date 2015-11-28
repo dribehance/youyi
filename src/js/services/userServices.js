@@ -22,10 +22,10 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "language_app": localStorageService.get("language"),
-                    "uid":input.uid,
-                    "u_type":input.u_type,
-                    "nickname":input.nickname,
-                    "icon_url":input.icon_url,
+                    "uid": input.uid,
+                    "u_type": input.u_type,
+                    "nickname": input.nickname,
+                    "icon_url": input.icon_url,
                     "gender": input.gender
                 })
             }).then(function(data) {

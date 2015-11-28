@@ -3,7 +3,7 @@ angular.module("Youyi").factory("weixinServices", function($http, $location, $wi
     oauthServices.initWeixin($location.absUrl().split("#")[0]).then(function(data) {
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
             wx.config({
-                debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: config.weixin.appid, // 必填，公众号的唯一标识
                 timestamp: data.Result.item3.timestamp, // 必填，生成签名的时间戳
                 nonceStr: data.Result.item3.nonceStr, // 必填，生成签名的随机串

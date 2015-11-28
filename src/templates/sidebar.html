@@ -33,6 +33,9 @@
                 <span class="block text-gray">{{"Facebook" | translate}}</span>
             </a>
         </div>
+        <div class="toast" ui-if="toast_state">
+            <span class="loader"></span>
+        </div>
     </div>
 </div>
 <!-- signin section -->
@@ -56,6 +59,9 @@
                 <button type="submit" class="btn btn-warning block full-width" ng-disabled="signinForm.$invalid">{{"Login" | translate}}<i class="fa fa-refresh" ng-show="loading"></i></button>
             </div>
         </form>
+        <div class="toast" ui-if="toast_state">
+            <span class="loader"></span>
+        </div>
     </div>
 </div>
 <!-- signup section -->
@@ -93,6 +99,9 @@
                 <button type="submit" class="btn btn-warning block full-width" ng-disabled="signupForm.$invalid">{{"Agree and Register" | translate}}</button>
             </div>
         </form>
+        <div class="toast" ui-if="toast_state">
+            <span class="loader"></span>
+        </div>
     </div>
 </div>
 <!-- signup email section -->
@@ -125,6 +134,9 @@
                 <button type="submit" class="btn btn-warning block full-width" ng-disabled="signupEmailForm.$invalid">{{"Agree and Register" | translate}}</button>
             </div>
         </form>
+        <div class="toast" ui-if="toast_state">
+            <span class="loader"></span>
+        </div>
     </div>
 </div>
 <!-- forget password -->
@@ -156,6 +168,9 @@
                 <button type="submit" class="btn btn-warning block full-width" ng-disabled="forgetForm.$invalid">{{"Forgot Password"|translate}}</button>
             </div>
         </form>
+        <div class="toast" ui-if="toast_state">
+            <span class="loader"></span>
+        </div>
     </div>
 </div>
 <div class="scrollable" ng-show="sidebar.current == 'login'">
@@ -237,6 +252,6 @@
         </div>
     </div>
 </div>
-<div class="sidebar-cover" ng-if="sidebar.share.weixin" ng-click="share_weixin()">
+<div class="sidebar-cover" ng-if="sidebar.share.weixin" ng-click="weixinShare()">
     <div class="kk kk-weixin-share-tip"></div>
 </div>

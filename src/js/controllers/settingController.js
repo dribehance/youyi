@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var settingController = function($scope, $rootScope, $translate, SharedState, userServices, errorServices, toastServices, localStorageService, config) {
+var settingController = function($scope, $rootScope, $translate, SharedState, facebookServices, weiboServices, userServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {};
     $scope.input.choosen_language = {
         code: localStorageService.get("language")
@@ -19,10 +19,12 @@ var settingController = function($scope, $rootScope, $translate, SharedState, us
     }];
     $scope.exit = function() {
         userServices.exit();
+        facebookServices.logout();
+        weiboServices.logout();
         $rootScope.back();
     }
     $scope.ajaxForm = function() {
-        localStorageService.set("language",$scope.input.choosen_language.code);
+        localStorageService.set("language", $scope.input.choosen_language.code);
         $translate.use(localStorageService.get("language"));
         SharedState.turnOff("language_panel");
     }

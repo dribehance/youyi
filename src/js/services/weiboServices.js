@@ -3,6 +3,7 @@ angular.module("Youyi").factory("weiboServices", function($http, $q, $location, 
     return {
         login: function() {
             var self = this;
+            if (!WB2) return;
             WB2.login(function() {
                 // 验证是否登入成功
                 if (WB2.checkLogin()) {
@@ -24,12 +25,17 @@ angular.module("Youyi").factory("weiboServices", function($http, $q, $location, 
 
         },
         logout: function() {
-            WB2.logout(function(response) {
-                console.log(response)
-            });
+            if(!WB2) return;
+            if (WB2.checkLogin()) {
+
+                WB2.logout(function(response) {
+                    console.log(response)
+                });
+            }
         },
         queryUserInfo: function(response) {
             var self = this;
+            if (!WB2) return;
             WB2.anyWhere(function(W) {
                 W.parseCMD("/users/show.json", function(sResult, bStatus) {
                     if (bStatus) {
