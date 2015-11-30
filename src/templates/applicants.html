@@ -40,6 +40,25 @@
         </div>
     </div>
 </div>
+<!-- alipay -->
+<form name="alipayForm" method="post" id="alipayForm" action="https://mapi.alipay.com/gateway.do?_input_charset=utf-8">
+    <input type="hidden" name="service" value="{{alipay.service}}">
+    <input type="hidden" name="partner" value="{{alipay.partner}}">
+    <input type="hidden" name="seller_id" value="{{alipay.seller_id}}">
+    <input type="hidden" name="_input_charset" value="{{alipay._input_charset}}">
+    <input type="hidden" name="payment_type" value="{{alipay.payment_type}}">
+    <input type="hidden" name="notify_url" value="{{alipay.notify_url}}">
+    <input type="hidden" name="return_url" value="{{alipay.return_url}}">
+    <input type="hidden" name="out_trade_no" value="{{alipay.out_trade_no}}">
+    <input type="hidden" name="subject" value="{{alipay.subject}}">
+    <input type="hidden" name="total_fee" value="{{alipay.total_fee}}">
+    <input type="hidden" name="show_url" value="{{alipay.show_url}}">
+    <input type="hidden" name="body" value="{{alipay.body}}">
+    <input type="hidden" name="it_b_pay" value="{{alipay.it_b_pay}}">
+    <input type="hidden" name="extern_token" value="{{alipay.extern_token}}">
+    <input type="hidden" name="sign" value="{{alipay.sign}}">
+    <input type="hidden" name="sign_type" value="{{alipay.sign_type}}">
+</form>
 <div ui-content-for="modals">
     <div class="modal modal-overlay" ui-if="payment_panel" ui-state='payment_panel'>
         <form name="paymentForm" ng-submit="ajaxForm()" class="modal-dialog" style="margin:0">
@@ -114,10 +133,16 @@
                 </div>
             </div>
         </form>
+        <!-- toast tip -->
+        <div class="toast" ui-if="toast_state" style="z-index:5000">
+            <span class="loader"></span>
+        </div>
+        <!-- error tip -->
+        <div class="error-msg section section-warning text-center" ui-if="error_state">{{ errormsg }}</div>
     </div>
     <div class="modal" ui-if="password_panel" ui-state='password_panel' style="z-index:5000">
         <div class="modal-backdrop in"></div>
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="margin-top:10%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close text-primary" ui-turn-off="password_panel">&times;</button>
@@ -138,5 +163,7 @@
                 </div>
             </div>
         </div>
+        <!-- error tip -->
+        <div class="error-msg section section-warning text-center" ui-if="error_state">{{ errormsg }}</div>
     </div>
 </div>

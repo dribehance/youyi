@@ -339,6 +339,10 @@
                     <button class="btn btn-default" ng-click="close()">{{"Close" | translate}}</button>
                 </div>
             </div>
+            <!-- toast tip -->
+            <div class="toast" ui-if="toast_state" style="z-index:5000">
+                <span class="loader"></span>
+            </div>
         </div>
     </div>
 </div>

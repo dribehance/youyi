@@ -16,10 +16,13 @@ angular.module("Youyi").factory("errorServices", function($rootScope, $timeout, 
             }, 3000)
         },
         requestError: function(data, status, headers, config) {
-        	// hide toast
-        	toastServices.hide();
-        	// tip error
+            // hide toast
+            toastServices.hide();
+            // tip error
             switch (status) {
+                case "-1":
+                    this.autoHide("工程师正在努力修复中.");
+                    break;
                 case 0:
                     this.autoHide("连接超时");
                     break;
@@ -35,7 +38,8 @@ angular.module("Youyi").factory("errorServices", function($rootScope, $timeout, 
                 case 510:
                     this.autoHide("服务器连接出错");
                     break;
-                default :;
+                default:
+                    ;
             }
             console.log("onRequestError output status, data, headers, config")
             console.log(status);

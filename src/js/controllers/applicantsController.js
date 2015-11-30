@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var applicantsController = function($scope, $route, $routeParams, $location, $filter, walletServices, weixinServices, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var applicantsController = function($scope, $route, $timeout, $routeParams, $location, $filter, walletServices, weixinServices, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.applicants = [];
     $scope.input = {
         password: "",
@@ -92,11 +92,11 @@ var applicantsController = function($scope, $route, $routeParams, $location, $fi
     $scope.togglePayway = function() {
         $scope.payway.balance = !$scope.payway.balance;
     }
-    $scope.$watch("payway.channel",function(n,o){
+    $scope.$watch("payway.channel", function(n, o) {
         if (n) {
             $scope.payway.balance = false;
         }
-    },true)
+    }, true)
     $scope.ajaxForm = function() {
         if ($scope.payway.balance && $scope.wallet.is_setPayPwd == "0") {
             $location.path("modify_trade_password");
@@ -106,59 +106,76 @@ var applicantsController = function($scope, $route, $routeParams, $location, $fi
             SharedState.turnOn("password_panel")
             return;
         }
-        $scope.thirdpart()
-    }
-    $scope.thirdpart = function() {
-        $scope.input.paying = true;
-        $scope.input.error_message = '';
-        toastServices.show();
-        taskServices.pay({
-                "user_id": $scope.accept_applicant.user_id,
-                "task_id": $routeParams.task_id,
-                "pay_type": "2",
-                "pay_total_money": $scope.payment_money.total_money,
-                "pay_password": $scope.input.password,
-            }).then(function(data) {
-                toastServices.hide();
-                $scope.input.paying = false;
-                if (data.code == config.request.SUCCESS) {
-                    console.log(data)
-                    weixinServices.pay(data);
-                    // weixinServices.pay()
-                    // $route.reload();
-                } else {
-                    $scope.input.error_message = data.message;
-                    // errorServices.autoHide(data.message);
-                }
-            })
-            // $scope.thirdpart();
-    }
+        $scope.pay();
+    };
     $scope.pay = function() {
-        if ($scope.input.password == "" || $scope.input.paying) {
+        // default balance pay
+        var pay_type = 0;
+        if ($scope.payway.balance && $scope.input.password == "" || $scope.input.paying) {
             return;
         }
-        // 余额支付;
+        if (!$scope.payway.balance && $scope.payway.channel == "yinlian") {
+            pay_type = 1;
+        }
+        if (!$scope.payway.balance && $scope.payway.channel == "weixin") {
+            pay_type = 2;
+        }
+        if (!$scope.payway.balance && $scope.payway.channel == "alipay") {
+            pay_type = 3;
+        }
         $scope.input.paying = true;
-        $scope.input.error_message = '';
         toastServices.show();
         taskServices.pay({
             "user_id": $scope.accept_applicant.user_id,
             "task_id": $routeParams.task_id,
-            "pay_type": "0",
+            "pay_type": pay_type,
             "pay_total_money": $scope.payment_money.total_money,
             "pay_password": $scope.input.password,
         }).then(function(data) {
-            toastServices.hide();
             $scope.input.paying = false;
+            toastServices.hide();
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                if (!$scope.payway.balance && $scope.payway.channel == "yinlian") {
+                    $scope.invokeYinlianPay(data);
+                    return
+                }
+                if (!$scope.payway.balance && $scope.payway.channel == "weixin") {
+                    $scope.invokeWeixinPay(data);
+                    return;
+                }
+                if (!$scope.payway.balance && $scope.payway.channel == "alipay") {
+                    $scope.invokeAlipay(data);
+                    return;
+                }
+                // balance pay handle
                 $route.reload();
             } else {
-                $scope.input.error_message = data.message;
-                // errorServices.autoHide(data.message);
+                errorServices.autoHide(data.message);
             }
         })
     };
-    // password control
+    // pay by weixin
+    $scope.invokeWeixinPay = function(data) {
+        weixinServices.pay(data);
+    };
+    // pay by alipay
+    $scope.invokeAlipay = function(data) {
+        // alipayServices.pay
+        $scope.alipay = data.sParaTemp;
+        toastServices.show();
+        $timeout(function() {
+            // toastServices.hide();
+            angular.element("#alipayForm").submit();
+        }, 1000)
+    };
+    // pay by yinlian
+    $scope.invokeYinlianPay = function(data) {
+
+    };
+    // pay by balance
+    $scope.invokeBalancePay = function(data) {
+
+    };
     // password control
     $scope.imulate_password = [];
     $scope.prepare_imulate_password = function() {

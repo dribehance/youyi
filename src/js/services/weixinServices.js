@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Youyi").factory("weixinServices", function($http, $location, $window, oauthServices, localStorageService, config) {
+angular.module("Youyi").factory("weixinServices", function($http, $location, toastServices, $window, oauthServices, localStorageService, config) {
     oauthServices.initWeixin($location.absUrl().split("#")[0]).then(function(data) {
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
             wx.config({
@@ -127,13 +127,15 @@ angular.module("Youyi").factory("weixinServices", function($http, $location, $wi
         pay: function(payment) {
             // alert(payment.prepayid+"prepayid")
             // console.log("发起微信支付")
+            toastServices.show();
             wx.chooseWXPay({
                 timestamp: payment.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
                 nonceStr: payment.noncestr, // 支付签名随机串，不长于 32 位
-                package: "prepay_id="+payment.prepayid, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+                package: "prepay_id=" + payment.prepayid, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
                 signType: "MD5", // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
                 paySign: payment.sign, // 支付签名
                 success: function(res) {
+                    toastServices.hide();
                     alert(res)
                     alert("success");
                     $location.path("tasks").replace();

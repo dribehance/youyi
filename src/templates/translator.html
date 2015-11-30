@@ -210,7 +210,14 @@
                 <div class="modal-body">
                     <div class="section section-wide text-center" ng-repeat="identify in translator.userIdentities">
                         <img ng-src="{{staticImageUrl+identify.cover}}" class="block full-width" />
-                        <h4>{{identify.title}}</h4>
+                        <h4>
+                            <span ng-if="identify.type==1">{{"Language Certificate" | translate}}</span>
+                            <span ng-if="identify.type==3">{{"Professional Qualification" | translate}}</span>
+                            {{identify.title}}
+                        </h4>
+                    </div>
+                    <div class="section section-wide" ng-if="translator.identity_status =='3'">
+                        {{"ID Verification" | translate}}
                     </div>
                 </div>
             </div>

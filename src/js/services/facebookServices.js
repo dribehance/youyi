@@ -1,6 +1,8 @@
 // by dribehance <dribehance.kksdapp.com>
 angular.module("Youyi").factory("facebookServices", function($rootScope, $route, $http, $window, $location, $q, SharedState, userServices, toastServices, errorServices, localStorageService, config) {
     $window.fbAsyncInit = function() {
+        var FB = $window.FB || undefined;
+        if (!FB) return;
         FB.init({
             appId: '1692835377595486',
             xfbml: true,
@@ -9,12 +11,13 @@ angular.module("Youyi").factory("facebookServices", function($rootScope, $route,
     };
     return {
         share: function(link) {
+            var FB = $window.FB || undefined;
             if (!FB) return;
             FB.ui({
                 method: "feed",
                 link: link || config.share.link,
                 redirect_uri: link || config.share.link,
-                caption:config.share.title
+                caption: config.share.title
             }, function(response) {
                 $route.reload();
                 // SharedState.turnOff("uiSidebarLeft")
@@ -22,6 +25,7 @@ angular.module("Youyi").factory("facebookServices", function($rootScope, $route,
         },
         login: function() {
             var self = this;
+            var FB = $window.FB || undefined;
             if (!FB) return;
             toastServices.show();
             FB.login(function(response) {
@@ -32,6 +36,7 @@ angular.module("Youyi").factory("facebookServices", function($rootScope, $route,
             });
         },
         logout: function() {
+            var FB = $window.FB || undefined;
             if (!FB) return;
             FB.logout(function(response) {
                 console.log(response);
@@ -54,6 +59,7 @@ angular.module("Youyi").factory("facebookServices", function($rootScope, $route,
         _getUserinfo: function() {
             var deferred = $q.defer();
             console.log("_getUserinfo");
+            var FB = $window.FB || undefined;
             if (!FB) return;
             FB.api("/me", {
                     fields: "id,email,name,picture,gender"
@@ -75,7 +81,7 @@ angular.module("Youyi").factory("facebookServices", function($rootScope, $route,
             var query = {
                 "uid": data.id,
                 "u_type": 2,
-                "email":data.email,
+                "email": data.email,
                 "nickname": data.name,
                 "icon_url": data.picture.url,
                 "gender": data.gender == "male" ? "男" : "女"
