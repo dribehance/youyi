@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Youyi").factory("userServices", function($rootScope, $http, localStorageService, config) {
+angular.module("Youyi").factory("userServices", function($rootScope, $http, toastServices, localStorageService, config) {
     return {
         signin: function(input) {
             return $http({
@@ -143,8 +143,26 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, loca
             })
         },
         exit: function() {
-            $rootScope.user = {};
-            localStorageService.remove("token");
+            var self = this;
+            toastServices.show();
+            self.logout().then(function() {
+                toastServices.hide();
+                $rootScope.user = {};
+                localStorageService.remove("token");
+            });
+        },
+        logout: function() {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/UserCenter/logout",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "language_app": localStorageService.get("language")
+                })
+            }).then(function(data) {
+                return data.data;
+            });
         },
         verifycode: {
             getVerifycode: function(input) {

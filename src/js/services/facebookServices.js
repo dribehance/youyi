@@ -83,7 +83,7 @@ angular.module("Youyi").factory("facebookServices", function($rootScope, $route,
                 "u_type": 2,
                 "email": data.email,
                 "nickname": data.name,
-                "icon_url": data.picture.url,
+                "icon_url": data.picture.data.url,
                 "gender": data.gender == "male" ? "男" : "女"
             }
             toastServices.show();
