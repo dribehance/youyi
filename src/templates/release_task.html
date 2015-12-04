@@ -117,6 +117,32 @@
                                 {{"Price" | translate}}<span class="text-danger">*</span>
                             </div>
                         </div>
+                        <div class="btn-group justified">
+                            <label class="btn rectangle" ng-class="{'text-primary':input.currency =='CNY','bg-gray-lighter':input.currency  != 'CNY'}" >
+                                CNY
+                                <input type="radio" class="hide" name="currency" ng-model="input.currency " value="CNY"></label>
+                                <label class="btn rectangle" ng-class="{'text-primary':input.currency =='USD','bg-gray-lighter':input.currency  != 'USD'}" >
+                                USD
+                                <input type="radio" class="hide" name="currency" ng-model="input.currency " value="USD"></label>
+                                <label class="btn rectangle" ng-class="{'text-primary':input.currency =='KRW','bg-gray-lighter':input.currency  != 'KRW'}" >
+                                KRW
+                                <input type="radio" class="hide" name="currency" ng-model="input.currency " value="KRW"></label>
+                                <label class="btn rectangle" ng-class="{'text-primary':input.currency =='JPY','bg-gray-lighter':input.currency  != 'JPY'}" >
+                                JPY
+                                <input type="radio" class="hide" name="currency" ng-model="input.currency " value="JPY"></label>
+                        </div>
+                        <div class="section section-wide" ng-show="input.category.name  =='其它'">
+                            <input type="text" class="form-control rectangle" name="other" ng-model="other">
+                        </div>
+                    </div>
+                </div>
+                <div class="section large">
+                    <div class="semi-auto semi-left-40">
+                        <div class="semi-fixed-left semi-wide-40">
+                            <div class="section section-wide text-ellipsis">
+                                
+                            </div>
+                        </div>
                         <div class="semi-auto semi-icon-bar">
                             <!-- <span class="semi-fixed-left semi-wide-40 text-center">
                                 <i class="kk kk-25 kk-checked" ng-class="{'active':input.price !=''}"></i>

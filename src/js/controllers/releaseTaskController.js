@@ -8,26 +8,27 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
         title: "",
         category: {},
         price: "",
+        currency: "CNY",
         total: 0,
         address: "Please choose",
         content: "",
         other: "",
         from_date_options: {
             format: "yyyy-mm-dd",
-            min:new Date(),
+            min: new Date(),
         },
         to_date_options: {
             format: "yyyy-mm-dd",
         },
         time_options: {
             format: "HH:i",
-            min:0.5,
-            max:[23,30]
+            min: 0.5,
+            max: [23, 30]
         },
         to_time_options: {
             format: "HH:i",
-            min:[8,30],
-            max:[18,30]
+            min: [8, 30],
+            max: [18, 30]
         }
     };
     $scope.choosen = {};
@@ -45,6 +46,16 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
             errorServices.autoHide(data.message);
         }
     });
+    $scope.queryMinPrice = function() {
+        // query min price
+        var input = {
+            "from_language_group_id": $scope.choosen_language.from.group_id,
+            "to_language_group_id": $scope.choosen_language.to.group_id,
+            "task_type_group_id": $scope.input.category.group_id,
+            "price_for_day": $scope.input.price,
+            "currency": $scope.input.currency
+        };
+    };
     // step 2
     // get category;
     taskServices.category().then(function(data) {
@@ -67,10 +78,10 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
             errorServices.autoHide(data.message);
         }
     });
-    $scope.$watch("choosen.city.name",function(n,o) {
+    $scope.$watch("choosen.city.name", function(n, o) {
         if (n === undefined) return;
         SharedState.turnOff("district_panel")
-    },true)
+    }, true)
     $scope.next = function(step) {
         if ($scope.input.from_date == null || $scope.input.from_time == null || $scope.input.to_date == null || $scope.input.to_time == null) {
             errorServices.autoHide("请选择时间");
@@ -97,7 +108,7 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
     // $scope.$watch()
     // step 3
     $scope.ajaxForm = function() {
-        var input = {
+        input = {
             "from_language_group_id": $scope.choosen_language.from.group_id,
             "to_language_group_id": $scope.choosen_language.to.group_id,
             "start_time": $filter("date")($scope.input.from_date, "yyyy-MM-dd") + " " + $filter("date")($scope.input.from_time, "HH:mm"),

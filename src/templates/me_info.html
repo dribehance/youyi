@@ -32,39 +32,53 @@
             <div class="list-group-item clearfix kk-input-group">
                 <span class="btn col-xs-3 section-wide text-left">{{"Date of Birth" | translate}}</span>
                 <span class="col-xs-9 section-wide">
-                    <select style="margin-left:8px;margin-top:5px" ng-model="birthday.y" ng-options="y as y for y in birthday.year">
-                    </select>
-                    <select ng-model="birthday.m" ng-options="m as m for m in birthday.month"></select>
-                    <select ng-model="birthday.d" ng-options="d as d for d in birthday.day"></select>
+                    <span class="col-xs-4">
+                        <select class="form-control rectangle" style="padding:0" ng-model="birthday.y" ng-options="y as y for y in birthday.year">
+                        </select>
+                    </span>
+                <span class="col-xs-4">
+                        <select class="form-control rectangle" style="padding:0" ng-model="birthday.m" ng-options="m as m for m in birthday.month"></select>
+                    </span>
+                <span class="col-xs-4">
+                        <select class="form-control rectangle" style="padding:0" ng-model="birthday.d" ng-options="d as d for d in birthday.day"></select>
+                    </span>
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
                 <span class="btn col-xs-3 section-wide text-left">{{"age" | translate}}</span>
-                <span class="col-xs-9 section-wide">
-                    <label class="btn" style="min-width:60px">
-                        <i class="kk kk-icon kk-radio" ng-class="{'active':user.age_status == '1'}"></i>
+                <span class="col-xs-9 section-wide btn text-left">
+                    <span class="col-xs-6">
+                        <label style="margin-bottom:0">
+                        <i class="kk kk-icon kk-radio" style="height:17px;width:17px;" ng-class="{'active':user.age_status == '1'}"></i>
                         <input type="radio" name="male" ng-model="user.age_status"  value="1" class="hidden">{{"Public" | translate}}
                     </label>
-                    <label class="btn" style="min-width:60px">
-                        <i class="kk kk-icon kk-radio" ng-class="{'active':user.age_status == '0'}"></i>
+                    </span>
+                <span class="col-xs-6">
+                        <label style="margin-bottom:0">
+                        <i class="kk kk-icon kk-radio" style="height:17px;width:17px;" ng-class="{'active':user.age_status == '0'}"></i>
                         <input type="radio" name="female" ng-model="user.age_status" value="0" class="hidden">{{"Private" | translate}}
                     </label>
+                    </span>
                 <!-- <span class="tip text-warning">error</span> -->
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
                 <span class="btn col-xs-3 section-wide text-left">{{"Gender" | translate}}</span>
-                <span class="col-xs-9 section-wide">
-                    <label class="btn" style="min-width:60px">
-                        <i class="kk kk-icon kk-radio" ng-class="{'active':user.gender == '1'}"></i>
+                <span class="col-xs-9 section-wide btn text-left">
+                    <span class="col-xs-6">
+                        <label style="margin-bottom:0">
+                        <i class="kk kk-icon kk-radio" style="height:17px;width:17px;" ng-class="{'active':user.gender == '1'}"></i>
                         <input type="radio" name="male" ng-model="user.gender"  value="1" class="hidden">{{"Male" | translate}}
                         <i class="kk kk-icon kk-male"></i>
-                    </label>
-                    <label class="btn" style="min-width:60px">
-                        <i class="kk kk-icon kk-radio" ng-class="{'active':user.gender == '2'}"></i>
-                        <input type="radio" name="female" ng-model="user.gender" value="2" class="hidden">{{"Female" | translate}}
-                        <i class="kk kk-icon kk-female"></i>
-                    </label>
+                        </label>
+                    </span>
+                <span class="col-xs-6">
+                        <label style="margin-bottom:0">
+                            <i class="kk kk-icon kk-radio" style="height:17px;width:17px;" ng-class="{'active':user.gender == '2'}"></i>
+                            <input type="radio" name="female" ng-model="user.gender" value="2" class="hidden">{{"Female" | translate}}
+                            <i class="kk kk-icon kk-female"></i>
+                        </label>
+                    </span>
                 <!-- <span class="tip text-warning">error</span> -->
                 </span>
             </div>

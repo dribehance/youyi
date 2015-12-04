@@ -1,5 +1,32 @@
 // by dribehance <dribehance.kksdapp.com>
-var meInfoController = function($scope, $rootScope, $location, $timeout, SharedState, userServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var meInfoController = function($scope, $rootScope, $location, $interval, $timeout, SharedState, userServices, taskServices, errorServices, toastServices, localStorageService, config) {
+    var timestamp = new Date().getTime();
+    var timer = $interval(function() {
+        var now = new Date().getTime();
+        if (now - timestamp > 3000) {
+            $interval.cancel(timer);
+            return;
+        }
+        if (angular.equals($rootScope.user, {})) return;
+        // birthday;
+        $scope.generateYear = function(year) {
+            var y = [];
+            for (var i = 1900; i < year; i++) {
+                y.push(i)
+            }
+            return y;
+        };
+        $scope.birthday = {
+            year: $scope.generateYear(2100),
+            month: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            day: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+            y: $rootScope.user.age_date.split("-")[0] == "" ? 1990 : parseInt($rootScope.user.age_date.split("-")[0]),
+            m: parseInt($rootScope.user.age_date.split("-")[1]) || 1,
+            d: parseInt($rootScope.user.age_date.split("-")[2]) || 1
+        };
+        $interval.cancel(timer);
+    }, 10);
+
     // location
     $scope.countries = [];
     taskServices.location().then(function(data) {
@@ -10,29 +37,13 @@ var meInfoController = function($scope, $rootScope, $location, $timeout, SharedS
             errorServices.autoHide(data.message);
         }
     });
-    // birthday;
-    $scope.generateYear = function(year) {
-        var y = [];
-        for (var i = 1900; i < year; i++) {
-            y.push(i)
-        }
-        return y;
-    };
-    $scope.birthday = {
-        year: $scope.generateYear(2100),
-        month: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        day: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
-        y: $rootScope.user.age_date.split("-")[0] == "" ? 1990 : parseInt($rootScope.user.age_date.split("-")[0]),
-        m: parseInt($rootScope.user.age_date.split("-")[1]) || 1,
-        d: parseInt($rootScope.user.age_date.split("-")[2]) || 1
-    };
-    console.log($scope.birthday)
+
     // input;
     $scope.input = {};
     $scope.input.choosen_city = {};
     $scope.ajaxForm = function() {
         toastServices.show();
-        $rootScope.user.age_date =$scope.birthday.y +"-"+$scope.birthday.m+"-"+$scope.birthday.d;
+        $rootScope.user.age_date = $scope.birthday.y + "-" + $scope.birthday.m + "-" + $scope.birthday.d;
         $rootScope.user.city_dict_group_id = $scope.input.choosen_city.group_id;
         userServices.info.updateBasic($rootScope.user).then(function(data) {
             toastServices.hide()

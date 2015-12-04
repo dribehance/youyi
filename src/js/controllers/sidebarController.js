@@ -64,9 +64,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
                 $scope.sidebar.error.show = false;
                 // errorServices.autoHide("验证码发送成功");
             } else {
-                // errorServices.autoHide(data.message);
-                $scope.sidebar.error.show = true;
-                $scope.sidebar.error.message = data.message;
+                errorServices.autoHide(data.message);
+                // $scope.sidebar.error.show = true;
+                // $scope.sidebar.error.message = data.message;
             }
         })
     }
@@ -75,14 +75,14 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
         userServices.verifycode.getEmailcode($scope.input).then(function(data) {
             toastServices.hide()
             if (data.status == config.response.SUCCESS) {
-                console.log("验证码" + data.code);
+                console.log("验证码" + data.email_code);
                 $scope.callbackTimer.counting = 1;
                 $scope.callbackTimer.addSeconds(60);
                 // errorServices.autoHide("验证码发送成功");        
             } else {
-                // errorServices.autoHide(data.message);
-                $scope.sidebar.error.show = true;
-                $scope.sidebar.error.message = data.message;
+                errorServices.autoHide(data.message);
+                // $scope.sidebar.error.show = true;
+                // $scope.sidebar.error.message = data.message;
             }
         })
     }
@@ -96,9 +96,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
                 $scope.callbackTimer.addSeconds(60);
                 // errorServices.autoHide("验证码发送成功");        
             } else {
-                // errorServices.autoHide(data.message);
-                $scope.sidebar.error.show = true;
-                $scope.sidebar.error.message = data.message;
+                errorServices.autoHide(data.message);
+                // $scope.sidebar.error.show = true;
+                // $scope.sidebar.error.message = data.message;
             }
         })
     }
@@ -126,12 +126,14 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
             toastServices.hide()
             if (data.status == config.response.SUCCESS) {
                 SharedState.turnOff("uiSidebarLeft");
-                errorServices.autoHide("注册成功");
+                // errorServices.autoHide("注册成功");
                 localStorageService.set("token", data.user.token);
+                userServices.sync();
+                $location.path("me_info")
             } else {
-                // errorServices.autoHide(data.message);
-                $scope.sidebar.error.show = true;
-                $scope.sidebar.error.message = data.message;
+                errorServices.autoHide(data.message);
+                // $scope.sidebar.error.show = true;
+                // $scope.sidebar.error.message = data.message;
             }
         })
     };
@@ -140,11 +142,15 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
         userServices.signupByEmail($scope.input).then(function(data) {
             toastServices.hide()
             if (data.status == config.response.SUCCESS) {
-
+              SharedState.turnOff("uiSidebarLeft");
+                // errorServices.autoHide("注册成功");
+                localStorageService.set("token", data.user.token);
+                userServices.sync();
+                $location.path("me_info")  
             } else {
-                // errorServices.autoHide(data.message);
-                $scope.sidebar.error.show = true;
-                $scope.sidebar.error.message = data.message;
+                errorServices.autoHide(data.message);
+                // $scope.sidebar.error.show = true;
+                // $scope.sidebar.error.message = data.message;
             }
         })
     }
@@ -160,9 +166,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
                 userServices.sync();
                 $route.reload();
             } else {
-                // errorServices.autoHide(data.message);
-                $scope.sidebar.error.show = true;
-                $scope.sidebar.error.message = data.message;
+                errorServices.autoHide(data.message);
+                // $scope.sidebar.error.show = true;
+                // $scope.sidebar.error.message = data.message;
             }
         })
     };
@@ -173,9 +179,9 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
             if (data.status == config.response.SUCCESS) {
                 SharedState.turnOff("uiSidebarLeft");
             } else {
-                // errorServices.autoHide(data.message);
-                $scope.sidebar.error.show = true;
-                $scope.sidebar.error.message = data.message;
+                errorServices.autoHide(data.message);
+                // $scope.sidebar.error.show = true;
+                // $scope.sidebar.error.message = data.message;
             }
         })
     };

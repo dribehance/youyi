@@ -354,6 +354,24 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
             }).then(function(data) {
                 return data.data;
             });
+        },
+        // query minimal price
+        queryMinPrice:function() {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/PublishTask/recommPrice",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "language_app": localStorageService.get("language"),
+                    "from_language_group_id": input.from_language_group_id,
+                    "to_language_group_id": input.to_language_group_id,
+                    "task_type_group_id": input.task_type_group_id,
+                    "price_for_day": input.price_for_day,
+                    "currency_type":input.currency
+                })
+            }).then(function(data) {
+                return data.data;
+            });
         }
     }
 });

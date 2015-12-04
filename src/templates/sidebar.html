@@ -53,7 +53,7 @@
             <div class="kk-input-group flat">
                 <input type="password" name="password" class="form-control" placeholder="{{'Enter Your Password' | translate}}" ng-model="input.password" required />
                 <!-- <span class="tip text-warning" ng-show="signinForm.password.$invalid && signinForm.password.$dirty">必填,密码至少8位</span> -->
-                <span class="tip text-warning" ng-show="sidebar.error.show">{{sidebar.error.message}}</span>
+                <!-- <span class="tip text-warning" ng-show="sidebar.error.show">{{sidebar.error.message}}</span> -->
             </div>
             <div class="kk-input-group">
                 <button type="submit" class="btn btn-warning block full-width" ng-disabled="signinForm.$invalid">{{"Login" | translate}}<i class="fa fa-refresh" ng-show="loading"></i></button>
@@ -92,7 +92,7 @@
             <div class="kk-input-group flat">
                 <input type="password" name="password" class="form-control" placeholder="{{'Set Password: at Least 6 Characters' | translate}}" ng-model="input.password" required>
                 <!-- <span class="tip text-warning" ng-show="signupForm.password.$invalid && signupForm.password.$dirty">必填,密码至少8位</span> -->
-                <span class="tip text-warning" ng-show="sidebar.error.show">{{sidebar.error.message}}</span>
+                <!-- <span class="tip text-warning" ng-show="sidebar.error.show">{{sidebar.error.message}}</span> -->
             </div>
             <div class="section text-center text-warning" ng-click="show('agreement')">{{"Read Privacy" | translate}}</div>
             <div class="kk-input-group">
@@ -102,6 +102,8 @@
         <div class="toast" ui-if="toast_state">
             <span class="loader"></span>
         </div>
+        <!-- error tip -->
+        <div class="error-msg section section-warning text-center" ui-if="error_state">{{ errormsg }}</div>
     </div>
 </div>
 <!-- signup email section -->
@@ -127,7 +129,7 @@
             <div class="kk-input-group flat">
                 <input type="password" name="password" class="form-control" placeholder="{{'Set Password: at Least 6 Characters' | translate}}" ng-model="input.password" required>
                 <!-- <span class="tip text-warning" ng-show="signupEmailForm.password.$invalid && signupEmailForm.password.$dirty">必填,密码至少8位</span> -->
-                <span class="tip text-warning" ng-show="sidebar.error.show">{{sidebar.error.message}}</span>
+                <!-- <span class="tip text-warning" ng-show="sidebar.error.show">{{sidebar.error.message}}</span> -->
             </div>
             <div class="section text-center text-warning" ng-click="show('agreement')">{{"Read Privacy" | translate}}</div>
             <div class="kk-input-group">
@@ -162,7 +164,7 @@
             <div class="kk-input-group flat">
                 <input type="password" name="password" class="form-control" placeholder="{{'Set Password: at Least 6 Characters' | translate}}" ng-model="input.password" required>
                 <!-- <span class="tip text-warning" ng-show="forgetForm.password.$invalid && forgetForm.password.$dirty">必填,密码至少8位</span> -->
-                <span class="tip text-warning" ng-show="sidebar.error.show">{{sidebar.error.message}}</span>
+                <!-- <span class="tip text-warning" ng-show="sidebar.error.show">{{sidebar.error.message}}</span> -->
             </div>
             <div class="kk-input-group">
                 <button type="submit" class="btn btn-warning block full-width" ng-disabled="forgetForm.$invalid">{{"Forgot Password"|translate}}</button>
