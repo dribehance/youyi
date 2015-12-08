@@ -14,7 +14,7 @@
                 <div class="recommand-body">
                     <div>{{"Language" | translate}}：{{applicant.return_language}}</div>
                     <p>{{"Place" | translate}}：{{applicant.address}}</p>
-                    <p>{{"Profile" | translate}}{{applicant.introduction}}</p>
+                    <p>{{"Profile" | translate}}：{{applicant.introduction}}</p>
                     <p ng-if="applicant.contact_request_status == '1'">{{applicant.contact_request}}</p>
                     <div class="clearfix">
                         <div class="pull-left">

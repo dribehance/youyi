@@ -194,6 +194,12 @@ angular.module("Youyi", [
                 reloadOnSearch:true,
                 controller: paymentController
             })
+            .when("/trade_records",{
+                templateUrl:"trade_records.html",
+                reloadOnSearch:true,
+                controller: tradeRecordsController
+            })
+            // test oc
             .when("/native",{
                 templateUrl:"native.html",
                 reloadOnSearch:true,

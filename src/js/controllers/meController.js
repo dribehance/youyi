@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var meController = function($scope, $rootScope,$location,$timeout, SharedState, userServices, errorServices, toastServices, localStorageService, config) {
+var meController = function($scope, $rootScope, $location, $timeout, SharedState, userServices, errorServices, toastServices, localStorageService, config) {
     toastServices.show();
     // basic info
     userServices.info.basic({}).then(function(data) {
@@ -10,6 +10,7 @@ var meController = function($scope, $rootScope,$location,$timeout, SharedState, 
                 translate_types: data.Result.translate_type_list,
                 translate_experiences: data.Result.experiences
             });
+            $scope.input.currency = $rootScope.user.currency_type;
         } else {
             errorServices.autoHide(data.message);
         }
@@ -55,7 +56,9 @@ var meController = function($scope, $rootScope,$location,$timeout, SharedState, 
         }).then(function(data) {
             toastServices.hide();
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                $rootScope.user.languages.push(angular.extend({}, $scope.input.choosen_language, $scope.input.choosen_language_level,{"user_language_id":data.user_language_id}))
+                $rootScope.user.languages.push(angular.extend({}, $scope.input.choosen_language, $scope.input.choosen_language_level, {
+                    "user_language_id": data.user_language_id
+                }))
                 $scope.choosen_language = {};
                 errorServices.autoHide(data.message);
             } else {
@@ -139,12 +142,25 @@ var meController = function($scope, $rootScope,$location,$timeout, SharedState, 
     }
     $scope.ajaxForm = function() {
         var editable = {};
-        editable[$scope.input.editable_key] = $scope.input.editable_content;
+        if ($scope.input.editable_key == 'pay_day') {
+            var temp = {
+                "currency": $scope.input.currency,
+                "price": $scope.input.editable_content
+            }
+            editable[$scope.input.editable_key] = temp;
+        } else {
+            editable[$scope.input.editable_key] = $scope.input.editable_content;
+        }
         toastServices.show();
         userServices.info.update(editable).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                $rootScope.user[$scope.input.editable_key] = $scope.input.editable_content;
+                if ($scope.input.editable_key == 'pay_day') {
+                    $rootScope.user["currency_type"] = $scope.input.currency;
+                    $rootScope.user["pay_day"] = $scope.input.editable_content;
+                } else {
+                    editable[$scope.input.editable_key] = $scope.input.editable_content;
+                }
                 SharedState.turnOff("editable_panel");
             } else {
                 errorServices.autoHide(data.message)
@@ -187,15 +203,14 @@ var meController = function($scope, $rootScope,$location,$timeout, SharedState, 
     // become translate intro
     console.log($rootScope.user.is_translate)
     if ($rootScope.user.is_translate != undefined && $rootScope.user.is_translate != '1') {
-        $timeout(function(){
+        $timeout(function() {
             SharedState.turnOn("is_translator_panel");
-        },3000)
+        }, 3000)
     }
-    $scope.completeProfile = function () {
+    $scope.completeProfile = function() {
         if ($rootScope.user.is_translate == '-2') {
             $location.path("me_info");
-        }
-        else {
+        } else {
             SharedState.turnOff("is_translator_panel");
         }
     }

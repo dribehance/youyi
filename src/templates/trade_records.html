@@ -1,0 +1,31 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<div ui-content-for="title">{{"Transaction Records"|translate}}</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div>
+<div class="scrollable">
+	<div class="scrollable-content">
+		<div class="section large text-center">{{"The exchange rate varies based on real market rates in a certain period."|translate}}</div>
+		<div class="section" ng-repeat="record in trade_records">
+			<div class="row">
+				<div class="col-xs-3">
+					{{record.log_post_time}}
+				</div>
+				<div class="col-xs-6">
+					<div class="">{{record.task_title}}</div>
+					<div class="">{{record.task_time}}</div>
+					<div class="">{{"Total"|translate}}：{{record.task_total_money}}</div>
+					<div class="">{{"xx of the total price is chareged as service fee."|translate:translate_with_value(rate)}}</div>
+				</div>
+				<div class="col-xs-3 text-center">
+					<div ng-if="record.type ==1">{{"Paid"|translate}}</div>
+					<div ng-if="record.type ==2">{{"Received"|translate}}</div>
+					<div class="">{{record.get_money}}</div>
+					<div class="" ng-if="record.type == 2">{{record.rate_str}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="section text-center m" ng-click="loadMore()">{{page.message | translate}}</div>
+	</div>
+</div>

@@ -9,7 +9,8 @@ angular.module("Youyi").factory("commentServices", function($http, localStorageS
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "language_app": localStorageService.get("language"),
-                    "task_id":input.task_id
+                    "task_id":input.task_id,
+                    "user_id":input.user_id
                 })
             }).then(function(data) {
                 return data.data;

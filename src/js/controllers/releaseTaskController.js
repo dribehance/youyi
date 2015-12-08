@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeout, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
+var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeout, $location, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {
         from_date: "",
         from_time: "",
@@ -166,7 +166,8 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
     $scope.close = function() {
         toastServices.show();
         $timeout(function() {
-            $route.reload();
+            $location.path("tasks")
+                // $route.reload();
         }, 1000)
     };
 }

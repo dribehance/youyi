@@ -47,5 +47,20 @@ angular.module("Youyi").factory("walletServices", function($http, localStorageSe
                 return data.data;
             });
         },
+        queryTradeRecords: function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/UserCenter/dealRecord",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "language_app": localStorageService.get("language"),
+                    "pn": input.number,
+                    "page_size": input.page_size
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        }
     }
 });

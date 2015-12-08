@@ -263,6 +263,7 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, toas
                 });
             },
             updateSalary: function(input) {
+                console.log(input)
                 return $http({
                     // by dribehance <dribehance.kksdapp.com>
                     url: config.url + "/app/Person/uploadPayDay",
@@ -270,7 +271,8 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, toas
                     params: angular.extend({}, config.common_params, {
                         "language_app": localStorageService.get("language"),
                         "token": localStorageService.get("token"),
-                        "pay_day": input.pay_day
+                        "pay_day": input.pay_day.price,
+                        "currency_type": input.pay_day.currency
                     })
                 }).then(function(data) {
                     return data.data;

@@ -14,7 +14,8 @@ var commentController = function($scope, $rootScope, $routeParams, commentServic
     };
     toastServices.show();
     commentServices.queryTags({
-        task_id: $routeParams.task_id
+        task_id: $routeParams.task_id,
+        user_id: $routeParams.user_id
     }).then(function(data) {
         toastServices.hide()
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {

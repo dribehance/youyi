@@ -51,4 +51,7 @@ var favoriteController = function($scope,$location, myLoveServices, errorService
         }
         $location.path("apply_flow").search("translator_id", translator_id);
     };
+    $scope.preview_translator = function(id) {
+        $location.path("translators/"+id);
+    }
 }

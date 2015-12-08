@@ -52,7 +52,7 @@
     "Add Experience": "Add Experience",
     "Profile": "Profile",
     "Edit Profile": "Edit Profile",
-    "Basic information": "Basic information",
+    "Detailed information": "Detailed information",
     "Nickname": "Nickname",
     "Real Name": "Real Name",
     "Gender": "Gender",
@@ -264,5 +264,18 @@
     "age":"age",
     "Private":"Private",
     "Date of Birth":"Date of Birth",
-    "Please Set Transaction Password First":"Please Set Transaction Password First"
+    "Please Set Transaction Password First":"Please Set Transaction Password First",
+    "Based on Local Time":"Task Time Refers to the Local Time in the Task Place",
+    "Please Note:":"Please Note:",
+    "After registering as a translator, you can accept tasks. Once a task is confirmed, the task owner would make a payment to us in advance. Three working days after the task is completed, the task fee will be exchanged into your local currency and transferred into your 'Wallet'. Money can be withdrawed from 'My Wallet' afterwards. Our platform charges 10% of the total fee as service fee. The exchange rate varies based on real market rates in a certain period.":"After registering as a translator, you can accept tasks. Once a task is confirmed, the task owner would make a payment to us in advance. Three working days after the task is completed, the task fee will be exchanged into your local currency and transferred into your 'Wallet'. Money can be withdrawed from 'My Wallet' afterwards. Our platform charges 10% of the total fee as service fee. The exchange rate varies based on real market rates in a certain period.",
+    "Registerring as a translator means that you accepted the arrangement above. Please obey the local law and regulation.":"Registerring as a translator means that you accepted the arrangement above. Please obey the local law and regulation.",
+    "UE Lives provides an opportunity for your to leverage your language skills and meet new friends, and we are trying best to maintain a safe and reliable trading environment, which also relies on your support and participation.":"UE Lives provides an opportunity for your to leverage your language skills and meet new friends, and we are trying best to maintain a safe and reliable trading environment, which also relies on your support and participation.",
+    "Task below this service charge won't be referred to you. Any task invitation will not be  lower than this daily wage.":"Task below this service charge won't be referred to you. Any task invitation will not be  lower than this daily wage.",
+    "Task fee will be exchanged into your local currency and transferred into your 'Wallet', while the exchange rate varies based on real market rates in a certain period. Our platform charges 10% of the total fee as service fee.":"Task fee will be exchanged into your local currency and transferred into your 'Wallet', while the exchange rate varies based on real market rates in a certain period. Our platform charges 10% of the total fee as service fee.",
+    "The exchange rate varies based on real market rates in a certain period.":"The exchange rate varies based on real market rates in a certain period.",
+    "Transaction Records":"Transaction Records",
+    "Received":"Received",
+    "paid":"paid",
+    "Total":"Total",
+    "xx of the total price is chareged as service fee.":"{{value}} of the total price is chareged as service fee."
 }

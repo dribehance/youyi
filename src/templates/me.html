@@ -1,5 +1,5 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">{{"Basic information" | translate}}</div>
+<div ui-content-for="title">{{"Detailed information" | translate}}</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
     <span class="btn" ng-click="sync_back()"><i class="fa fa-chevron-left"></i></span>
@@ -185,7 +185,7 @@
         <div class="list-group" style="margin:10px">
             <div class="list-group-header">
                 <div class="section bg-transparent">
-                    {{"Cost Fee" | translate}}
+                    {{"Cost Fee" | translate}}-[{{user.currency_type}}]
                 </div>
             </div>
             <div class="list-group-item clearfix" ng-click="edit({'pay_day':user.pay_day})">
@@ -234,6 +234,12 @@
                 </div>
             </div>
         </div>
+        <div class="section large bg-transparent">
+            <p>{{"Please Note:"|translate}}</p>
+            <p>{{"After registering as a translator, you can accept tasks. Once a task is confirmed, the task owner would make a payment to us in advance. Three working days after the task is completed, the task fee will be exchanged into your local currency and transferred into your 'Wallet'. Money can be withdrawed from 'My Wallet' afterwards. Our platform charges 10% of the total fee as service fee. The exchange rate varies based on real market rates in a certain period."|translate}}</p>
+            <p>{{"Registerring as a translator means that you accepted the arrangement above. Please obey the local law and regulation."|translate}}</p>
+            <p>{{"UE Lives provides an opportunity for your to leverage your language skills and meet new friends, and we are trying best to maintain a safe and reliable trading environment, which also relies on your support and participation."|translate}}</p>
+        </div>
     </div>
 </div>
 <div ui-content-for="modals">
@@ -259,8 +265,31 @@
                         </ul>
                     </div>
                     <textarea class="form-control" placeholder="{{'Please enter' | translate}}" ng-model="input.editable_content" name="edit" rows="10" required ng-if="input.editable_key != 'pay_day'"></textarea>
-                    <input class="form-control" type="number" placeholder="{{'Please enter' | translate}}" name="salary" ng-model="input.editable_content" required ng-if="input.editable_key == 'pay_day'">
+                    <div class="btn-group justified" ng-if="input.editable_key == 'pay_day'">
+                        <label class="btn rectangle" ng-class="{'text-primary':input.currency =='CNY','bg-gray-lighter':input.currency  != 'CNY'}">
+                            CNY/{{"Day"|translate}}
+                            <input type="radio" class="hide" name="currency" ng-model="input.currency " value="CNY">
+                        </label>
+                        <label class="btn rectangle" ng-class="{'text-primary':input.currency =='USD','bg-gray-lighter':input.currency  != 'USD'}">
+                            USD/{{"Day"|translate}}
+                            <input type="radio" class="hide" name="currency" ng-model="input.currency " value="USD">
+                        </label>
+                        <label class="btn rectangle" ng-class="{'text-primary':input.currency =='KRW','bg-gray-lighter':input.currency  != 'KRW'}">
+                            KRW/{{"Day"|translate}}
+                            <input type="radio" class="hide" name="currency" ng-model="input.currency " value="KRW">
+                        </label>
+                        <label class="btn rectangle" ng-class="{'text-primary':input.currency =='JPY','bg-gray-lighter':input.currency  != 'JPY'}">
+                            JPY/{{"Day"|translate}}
+                            <input type="radio" class="hide" name="currency" ng-model="input.currency " value="JPY">
+                        </label>
+                    </div>
+                    <p></p>
+                    <input class="form-control rectangle" type="number" placeholder="{{'Please enter' | translate}}" name="salary" ng-model="input.editable_content" required ng-if="input.editable_key == 'pay_day'">
                     <!-- <span class="text-primary" ng-show="editForm.salary.$invalid && editForm.salary.$dirty">必填,数字</span> -->
+                    <div style="margin-top:16px" ng-if="input.editable_key == 'pay_day'">
+                        <p>{{"Task below this service charge won't be referred to you. Any task invitation will not be  lower than this daily wage."|translate}}</p>
+                        <p>{{"Task fee will be exchanged into your local currency and transferred into your 'Wallet', while the exchange rate varies based on real market rates in a certain period. Our platform charges 10% of the total fee as service fee."|translate}}</p>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button ui-turn-off="editable_panel" class="btn btn-default">{{"Cancel"|translate}}</button>

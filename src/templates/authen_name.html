@@ -29,14 +29,14 @@
                     <div class="pull-left section section-condensed bg-transparent" ui-turn-off="upload_panel">
                         <i class="fa fa-chevron-left" style="position:relative;top:3px"></i>
                     </div>
-                    <h4 class="modal-title text-center">{{"Add Photo" | translate}}</h4>
+                    <h4 class="modal-title text-center">{{"Add" | translate}}</h4>
                 </div>
                 <div class="modal-body">
                     <div flow-init="{singleFile:true}" ng-controller="authenUploadController" class="uploader">
                         <div class="section text-center">
                             <div class="block full-width flow-btn text-center">
                                 <!-- <img flow-btn flow-attrs="{accept:'image/*'}" class="needsclick" ng-src="../images/upload_1.png" ng-show="!$flow.files.length" alt=""> -->
-                                <div class="preview-btn needsclick" flow-btn flow-attrs="{accept:'image/*'}" ng-show="!$flow.files.length">
+                                <div class="preview-btn needsclick" flow-btn flow-attrs="{accept:'image/*'}" ng-show="!$flow.files.length" style="max-width:280px;margin:auto auto">
                                 </div>
                                 <div class="preview-box" ng-show="$flow.files.length">
                                     <span class="remove-btn" ng-click="$flow.files[0].cancel()"></span>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="section">
                             <p>{{"Example"| translate}}</p>
-                            <img ng-src="../images/aobama.jpg" class="block full-width" alt="">
+                            <img ng-src="../images/aobama.jpg" class="block full-width" style="max-width:280px;margin:auto auto" alt="">
                         </div>
                         <div class="section">
                             <button type="button" class="btn btn-danger full-width" ng-click="ajaxForm($flow)" ng-disabled="$flow.files.length < 1 ">{{"Submit to Authentication" | translate}}</button>

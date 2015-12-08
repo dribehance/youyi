@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var applyFlowController = function($rootScope, $scope, $route,$routeParams, $timeout, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
+var applyFlowController = function($rootScope, $scope, $route, $location, $routeParams, $timeout, $filter, SharedState, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {
         from_date: "",
         from_time: "",
@@ -8,22 +8,22 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
         title: "",
         category: {},
         price: 0,
-        currency:"",
+        currency: "",
         total: 0,
         address: "Please Choose",
         content: "",
         other: "",
         from_date_options: {
             format: "yyyy-mm-dd",
-            min:new Date(),
+            min: new Date(),
         },
         to_date_options: {
             format: "yyyy-mm-dd",
         },
         time_options: {
             format: "HH:i",
-            min:0.5,
-            max:[23,30]
+            min: 0.5,
+            max: [23, 30]
         }
     };
     $scope.choosen = {};
@@ -32,7 +32,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
     $scope.choosen_language = {};
     toastServices.show();
     taskServices.queryLanguageByTranslator({
-        yy_user_id:$routeParams.translator_id
+        yy_user_id: $routeParams.translator_id
     }).then(function(data) {
         toastServices.hide()
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -46,7 +46,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
     // step 2
     // get category;
     taskServices.queryCategoryByTranslator({
-        "yy_user_id":$routeParams.translator_id
+        "yy_user_id": $routeParams.translator_id
     }).then(function(data) {
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
             $scope.categories = data.Result.type;
@@ -115,7 +115,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
             "description": $scope.input.content,
             "yy_user_id": $routeParams.translator_id,
             "is_apply": "0",
-            "currency":$scope.input.currency
+            "currency": $scope.input.currency
         };
         toastServices.show();
         taskServices.release(input).then(function(data) {
@@ -135,7 +135,8 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
         toastServices.show();
         $timeout(function() {
             // $route.reload();
-            $rootScope.back();
+            // $rootScope.back();
+            $location.path("tasks").replace();
         }, 1000)
     }
     $scope.create = function() {
