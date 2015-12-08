@@ -1,96 +1,30 @@
 // by dribehance <dribehance.kksdapp.com>
-var applicantsController = function($scope, $route, $timeout, $routeParams, $location, $filter, walletServices, weixinServices, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
-    $scope.applicants = [];
+var paymentController = function($scope, $routeParams, $location, $timeout, weixinServices, SharedState, walletServices, taskServices, errorServices, toastServices, localStorageService, config) {
+    // alert($location.absUrl())
+    // alert($routeParams.code + "=code");
     $scope.input = {
         password: "",
         error_message: "",
         paying: false,
     };
-    $scope.page = {
-        pn: 1,
-        page_size: 10,
-        message: "Load More",
-        task_id: $routeParams.task_id
-    }
-    $scope.loadMore = function() {
-        if ($scope.no_more) {
-            return;
-        }
-        toastServices.show();
-        $scope.page.message = "Loading";
-        taskServices.queryApplicantsByTask($scope.page).then(function(data) {
-            toastServices.hide();
-            $scope.page.message = "Load More";
-            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                $scope.applicants = $scope.applicants.concat(data.RequestList.list);
-                // $scope.payment = data.money;
-                $scope.no_more = $scope.applicants.length == data.RequestList.totalRow ? true : false;
-            } else {
-                errorServices.autoHide(data.message);
-            }
-            if ($scope.no_more) {
-                $scope.page.message = "No More";
-            }
-            $scope.page.pn++;
-        })
-
-    }
-    $scope.loadMore();
-    // accept applicant
-    $scope.accept = function(applicant) {
-        if (applicant.oper_status == "1" || applicant.oper_status == "0") {
-            weixinServices.prepare_pay({
-                "yy_user_id": applicant.user_id,
-                "task_id": $routeParams.task_id
-            });
-            // $window.location.href = 
-            return;
-            toastServices.show();
-            taskServices.queryPaymentInfo({
-                "yy_user_id": applicant.user_id,
-                "task_id": $routeParams.task_id
-            }).then(function(data) {
-                toastServices.hide()
-                if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                    SharedState.turnOn("payment_panel");
-                    $scope.payment_user = data.Result.user;
-                    $scope.payment_money = data.Result.money;
-                    $scope.accept_applicant = applicant;
-                } else {
-                    errorServices.autoHide(data.message);
-                }
-            })
-        }
-
-    }
-    $scope.unlike = function(applicant) {
-        myLoveServices.cancel({
-            "collection_id": applicant.collection_id
+    toastServices.show();
+    taskServices.queryPaymentInfo({
+            "yy_user_id": JSON.parse($routeParams.state).yy_user_id,
+            "task_id": JSON.parse($routeParams.state).task_id,
+            "code": $routeParams.code
         }).then(function(data) {
+            toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                applicant.is_collect = 0
+                // SharedState.turnOn("payment_panel");
+                // alert(JSON.stringify(data))
+                $scope.payment_user = data.Result.user;
+                $scope.payment_money = data.Result.money;
+                // $scope.accept_applicant = applicant;
             } else {
                 errorServices.autoHide(data.message);
             }
         })
-    }
-    $scope.like = function(applicant) {
-        myLoveServices.like({
-            "collection_user_id": applicant.user_id
-        }).then(function(data) {
-            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                applicant.is_collect = 1,
-                    applicant.collection_id = data.collection_id;
-            } else {
-                errorServices.autoHide(data.message);
-            }
-        })
-    };
-    // preview translator
-    $scope.preview_translator = function(translator_id) {
-        $location.path("translators/" + translator_id).search("to", "preview")
-    };
-    // payway balance or third part payment
+        // payway balance or third part payment
     $scope.payway = {
         balance: true,
         channel: "",
@@ -132,22 +66,25 @@ var applicantsController = function($scope, $route, $timeout, $routeParams, $loc
         $scope.input.paying = true;
         toastServices.show();
         taskServices.pay({
-            "user_id": $scope.accept_applicant.user_id,
-            "task_id": $routeParams.task_id,
+            // "user_id": $scope.accept_applicant.user_id,
+            "user_id": JSON.parse($routeParams.state).yy_user_id,
+            // "task_id": $routeParams.task_id,
+            "task_id": JSON.parse($routeParams.state).task_id,
             "pay_type": pay_type,
             "pay_total_money": $scope.payment_money.total_money,
             "pay_password": $scope.input.password,
+            "code": $routeParams.code
         }).then(function(data) {
             $scope.input.paying = false;
             toastServices.hide();
-            alert(data)
+            // alert(JSON.stringify(data))
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 if (!$scope.payway.balance && $scope.payway.channel == "yinlian") {
                     $scope.invokeYinlianPay(data);
                     return
                 }
                 if (!$scope.payway.balance && $scope.payway.channel == "weixin") {
-                    alert("invoke weixin pay")
+                    // alert("invoke weixin pay")
                     $scope.invokeWeixinPay(data);
                     return;
                 }
@@ -156,7 +93,8 @@ var applicantsController = function($scope, $route, $timeout, $routeParams, $loc
                     return;
                 }
                 // balance pay handle
-                $route.reload();
+                // $route.reload();
+                $location.path("index").replace();
             } else {
                 errorServices.autoHide(data.message);
             }
@@ -165,7 +103,7 @@ var applicantsController = function($scope, $route, $timeout, $routeParams, $loc
     // pay by weixin
     $scope.invokeWeixinPay = function(data) {
         var weixin_res = data.weixinTemp;
-        weixinServices.pay(data);
+        weixinServices.pay(weixin_res);
     };
     // pay by alipay
     $scope.invokeAlipay = function(data) {

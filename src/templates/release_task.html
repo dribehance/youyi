@@ -147,7 +147,7 @@
                             <!-- <span class="semi-fixed-left semi-wide-40 text-center">
                                 <i class="kk kk-25 kk-checked" ng-class="{'active':input.price !=''}"></i>
                             </span> -->
-                            <input type="number" class="form-control rectangle youyi-flat-input text-right" name="price" ng-model="input.price" min="1" placeholder="{{'Please enter' | translate}}" required>
+                            <input type="number" class="form-control rectangle youyi-flat-input text-right" name="price" ng-model="input.price" placeholder="{{'Please enter' | translate}}" required>
                             <span class="semi-fixed-right semi-wide-40 text-center">
                                 <span class="btn">/{{"Day" | translate}}</span>
                             </span>
@@ -210,7 +210,7 @@
                     <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80" style="min-height:80px">
                             <div class="semi-fixed-left text-center">
-                                <img ng-src="{{staticImageUrl + user.avatar || '../images/avatar.png'}}" width="70px" alt="">
+                                <img ng-src="{{staticImageUrl + user.avatar || '../images/avatar.png'}}" width="70px" alt="" err-src="../images/avatar_1.png">
                             </div>
                             <div style="padding-bottom:8px;">
                                 {{input.title}}

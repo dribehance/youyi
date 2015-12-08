@@ -189,6 +189,16 @@ angular.module("Youyi", [
                 reloadOnSearch:true,
                 controller: oauthController
             })
+            .when("/payment",{
+                templateUrl:"payment.html",
+                reloadOnSearch:true,
+                controller: paymentController
+            })
+            .when("/native",{
+                templateUrl:"native.html",
+                reloadOnSearch:true,
+                controller: nativeController
+            })
             .otherwise({
                 redirectTo: "/index"
             });

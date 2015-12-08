@@ -1,0 +1,120 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<div ui-content-for="title">{{"Payment" | translate}}</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content">
+        <form name="paymentForm" ng-submit="ajaxForm()">
+            <div class="section bg-transparent text-center">
+                <p>{{"Going to Pay" | translate}}</p>
+                <span class="text-very-large">{{payment_money.price_sign}}{{payment_money.total_money | currency:""}}</span>
+            </div>
+            <div class="section">
+                <div class="media">
+                    <div class="media-left">
+                        <div class="circle icon-70">
+                            <img class="media-object block full-width" ng-src="{{staticImageUrl + payment_user.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading text-ellipsis">{{payment_user.nickname}}</h4>
+                        <div>{{"Language" | translate}}：{{payment_user.return_language}}</div>
+                        <div>{{"Place" | translate}}：{{payment_user.address}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="section large bg-gray-lighter text-primary clearfix">
+                {{"Pay by Balance" | translate}}
+                <span class="pull-right">
+                            <span class="switch switch-transition-enabled" ng-class="{'active':payway.balance}" ng-click="togglePayway()">
+                                <span class="switch-handle"></span>
+                </span>
+                </span>
+            </div>
+            <div class="section large">
+                {{"Balance Available is" | translate}} <span class="text-primary">{{payment_money.price_sign}}{{payment_money.current_money |currency:""}}</span>
+            </div>
+            <div class="section large bg-gray-lighter text-primary clearfix">
+                {{"Payment Method" | translate}}
+                <span class="pull-right">
+                            <span class="switch switch-transition-enabled" ng-class="{'active':!payway.balance}" ng-click="togglePayway()">
+                                <span class="switch-handle"></span>
+                </span>
+                </span>
+            </div>
+            <div class="list-group">
+                <label class="list-group-item">
+                    {{"Unionpay" | translate}}
+                    <input type="radio" class="hidden" ng-model="payway.channel" value="yinlian">
+                    <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payway.channel == 'yinlian' && !payway.balance)}"></i>
+                </label>
+                <label class="list-group-item">
+                    {{"WeChat" | translate}}
+                    <input type="radio" class="hidden" ng-model="payway.channel" value="weixin">
+                    <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payway.channel == 'weixin' && !payway.balance)}"></i>
+                </label>
+                <label class="list-group-item">
+                    {{"AliPay" | translate}}
+                    <input type="radio" class="hidden" ng-model="payway.channel" value="alipay">
+                    <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payway.channel == 'alipay' && !payway.balance)}"></i>
+                </label>
+            </div>
+            <div class="section text-center">
+                <button type="submit" class="btn btn-primary" ng-disabled="paymentForm.edit.$invalid">
+                    <span ng-if="wallet.is_setPayPwd == 0">{{"Please Set Transaction Password First" | translate}}</span>
+                    <span ng-if="wallet.is_setPayPwd == 1">{{"Confirm" | translate}}</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- alipay -->
+<form name="alipayForm" method="post" id="alipayForm" action="https://mapi.alipay.com/gateway.do?_input_charset=utf-8">
+    <input type="hidden" name="service" value="{{alipay.service}}">
+    <input type="hidden" name="partner" value="{{alipay.partner}}">
+    <input type="hidden" name="seller_id" value="{{alipay.seller_id}}">
+    <input type="hidden" name="_input_charset" value="{{alipay._input_charset}}">
+    <input type="hidden" name="payment_type" value="{{alipay.payment_type}}">
+    <input type="hidden" name="notify_url" value="{{alipay.notify_url}}">
+    <input type="hidden" name="return_url" value="{{alipay.return_url}}">
+    <input type="hidden" name="out_trade_no" value="{{alipay.out_trade_no}}">
+    <input type="hidden" name="subject" value="{{alipay.subject}}">
+    <input type="hidden" name="total_fee" value="{{alipay.total_fee}}">
+    <input type="hidden" name="show_url" value="{{alipay.show_url}}">
+    <input type="hidden" name="body" value="{{alipay.body}}">
+    <input type="hidden" name="it_b_pay" value="{{alipay.it_b_pay}}">
+    <input type="hidden" name="extern_token" value="{{alipay.extern_token}}">
+    <input type="hidden" name="sign" value="{{alipay.sign}}">
+    <input type="hidden" name="sign_type" value="{{alipay.sign_type}}">
+</form>
+<div ui-content-for="modals">
+    
+    <div class="modal" ui-if="password_panel" ui-state='password_panel' style="z-index:5000">
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog" style="margin-top:10%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close text-primary" ui-turn-off="password_panel">&times;</button>
+                    <h4 class="modal-title text-center">{{"Enter Transaction Password" | translate}}</h4>
+                </div>
+                <div class="modal-body">
+                    <span class="password-input">
+                        <input type="password" class="form-control" ng-model="input.password" focus-me="true">
+                        <span class="dot dot_{{$index}}" ng-repeat="d in imulate_password track by $index"></span>
+                    </span>
+                    <p class="text-primary text-center">{{input.error_message}}</p>
+                </div>
+                <div class="modal-footer text-center">
+                    <div class="btn-group justified">
+                        <a ui-turn-off="password_panel" class="btn btn-default">{{"Cancel" | translate}}</a>
+                        <a ng-click="ajaxForm()" ng-disabled="input.password == ''" class="btn btn-primary">{{"Confirm"|translate}}<i class="fa fa-refresh" ng-show="input.paying"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- error tip -->
+        <div class="error-msg section section-warning text-center" ui-if="error_state">{{ errormsg }}</div>
+    </div>
+</div>

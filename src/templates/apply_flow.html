@@ -111,7 +111,7 @@
                             {{"Price" | translate}}<span class="text-danger">*</span>
                         </div>
                         <div class="semi-auto semi-icon-bar">
-                            <div class="text-right">{{input.price}}</div>
+                            <div class="text-right">{{input.currency}}{{input.price}}</div>
                             <span class="semi-fixed-right semi-wide-40 text-center">
                                 <span class="">/{{"Day" | translate}}</span>
                             </span>
@@ -169,7 +169,7 @@
                     <div class="section large" style="padding-bottom:0">
                         <div class="semi-auto semi-left-80" style="min-height:80px">
                             <div class="semi-fixed-left text-center">
-                                <img ng-src="{{staticImageUrl + user.avatar || '../images/avatar.png'}}" width="70px" alt="">
+                                <img ng-src="{{staticImageUrl + user.avatar || '../images/avatar.png'}}" width="70px" alt="" err-src="../images/avatar_1.png">
                             </div>
                             <div style="padding-bottom:8px;">
                                 {{input.title}}

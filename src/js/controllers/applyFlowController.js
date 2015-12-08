@@ -8,6 +8,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
         title: "",
         category: {},
         price: 0,
+        currency:"",
         total: 0,
         address: "Please Choose",
         content: "",
@@ -51,7 +52,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
             $scope.categories = data.Result.type;
             // $scope.apply_translator_info = data.Result.yyInfo;
             $scope.input.price = data.Result.yyInfo.pay_day;
-            $scope.input.currency_type = data.Result.yyInfo.currency_type;
+            $scope.input.currency = data.Result.yyInfo.currency_type;
             $scope.choosen.city.name = data.Result.yyInfo.address;
             $scope.choosen.city.city_dict_group_id = data.Result.yyInfo.city_dict_group_id;
             $scope.input.category = $scope.categories[0]
@@ -114,6 +115,7 @@ var applyFlowController = function($rootScope, $scope, $route,$routeParams, $tim
             "description": $scope.input.content,
             "yy_user_id": $routeParams.translator_id,
             "is_apply": "0",
+            "currency":$scope.input.currency
         };
         toastServices.show();
         taskServices.release(input).then(function(data) {

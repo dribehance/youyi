@@ -198,6 +198,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     "task_description": input.description,
                     "yy_user_id": input.yy_user_id,
                     "is_apply": input.is_apply,
+                    "currency_type":input.currency
                 })
             }).then(function(data) {
                 return data.data;
@@ -302,6 +303,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     "language_app": localStorageService.get("language"),
                     "yy_user_id": input.yy_user_id,
                     "task_id": input.task_id,
+                    "code":input.code
                 })
             }).then(function(data) {
                 return data.data;
@@ -320,6 +322,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     "pay_type": input.pay_type,
                     "pay_total_money":input.pay_total_money,
                     "pay_password": input.pay_password,
+                    "code":input.code
                 })
             }).then(function(data) {
                 return data.data;
@@ -356,7 +359,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
             });
         },
         // query minimal price
-        queryMinPrice:function() {
+        queryMinPrice:function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/app/PublishTask/recommPrice",
