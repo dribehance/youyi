@@ -322,7 +322,9 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     "pay_type": input.pay_type,
                     "pay_total_money":input.pay_total_money,
                     "pay_password": input.pay_password,
-                    "code":input.code
+                    "code":input.code,
+                    // "timestamp":input.timestamp,
+                    // "nonceStr":input.nonceStr
                 })
             }).then(function(data) {
                 return data.data;

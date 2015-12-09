@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var paymentController = function($scope, $routeParams, $location, $timeout, weixinServices, SharedState, walletServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var paymentController = function($scope,$rootScope, $routeParams, $location, $timeout, weixinServices, SharedState, walletServices, taskServices, errorServices, toastServices, localStorageService, config) {
     // alert($location.absUrl())
     // alert($routeParams.code + "=code");
     $scope.input = {
@@ -73,7 +73,9 @@ var paymentController = function($scope, $routeParams, $location, $timeout, weix
             "pay_type": pay_type,
             "pay_total_money": $scope.payment_money.total_money,
             "pay_password": $scope.input.password,
-            "code": $routeParams.code
+            "code": $routeParams.code,
+            // "timestamp":$rootScope.timestamp,
+            // "nonceStr":$rootScope.nonceStr
         }).then(function(data) {
             $scope.input.paying = false;
             toastServices.hide();
