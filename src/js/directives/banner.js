@@ -2,33 +2,26 @@
 angular.module("Youyi").directive('banner', function() {
     return {
         restrict: 'E',
+        transclude: true,
+        template:"<div class='carousel-holder' ng-transclude></div>",
         link: function(scope, element, attrs) {
             var options = {
                 autoPlay: 5000,
-                stopOnHover: true,
-                slideSpeed: 300,
-                paginationSpeed: 400,
-                singleItem: true
-            };
+                singleItem: true,
+                pagination: false
+            }
+            options = angular.extend({},options,scope.$eval($(element).attr('data-options')));
             var rate = parseFloat(scope.$eval($(element).attr('data-rate')));
             var style = {
-                width:$(element).width() || $(window).width(),
-                height:($(element).width() || $(window).width())/rate,
-                "line-height": ($(element).width() || $(window).width())/rate +"px",
-                overflow:"hidden",
-                "text-align":"center",
-                "background-image":"url('../images/banner.png')",
-                "background-repeat":"no-repeat",
-                "background-position":"center center",
-                "background-size":"100%"
+                display: "block",
+                width: $(element).parent().width() || $(window).width(),
+                height: ($(element).parent().width() || $(window).width()) / rate
             }
             $(element).css(style);
-            options = angular.extend({},options,scope.$eval($(element).attr('data-options')));
             scope.$on('repeat_done', function() {
                 // carousel init
-                $(element).owlCarousel(options);
+                $(element).find(".carousel-holder").owlCarousel(options);
             });
         }
     };
 });
-r

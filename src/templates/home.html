@@ -18,11 +18,10 @@
     <div class="scrollable-header">
         <!-- banner -->
         <banner data-options="{}" data-rate="750/175">
-            <div class="image-holder" ng-repeat="b in banners" on-repeat-done>
-                <a ng-href="{{b.banner_url}}" target="blank" class="block">
-                    <img ng-src="{{staticImageUrl + b.cover}}" err-src="../images/banner.png" class="block full-width" alt="">
+                <a ng-href="{{b.banner_url}}" target="blank" class="block" ng-repeat="b in banners" on-repeat-done>
+                    <!-- <img ng-src="{{staticImageUrl + b.cover}}" err-src="../images/banner.png" class="block full-width" alt=""> -->
+                    <imageview src="staticImageUrl + b.cover" data-rate="750/175"></imageview>
                 </a>
-            </div>
         </banner>
         <!-- filter -->
         <div class="section section-condensed" id="filter">
