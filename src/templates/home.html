@@ -71,12 +71,12 @@
             </div>
         </a>
         <div class="section text-center m" ng-click="loadMore()">{{page.message | translate}}</div>
-        <!-- hide content -->
-        <div ng-include="'language.html'" ng-if="filter.name == 'language'"></div>
-        <div ng-include="'location.html'" ng-if="filter.name == 'location'"></div>
-        <div ng-include="'price.html'" ng-if="filter.name == 'price'"></div>
-        <div ng-include="'category.html'" ng-if="filter.name == 'category'"></div>
     </div>
+    <!-- hide content -->
+    <div ng-include="'language.html'" ng-if="filter.name == 'language'"></div>
+    <div ng-include="'location.html'" ng-if="filter.name == 'location'"></div>
+    <div ng-include="'price.html'" ng-if="filter.name == 'price'"></div>
+    <div ng-include="'category.html'" ng-if="filter.name == 'category'"></div>
 </div>
 <div ui-content-for="modals">
     <div class="modal modal-overlay" ui-if="search_panel" ui-state='search_panel'>
