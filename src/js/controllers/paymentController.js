@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var paymentController = function($scope,$rootScope, $routeParams, $location, $timeout, weixinServices, SharedState, walletServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var paymentController = function($scope, $rootScope, $routeParams, $location, $timeout, weixinServices, SharedState, walletServices, taskServices, errorServices, toastServices, localStorageService, config) {
     // alert($location.absUrl())
     // alert($routeParams.code + "=code");
     $scope.input = {
@@ -56,6 +56,20 @@ var paymentController = function($scope,$rootScope, $routeParams, $location, $ti
         }
         if (!$scope.payway.balance && $scope.payway.channel == "yinlian") {
             pay_type = 1;
+            $scope.yinlian = {
+                token:localStorageService.get("token"),
+                language_app:localStorageService.get("language"),
+                user_id: JSON.parse($routeParams.state).yy_user_id,
+                task_id: JSON.parse($routeParams.state).task_id,
+                pay_type: pay_type,
+                pay_total_money: $scope.payment_money.total_money
+            };
+            toastServices.show();
+            $timeout(function() {
+                // toastServices.hide();
+                angular.element("#yinlianForm").submit();
+            }, 1000)
+            return;
         }
         if (!$scope.payway.balance && $scope.payway.channel == "weixin") {
             pay_type = 2;

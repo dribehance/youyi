@@ -89,6 +89,16 @@
     <input type="hidden" name="sign" value="{{alipay.sign}}">
     <input type="hidden" name="sign_type" value="{{alipay.sign_type}}">
 </form>
+<!-- alipay -->
+<form name="yinlianForm" method="post" id="yinlianForm" action="http://www.uelives.com/app/TaskUser/comfiyPay">
+    <input type="hidden" name="token" value="{{yinlian.token}}">
+    <input type="hidden" name="invoke" value="h5">
+    <input type="hidden" name="language_app" value="{{yinlian.language_app}}">
+    <input type="hidden" name="user_id" value="{{yinlian.user_id}}">
+    <input type="hidden" name="task_id" value="{{yinlian.task_id}}">
+    <input type="hidden" name="pay_type" value="{{yinlian.pay_type}}">
+    <input type="hidden" name="pay_total_money" value="{{yinlian.pay_total_money}}">
+</form>
 <div ui-content-for="modals">
     
     <div class="modal" ui-if="password_panel" ui-state='password_panel' style="z-index:5000">
