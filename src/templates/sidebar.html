@@ -258,5 +258,6 @@
     </div>
 </div>
 <div class="sidebar-cover" ng-if="sidebar.share.weixin" ng-click="weixinShare()">
-    <div class="kk kk-weixin-share-tip"></div>
+    <div class="kk kk-weixin-share-tip" ng-if="wx_browser"></div>
+    <div class="kk kk-weixin-share-qrcode" ng-if="!wx_browser"></div>
 </div>

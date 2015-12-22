@@ -279,7 +279,8 @@
     <div class="modal" ui-if="weixin_share_panel" ui-state='weixin_share_panel'>
         <div class="modal-backdrop in"></div>
         <div class="modal-dialog scrollable-dialog" style="margin:0">
-            <div class="kk kk-weixin-share-tip" ui-turn-off="weixin_share_panel"></div>
+            <div class="kk kk-weixin-share-tip" ng-if="wx_browser" ui-turn-off="weixin_share_panel"></div>
+            <div class="kk kk-weixin-share-qrcode" ng-if="!wx_browser" ui-turn-off="weixin_share_panel"></div>
         </div>
     </div>
 </div>
