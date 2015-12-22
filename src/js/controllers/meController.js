@@ -199,18 +199,16 @@ var meController = function($scope, $rootScope, $location, $timeout, SharedState
     };
     $scope.sync_back = function() {
         userServices.sync();
+        if ($rootScope.user.is_translate == 1) {
+            return;
+        }
         toastServices.show();
         userServices.checkProfile().then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                if (data.is_translate == '1') {
-                    $rootScope.back();
-                    return;
-                }
-                else {
-                    $rootScope.user.is_translate = data.is_translate;
-                    SharedState.turnOn("is_translator_panel");
-                }
+                $rootScope.user.is_translate_message = data.is_translate_message;
+                $rootScope.user.is_translate = data.is_translate;
+                SharedState.turnOn("is_translator_panel");
             } else {
                 errorServices.autoHide(data.message);
             }

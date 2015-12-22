@@ -372,12 +372,17 @@
                     <h4 class="modal-title text-primary">{{user.is_translate_message}}</h4>
                 </div>
                 <div class="modal-footer text-center">
-                    <div class="btn-group justified">
+                    <div class="btn-group justified" ng-if="user.is_translate != '1'">
                         <span class="btn btn-default" ng-click="back()">
                             {{"Leave"| translate}}
                         </span>
                         <span class="btn btn-primary" ng-click="completeProfile()">
                             {{"Continue"|translate}}
+                        </span>
+                    </div>
+                    <div class="btn-group justified" ng-if="user.is_translate == '1'">
+                        <span class="btn btn-default" ng-click="back()">
+                            {{"Confirm"| translate}}
                         </span>
                     </div>
                 </div>

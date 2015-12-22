@@ -144,9 +144,9 @@
                         <a ng-click="ajaxForm()" ng-disabled="input.password == ''" class="btn btn-primary">{{"Confirm"|translate}}<i class="fa fa-refresh" ng-show="input.paying"></i></a>
                     </div>
                 </div>
+                <!-- error tip -->
+                <div class="error-msg section section-warning text-center" ui-if="error_state">{{ errormsg }}</div>
             </div>
         </div>
-        <!-- error tip -->
-        <div class="error-msg section section-warning text-center" ui-if="error_state">{{ errormsg }}</div>
     </div>
 </div>

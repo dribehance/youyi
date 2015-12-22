@@ -60,8 +60,8 @@ var paymentController = function($scope, $rootScope, $routeParams, $location, $t
         if (!$scope.payway.balance && $scope.payway.channel == "yinlian") {
             pay_type = 1;
             $scope.yinlian = {
-                token:localStorageService.get("token"),
-                language_app:localStorageService.get("language"),
+                token: localStorageService.get("token"),
+                language_app: localStorageService.get("language"),
                 user_id: JSON.parse($routeParams.state).yy_user_id,
                 task_id: JSON.parse($routeParams.state).task_id,
                 pay_type: pay_type,
@@ -113,7 +113,12 @@ var paymentController = function($scope, $rootScope, $routeParams, $location, $t
                 }
                 // balance pay handle
                 // $route.reload();
-                $location.path("index").replace();
+                toastServices.show();
+                errorServices.autoHide("支付成功")
+                $timeout(function() {
+                    toastServices.hide();
+                    $location.path("tasks").replace();
+                }, 1000);
             } else {
                 errorServices.autoHide(data.message);
             }
@@ -167,11 +172,11 @@ var paymentController = function($scope, $rootScope, $routeParams, $location, $t
         }
     });
     // quit
-    $scope.quit = function () {
+    $scope.quit = function() {
         SharedState.turnOff("tips_panel");
         $scope.payway.balance = false;
     };
-    $scope.setTradePassword = function () {
+    $scope.setTradePassword = function() {
         $location.path("modify_trade_password");
     }
 }
