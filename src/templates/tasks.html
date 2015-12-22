@@ -13,13 +13,13 @@
 <div class="scrollable">
     <div class="scrollable-header">
         <div class="btn-group justified">
-            <label class="btn rectangle bg-gray-lighter" ng-class="{'text-primary':task_tab.name =='release','bg-white':task_tab.name  == 'release'}">
-                <input type="radio" class="hide" ng-model="task_tab.name " value="release">{{"Task Created" | translate}}</label>
-            <label class="btn rectangle bg-gray-lighter" ng-class="{'text-primary':task_tab.name  =='accept','bg-white':task_tab.name  =='accept'}">
-                <input type="radio" class="hide" ng-model="task_tab.name " value="accept">{{"Task Received" | translate}}</label>
+            <label class="btn rectangle bg-gray-lighter" ng-class="{'text-primary':page.task_tab.name =='release','bg-white':page.task_tab.name  == 'release'}">
+                <input type="radio" class="hide" ng-model="page.task_tab.name " value="release">{{"Task Created" | translate}}</label>
+            <label class="btn rectangle bg-gray-lighter" ng-class="{'text-primary':page.task_tab.name  =='accept','bg-white':page.task_tab.name  =='accept'}">
+                <input type="radio" class="hide" ng-model="page.task_tab.name " value="accept">{{"Task Received" | translate}}</label>
         </div>
     </div>
-    <div class="scrollable-content">
+    <div class="scrollable-content" id="scrollable-content">
         <div class="task-section text-left section section-wide section-condensed" ng-repeat="task in tasks">
             <div class="section">
                 <div class="semi-auto semi-right-80">
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <div class="section bg-gray-lighter" ng-click="toggle_collapse(task.task_id)">
+            <div class="section bg-gray-lighter" ng-click="routeTo(task.task_id)">
                 <div class="row text-center">
                     <div class="col-xs-4 section-wide text-ellipsis">
                         <i class="kk kk-icon kk-translate" style="position:relative;top:-3px"></i> {{task.from_language}}/{{task.to_language}}
@@ -49,11 +49,11 @@
                 <div class="task_day section-wide bg-gray-lighter text-ellipsis">
                     {{task.start_time}}——{{task.end_time}}
                 </div>
-                <div class="task_detail section-wide bg-gray-lighter text-ellipsis" ng-class="{'detail-collapse': task.task_id == input.collapse_id}">
+                <div class="task_detail section-wide bg-gray-lighter text-ellipsis">
                     {{"Detail Description" | translate}}：{{task.description}}
                 </div>
             </div>
-            <a ng-href="#/{{task.task_id}}/applicants" class="block section text-gray" ng-if="task.request_users.length>0">
+            <a ng-click="routeToApplicants(task.task_id)" class="block section text-gray" ng-if="task.request_users.length>0">
                 <span ng-repeat="applicant in task.request_users track by $index" ng-if="$index<5 && task.contact_request_status ==0">
                     <img ng-src="{{staticImageUrl + applicant.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" alt="" class="circle icon">
                 </span>

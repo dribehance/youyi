@@ -2,111 +2,123 @@
 <div ui-content-for="title">{{"Task Details" | translate}}</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()">
+    <span class="btn" ng-click="back()">
 		<i class="fa fa-chevron-left"></i>
 	</span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		<div class="task-section">
-			<div class="section" style="padding-bottom:0">
-				<div class="semi-auto semi-left-80" style="min-height:80px">
-					<div class="semi-fixed-left text-center">
-						<img ng-src="{{staticImageUrl+ task.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" class="circle icon-70" alt=""> 
-					</div>
-					<div style="padding-bottom:8px;">
-						{{task.title}}
-					</div>
-					<div class="kk-line kk-horizon bg-gray-lighter"></div>
-				</div>
+    <div class="scrollable-content">
+        <div class="task-section">
+            <div class="section" style="padding-bottom:0">
+                <div class="semi-auto semi-left-80" style="min-height:80px">
+                    <div class="semi-fixed-left text-center circle icon-70">
+                        <img ng-src="{{staticImageUrl+ task.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" alt="">
+                    </div>
+                    <div class="text-big" style="padding-bottom:8px;">
+                        <b>{{task.title}}</b>
+                    </div>
+                    <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                    <div class="section section-wide">{{task.nickname}}</div>
+                </div>
             </div>
             <div class="section" style="padding-bottom:0">
-				<div class="semi-auto semi-left-80">
-					<div class="semi-fixed-left text-center">
-						{{"Language" | translate}}：
-					</div>
-					<div style="padding-bottom:8px;">
-						{{task.language}}
-					</div>
-					<div class="kk-line kk-horizon bg-gray-lighter"></div>
-				</div>
+                <div class="semi-auto semi-left-80">
+                    <div class="semi-fixed-left text-center">
+                        {{"Language" | translate}}：
+                    </div>
+                    <div style="padding-bottom:8px;">
+                        {{task.language}}
+                    </div>
+                    <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                </div>
             </div>
             <div class="section">
-				<div class="semi-auto semi-left-80">
-					<div class="semi-fixed-left text-center">
-						{{"Date" | translate}}：
-					</div>
-					<div style="padding-bottom:8px;">
-						<p>{{task.start_time}} {{"To"|translate}}</p>
-						<p>{{task.end_time}}</p>
-						<span class="text-danger">
+                <div class="semi-auto semi-left-80">
+                    <div class="semi-fixed-left text-center">
+                        {{"Date" | translate}}：
+                    </div>
+                    <div style="padding-bottom:8px;">
+                        <p>{{task.start_time}} {{"To"|translate}}</p>
+                        <p>{{task.end_time}}</p>
+                        <span class="text-danger">
 							{{task.date_message}}
 						</span>
-					</div>
-
-					<div class="kk-line kk-horizon bg-gray-lighter"></div>
-				</div>
+                    </div>
+                    <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                </div>
             </div>
             <div class="section" style="padding-bottom:0">
-				<div class="semi-auto semi-left-80">
-					<div class="semi-fixed-left text-center">
-						{{"Type" | translate}}：
-					</div>
-					<div style="padding-bottom:8px;">
-						{{task.type}} 
-					</div>
-					<div class="kk-line kk-horizon bg-gray-lighter"></div>
-				</div>
+                <div class="semi-auto semi-left-80">
+                    <div class="semi-fixed-left text-center">
+                        {{"Type" | translate}}：
+                    </div>
+                    <div style="padding-bottom:8px;">
+                        {{task.type}}
+                    </div>
+                    <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                </div>
             </div>
             <div class="section" style="padding-bottom:0">
-				<div class="semi-auto semi-left-80">
-					<div class="semi-fixed-left text-center">
-						{{"Price" | translate}}：
-					</div>
-					<div style="padding-bottom:8px;">
-						{{task.currency_type +" "+ task.price_for_day}}/天 (约{{task.to_price_for_day}}/天)
-					</div>
-					<div class="kk-line kk-horizon bg-gray-lighter"></div>
-				</div>
+                <div class="semi-auto semi-left-80">
+                    <div class="semi-fixed-left text-center">
+                        {{"Price" | translate}}：
+                    </div>
+                    <div style="padding-bottom:8px;">
+                        {{task.currency_type +" "+ task.price_for_day}}/天 (约{{task.to_price_for_day}}/天)
+                    </div>
+                    <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                </div>
             </div>
             <div class="section" style="padding-bottom:0">
-				<div class="semi-auto semi-left-80">
-					<div class="semi-fixed-left text-center">
-						{{"Total Price" | translate}}：
-					</div>
-					<div style="padding-bottom:8px;">
-						{{task.currency_type +" "+ task.total_money}} (约{{task.to_total_money}} )
-					</div>
-					<div class="kk-line kk-horizon bg-gray-lighter"></div>
-				</div>
-            </div>
-           	<div class="section" style="padding-bottom:0">
-				<div class="semi-auto semi-left-80">
-					<div class="semi-fixed-left text-center">
-						{{"Place" | translate}}：
-					</div>
-					<div style="padding-bottom:8px;">
-						{{task.address}}
-					</div>
-					<div class="kk-line kk-horizon bg-gray-lighter"></div>
-				</div>
+                <div class="semi-auto semi-left-80">
+                    <div class="semi-fixed-left text-center">
+                        {{"Total Price" | translate}}：
+                    </div>
+                    <div style="padding-bottom:8px;">
+                        {{task.currency_type +" "+ task.total_money}} (约{{task.to_total_money}} )
+                    </div>
+                    <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                </div>
             </div>
             <div class="section" style="padding-bottom:0">
-				<div class="semi-auto semi-left-80">
-					<div class="semi-fixed-left text-center">
-						{{"Task Details" | translate}}：
-					</div>
-					<div style="padding-bottom:8px;">
-						{{task.description}}
-					</div>
-				</div>
+                <div class="semi-auto semi-left-80">
+                    <div class="semi-fixed-left text-center">
+                        {{"Place" | translate}}：
+                    </div>
+                    <div style="padding-bottom:8px;">
+                        {{task.address}}
+                    </div>
+                    <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                </div>
             </div>
-		</div>
-	</div>
-	<div class="scrollable-footer">
-		<div class="kk-line kk-horizon bg-gray-lighter"></div>
-		<div class="section text-right">
-			<a class="btn btn-success" ng-click="apply()">{{"Apply" | translate}}</a>
-		</div>
-	</div>
+            <div class="section" style="padding-bottom:0">
+                <div class="semi-auto semi-left-80">
+                    <div class="semi-fixed-left text-center">
+                        {{"Task Details" | translate}}：
+                    </div>
+                    <div style="padding-bottom:8px;">
+                        {{task.description}}
+                    </div>
+                </div>
+            </div>
+            <div class="kk-line kk-horizon bg-gray-lighter"></div>
+            <div class="section">
+                <a ng-href="#/{{task_id}}/applicants" class="block section text-gray" ng-if="task_request_users.length>0 && from == 'tasks'">
+                    <span ng-repeat="applicant in task_request_users track by $index" ng-if="task_contact_request_status ==0">
+                    <img ng-src="{{staticImageUrl + applicant.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" alt="" class="circle icon">
+                </span>
+                    <span class="text-gray" ng-if="task_contact_request_status == '1'">
+                    {{task_contact_request}}
+                </span>
+                    <i class="text-gray-light fa fa-chevron-right pull-right" style="position:relative;top:4px"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="scrollable-footer" ng-if="from != 'tasks'">
+        <div class="kk-line kk-horizon bg-gray-lighter"></div>
+        <div class="section text-right">
+            <a class="btn btn-success" ng-click="apply()">{{"Apply" | translate}}</a>
+        </div>
+    </div>
 </div>

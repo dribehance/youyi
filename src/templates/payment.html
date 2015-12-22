@@ -9,7 +9,8 @@
         <form name="paymentForm" ng-submit="ajaxForm()">
             <div class="section bg-transparent text-center">
                 <p>{{"Going to Pay" | translate}}</p>
-                <span class="text-very-large">{{payment_money.price_sign}}{{payment_money.total_money | currency:""}}</span>
+                <span class="text-very-large" ng-if="!payway.balance">{{payment_money.cny_price_sign}}{{payment_money.cny_total_money | currency:""}}</span>
+                <span class="text-very-large" ng-if="payway.balance">{{payment_money.price_sign}}{{payment_money.total_money | currency:""}}</span>
             </div>
             <div class="section">
                 <div class="media">
@@ -34,7 +35,9 @@
                 </span>
             </div>
             <div class="section large">
-                {{"Balance Available is" | translate}} <span class="text-primary">{{payment_money.price_sign}}{{payment_money.current_money |currency:""}}</span>
+                {{"Balance Available is" | translate}} 
+                <span class="text-primary" ng-if="!payway.balance">{{payment_money.cny_price_sign}}{{payment_money.cny_current_money |currency:""}}</span>
+                <span class="text-primary" ng-if="payway.balance">{{payment_money.price_sign}}{{payment_money.current_money |currency:""}}</span>
             </div>
             <div class="section large bg-gray-lighter text-primary clearfix">
                 {{"Payment Method" | translate}}
@@ -50,21 +53,21 @@
                     <input type="radio" class="hidden" ng-model="payway.channel" value="yinlian">
                     <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payway.channel == 'yinlian' && !payway.balance)}"></i>
                 </label>
-                <label class="list-group-item">
+                <label class="list-group-item" ng-if="wx_browser">
                     {{"WeChat" | translate}}
                     <input type="radio" class="hidden" ng-model="payway.channel" value="weixin">
                     <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payway.channel == 'weixin' && !payway.balance)}"></i>
                 </label>
-                <label class="list-group-item">
+                <label class="list-group-item" ng-if="!wx_browser">
                     {{"AliPay" | translate}}
                     <input type="radio" class="hidden" ng-model="payway.channel" value="alipay">
                     <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payway.channel == 'alipay' && !payway.balance)}"></i>
                 </label>
             </div>
-            <div class="section text-center">
-                <button type="submit" class="btn btn-primary" ng-disabled="paymentForm.edit.$invalid">
-                    <span ng-if="wallet.is_setPayPwd == 0">{{"Please Set Transaction Password First" | translate}}</span>
-                    <span ng-if="wallet.is_setPayPwd == 1">{{"Confirm" | translate}}</span>
+            <div class="section bg-transparent text-center">
+                <button type="submit" class="btn btn-primary full-width" ng-disabled="paymentForm.edit.$invalid">
+                    <!-- <span ng-if="wallet.is_setPayPwd == 0">{{"Please Set Transaction Password First" | translate}}</span> -->
+                    <span>{{"Confirm" | translate}}</span>
                 </button>
             </div>
         </form>
@@ -89,7 +92,7 @@
     <input type="hidden" name="sign" value="{{alipay.sign}}">
     <input type="hidden" name="sign_type" value="{{alipay.sign_type}}">
 </form>
-<!-- alipay -->
+<!-- yinlian -->
 <form name="yinlianForm" method="post" id="yinlianForm" action="http://www.uelives.com/app/TaskUser/comfiyPay">
     <input type="hidden" name="token" value="{{yinlian.token}}">
     <input type="hidden" name="invoke" value="h5">
@@ -100,7 +103,26 @@
     <input type="hidden" name="pay_total_money" value="{{yinlian.pay_total_money}}">
 </form>
 <div ui-content-for="modals">
-    
+    <div class="modal" ui-if="tips_panel" ui-state='tips_panel'>
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog" style="margin-top:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-primary">{{"Please Set Transaction Password First" | translate}}</h4>
+                </div>
+                <div class="modal-footer text-center">
+                    <div class="btn-group justified">
+                        <span class="btn btn-default" ng-click="quit()">
+                            {{"Quit"| translate}}
+                        </span>
+                        <span class="btn btn-primary" ng-click="setTradePassword()">
+                            {{"Confirm"|translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal" ui-if="password_panel" ui-state='password_panel' style="z-index:5000">
         <div class="modal-backdrop in"></div>
         <div class="modal-dialog" style="margin-top:10%;">

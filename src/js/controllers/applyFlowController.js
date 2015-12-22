@@ -24,6 +24,11 @@ var applyFlowController = function($rootScope, $scope, $route, $location, $route
             format: "HH:i",
             min: 0.5,
             max: [23, 30]
+        },
+        to_time_options: {
+            format: "HH:i",
+            min: [0, 30],
+            max: [23, 30]
         }
     };
     $scope.choosen = {};
@@ -147,7 +152,8 @@ var applyFlowController = function($rootScope, $scope, $route, $location, $route
         }).then(function(data) {
             toastServices.hide()
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                $rootScope.back();
+                // $rootScope.back();
+                $location.path("tasks");
             } else {
                 errorServices.autoHide(data.message);
             }

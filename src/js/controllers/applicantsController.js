@@ -37,33 +37,37 @@ var applicantsController = function($scope, $route, $timeout, $routeParams, $loc
     }
     $scope.loadMore();
     // accept applicant
-    $scope.accept = function(applicant) {
+    $scope.accept = function(applicant,e) {
+        e.stopPropagation();
         if (applicant.oper_status == "1" || applicant.oper_status == "0") {
-            weixinServices.prepare_pay({
+            weixinServices.prepare_pay && weixinServices.prepare_pay({
                 "yy_user_id": applicant.user_id,
                 "task_id": $routeParams.task_id
             });
-            // $window.location.href = 
-            return;
-            toastServices.show();
-            taskServices.queryPaymentInfo({
+            $location.path("/payment").search("state",JSON.stringify({
                 "yy_user_id": applicant.user_id,
                 "task_id": $routeParams.task_id
-            }).then(function(data) {
-                toastServices.hide()
-                if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                    SharedState.turnOn("payment_panel");
-                    $scope.payment_user = data.Result.user;
-                    $scope.payment_money = data.Result.money;
-                    $scope.accept_applicant = applicant;
-                } else {
-                    errorServices.autoHide(data.message);
-                }
-            })
+            }));
+            // $window.location.href = 
+            // return;
+            // toastServices.show();
+            // taskServices.queryPaymentInfo({
+            //     "yy_user_id": applicant.user_id,
+            //     "task_id": $routeParams.task_id
+            // }).then(function(data) {
+            //     toastServices.hide()
+            //     if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+            //         SharedState.turnOn("payment_panel");
+            //         $scope.payment_user = data.Result.user;
+            //         $scope.payment_money = data.Result.money;
+            //         $scope.accept_applicant = applicant;
+            //     } else {
+            //         errorServices.autoHide(data.message);
+            //     }
+            // })
         }
-
     }
-    $scope.unlike = function(applicant) {
+    $scope.unlike = function(applicant,e) {
         myLoveServices.cancel({
             "collection_id": applicant.collection_id
         }).then(function(data) {
@@ -73,8 +77,9 @@ var applicantsController = function($scope, $route, $timeout, $routeParams, $loc
                 errorServices.autoHide(data.message);
             }
         })
+        e.stopPropagation();
     }
-    $scope.like = function(applicant) {
+    $scope.like = function(applicant,e) {
         myLoveServices.like({
             "collection_user_id": applicant.user_id
         }).then(function(data) {
@@ -85,6 +90,7 @@ var applicantsController = function($scope, $route, $timeout, $routeParams, $loc
                 errorServices.autoHide(data.message);
             }
         })
+        e.stopPropagation();
     };
     // preview translator
     $scope.preview_translator = function(translator_id) {
@@ -165,7 +171,7 @@ var applicantsController = function($scope, $route, $timeout, $routeParams, $loc
     // pay by weixin
     $scope.invokeWeixinPay = function(data) {
         var weixin_res = data.weixinTemp;
-        weixinServices.pay(data);
+        weixinServices.pay && weixinServices.pay(data);
     };
     // pay by alipay
     $scope.invokeAlipay = function(data) {

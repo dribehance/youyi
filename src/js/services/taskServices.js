@@ -266,6 +266,18 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 return data.data;
             });
         },
+        queryApplicantsAvatarByTask: function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/TaskController/requester",
+                method: "GET",
+                params: angular.extend({}, config.common_params,{
+                    "language_app":localStorageService.get("language")
+                }, input)
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         queryRecommandTask: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>

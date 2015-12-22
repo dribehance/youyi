@@ -1,5 +1,6 @@
 // by dribehance <dribehance.kksdapp.com>
 angular.module("Youyi").factory("weixinServices", function($http, $rootScope, $location, toastServices, $window, oauthServices, localStorageService, config) {
+    if (!$rootScope.wx_browser) return {};
     oauthServices.initWeixin($location.absUrl().split("#")[0]).then(function(data) {
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
             $rootScope.timestamp = data.Result.item3.timestamp;

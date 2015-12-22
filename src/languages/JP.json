@@ -291,5 +291,9 @@
     "Received":"受け取る",
     "paid":"支払う",
     "Total":"合計",
-    "xx of the total price is chareged as service fee.":"取引金額の{{value}}の手数料"
+    "xx of the total price is chareged as service fee.":"取引金額の{{value}}の手数料",
+    "Personal ID Verification Passed":"ID認証審査に合格",
+    "Leave": "一時的に離れます",
+    "Continue": "記入し続ける",
+    "You haven't Set Transaction Password. Go Set?":"あなたが取引パスワードを設定しませんでした,設置?"
 }

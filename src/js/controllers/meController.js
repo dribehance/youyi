@@ -160,6 +160,7 @@ var meController = function($scope, $rootScope, $location, $timeout, SharedState
                     $rootScope.user["pay_day"] = $scope.input.editable_content;
                 } else {
                     editable[$scope.input.editable_key] = $scope.input.editable_content;
+                    $rootScope.user[$scope.input.editable_key] = $scope.input.editable_content;
                 }
                 SharedState.turnOff("editable_panel");
             } else {
@@ -198,18 +199,33 @@ var meController = function($scope, $rootScope, $location, $timeout, SharedState
     };
     $scope.sync_back = function() {
         userServices.sync();
-        $rootScope.back();
+        toastServices.show();
+        userServices.checkProfile().then(function(data) {
+            toastServices.hide()
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                if (data.is_translate == '1') {
+                    $rootScope.back();
+                    return;
+                }
+                else {
+                    $rootScope.user.is_translate = data.is_translate;
+                    SharedState.turnOn("is_translator_panel");
+                }
+            } else {
+                errorServices.autoHide(data.message);
+            }
+        })
     };
     // become translate intro
-    console.log($rootScope.user.is_translate)
-    if ($rootScope.user.is_translate != undefined && $rootScope.user.is_translate != '1') {
-        $timeout(function() {
-            SharedState.turnOn("is_translator_panel");
-        }, 3000)
-    }
+    // console.log($rootScope.user.is_translate)
+    // if ($rootScope.user.is_translate != undefined && $rootScope.user.is_translate != '1') {
+    //     $timeout(function() {
+    //         SharedState.turnOn("is_translator_panel");
+    //     }, 3000)
+    // }
     $scope.completeProfile = function() {
-        if ($rootScope.user.is_translate == '-2') {
-            $location.path("me_info");
+        if ($rootScope.user.is_translate == '-6') {
+            $location.path("/me_info");
         } else {
             SharedState.turnOff("is_translator_panel");
         }

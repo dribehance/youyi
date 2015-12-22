@@ -29,7 +29,8 @@ var favoriteController = function($scope,$location, myLoveServices, errorService
 
     }
     $scope.loadMore();
-    $scope.unlike = function(translator) {
+    $scope.unlike = function(translator,e) {
+        e.stopPropagation();
         myLoveServices.cancel({
             "collection_id": translator.collection_id
         }).then(function(data) {
@@ -44,7 +45,8 @@ var favoriteController = function($scope,$location, myLoveServices, errorService
         })
     };
     // apply
-    $scope.apply = function(translator_id) {
+    $scope.apply = function(translator_id,e) {
+        e.stopPropagation();
         if (!localStorageService.get("token")) {
             $location.search("uiSidebarLeft");
             return;

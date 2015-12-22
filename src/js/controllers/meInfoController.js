@@ -42,6 +42,17 @@ var meInfoController = function($scope, $rootScope, $location, $interval, $timeo
     $scope.input = {};
     $scope.input.choosen_city = {};
     $scope.ajaxForm = function() {
+        // check area,user phone or email;
+        if ($rootScope.user.city == '') {
+            errorServices.autoHide("请选择城市")
+            return;
+        }
+        console.log($rootScope.user.telephone)
+        console.log($rootScope.user.email)
+        if ($rootScope.user.telephone == "" && $rootScope.user.email == "") {
+            errorServices.autoHide("手机邮箱至少填写一个")
+            return;
+        }
         toastServices.show();
         $rootScope.user.age_date = $scope.birthday.y + "-" + $scope.birthday.m + "-" + $scope.birthday.d;
         $rootScope.user.city_dict_group_id = $scope.input.choosen_city.group_id;

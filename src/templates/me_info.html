@@ -67,7 +67,7 @@
                 <span class="col-xs-9 section-wide btn text-left">
                     <span class="col-xs-6">
                         <label style="margin-bottom:0">
-                        <i class="kk kk-icon kk-radio" style="height:17px;width:17px;" ng-class="{'active':user.gender == '1'}"></i>
+                        <i class="kk kk-icon kk-radio" style="height:17px;width:17px;" ng-class="{'active':user.gender == '1' || user.gender == '0'}"></i>
                         <input type="radio" name="male" ng-model="user.gender"  value="1" class="hidden">{{"Male" | translate}}
                         <i class="kk kk-icon kk-male"></i>
                         </label>
@@ -82,11 +82,12 @@
                 <!-- <span class="tip text-warning">error</span> -->
                 </span>
             </div>
-            <div class="list-group-item clearfix kk-input-group">
+            <div class="list-group-item clearfix kk-input-group" ui-turn-on="district_panel">
                 <span class="btn col-xs-3 section-wide text-left">{{"Place" | translate}}</span>
                 <span class="col-xs-9 section-wide">
-                    <a class="btn block full-width text-left" ui-turn-on="district_panel">
-                        <span>{{user.country +"  "+user.city}}</span>
+                    <a class="btn block full-width text-left">
+                        <span ng-if="user.country ==''|| user.city ==''" class="text-gray-light">{{"Place" | translate}}</span>
+                        <span ng-if="!(user.country ==''|| user.city =='')">{{user.country +"  "+user.city}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
                 </a>
                 <!-- <span class="tip text-warning">error</span> -->

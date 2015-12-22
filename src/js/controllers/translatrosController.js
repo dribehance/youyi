@@ -1,40 +1,6 @@
 // by dribehance <dribehance.kksdapp.com>
 var translatorsController = function($scope, $location, SharedState, translatorServices, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.choosen = {};
-    $scope.translators = [];
-    $scope.page = {
-        pn: 1,
-        page_size: 10,
-        message: "Load More",
-        filter_language_group_id: "",
-        filter_place_group_id: "",
-        filter_type_group_id: "",
-        filter_money: "",
-        kw: ""
-    };
-    $scope.loadMore = function() {
-        if ($scope.no_more) {
-            return;
-        }
-        toastServices.show();
-        $scope.page.message = "Loading";
-        translatorServices.query($scope.page).then(function(data) {
-            toastServices.hide();
-            $scope.page.message = "Load More";
-            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                $scope.translators = $scope.translators.concat(data.Result.persons.list);
-                $scope.no_more = $scope.translators.length == data.Result.persons.totalRow ? true : false;
-            } else {
-                errorServices.autoHide(data.message);
-            }
-            if ($scope.no_more) {
-                $scope.page.message = "No More";
-            }
-            $scope.page.pn++;
-        })
-
-    }
-    $scope.loadMore();
     // filter
     $scope.filter = {
         name: "",
@@ -54,8 +20,15 @@ var translatorsController = function($scope, $location, SharedState, translatorS
     taskServices.languages().then(function(data) {
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
             $scope.languages = data.Result.languages
+            var group_ids = $scope.choosen.languages.map(function(lng) {
+                return lng.group_id;
+            }).join("、")
             $scope.languages = $scope.languages.map(function(language) {
-                language.checked = false;
+                if (group_ids.indexOf(language.group_id) != -1) {
+                    language.checked = true;
+                } else {
+                    language.checked = false;
+                }
                 return language;
             })
         } else {
@@ -80,13 +53,14 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         language_ids = "{" + language_ids + "}";
         // reset
         $scope.translators = [];
-        $scope.no_more = false;
+        $scope.page.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
             message: "Load More",
             filter_language_group_id: language_ids,
         });
+        localStorageService.set("choosen_ue", $scope.choosen)
         $scope.loadMore();
     }
     $scope.reset_language = function() {
@@ -98,13 +72,14 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         $scope.choosen.languages = [];
         // reset;
         $scope.translators = [];
-        $scope.no_more = false;
+        $scope.page.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
             message: "Load More",
             filter_language_group_id: "",
         });
+        localStorageService.set("choosen_ue", $scope.choosen)
         $scope.loadMore();
     };
     $scope.reset_location = function() {
@@ -114,13 +89,14 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         };
         // reset;
         $scope.translators = [];
-        $scope.no_more = false;
+        $scope.page.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
             message: "Load More",
             filter_place_group_id: "",
         });
+        localStorageService.set("choosen_ue", $scope.choosen)
         $scope.loadMore();
     }
     $scope.reset_price = function() {
@@ -130,13 +106,14 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         };
         // reset;
         $scope.translators = [];
-        $scope.no_more = false;
+        $scope.page.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
             message: "Load More",
             filter_money: "",
         });
+        localStorageService.set("choosen_ue", $scope.choosen)
         $scope.loadMore();
     }
     $scope.reset_category = function() {
@@ -146,13 +123,14 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         };
         // reset;
         $scope.translators = [];
-        $scope.no_more = false;
+        $scope.page.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
             message: "Load More",
             filter_type_group_id: "",
         });
+        localStorageService.set("choosen_ue", $scope.choosen)
         $scope.loadMore();
     }
     $scope.toggle_language = function(language) {
@@ -183,46 +161,28 @@ var translatorsController = function($scope, $location, SharedState, translatorS
             errorServices.autoHide(data.message);
         }
     })
-    $scope.choosen.city = {
+    $scope.choosen.city = (localStorageService.get("choosen_ue") && localStorageService.get("choosen_ue").city) || {
         name: ""
     };
     $scope.$watch("choosen.city.name", function(n, o) {
-        if (n === undefined || o === undefined || n == "") {
+        if (n === o || n == "") {
             return;
         }
         $scope.filter.name = "";
         var location_id = $scope.choosen.city.group_id;
         // reset;
         $scope.translators = [];
-        $scope.no_more = false;
+        $scope.page.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
             message: "Load More",
             filter_place_group_id: location_id,
         });
+        localStorageService.set("choosen_ue", $scope.choosen)
         $scope.loadMore();
     });
     // price
-    // var price_by_hour = [{
-    //     unit: "CNY",
-    //     range: "0-100"
-    // }, {
-    //     unit: "CNY",
-    //     range: "100-200"
-    // }, {
-    //     unit: "CNY",
-    //     range: "200-300"
-    // }, {
-    //     unit: "CNY",
-    //     range: "300-400"
-    // }, {
-    //     unit: "CNY",
-    //     range: "400-500"
-    // }, {
-    //     unit: "CNY",
-    //     range: "500以上"
-    // }];
     var price_by_day = [{
         unit: "CNY",
         range: "0-500"
@@ -241,41 +201,32 @@ var translatorsController = function($scope, $location, SharedState, translatorS
     }, {
         unit: "CNY",
         range: "2500以上"
-    }]
+    }];
     // $scope.prices = price_by_hour;
     $scope.prices = price_by_day;
     // $scope.price_tab = {};
     // $scope.price_tab.name = "by_hour";
-    $scope.choosen.price = {
+    $scope.choosen.price = (localStorageService.get("choosen_ue") && localStorageService.get("choosen_ue").price) || {
         range: ""
     };
     $scope.$watch("choosen.price.range", function(n, o) {
-        if (n === undefined || o === undefined || n == "") {
+        if (n === o || n == "") {
             return;
         }
         $scope.filter.name = "";
         var money = $scope.choosen.price.range;
         // reset;
         $scope.translators = [];
-        $scope.no_more = false;
+        $scope.page.no_more = false;
         $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
             message: "Load More",
             filter_money: money,
         });
+        localStorageService.set("choosen_ue", $scope.choosen)
         $scope.loadMore();
-    })
-    // $scope.$watch("price_tab.name", function(n, o) {
-    //     if (n === undefined || o === undefined) {
-    //         return;
-    //     }
-    //     if (n == "by_hour") {
-    //         $scope.prices = price_by_hour;
-    //     } else {
-    //         $scope.prices = price_by_day
-    //     }
-    // });
+    });
     // category
     taskServices.category().then(function(data) {
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -284,26 +235,87 @@ var translatorsController = function($scope, $location, SharedState, translatorS
             errorServices.autoHide(data.message);
         }
     })
-    $scope.choosen.category = {
+    $scope.choosen.category = (localStorageService.get("choosen_ue") && localStorageService.get("choosen_ue").category) || {
         name: ""
     };
     $scope.$watch("choosen.category.name", function(n, o) {
-            if (n === undefined || o === undefined || n == "") {
-                return;
+        if (n === o || n == "") {
+            return;
+        }
+        $scope.filter.name = "";
+        // reset;
+        $scope.translators = [];
+        $scope.page.no_more = false;
+        $scope.page = angular.extend({}, $scope.page, {
+            pn: 1,
+            page_size: 10,
+            message: "Load More",
+            filter_type_group_id: $scope.choosen.category.group_id,
+        });
+        localStorageService.set("choosen_ue", $scope.choosen)
+        $scope.loadMore();
+    });
+    /*
+     * hiden content for language,location,price,category
+     */
+    // translators
+    $scope.translators = [];
+    $scope.page = {
+        pn: 1,
+        page_size: 10,
+        message: "Load More",
+        filter_language_group_id: $scope.choosen.languages.map(function(language) {
+            return language.group_id;
+        }).join("、"),
+        filter_place_group_id: $scope.choosen.city.group_id,
+        filter_type_group_id: $scope.choosen.category.group_id,
+        filter_money: $scope.choosen.price.range,
+        kw: ""
+    };
+    $scope.loadMore = function() {
+        if ($scope.page.no_more) {
+            return;
+        }
+        toastServices.show();
+        $scope.page.message = "Loading";
+        translatorServices.query($scope.page).then(function(data) {
+            toastServices.hide();
+            $scope.page.message = "Load More";
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $scope.translators = $scope.translators.concat(data.Result.persons.list);
+                $scope.page.no_more = $scope.translators.length == data.Result.persons.totalRow ? true : false;
+            } else {
+                errorServices.autoHide(data.message);
             }
-            $scope.filter.name = "";
-            // reset;
-            $scope.translators = [];
-            $scope.no_more = false;
-            $scope.page = angular.extend({}, $scope.page, {
-                pn: 1,
-                page_size: 10,
-                message: "Load More",
-                filter_type_group_id: $scope.choosen.category.group_id,
-            });
-            $scope.loadMore();
+            if ($scope.page.no_more) {
+                $scope.page.message = "No More";
+            }
+            $scope.page.pn++;
         })
-        // search pannel
+
+    }
+    if (localStorageService.get("cache") && localStorageService.get("cache").translators) {
+        $scope.translators = localStorageService.get("cache").translators.content;
+        $scope.page = localStorageService.get("cache").translators.page;
+        angular.element("#scrollable-content").animate({
+            scrollTop: localStorageService.get("cache").translators.scroll_hood
+        })
+        localStorageService.set("cache",{translators:null})
+    } else {
+        $scope.loadMore();
+    }
+    $scope.routeTo = function(id) {
+        var cache_data = {
+            content: $scope.translators,
+            page: $scope.page,
+            scroll_hood: angular.element("#scrollable-content").scrollTop()
+        }
+        localStorageService.set("cache", {
+            translators:cache_data
+        });
+        $location.path("translators/" + id);
+    };
+    // search pannel
     $scope.input = {};
     $scope.show_search_panel = function() {
         SharedState.turnOn("search_translators_panel");

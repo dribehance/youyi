@@ -5,9 +5,9 @@
         <label class="btn rectangle" ng-class="{'text-primary':price_tab.name =='by_day','bg-gray-lighter':price_tab.name != 'by_day'}"><input type="radio" class="hide" ng-model="price_tab.name" name="salary" value="by_day">{{"/day" | translate}}</label>
     </div> -->
     <div class="list-group">
-        <label class="list-group-item" ng-repeat="price in prices" ng-class="{'list-group-item-warning':price == choosen.price}">
+        <label class="list-group-item" ng-repeat="price in prices" ng-class="{'list-group-item-warning':price.range == choosen.price.range}">
             <input type="radio" class="hidden" ng-model="choosen.price" ng-value="price">
-            {{"Unit"|translate}}{{price.range}}
+            {{"Unit"|translate}}{{price.range}}/{{"Day"|translate}}
         </label>
     </div>
 </div>

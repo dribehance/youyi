@@ -26,11 +26,14 @@ var paymentController = function($scope, $rootScope, $routeParams, $location, $t
         })
         // payway balance or third part payment
     $scope.payway = {
-        balance: true,
-        channel: "",
+        balance: false,
+        channel: "yinlian",
     };
     $scope.togglePayway = function() {
         $scope.payway.balance = !$scope.payway.balance;
+        if ($scope.payway.balance && $scope.wallet.is_setPayPwd == '0') {
+            SharedState.turnOn("tips_panel");
+        }
     }
     $scope.$watch("payway.channel", function(n, o) {
         if (n) {
@@ -119,7 +122,7 @@ var paymentController = function($scope, $rootScope, $routeParams, $location, $t
     // pay by weixin
     $scope.invokeWeixinPay = function(data) {
         var weixin_res = data.weixinTemp;
-        weixinServices.pay(weixin_res);
+        weixinServices.pay && weixinServices.pay(weixin_res);
     };
     // pay by alipay
     $scope.invokeAlipay = function(data) {
@@ -162,5 +165,13 @@ var paymentController = function($scope, $rootScope, $routeParams, $location, $t
         } else {
             errorServices.autoHide(data.message);
         }
-    })
+    });
+    // quit
+    $scope.quit = function () {
+        SharedState.turnOff("tips_panel");
+        $scope.payway.balance = false;
+    };
+    $scope.setTradePassword = function () {
+        $location.path("modify_trade_password");
+    }
 }

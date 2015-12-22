@@ -62,6 +62,7 @@
         <div class="toast" ui-if="toast_state">
             <span class="loader"></span>
         </div>
+        <div class="error-msg section section-warning text-center" ui-if="error_state">{{ errormsg }}</div>
     </div>
 </div>
 <!-- signup section -->
@@ -139,6 +140,7 @@
         <div class="toast" ui-if="toast_state">
             <span class="loader"></span>
         </div>
+        <div class="error-msg section section-warning text-center" ui-if="error_state">{{ errormsg }}</div>
     </div>
 </div>
 <!-- forget password -->
@@ -173,6 +175,7 @@
         <div class="toast" ui-if="toast_state">
             <span class="loader"></span>
         </div>
+        <div class="error-msg section section-warning text-center" ui-if="error_state">{{ errormsg }}</div>
     </div>
 </div>
 <div class="scrollable" ng-show="sidebar.current == 'login'">

@@ -1,33 +1,67 @@
 // by dribehance <dribehance.kksdapp.com>
-var tasksController = function($scope, $location,$routeParams, taskServices, SharedState, errorServices, toastServices, localStorageService, config) {
-    $scope.task_tab = {
-        name: $routeParams.from == "task"?"accept":"release",
-    }
+var tasksController = function($scope, $location, $routeParams, taskServices, SharedState, errorServices, toastServices, localStorageService, config) {
+    // change state through from,mainly after apply task;
     $scope.tasks = [];
     $scope.page = {
         pn: 1,
         page_size: 10,
-        message: "Load More"
+        message: "Load More",
+        task_tab: {
+            name: ($routeParams.from == "task" || (localStorageService.get("cache") && localStorageService.get("cache").tasks_clean && localStorageService.get("cache").tasks_clean.page.task_tab.name)) ? "accept" : "release",
+        }
     }
-    $scope.$watch("task_tab.name", function(n, o) {
-        if (n === undefined || o === undefined) {
+    $scope.$watch("page.task_tab.name", function(n, o) {
+        if (n === undefined ||  o === undefined || n == "") {
             return;
         }
         $scope.tasks = [];
-        $scope.page = {
+        $scope.page = angular.extend({}, $scope.page, {
             pn: 1,
             page_size: 10,
-            message: "Load More"
+            message: "Load More",
+        })
+        $scope.page.no_more = false;
+        if (localStorageService.get("cache") && localStorageService.get("cache").tasks_clean) {
+            $scope.tasks = localStorageService.get("cache").tasks_clean.content;
+            $scope.page = localStorageService.get("cache").tasks_clean.page;
+            angular.element("#scrollable-content").animate({
+                scrollTop: localStorageService.get("cache").tasks_clean.scroll_hood
+            })
+            localStorageService.set("cache", {
+                tasks_clean: null
+            })
+        } else {
+            $scope.loadMore();
         }
-        $scope.no_more = false;
-        $scope.loadMore();
     })
+    $scope.routeTo = function(current_id) {
+        // cache
+        $scope.cache_tasks();
+        // tell task diff wehter a task accept from index or tasks 
+        $location.path("tasks/" + current_id).search("from", "tasks");
+    }
+    $scope.routeToApplicants = function(current_id) {
+        // cache
+        $scope.cache_tasks();
+        // tell task diff wehter a task accept from index or tasks 
+        $location.path(current_id + "/applicants").search("from", null);
+    }
+    $scope.cache_tasks = function() {
+        var cache_data = {
+            content: $scope.tasks,
+            page: $scope.page,
+            scroll_hood: angular.element("#scrollable-content").scrollTop()
+        }
+        localStorageService.set("cache", {
+            tasks_clean: cache_data
+        });
+    }
     $scope.loadMore = function() {
-        if ($scope.no_more) {
+        if ($scope.page.no_more) {
             return;
         }
         $scope.page.message = "Loading";
-        if ($scope.task_tab.name == "release") {
+        if ($scope.page.task_tab.name == "release") {
             $scope.loadRelease();
         } else {
             $scope.loadAccept();
@@ -42,11 +76,11 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
             $scope.page.message = "Load More";
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.tasks = $scope.tasks.concat(data.Result.tasks.list);
-                $scope.no_more = $scope.tasks.length == data.Result.tasks.totalRow ? true : false;
+                $scope.page.no_more = $scope.tasks.length == data.Result.tasks.totalRow ? true : false;
             } else {
                 errorServices.autoHide(data.message);
             }
-            if ($scope.no_more) {
+            if ($scope.page.no_more) {
                 $scope.page.message = "No More";
             }
             $scope.page.pn++;
@@ -60,11 +94,11 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
             $scope.page.message = "Load More";
             if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
                 $scope.tasks = $scope.tasks.concat(data.Result.tasks.list);
-                $scope.no_more = $scope.tasks.length == data.Result.tasks.totalRow ? true : false;
+                $scope.page.no_more = $scope.tasks.length == data.Result.tasks.totalRow ? true : false;
             } else {
                 errorServices.autoHide(data.message);
             }
-            if ($scope.no_more) {
+            if ($scope.page.no_more) {
                 $scope.page.message = "No More";
             }
             $scope.page.pn++;
@@ -105,7 +139,7 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
         // comment;
         if (task.oper_status == '8') {
             var path = task.task_id + "/comment";
-            $location.path(path).search("user_id",task.request_users[0].user_id)
+            $location.path(path).search("user_id", task.request_users[0].user_id)
             return;
         }
         // agree;
@@ -116,16 +150,4 @@ var tasksController = function($scope, $location,$routeParams, taskServices, Sha
         }
         return;
     };
-    // collapse
-    $scope.input = {
-        collapse_id:"",
-    }
-    $scope.toggle_collapse = function (current_id) {
-        if (current_id == $scope.input.collapse_id) {
-            $scope.input.collapse_id = "";
-        }
-        else {
-            $scope.input.collapse_id = current_id
-        }
-    }
 }

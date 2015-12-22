@@ -7,7 +7,7 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="translator-cover" ng-click="go('/me_info')">
-            <imageview data-rate="750/422" src="staticImageUrl + user.bg_image"></imageview>
+            <div><imageview data-rate="750/422" src="staticImageUrl + user.bg_image"></imageview></div>
             <div class="tranlator-intro-bg">
                 <div class="translator-info left">
                     <span class="h3 block">{{user.nickname || user.telephone || user.email}}<i class="kk kk-icon" ng-class="{'kk-male':user.gender=='1','kk-female':user.gender !='1'}"></i></span>
@@ -31,7 +31,7 @@
             </div>
             <div class="list-group-item clearfix" ng-repeat="language in user.languages track by $index">
                 <div class="pull-left">
-                    {{language.from_language}}-{{language.to_language}}---{{language.level}}
+                    {{language.from_language}}---{{language.level}}
                 </div>
                 <div class="pull-right">
                     <span class="btn btn-danger bg-white text-danger section section-condensed" ng-if="user.languages.length>2" ng-click="removeLanguage(language)">
@@ -52,7 +52,7 @@
                 <div class="picker-left picker-column">
                     <div class="list-group">
                         <label class="list-group-item block" ng-repeat="language in languages track by $index" ng-class="{'selected':input.choosen_language == language}">
-                            {{ language.from_language +"-"+language.to_language }}
+                            {{ language.from_language}}
                             <input type="radio" class="hidden" ng-model="input.choosen_language" ng-value="language" />
                         </label>
                     </div>
@@ -94,7 +94,7 @@
                 <div class="picker-header">
                     <div class="btn-group justified text-primary">
                         <span class="btn">{{"Type"|translate}}</span>
-                        <span class="btn">{{"Good at" | translate}}</span>
+                        <span class="btn">{{"Area of expertise" | translate}}</span>
                     </div>
                 </div>
                 <div class="picker-left picker-column">
@@ -227,6 +227,7 @@
             </div>
             <div class="list-group-item clearfix" ng-click="edit({'introduction':user.introduction})">
                 <div class="pull-left">
+                    <span ng-if="user.introduction == ''">{{'Please enter' | translate}}</span>
                     {{user.introduction}}
                 </div>
                 <div class="pull-right">
@@ -373,10 +374,10 @@
                 <div class="modal-footer text-center">
                     <div class="btn-group justified">
                         <span class="btn btn-default" ng-click="back()">
-                            {{"Quit"| translate}}
+                            {{"Leave"| translate}}
                         </span>
                         <span class="btn btn-primary" ng-click="completeProfile()">
-                            {{"Go Complete Profile"|translate}}
+                            {{"Continue"|translate}}
                         </span>
                     </div>
                 </div>

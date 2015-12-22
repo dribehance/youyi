@@ -277,5 +277,9 @@
     "Received":"Received",
     "paid":"paid",
     "Total":"Total",
-    "xx of the total price is chareged as service fee.":"{{value}} of the total price is chareged as service fee."
+    "xx of the total price is chareged as service fee.":"{{value}} of the total price is chareged as service fee.",
+    "Personal ID Verification Passed":"Personal ID Verification Passed",
+    "Leave": "Leave",
+    "Continue": "Continue",
+    "You haven't Set Transaction Password. Go Set?":"You haven't Set Transaction Password. Go Set?"
 }

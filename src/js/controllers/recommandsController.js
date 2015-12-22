@@ -31,7 +31,8 @@ var recommandsController = function($scope,$routeParams,$location, taskServices,
 
     }
     $scope.loadMore();
-    $scope.apply = function(recommend) {
+    $scope.apply = function(recommend,e) {
+        e.stopPropagation();
         if (recommend.apply_status != "0") {
             return;
         }
@@ -48,7 +49,8 @@ var recommandsController = function($scope,$routeParams,$location, taskServices,
             }
         })
     }
-    $scope.unlike = function(applicant) {
+    $scope.unlike = function(applicant,e) {
+        e.stopPropagation();
         myLoveServices.cancel({
             "collection_id": applicant.collection_id
         }).then(function(data) {
@@ -59,7 +61,8 @@ var recommandsController = function($scope,$routeParams,$location, taskServices,
             }
         })
     }
-    $scope.like = function(applicant) {
+    $scope.like = function(applicant,e) {
+        e.stopPropagation();
         myLoveServices.like({
             "collection_user_id": applicant.user_id
         }).then(function(data) {

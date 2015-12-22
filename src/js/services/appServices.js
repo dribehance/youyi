@@ -67,9 +67,9 @@
              // jump to
              $rootScope.to = function(path) {
                  $timeout(function() {
-                     $location.path(path).search("from",null)
+                     $location.path(path).search("from", null)
                  }, 0)
-             }
+             };
              // language cache
              if (!localStorageService.get("language")) {
                  localStorageService.set("language", "CN")
@@ -94,6 +94,17 @@
                      value: translate_value
                  };
              };
+             // user agent
+             var ua = $window.navigator.userAgent.toLowerCase();
+             if (ua.indexOf("microMessenger") != -1) {
+                 $rootScope.wx_browser = true;
+             } else {
+                 $rootScope.wx_browser = false;
+             };
+             // remove choose cache;
+             localStorageService.remove("choosen");
+             localStorageService.remove("choosen_ue")
+             localStorageService.remove("cache")
          }
      }
  });

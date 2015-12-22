@@ -1,5 +1,5 @@
 <!-- by dribehance <dribehance.kksdapp.com> -->
-<div ui-content-for="title">{{"UE lives" | translate}}</div>
+<div ui-content-for="title">{{"UE" | translate}}</div>
 <div ui-content-for="navbarAction"></div>
 <div ui-content-for="backAction">
     <span class="btn" ng-click="back()">
@@ -9,7 +9,9 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="translator-cover">
-            <imageview data-rate="750/422" src="staticImageUrl+translator.bg_image"></imageview>
+            <div>
+                <imageview data-rate="750/422" src="staticImageUrl+translator.bg_image"></imageview>
+            </div>
             <div class="tranlator-intro-bg">
                 <div class="translator-info left">
                     <span class="h3 block">
@@ -59,14 +61,22 @@
                     <span class="text-small">{{"Personal Identity" | translate}}：({{authen_count}})</span>
                     <div class="row">
                         <span class="col-xs-4" ng-if="translator.identity_status =='3'"><i class="kk kk-40 kk-authen-1"></i></span>
-                        <span class="col-xs-4" ng-if="pass_language_authen"><i class="kk kk-40 kk-authen-2" ></i></span>
-                        <span class="col-xs-4" ng-if="pass_industry_authen"><i class="kk kk-40 kk-authen-3" ></i></span>
+                        <span class="col-xs-4" ng-if="language_authen.length>0"><i class="kk kk-40 kk-authen-2" ></i></span>
+                        <span class="col-xs-4" ng-if="industry_authen.length>0"><i class="kk kk-40 kk-authen-3" ></i></span>
                     </div>
-                    <div class="text-right" ng-show="pass_language_authen || pass_industry_authen" ui-turn-on="authen_panel">
+                    <div class="text-right" ng-show="language_authen.length>0 || industry_authen.length>0" ui-turn-on="authen_panel">
                         {{"Preview Detail" | translate}}
                     </div>
                 </div>
-                <div class="list-group-item">
+                <div class="list-group-item clearfix">
+                    <div class="pull-left text-small">
+                        {{"Cost Fee" | translate}}
+                    </div>
+                    <div class="pull-right text-primary">
+                        {{translator.pay_day}}{{translator.currency_type}}/{{"Day"|translate}}
+                    </div>
+                </div>
+                <div class="list-group-item" ng-if="translator.commentTags >0">
                     <p class="text-small">{{"Comment Tags" | translate}}</p>
                     <div class="row grid-gutter">
                         <div class="col-xs-4" ng-repeat="tag in translator.commentTags">
@@ -130,7 +140,8 @@
                     <div class="media" ng-repeat="comment in translator.commentUsers track by $index">
                         <div class="media-body">
                             <h4 class="media-heading">
-                                <i class="fa fa-star text-primary" ng-repeat="star in commentStars(comment.star) track by $index"></i>
+                                <i class="fa fa-star text-primary" ng-repeat="star in commentStars(comment) track by $index"></i>
+                                <i class="fa fa-star-half-empty text-primary" ng-if="comment.half_star"></i>
                             </h4>
                             <p>{{comment.note}}</p>
                             <span>{{comment.post_time}}</span>
@@ -208,16 +219,42 @@
                     <h4 class="modal-title text-center">{{"Authentication Detail" | translate}}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="section section-wide text-center" ng-repeat="identify in translator.userIdentities">
-                        <img ng-src="{{staticImageUrl+identify.cover}}" class="block full-width" />
-                        <h4>
-                            <span ng-if="identify.type==1">{{"Language Certificate" | translate}}</span>
-                            <span ng-if="identify.type==3">{{"Professional Qualification" | translate}}</span>
-                            {{identify.title}}
-                        </h4>
+                    <div class="section section-wide" style="padding-top:0" ng-if="translator.identity_status =='3'">
+                        <span class="text-primary">
+                            <i class="kk kk-40 kk-authen-2" ></i>
+                            {{"Personal ID Verification Passed" | translate}}
+                        </span>
+                        <div class="section text-center">{{"Authentication Pass"|translate}}</div>
                     </div>
-                    <div class="section section-wide" ng-if="translator.identity_status =='3'">
-                        {{"ID Verification" | translate}}
+                    <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                    <div class="section section-wide text-center" ng-if="language_authen.length>0">
+                        <div class="section section-wide">
+                            <span class="pull-left text-primary">
+                                <i class="kk kk-40 kk-authen-2" ></i>
+                                {{"Language Certificate" | translate}}
+                            </span>
+                            <span class="pull-right" style="position:relative;top:11px">{{language_authen.length}}</span>
+                        </div>
+                        <div ng-repeat="language in language_authen">
+                            <h4>{{language.title}}</h4>
+                            <imageview src="staticImageUrl+language.cover"></imageview>
+                        </div>
+                        <!-- <img ng-src="{{staticImageUrl+identify.cover}}" class="block full-width" /> -->
+                    </div>
+                    <div class="kk-line kk-horizon bg-gray-lighter"></div>
+                    <div class="section section-wide text-center" ng-if="industry_authen.length>0">
+                        <div class="section section-wide">
+                            <span class="pull-left text-primary">
+                                <i class="kk kk-40 kk-authen-3" ></i>
+                                {{"Professional Qualification" | translate}}
+                            </span>
+                            <span class="pull-right" style="position:relative;top:11px">{{industry_authen.length}}</span>
+                        </div>
+                        <div ng-repeat="industry in industry_authen">
+                            <h4>{{industry.title}}</h4>
+                            <imageview src="staticImageUrl+industry.cover"></imageview>
+                        </div>
+                        <!-- <img ng-src="{{staticImageUrl+identify.cover}}" class="block full-width" /> -->
                     </div>
                 </div>
             </div>

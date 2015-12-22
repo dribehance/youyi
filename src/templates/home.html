@@ -37,9 +37,10 @@
             </div>
         </div>
     </div>
-    <div class="scrollable-content">
+    <div class="scrollable-content" id="scrollable-content">
         <!-- normal content -->
-        <a ng-href="#/tasks/{{task.task_id}}" class="task-section" ng-repeat="task in tasks">
+        <!-- ng-href="#/tasks/{{task.task_id}}" -->
+        <a ng-click="routeTo(task.task_id)" class="task-section" ng-repeat="task in tasks">
             <div class="section text-ellipsis">
                 <img ng-src="{{staticImageUrl+task.avatar || '../images/avatar.png'}}" err-src="../images/avatar_1.png" alt="" class="circle icon"> {{task.title}}
             </div>

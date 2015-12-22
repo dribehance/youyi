@@ -15,18 +15,23 @@ var translatorController = function($scope, $routeParams, $location, facebookSer
             $scope.translator.commentTags = data.YyPersonInfo.commentTags;
             $scope.translator.commentUsers = data.YyPersonInfo.commentUsers;
             $scope.translator.userIdentities = data.YyPersonInfo.userIdentities;
+            $scope.name_authen = [];
+            $scope.language_authen = [];
+            $scope.industry_authen = [];
             $scope.translator.userIdentities.map(function(identity) {
                 if (identity.type == 1) {
-                    $scope.pass_language_authen = true;
+                    $scope.language_authen.push(identity)
+                    // $scope.pass_language_authen = true;
                 }
                 if (identity.type == 3) {
-                    $scope.pass_industry_authen = true;
+                    $scope.industry_authen.push(identity)
+                    // $scope.pass_industry_authen = true;
                 }
                 return identity;
             });
             var count = 0;
-            if ($scope.pass_language_authen) count++;
-            if ($scope.pass_industry_authen) count++;
+            if ($scope.language_authen.length>0) count++;
+            if ($scope.industry_authen.length>0) count++;
             if ($scope.translator.identity_status == "3") count++;
             $scope.authen_count = count;
             // $scope.authens.push($scope.translator.identity_front, $scope.translator.language_identity, $scope.translator.profession_identity, $scope.translator.advanced_identity);
@@ -37,9 +42,12 @@ var translatorController = function($scope, $routeParams, $location, facebookSer
             errorServices.autoHide(data.message);
         }
     })
-    $scope.commentStars = function(length) {
-        length = length || "0";
-        return new Array(length)
+    $scope.commentStars = function(comment) {
+        length = comment.star || 0;
+        if (Math.round(parseFloat(comment.star)) > parseFloat(comment.star)) {
+            comment.half_star = true;
+        }
+        return new Array(Math.floor(length))
     };
     $scope.preview = function(images) {
         $scope.preview_images = images;

@@ -84,9 +84,9 @@ angular.module("Youyi").controller("commentUploadController", function($rootScop
             "task_id": $scope.input.task_id,
             "group_id": $scope.input.level.group_id,
             "note": $scope.input.note,
-            "service": $scope.input.star.service,
-            "profession": $scope.input.star.profession,
-            "tongue": $scope.input.star.language,
+            "service": parseFloat($scope.input.star.service) + 1,
+            "profession": parseFloat($scope.input.star.profession) + 1,
+            "tongue": parseFloat($scope.input.star.language) + 1,
             "task_user_id": $routeParams.user_id,
             "tag_group_id_list": $scope.input.tags,
 

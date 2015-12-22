@@ -142,6 +142,19 @@ angular.module("Youyi").factory("userServices", function($rootScope, $http, toas
                 }
             })
         },
+        checkProfile: function() {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/Person/remind",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    token:localStorageService.get("token"),
+                    language_app:localStorageService.get("language")
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         exit: function() {
             var self = this;
             toastServices.show();

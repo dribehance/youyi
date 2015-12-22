@@ -27,8 +27,8 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
         },
         to_time_options: {
             format: "HH:i",
-            min: [8, 30],
-            max: [18, 30]
+            min: [0, 30],
+            max: [23, 30]
         }
     };
     $scope.choosen = {};
@@ -61,7 +61,7 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
             if (data.code == config.request.SUCCESS && data.price_status == "1") {
                 // $scope.min_price = data
                 $scope.input.currency = data.currency_type;
-                $scope.input.price = data.min_price_pay;
+                $scope.input.price = $scope.input.price < parseFloat(data.min_price_pay) ? parseFloat(data.min_price_pay) : $scope.input.price;
                 if (SharedState.get("step") != 2) {
                     SharedState.set({
                         "step": 2

@@ -289,5 +289,9 @@
     "Received":"받다",
     "paid":"지불하다",
     "Total":"총액",
-    "xx of the total price is chareged as service fee.":"총 금액은 {{value}} 를 수수료"
+    "xx of the total price is chareged as service fee.":"총 금액은 {{value}} 를 수수료",
+    "Personal ID Verification Passed":"실명인증승인",
+    "Leave": "떠나다",
+    "Continue": "계속 써",
+    "You haven't Set Transaction Password. Go Set?":"거래하신 비번이 비어있습니다.개선 하시겠습니까"
 }

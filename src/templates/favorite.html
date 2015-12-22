@@ -11,19 +11,19 @@
                 <div class="recommand-header">
                     {{translator.nickname}} <i class="kk kk-icon" ng-class="{'kk-male':translator.gender=='1','kk-female':translator.gender !='1'}"></i>
                 </div>
-                <div class="recommand-body">
+                <div class="recommand-body" ng-click="preview_translator(translator.collection_user_id)">
                     <div>{{"Language" | translate}}：{{translator.return_language}}</div>
                     <p>{{"Place" | translate}}：{{translator.address}}</p>
                     <p>{{"Profile" | translate}}：{{translator.introduction}}</p>
                     <div class="clearfix">
                         <div class="pull-left">
-                            <a ng-click="unlike(translator)" class="btn btn-default">
+                            <a ng-click="unlike(translator,$event)" class="btn btn-default">
                             	<i class="kk kk-like active"></i>
                             	{{"Followed" | translate}}
                             </a>
                         </div>
                         <div class="pull-right">
-                            <a ng-click="apply(translator.collection_user_id)" class="btn btn-default">
+                            <a ng-click="apply(translator.collection_user_id,$event)" class="btn btn-default">
                             	<i class="kk kk-accept"></i>
                             	{{"Apply" | translate}}
                             </a>

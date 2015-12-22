@@ -8,7 +8,7 @@ angular.module("Youyi").controller("weixinController", function($scope, $rootSco
             // $rootScope.back();
             // $location.path("index");
             toastServices.show();
-            weixinServices.queryAccessToken($routeParams.code).then(function(data) {
+            weixinServices.queryAccessToken && weixinServices.queryAccessToken($routeParams.code).then(function(data) {
                 $window.alert(data.errcode)
                 if (data.errcode == "0") {
                     return data;
@@ -21,7 +21,7 @@ angular.module("Youyi").controller("weixinController", function($scope, $rootSco
                 localStorageService.set("refresh_token", data.refresh_token);
                 localStorageService.set("openid", data.openid);
                 // query user info
-                weixinServices.queryUserinfo(data).then(function(data) {
+                weixinServices.queryUserinfo && weixinServices.queryUserinfo(data).then(function(data) {
                     if (data.errcode == "0") {
                         return data;
                     } else {

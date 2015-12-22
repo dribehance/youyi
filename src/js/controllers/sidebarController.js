@@ -129,6 +129,7 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
                 // errorServices.autoHide("注册成功");
                 localStorageService.set("token", data.user.token);
                 userServices.sync();
+                $scope.input = {};
                 $location.path("me_info")
             } else {
                 errorServices.autoHide(data.message);
@@ -146,6 +147,7 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
                 // errorServices.autoHide("注册成功");
                 localStorageService.set("token", data.user.token);
                 userServices.sync();
+                $scope.input = {};
                 $location.path("me_info")  
             } else {
                 errorServices.autoHide(data.message);
@@ -205,7 +207,7 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
         }
     });
     $scope.weixinLogin = function() {
-        weixinServices.queryAuthorizationCode();
+        weixinServices.queryAuthorizationCode && weixinServices.queryAuthorizationCode();
     };
     $scope.weixinShare = function() {
         $scope.sidebar.share.weixin = !$scope.sidebar.share.weixin;
