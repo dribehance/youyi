@@ -61,6 +61,34 @@ angular.module("Youyi").factory("walletServices", function($http, localStorageSe
             }).then(function(data) {
                 return data.data;
             });
+        },
+        queryBankById:function(input) {
+            // input->bank_car_id
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/Banks/bankCarInfo",
+                method: "GET",
+                params: angular.extend({}, config.common_params,{
+                    token:localStorageService.get("token"),
+                    language_app:localStorageService.get("language")
+                }, input)
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        updateBank:function(input) {
+            // bank->bank_name,bank_no,bank_user_name,bank_telephone
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/Banks/addBank",
+                method: "GET",
+                params: angular.extend({}, config.common_params,{
+                    token:localStorageService.get("token"),
+                    language_app:localStorageService.get("language")
+                }, input)
+            }).then(function(data) {
+                return data.data;
+            });
         }
     }
 });

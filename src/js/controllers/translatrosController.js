@@ -183,27 +183,54 @@ var translatorsController = function($scope, $location, SharedState, translatorS
         $scope.loadMore();
     });
     // price
-    var price_by_day = [{
-        unit: "CNY",
-        range: "0-500"
-    }, {
-        unit: "CNY",
-        range: "500-1000"
-    }, {
-        unit: "CNY",
-        range: "1000-1500"
-    }, {
-        unit: "CNY",
-        range: "1500-2000"
-    }, {
-        unit: "CNY",
-        range: "2000-2500"
-    }, {
-        unit: "CNY",
-        range: "2500以上"
-    }];
+    // var price_by_day = [{
+    //     unit: "CNY",
+    //     range: "0-500"
+    // }, {
+    //     unit: "CNY",
+    //     range: "500-1000"
+    // }, {
+    //     unit: "CNY",
+    //     range: "1000-1500"
+    // }, {
+    //     unit: "CNY",
+    //     range: "1500-2000"
+    // }, {
+    //     unit: "CNY",
+    //     range: "2000-2500"
+    // }, {
+    //     unit: "CNY",
+    //     range: "2500以上"
+    // }];
+    var parsePrice = function(price) {
+        var obj = {};
+        if (!price) return;
+        obj["unit"] = price.split(" ")[0];
+        obj["range"] = price.split(" ")[1].split("/")[0];
+        obj["per"] = price.split(" ")[1].split("/")[1];
+        return obj;
+    }
+    // query price by location
+    toastServices.show();
+    taskServices.price().then(function(data){
+        toastServices.hide()
+        if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+            var prices = data.Result.prices;
+            var price_by_day = [];
+            price_by_day.push(parsePrice(prices.price_500));
+            price_by_day.push(parsePrice(prices.price_1000));
+            price_by_day.push(parsePrice(prices.price_1500));
+            price_by_day.push(parsePrice(prices.price_2000));
+            price_by_day.push(parsePrice(prices.price_2500));
+            price_by_day.push(parsePrice(prices.price_2600));
+            $scope.prices = price_by_day;
+        }
+        else {
+            errorServices.autoHide(data.message);
+        }
+    })
     // $scope.prices = price_by_hour;
-    $scope.prices = price_by_day;
+    // $scope.prices = price_by_day;
     // $scope.price_tab = {};
     // $scope.price_tab.name = "by_hour";
     $scope.choosen.price = (localStorageService.get("choosen_ue") && localStorageService.get("choosen_ue").price) || {

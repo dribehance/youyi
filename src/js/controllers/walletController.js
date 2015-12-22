@@ -9,11 +9,15 @@ var walletController = function($scope, $location, walletServices, errorServices
             errorServices.autoHide(data.message);
         }
     });
-    $scope.jumpByCondition = function(condition) {
-        if (condition == "0") {
-            $location.path("modify_trade_password")
-        } else {
-            $location.path("cash")
+    $scope.jumpByCondition = function() {
+        if ($scope.wallet.is_setPayPwd == "0") {
+            $location.path("modify_trade_password");
+            return;
         }
+        if ($scope.wallet.is_bank == "0") {
+            $location.path("bank").search("bank_id",$scope.wallet.bank_car_id);
+            return;
+        }
+        $location.path("cash").search("bank_id",$scope.wallet.bank_car_id);
     }
 }

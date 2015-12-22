@@ -46,6 +46,20 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 return data.data;
             });
         },
+        // price filter
+        price: function() {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/app/Home/prices",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    token:localStorageService.get("token"),
+                    language_app:localStorageService.get("language")
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         // index task list
         query: function(input) {
             return $http({

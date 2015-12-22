@@ -17,19 +17,22 @@
             <div class="list-group-item clearfix kk-input-group">
                 <span class="btn col-xs-3 section-wide text-left">{{"Bank Name" | translate}}</span>
                 <span class="col-xs-9 section-wide">
-                    <input type="text" name="bank_name" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Enter Complete Bank Name Correctly' | translate}}" ng-model="input.bank_name" required>
+                    <span class="btn">{{input.bank_name}}</span>
+                    <!-- <input type="text" name="bank_name" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Enter Complete Bank Name Correctly' | translate}}" ng-model="input.bank_name" required> -->
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
                 <span class="btn col-xs-3 section-wide text-left">{{"Bank Account No." | translate}}</span>
                 <span class="col-xs-9 section-wide">
-                    <input type="text" name="bank_cardno" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Please enter'|translate}}" ng-model="input.bank_cardno" required>
+                    <span class="btn">{{input.bank_cardno}}</span>
+                    <!-- <input type="text" name="bank_cardno" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Please enter'|translate}}" ng-model="input.bank_cardno" required> -->
                 </span>
             </div>
             <div class="list-group-item clearfix kk-input-group">
                 <span class="btn col-xs-3 section-wide text-left">{{"Cardholder Name" | translate}}</span>
                 <span class="col-xs-9 section-wide">
-                    <input type="text" name="realname" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Please enter'|translate}}" ng-model="input.realname" required>
+                    <span class="btn">{{input.realname}}</span>
+                    <!-- <input type="text" name="realname" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Please enter'|translate}}" ng-model="input.realname" required> -->
                 </span>
             </div>
         </div>
@@ -66,6 +69,8 @@
                         <a ng-click="ajaxForm()" ng-disabled="input.password == ''" class="btn btn-primary">{{"Confirm" | translate}}<i class="fa fa-refresh" ng-show="input.paying"></i></a>
                     </div>
                 </div>
+                <!-- error tip -->
+                <div class="error-msg section section-warning text-center" ui-if="error_state">{{ errormsg }}</div>
             </div>
         </div>
     </div>

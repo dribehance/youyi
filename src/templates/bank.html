@@ -1,0 +1,41 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<div ui-content-for="title">银行卡</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content">
+        <form class="scrollable-content" ng-submit="ajaxForm()" name="bankForm">
+            <div class="list-group">
+                <div class="list-group-item clearfix kk-input-group">
+                    <span class="btn col-xs-3 section-wide text-left">银行名称</span>
+                    <span class="col-xs-9 section-wide">
+                    <input type="text" name="bank_name" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Enter Complete Bank Name Correctly' | translate}}" ng-model="input.bank_name" required>
+                </span>
+                </div>
+                <div class="list-group-item clearfix kk-input-group">
+                    <span class="btn col-xs-3 section-wide text-left">银行卡号</span>
+                    <span class="col-xs-9 section-wide">
+                    <input type="text" name="bank_cardno" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Please enter'|translate}}" ng-model="input.bank_cardno" required>
+                </span>
+                </div>
+                <div class="list-group-item clearfix kk-input-group">
+                    <span class="btn col-xs-3 section-wide text-left">持卡人姓名</span>
+                    <span class="col-xs-9 section-wide">
+                    <input type="text" name="realname" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Please enter'|translate}}" ng-model="input.realname" required>
+                </span>
+                </div>
+                <div class="list-group-item clearfix kk-input-group">
+                    <span class="btn col-xs-3 section-wide text-left">联系电话</span>
+                    <span class="col-xs-9 section-wide">
+                    <input type="text" name="telephone" class="form-control youyi-flat-input col-xs-8" placeholder="{{'Please enter'|translate}}" ng-model="input.telephone" required ng-pattern="/(^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/">
+                </span>
+                </div>
+                <p class="section large bg-transparent">
+                    <button type="submit" class="btn btn-primary block full-width" ng-disabled="bankForm.$invalid">{{"Confirm" | translate}}</button>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>

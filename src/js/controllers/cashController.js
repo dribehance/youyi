@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var cashController = function($rootScope, $scope, $location, $filter, walletServices, errorServices, toastServices, localStorageService, config) {
+var cashController = function($rootScope, $routeParams, $scope, $location, $filter, walletServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {
         money: "",
         bank_name: "",
@@ -8,9 +8,24 @@ var cashController = function($rootScope, $scope, $location, $filter, walletServ
         password: "",
         paying: false
     }
-    $scope.error = {
-        show: false,
-        message: ""
+    // query bank info
+    if ($routeParams.bank_id != "0") {
+        toastServices.show();
+        walletServices.queryBankById({
+            bank_car_id: $routeParams.bank_id
+        }).then(function(data) {
+            toastServices.hide()
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                $scope.input = angular.extend({}, $scope.input, {
+                    bank_name: data.Result.bankCar.bank_name,
+                    bank_cardno: data.Result.bankCar.bank_no,
+                    realname: data.Result.bankCar.bank_user_name,
+                    telephone: data.Result.bankCar.bank_telephone
+                })
+            } else {
+                errorServices.autoHide(data.message);
+            }
+        })
     }
     $scope.ajaxForm = function() {
         if ($scope.input.password == "" || $scope.input.paying) {
@@ -25,11 +40,7 @@ var cashController = function($rootScope, $scope, $location, $filter, walletServ
                 // $rootScope.back();
                 $location.path("records");
             } else {
-                $scope.error = {
-                    show: true,
-                    message: data.message
-                };
-                // errorServices.autoHide(data.message);
+                errorServices.autoHide(data.message);
             }
         })
     }

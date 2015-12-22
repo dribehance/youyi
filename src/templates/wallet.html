@@ -23,7 +23,10 @@
         </div>
         <div class="kk-line kk-horizon bg-gray-lighter"></div>
         <div class="list-group">
-            <a ng-click="jumpByCondition(wallet.is_setPayPwd)" class="list-group-item">
+            <a ng-href="#/bank?bank_id={{wallet.bank_car_id}}" class="list-group-item">
+                银行卡<i class="text-gray-light fa fa-chevron-right pull-right"></i>
+            </a>
+            <a ng-click="jumpByCondition()" class="list-group-item">
                 <span class="list-group-item-text">{{"Withdraw" | translate}}</span>
                 <i class="text-gray-light fa fa-chevron-right pull-right"></i>
             </a>

@@ -7,7 +7,7 @@
     <div class="list-group">
         <label class="list-group-item" ng-repeat="price in prices" ng-class="{'list-group-item-warning':price.range == choosen.price.range}">
             <input type="radio" class="hidden" ng-model="choosen.price" ng-value="price">
-            {{"Unit"|translate}}{{price.range}}/{{"Day"|translate}}
+            {{price.unit + " "}}{{price.range}}/{{price.per}}
         </label>
     </div>
 </div>
