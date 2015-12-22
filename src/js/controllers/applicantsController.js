@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var applicantsController = function($scope, $route, $timeout, $routeParams, $location, $filter, walletServices, weixinServices, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var applicantsController = function($scope, $rootScope, $route, $timeout, $routeParams, $location, $filter, walletServices, weixinServices, SharedState, myLoveServices, taskServices, errorServices, toastServices, localStorageService, config) {
     $scope.applicants = [];
     $scope.input = {
         password: "",
@@ -37,14 +37,15 @@ var applicantsController = function($scope, $route, $timeout, $routeParams, $loc
     }
     $scope.loadMore();
     // accept applicant
-    $scope.accept = function(applicant,e) {
+    $scope.accept = function(applicant, e) {
         e.stopPropagation();
         if (applicant.oper_status == "1" || applicant.oper_status == "0") {
             weixinServices.prepare_pay && weixinServices.prepare_pay({
                 "yy_user_id": applicant.user_id,
                 "task_id": $routeParams.task_id
             });
-            $location.path("/payment").search("state",JSON.stringify({
+            if ($rootScope.wx_browser) return;
+            $location.path("/payment").search("state", JSON.stringify({
                 "yy_user_id": applicant.user_id,
                 "task_id": $routeParams.task_id
             }));
@@ -67,7 +68,7 @@ var applicantsController = function($scope, $route, $timeout, $routeParams, $loc
             // })
         }
     }
-    $scope.unlike = function(applicant,e) {
+    $scope.unlike = function(applicant, e) {
         myLoveServices.cancel({
             "collection_id": applicant.collection_id
         }).then(function(data) {
@@ -79,7 +80,7 @@ var applicantsController = function($scope, $route, $timeout, $routeParams, $loc
         })
         e.stopPropagation();
     }
-    $scope.like = function(applicant,e) {
+    $scope.like = function(applicant, e) {
         myLoveServices.like({
             "collection_user_id": applicant.user_id
         }).then(function(data) {

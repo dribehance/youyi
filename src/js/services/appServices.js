@@ -96,7 +96,7 @@
              };
              // user agent
              var ua = $window.navigator.userAgent.toLowerCase();
-             if (ua.indexOf("microMessenger") != -1) {
+             if (ua.indexOf("micromessenger") != -1) {
                  $rootScope.wx_browser = true;
              } else {
                  $rootScope.wx_browser = false;
