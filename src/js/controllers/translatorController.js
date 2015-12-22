@@ -92,7 +92,7 @@ var translatorController = function($scope, $routeParams, $location, facebookSer
     $scope.share_footer.share = {
         socialshare: false,
         weixin: false,
-        sina: config.share.jiathis_gateway + "?webid=tsina&appkey=" + config.share.sina_appkey + "&url=" + encodeURIComponent($location.absUrl()) + "&title=" + config.share.title + "&summary=" + config.share.desc + "&pic=" + config.share.thumbnail,
-        facebook: config.share.jiathis_gateway + "?webid=fb&appkey=" + config.share.facebook_appkey + "&url=" + config.share.link + "&title=" + config.share.title + "&summary=" + config.share.desc + "&pic=" + config.share.thumbnail,
+        sina: config.share.jiathis_gateway + "?webid=tsina&appkey=" + config.share.sina_appkey + "&url=" + encodeURIComponent($location.absUrl()) + "&title=" + encodeURIComponent(config.share.title) + "&summary=" + encodeURIComponent(config.share.desc) + "&pic=" + config.share.thumbnail,
+        facebook: config.share.jiathis_gateway + "?webid=fb&appkey=" + config.share.facebook_appkey + "&url=" + config.share.link + "&title=" + encodeURIComponent(config.share.title) + "&summary=" + encodeURIComponent(config.share.desc) + "&pic=" + config.share.thumbnail,
     };
 }

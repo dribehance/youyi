@@ -11,8 +11,8 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
     $scope.sidebar.share = {
         socialshare: false,
         weixin: false,
-        sina: config.share.jiathis_gateway + "?webid=tsina&appkey=" + config.share.sina_appkey + "&url=" + config.share.link + "&title=" + config.share.title + "&summary=" + config.share.desc + "&pic=" + config.share.thumbnail,
-        facebook: config.share.jiathis_gateway + "?webid=fb&appkey=" + config.share.facebook_appkey + "&url=" + config.share.link + "&title=" + config.share.title + "&summary=" + config.share.desc + "&pic=" + config.share.thumbnail,
+        sina: config.share.jiathis_gateway + "?webid=tsina&appkey=" + config.share.sina_appkey + "&url=" + config.share.link + "&title=" + encodeURIComponent(config.share.title) + "&summary=" + encodeURIComponent(config.share.desc) + "&pic=" + config.share.thumbnail,
+        facebook: config.share.jiathis_gateway + "?webid=fb&appkey=" + config.share.facebook_appkey + "&url=" + config.share.link + "&title=" + encodeURIComponent(config.share.title) + "&summary=" + encodeURIComponent(config.share.desc) + "&pic=" + config.share.thumbnail,
     }
     $scope.state = [];
     $scope.prev = function() {
