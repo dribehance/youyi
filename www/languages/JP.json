@@ -295,5 +295,7 @@
     "Personal ID Verification Passed":"ID認証審査に合格",
     "Leave": "一時的に離れます",
     "Continue": "記入し続ける",
-    "You haven't Set Transaction Password. Go Set?":"あなたが取引パスワードを設定しませんでした,設置?"
+    "You haven't Set Transaction Password. Go Set?":"あなたが取引パスワードを設定しませんでした,設置?",
+    "Please Install UE Lives APP to Enjoy All Functions":"完全な機能を利用できるために、UE Lives APP をダウンロードしてください",
+    "Contact Number":"連絡先"
 }

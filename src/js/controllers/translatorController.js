@@ -15,6 +15,7 @@ var translatorController = function($scope, $routeParams, $location, facebookSer
             $scope.translator.commentTags = data.YyPersonInfo.commentTags;
             $scope.translator.commentUsers = data.YyPersonInfo.commentUsers;
             $scope.translator.userIdentities = data.YyPersonInfo.userIdentities;
+            $scope.qrcode = "http://www.uelives.com/files/getQrcode?yy_user_id="+$routeParams.translator_id;
             $scope.name_authen = [];
             $scope.language_authen = [];
             $scope.industry_authen = [];

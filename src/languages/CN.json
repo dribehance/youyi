@@ -302,5 +302,7 @@
     "Personal ID Verification Passed": "已通过个人信息实名认证",
     "Leave": "暂时离开",
     "Continue": "继续填写",
-    "You haven't Set Transaction Password. Go Set?":"交易密码为空，是否需要去完善"
+    "You haven't Set Transaction Password. Go Set?":"交易密码为空，是否需要去完善",
+    "Please Install UE Lives APP to Enjoy All Functions":"请下载悠译APP以使用完整的功能",
+    "Contact Number":"联系电话"
 }
