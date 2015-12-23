@@ -27,7 +27,7 @@ angular.module("Youyi").constant("config", {
         "appid": "wxfc4845662ab85927",
         "secret":"1428c0468f80f233c7f17d887582f2f6",
         "redirect_uri": "http://www.uelives.com/oauth",
-        "payment_redirect_uri": "http://www.uelives.com/h5#/payment",
+        "payment_redirect_uri": "http://www.uelives.com/h5/#/payment",
         "response_type": "code",
         "scope": "snsapi_userinfo",
         "state": "weixin",
