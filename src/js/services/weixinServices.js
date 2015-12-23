@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Youyi").factory("weixinServices", function($http,$route, $rootScope, $location, toastServices, $window, oauthServices, localStorageService, config) {
+angular.module("Youyi").factory("weixinServices", function($http, $route, $timeout, $rootScope, $location, toastServices, $window, oauthServices, localStorageService, config) {
     if (!$rootScope.wx_browser) return {};
     oauthServices.initWeixin($location.absUrl().split("#")[0]).then(function(data) {
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -145,17 +145,26 @@ angular.module("Youyi").factory("weixinServices", function($http,$route, $rootSc
                     toastServices.hide();
                     // alert(JSON.stringify(res))
                     // alert("$location.path('tasks').replace();");
-                    $location.path("tasks").replace();
+                    // $location.path("tasks").replace();
+                    $timeout(function() {
+                        $location.path("tasks").replace()
+                    }, 1000)
                 },
-                cancel:function(){
+                cancel: function() {
                     toastServices.hide();
-                    $route.reload();
+                    // alert("cancel");
+                    $timeout(function() {
+                        $location.path("tasks").replace()
+                    }, 1000)
                 },
                 fail: function(res) {
                     toastServices.hide();
-                    $rootScope.back();
+                    $timeout(function() {
+                        $location.path("tasks").replace()
+                    }, 1000)
                     // alert("chooseWXPay fail");
                     // alert(JSON.stringify(res));
+                    // $rootScope.back();
                 }
             });
         }
