@@ -286,6 +286,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                 url: config.url + "/app/TaskController/requester",
                 method: "GET",
                 params: angular.extend({}, config.common_params,{
+                    "token": localStorageService.get("token"),
                     "language_app":localStorageService.get("language")
                 }, input)
             }).then(function(data) {
