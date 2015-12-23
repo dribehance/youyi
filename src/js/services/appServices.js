@@ -1,6 +1,6 @@
  // by dribehance <dribehance.kksdapp.com>
  // EventHandle
- angular.module("Youyi").factory("appServices", function($rootScope, $window, $location, $translate, $timeout, localStorageService, userServices, errorServices, toastServices, config) {
+ angular.module("Youyi").factory("appServices", function($rootScope,$filter, $window, $location, $translate, $timeout, localStorageService, userServices, errorServices, toastServices, config) {
      var routeChangeStart = function(e) {
          // do something white routechangestart,eg:
          // toastServices.show();
@@ -86,7 +86,8 @@
              $translate.use(localStorageService.get("language"));
              // index dialog tips
              $rootScope.showDialog = function() {
-                 errorServices.autoHide("请下载悠译人APP使用完整的功能");
+                 var tip = $filter("translate")("Please Install UE Lives APP to Enjoy All Functions");
+                 errorServices.autoHide(tip);
              };
              // translate
              $rootScope.translate_with_value = function(translate_value) {
