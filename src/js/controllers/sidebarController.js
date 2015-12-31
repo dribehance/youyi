@@ -166,6 +166,7 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
                 SharedState.turnOff("uiSidebarLeft");
                 localStorageService.set("token", data.token);
                 userServices.sync();
+                $scope.input = {};
                 $route.reload();
             } else {
                 errorServices.autoHide(data.message);

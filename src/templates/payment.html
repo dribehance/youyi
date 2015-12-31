@@ -51,17 +51,17 @@
                 <label class="list-group-item">
                     {{"Unionpay" | translate}}
                     <input type="radio" class="hidden" ng-model="payway.channel" value="yinlian">
-                    <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payway.channel == 'yinlian' && !payway.balance)}"></i>
+                    <i class="kk kk-25 pull-right" ng-class="{'kk-checked':(payway.channel == 'yinlian' && !payway.balance),'active':(payway.channel == 'yinlian' && !payway.balance)}"></i>
                 </label>
                 <label class="list-group-item" ng-if="wx_browser">
                     {{"WeChat" | translate}}
                     <input type="radio" class="hidden" ng-model="payway.channel" value="weixin">
-                    <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payway.channel == 'weixin' && !payway.balance)}"></i>
+                    <i class="kk kk-25 pull-right" ng-class="{'kk-checked':(payway.channel == 'weixin' && !payway.balance),'active':(payway.channel == 'weixin' && !payway.balance)}"></i>
                 </label>
                 <label class="list-group-item" ng-if="!wx_browser">
                     {{"AliPay" | translate}}
                     <input type="radio" class="hidden" ng-model="payway.channel" value="alipay">
-                    <i class="kk kk-25 kk-checked pull-right" ng-class="{'active':(payway.channel == 'alipay' && !payway.balance)}"></i>
+                    <i class="kk kk-25 pull-right" ng-class="{'kk-checked':(payway.channel == 'alipay' && !payway.balance),'active':(payway.channel == 'alipay' && !payway.balance)}"></i>
                 </label>
             </div>
             <div class="section bg-transparent text-center">

@@ -10,7 +10,7 @@
     <div class="scrollable-content">
         <div class="translator-cover">
             <div>
-                <imageview data-rate="750/422" src="staticImageUrl+translator.bg_image"></imageview>
+                <imageview data-rate="750/422" data-fill="cover" src="staticImageUrl+translator.bg_image"></imageview>
             </div>
             <div class="tranlator-intro-bg">
                 <div class="translator-info left">
@@ -237,7 +237,7 @@
                         </div>
                         <div ng-repeat="language in language_authen">
                             <h4>{{language.title}}</h4>
-                            <imageview src="staticImageUrl+language.cover"></imageview>
+                            <imageview src="staticImageUrl+language.cover" data-rate="1"></imageview>
                         </div>
                         <!-- <img ng-src="{{staticImageUrl+identify.cover}}" class="block full-width" /> -->
                     </div>

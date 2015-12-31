@@ -12,7 +12,7 @@ angular.module("Youyi").directive('imageview', function() {
             var rate = parseFloat(scope.$eval($(element).attr('data-rate'))) || "auto";
             var style = {
                 display: "block",
-                width: $(element).width() || $(window).width(),
+                width: $(element).parent().width() || $(window).width(),
                 overflow: "hidden",
                 "text-align": "center",
                 "background-image": "url(" + bg_image + ")",
@@ -21,14 +21,14 @@ angular.module("Youyi").directive('imageview', function() {
                 // "background-repeat":"repeat"
             }
             if (rate == 'auto') {
-                style["line-height"] = ($(element).width() || $(window).width()) / 2 + "px";
-                style["min-height"] = ($(element).width() || $(window).width()) / 2;
+                style["line-height"] = ($(element).parent().width() || $(window).width()) / 2 + "px";
+                style["min-height"] = ($(element).parent().width() || $(window).width()) / 2;
                 $(element).find("img").css({
                     "width": "100%"
                 })
             } else {
-                style["line-height"] = ($(element).width() || $(window).width()) / rate + "px";
-                style["height"] = ($(element).width() || $(window).width()) / rate;
+                style["line-height"] = ($(element).parent().width() || $(window).width()) / rate + "px";
+                style["height"] = ($(element).parent().width() || $(window).width()) / rate;
             }
             $(element).css(style);
             $(element).parent().css({

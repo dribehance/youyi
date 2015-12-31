@@ -15,14 +15,14 @@ var applyFlowController = function($rootScope, $scope, $route, $location, $route
         other: "",
         from_date_options: {
             format: "yyyy-mm-dd",
-            min: new Date(),
+            max: [23, 30]
         },
         to_date_options: {
             format: "yyyy-mm-dd",
         },
         time_options: {
             format: "HH:i",
-            min: 0.5,
+            min: [0, 30],
             max: [23, 30]
         },
         to_time_options: {
