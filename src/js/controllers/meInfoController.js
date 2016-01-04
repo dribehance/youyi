@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var meInfoController = function($scope, $rootScope, $location, $interval, $timeout, SharedState, userServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var meInfoController = function($scope, $rootScope, $filter, $location, $interval, $timeout, SharedState, userServices, taskServices, errorServices, toastServices, localStorageService, config) {
     var timestamp = new Date().getTime();
     var timer = $interval(function() {
         var now = new Date().getTime();
@@ -42,15 +42,33 @@ var meInfoController = function($scope, $rootScope, $location, $interval, $timeo
     $scope.input = {};
     $scope.input.choosen_city = {};
     $scope.ajaxForm = function() {
-        // check area,user phone or email;
-        if ($rootScope.user.city == '') {
-            errorServices.autoHide("请选择城市")
+        // check nickname
+        if ($rootScope.user.nickname == undefined || $rootScope.user.nickname == '') {
+            var message = $filter("translate")("Enter Your Nickname");
+            errorServices.autoHide(message);
             return;
         }
-        console.log($rootScope.user.telephone)
-        console.log($rootScope.user.email)
+        // check realname
+        if ($rootScope.user.name == undefined || $rootScope.user.name == '') {
+            var message = $filter("translate")("Enter Your Real Name");
+            errorServices.autoHide(message);
+            return;
+        }
+        // check area
+        if ($rootScope.user.city == undefined || $rootScope.user.city == '') {
+            var message = $filter("translate")("Select Your Region");
+            errorServices.autoHide(message);
+            return;
+        }
+        // check profession
+        if ($rootScope.user.profession == undefined || $rootScope.user.profession == '') {
+            var message = $filter("translate")("Enter the Industry in Which You are Working");
+            errorServices.autoHide(message);
+            return;
+        }
+        // check phone or email
         if ($rootScope.user.telephone == "" && $rootScope.user.email == "") {
-            errorServices.autoHide("手机邮箱至少填写一个")
+            errorServices.autoHide("Enter Your Mobile No. or Email")
             return;
         }
         toastServices.show();

@@ -295,5 +295,10 @@
     "Continue": "계속 써",
     "You haven't Set Transaction Password. Go Set?":"거래하신 비번이 비어있습니다.개선 하시겠습니까",
     "Please Install UE Lives APP to Enjoy All Functions":"다운로드 UE Lives APP, 전체 기능 사용.",
-    "Contact Number":"연락처"
+    "Contact Number":"연락처",
+    "Enter Your Nickname":"별명 입력하십시오.",
+    "Enter Your Real Name":"실제 이름을 입력하십시오.",
+    "Enter the Industry in Which You are Working":"니 업계 입력하십시오.",
+    "Select Your Region":"지역을 선택하세요",
+    "Enter Your Mobile No. or Email":"휴대폰 번호/이메일"
 }

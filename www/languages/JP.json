@@ -297,5 +297,10 @@
     "Continue": "記入し続ける",
     "You haven't Set Transaction Password. Go Set?":"あなたが取引パスワードを設定しませんでした,設置?",
     "Please Install UE Lives APP to Enjoy All Functions":"完全な機能を利用できるために、UE Lives APP をダウンロードしてください",
-    "Contact Number":"連絡先"
+    "Contact Number":"連絡先",
+    "Enter Your Nickname":"ニックネームを入力してください",
+    "Enter Your Real Name":"本当の名前を入力してください",
+    "Enter the Industry in Which You are Working":"業界を入力してください",
+    "Select Your Region":"地域を選択してください",
+    "Enter Your Mobile No. or Email":"電話番号/メールアドレス入力"
 }
