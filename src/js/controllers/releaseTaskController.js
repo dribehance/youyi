@@ -22,12 +22,12 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
         },
         time_options: {
             format: "HH:i",
-            min: [0, 30],
+            min: [0, 0],
             max: [23, 30]
         },
         to_time_options: {
             format: "HH:i",
-            min: [0, 30],
+            min: [0, 0],
             max: [23, 30]
         }
     };
@@ -113,6 +113,7 @@ var releaseTaskController = function($rootScope, $filter, $scope, $route, $timeo
             "start_time": $filter("date")($scope.input.from_date, "yyyy-MM-dd") + " " + $filter("date")($scope.input.from_time, "HH:mm"),
             "end_time": $filter("date")($scope.input.to_date, "yyyy-MM-dd") + " " + $filter("date")($scope.input.to_time, "HH:mm"),
             "price_for_day": $scope.input.price,
+            "currency_type":$scope.input.currency
         }
         $scope.queryMinPrice(function() {
             toastServices.show();

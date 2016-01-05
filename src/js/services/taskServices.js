@@ -185,6 +185,7 @@ angular.module("Youyi").factory("taskServices", function($http, localStorageServ
                     "start_time": input.start_time,
                     "end_time": input.end_time,
                     "price_for_day": input.price_for_day,
+                    "currency_type":input.currency_type
                 })
             }).then(function(data) {
                 return data.data;

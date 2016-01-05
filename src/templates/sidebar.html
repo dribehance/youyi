@@ -24,7 +24,7 @@
                 <span class="block text-gray">{{"Weibo" | translate}}</span>
             </a>
             <!-- ng-href="{{weixinOauthUrl}}" -->
-            <a class="btn" ng-click="weixinLogin()">
+            <a class="btn" ng-click="weixinLogin()"  ng-if="wx_browser">
                 <i class="kk kk-50 kk-weixin"></i>
                 <span class="block text-gray">{{"WeChat" | translate}}</span>
             </a>
@@ -230,7 +230,7 @@
                     <i class="kk kk-50 kk-weibo"></i>
                     <span class="block text-gray">{{"Weibo" | translate}}</span>
                 </a>
-                <a class="btn" ng-click="weixinShare()">
+                <a class="btn" ng-click="weixinShare()" ng-if="wx_browser">
                     <i class="kk kk-50 kk-weixin"></i>
                     <span class="block text-gray">{{"WeChat" | translate}}</span>
                 </a>

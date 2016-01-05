@@ -10,24 +10,24 @@ var applyFlowController = function($rootScope, $scope, $route, $location, $route
         price: 0,
         currency: "",
         total: 0,
-        address: "Please Choose",
+        address: "Please choose",
         content: "",
         other: "",
         from_date_options: {
             format: "yyyy-mm-dd",
-            max: [23, 30]
+            min: new Date(),
         },
         to_date_options: {
             format: "yyyy-mm-dd",
         },
         time_options: {
             format: "HH:i",
-            min: [0, 30],
+            min: [0, 0],
             max: [23, 30]
         },
         to_time_options: {
             format: "HH:i",
-            min: [0, 30],
+            min: [0, 0],
             max: [23, 30]
         }
     };
@@ -90,7 +90,9 @@ var applyFlowController = function($rootScope, $scope, $route, $location, $route
             "start_time": $filter("date")($scope.input.from_date, "yyyy-MM-dd") + " " + $filter("date")($scope.input.from_time, "HH:mm"),
             "end_time": $filter("date")($scope.input.to_date, "yyyy-MM-dd") + " " + $filter("date")($scope.input.to_time, "HH:mm"),
             "price_for_day": $scope.input.price,
+            "currency_type":$scope.input.currency
         }
+        console.log(input)
         toastServices.show();
         taskServices.queryTotalByDay(input).then(function(data) {
             toastServices.hide();
