@@ -130,21 +130,21 @@ module.exports = function(config) {
     * support escaping of variable content
     * repository:https://github.com/dribehance/angular-translate.git 
     */
-   config.vendor.js.push('./bower_components/angular-sanitize/angular-sanitize.min.js');
+   // config.vendor.js.push('./bower_components/angular-sanitize/angular-sanitize.min.js');
    /**
     * [module:flow]
     * support file upload
     * repository:https://github.com/dribehance/ng-flow.git
     */
-   config.vendor.js.push('./bower_components/ng-flow/dist/ng-flow-standalone.js');
+   // config.vendor.js.push('./bower_components/ng-flow/dist/ng-flow-standalone.js');
    /**
     * [module:timer]
     * support countdown
     * repository:https://github.com/dribehance/angular-timer.git
     */
-   config.vendor.js.push('./bower_components/angular-timer/dist/angular-timer.min.js');
+   // config.vendor.js.push('./bower_components/angular-timer/dist/angular-timer.min.js');
    config.vendor.js.push('./bower_components/humanize-duration/humanize-duration.js');
-   config.vendor.js.push('./bower_components/momentjs/moment.js');
+   // config.vendor.js.push('./bower_components/momentjs/moment.js');
    /**
     * [module:n3-pie-chart]
     * support chart
@@ -163,13 +163,13 @@ module.exports = function(config) {
     * support carousel
     * repository:https://github.com/dribehance/OwlCarousel.git 
     */
-   config.vendor.js.push('./bower_components/OwlCarousel/owl-carousel/owl.carousel.min.js');
+   // config.vendor.js.push('./bower_components/OwlCarousel/owl-carousel/owl.carousel.min.js');
    /**
     * [lib]
     * identity-card validation
     * repository:https://github.com/dribehance/china-identity-card.git
     */
-   config.vendor.js.push('./node_modules/china-identity-card/validate.js');
+   // config.vendor.js.push('./node_modules/china-identity-card/validate.js');
    /**
     * [lib]
     * support html5 date/time/week
@@ -187,11 +187,11 @@ module.exports = function(config) {
     * support i18n
     * repository:https://github.com/dribehance/angular-translate.git 
     */
-   config.vendor.js.push('./bower_components/angular-translate/angular-translate.min.js');
+   // config.vendor.js.push('./bower_components/angular-translate/angular-translate.min.js');
    // translate language offer by server
    // config.vendor.js.push('./bower_components/angular-translate-loader-url/angular-translate-loader-url.min.js');
    // translate language offer by static file
-   config.vendor.js.push('./bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js');
+   // config.vendor.js.push('./bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js');
 
   /**
    * Vendor Fonts

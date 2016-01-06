@@ -21,9 +21,9 @@ var config = {
     },
     vendor: {
         js: [
-            './bower_components/jquery/dist/jquery.min.js',
-            './bower_components/angular/angular.js',
-            './bower_components/angular-route/angular-route.js',
+            // './bower_components/jquery/dist/jquery.min.js',
+            // './bower_components/angular/angular.js',
+            // './bower_components/angular-route/angular-route.js',
             './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js'
         ],
 
@@ -182,7 +182,7 @@ gulp.task('html', function() {
         inject.push('<script src="cordova.js"></script>');
     }
     if (config.weixin) {
-        inject.push('<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>');
+        // inject.push('<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>');
     }
     gulp.src(['src/html/**/*.html'])
         .pipe(replace('<!-- inject:js -->', inject.join('\n    ')))
