@@ -68,7 +68,8 @@ var meInfoController = function($scope, $rootScope, $filter, $location, $interva
         }
         // check phone or email
         if ($rootScope.user.telephone == "" && $rootScope.user.email == "") {
-            errorServices.autoHide("Enter Your Mobile No. or Email")
+            var message = $filter("translate")("Enter Your Mobile No. or Email");
+            errorServices.autoHide(message);
             return;
         }
         toastServices.show();

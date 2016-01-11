@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="Youyi" ng-class="{'off-top':!navbar.top,'off-bottom':!navbar.bottom}" xmlns:wb="http://open.weibo.com/wb">
+<html class="" ng-class="{'off-top':!navbar.top,'off-bottom':!navbar.bottom}" xmlns:wb="http://open.weibo.com/wb">
 
 <head>
     <meta charset="utf-8" />
@@ -13,6 +13,7 @@
     <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/angular.js/1.4.6/angular.min.js"></script>
     <script src="//cdn.bootcss.com/angular.js/1.4.6/angular-route.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     
     <script src="js/app.min.js"></script>
 </head>
@@ -68,32 +69,6 @@
     </div>
     <!-- ~ .app -->
     <div ui-yield-to="modals"></div>
-    <!-- async load js -->
-    <!--<script type="text/javascript" id="js-container">
-    (function(d, s) {
-        var _js = {
-            "sanitize": "//cdn.bootcss.com/angular-sanitize/1.4.6/angular-sanitize.min.js",
-            "flow": "//cdn.bootcss.com/ng-flow/2.6.1/ng-flow-standalone.min.js",
-            "timer": "//cdn.bootcss.com/angular-timer/1.3.3/angular-timer.min.js",
-            "moment": "//cdn.bootcss.com/moment.js/2.9.0/moment.min.js",
-            "carousel": "//cdn.bootcss.com/owl-carousel/1.32/owl.carousel.min.js",
-            "translate": "//cdn.bootcss.com/angular-translate/2.8.0/angular-translate.min.js",
-            "translate-loader": "//cdn.bootcss.com/angular-translate-loader-static-files/2.8.0/angular-translate-loader-static-files.min.js"
-        };
-        for (key in _js) {
-            var js, id = key,
-                yjs = d.getElementById("js-container");
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = _js[key];
-            yjs.parentNode.insertBefore(js, yjs);
-        }
-    }(document, 'script'));
-    </script>
-    -->
     <script src="//cdn.bootcss.com/angular-sanitize/1.4.6/angular-sanitize.min.js"></script>
     <script src="//cdn.bootcss.com/ng-flow/2.6.1/ng-flow-standalone.min.js"></script>
     <script src="//cdn.bootcss.com/angular-timer/1.3.3/angular-timer.min.js"></script>
@@ -101,7 +76,6 @@
     <script src="//cdn.bootcss.com/owl-carousel/1.32/owl.carousel.min.js"></script>
     <script src="//cdn.bootcss.com/angular-translate/2.8.0/angular-translate.min.js"></script>
     <script src="//cdn.bootcss.com/angular-translate-loader-static-files/2.8.0/angular-translate-loader-static-files.min.js"></script>
-    
     <!-- facebook jssdk -->
     <script>
     (function(d, s, id) {
@@ -124,22 +98,15 @@
         }
         js = d.createElement(s);
         js.id = id;
-        js.src = "http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=622824244&debug=true";
+        // js.src = "http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=622824244&debug=true";
+        js.src = "http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=622824244";
         sjs.parentNode.insertBefore(js, sjs);
     }(document, 'script', 'sina-jssdk'));
     </script>
-    <!-- weixin jssdk -->
-    <script>
-    (function(d, s, id) {
-        var js, wjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "http://res.wx.qq.com/open/js/jweixin-1.0.0.js";
-        wjs.parentNode.insertBefore(js, wjs);
-    }(document, 'script', 'weixin-jssdk'));
+    <script type="text/javascript">
+    $(document).ready(function() {
+        angular.bootstrap($("html"), ['Youyi']);
+    })
     </script>
 </body>
 

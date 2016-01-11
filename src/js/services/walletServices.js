@@ -27,6 +27,7 @@ angular.module("Youyi").factory("walletServices", function($http, localStorageSe
                     "bankcard": input.bank_cardno,
                     "username": input.realname,
                     "pay_passwrod": input.password,
+                    "bank_telephone":input.telephone
                 })
             }).then(function(data) {
                 return data.data;
