@@ -19,8 +19,11 @@
         <div class="download" ng-if="download_panel == 1">
             <div class="close-download" ng-click="closeDownload()"></div>
             <div class="app-download" ng-click="download()"></div>
-            <imageview src="'../images/download_CN.png'" data-rate="750/84" ng-if="global_language =='CN'"></imageview>
-            <imageview src="'../images/download_CA.png'" data-rate="750/84" ng-if="global_language !='CN'"></imageview>
+            <div class="download-tip" ng-show="download_tip"></div>
+            <div>
+                <imageview src="'../images/download_CN.png'" data-rate="750/84" ng-if="global_language =='CN'"></imageview>
+                <imageview src="'../images/download_CA.png'" data-rate="750/84" ng-if="global_language !='CN'"></imageview>
+            </div>
         </div>
         <!-- banner -->
         <banner data-options="{}" data-rate="640/204">
