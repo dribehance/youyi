@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var indexController = function($scope, $rootScope, $location, SharedState, bannerServices, taskServices, errorServices, toastServices, localStorageService, config) {
+var indexController = function($scope, $rootScope, $location, SharedState, bannerServices, taskServices, errorServices, toastServices, platformServices, localStorageService, config) {
     $scope.banners = [];
     bannerServices.query().then(function(data) {
         if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -110,7 +110,8 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
     $scope.reset_price = function() {
         $scope.filter.name = "";
         $scope.choosen.price = {
-            range: ""
+            range: "",
+            name: ""
         };
         // reset;
         $scope.tasks = [];
@@ -210,46 +211,47 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
     //     unit: "CNY",
     //     range: "2500以上"
     // }];
-    var parsePrice = function(price) {
-        var obj = {};
-        if (!price) return;
-        obj["unit"] = price.split(" ")[0];
-        obj["range"] = price.split(" ")[1].split("/")[0];
-        obj["per"] = price.split(" ")[1].split("/")[1];
-        return obj;
-    }
-    // query price by location
+    var parsePrice = function(price, key) {
+            var obj = {};
+            if (!price) return;
+            obj["name"] = key;
+            obj["unit"] = price.split(" ")[0];
+            obj["range"] = price.split(" ")[1].split("/")[0];
+            obj["per"] = price.split(" ")[1].split("/")[1];
+            return obj;
+        }
+        // query price by location
     toastServices.show();
-    taskServices.price().then(function(data){
-        toastServices.hide()
-        if(data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-            var prices = data.Result.prices;
-            var price_by_day = [];
-            price_by_day.push(parsePrice(prices.price_500));
-            price_by_day.push(parsePrice(prices.price_1000));
-            price_by_day.push(parsePrice(prices.price_1500));
-            price_by_day.push(parsePrice(prices.price_2000));
-            price_by_day.push(parsePrice(prices.price_2500));
-            price_by_day.push(parsePrice(prices.price_2600));
-            $scope.prices = price_by_day;
-        }
-        else {
-            errorServices.autoHide(data.message);
-        }
-    })
-    // $scope.prices = price_by_hour;
-    // $scope.prices = price_by_day;
-    // $scope.price_tab = {};
-    // $scope.price_tab.name = "by_hour";
+    taskServices.price().then(function(data) {
+            toastServices.hide()
+            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                var prices = data.Result.prices;
+                var price_by_day = [];
+                price_by_day.push(parsePrice(prices.price_500, "0-500"));
+                price_by_day.push(parsePrice(prices.price_1000, "500-1000"));
+                price_by_day.push(parsePrice(prices.price_1500, "1000-1500"));
+                price_by_day.push(parsePrice(prices.price_2000, "1500-2000"));
+                price_by_day.push(parsePrice(prices.price_2500, "2000-2500"));
+                price_by_day.push(parsePrice(prices.price_2600, "2500以上"));
+                $scope.prices = price_by_day;
+            } else {
+                errorServices.autoHide(data.message);
+            }
+        })
+        // $scope.prices = price_by_hour;
+        // $scope.prices = price_by_day;
+        // $scope.price_tab = {};
+        // $scope.price_tab.name = "by_hour";
     $scope.choosen.price = (localStorageService.get("choosen") && localStorageService.get("choosen").price) || {
-        range: ""
+        range: "",
+        name: ""
     };
-    $scope.$watch("choosen.price.range", function(n, o) {
+    $scope.$watch("choosen.price.name", function(n, o) {
         if (n === o || n == "") {
             return;
         }
         $scope.filter.name = "";
-        var money = $scope.choosen.price.range;
+        var money = $scope.choosen.price.name;
         // reset;
         $scope.tasks = [];
         $scope.page.no_more = false;
@@ -304,7 +306,7 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
         }).join("、"),
         filter_place_group_id: $scope.choosen.city.group_id,
         filter_type_group_id: $scope.choosen.category.group_id,
-        filter_money: $scope.choosen.price.range,
+        filter_money: $scope.choosen.price.name,
         kw: ""
     };
     $scope.loadMore = function() {
@@ -335,7 +337,9 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
         angular.element("#scrollable-content").animate({
             scrollTop: localStorageService.get("cache").tasks.scroll_hood
         })
-        localStorageService.set("cache",{tasks:null})
+        localStorageService.set("cache", {
+            tasks: null
+        })
     } else {
         $scope.loadMore();
     }
@@ -346,7 +350,7 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
             scroll_hood: angular.element("#scrollable-content").scrollTop()
         }
         localStorageService.set("cache", {
-            tasks:cache_data
+            tasks: cache_data
         });
         $location.path("tasks/" + id);
     };
@@ -360,5 +364,13 @@ var indexController = function($scope, $rootScope, $location, SharedState, banne
             return
         }
         $location.path("search/" + $scope.input.search);
+    };
+    // download;
+    $scope.download_panel = 1;
+    $scope.closeDownload = function() {
+        $scope.download_panel = 0;
+    }
+    $scope.download = function() {
+        platformServices.download();
     }
 }

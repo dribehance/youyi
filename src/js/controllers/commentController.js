@@ -7,9 +7,9 @@ var commentController = function($scope, $rootScope, $routeParams, commentServic
         tag: "",
         level: {},
         star: {
-            service: 5,
-            profession: 5,
-            language: 5
+            service: 4,
+            profession: 4,
+            language: 4
         }
     };
     toastServices.show();
@@ -58,23 +58,28 @@ var commentController = function($scope, $rootScope, $routeParams, commentServic
         return tag;
     }
 }
-angular.module("Youyi").controller("commentUploadController", function($rootScope, $filter, $routeParams, $scope, errorServices, toastServices, localStorageService, config) {
+angular.module("Youyi").controller("commentUploadController", function($rootScope, $filter, $routeParams, $scope, commentServices, errorServices, toastServices, localStorageService, config) {
     $scope.releaseComment = function(flow) {
+        $scope.input.tags = $scope.tags.filter(function(tag) {
+            return tag.selected;
+        }).map(function(t) {
+            return t.group_id;
+        }).join("#")
         if ($scope.input.note == "") {
             var tip = $filter("translate")("No Comments Submitted yet");
             errorServices.autoHide(tip);
             return;
         }
         if (flow.files.length == 0) {
-            tip = $filter("translate")("Upload at Least One Photo");
+            // tip = $filter("translate")("Upload at Least One Photo");
+            commentServices.release(angular.extend({}, $scope.input, {
+                "task_user_id": $routeParams.user_id,
+            })).then(function(data) {
+                $rootScope.back();
+            })
             errorServices.autoHide(tip);
             return;
         }
-        $scope.input.tags = $scope.tags.filter(function(tag) {
-            return tag.selected;
-        }).map(function(t) {
-            return t.group_id;
-        }).join("#")
         flow.opts.target = config.url + "/app/TaskUser/comment";
         flow.opts.testChunks = false;
         flow.opts.fileParameterName = "pic";

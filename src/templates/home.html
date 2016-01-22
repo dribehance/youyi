@@ -16,12 +16,18 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-header">
+        <div class="download" ng-if="download_panel == 1">
+            <div class="close-download" ng-click="closeDownload()"></div>
+            <div class="app-download" ng-click="download()"></div>
+            <imageview src="'../images/download_CN.png'" data-rate="750/84" ng-if="global_language =='CN'"></imageview>
+            <imageview src="'../images/download_CA.png'" data-rate="750/84" ng-if="global_language !='CN'"></imageview>
+        </div>
         <!-- banner -->
-        <banner data-options="{}" data-rate="750/175">
-                <a ng-href="{{b.banner_url}}" target="blank" class="block" ng-repeat="b in banners" on-repeat-done>
-                    <!-- <img ng-src="{{staticImageUrl + b.cover}}" err-src="../images/banner.png" class="block full-width" alt=""> -->
-                    <imageview src="staticImageUrl + b.cover" data-rate="750/175"></imageview>
-                </a>
+        <banner data-options="{}" data-rate="640/204">
+            <a ng-href="{{b.banner_url}}" target="blank" class="block" ng-repeat="b in banners" on-repeat-done>
+                <!-- <img ng-src="{{staticImageUrl + b.cover}}" err-src="../images/banner.png" class="block full-width" alt=""> -->
+                <imageview src="staticImageUrl + b.cover" data-rate="640/204"></imageview>
+            </a>
         </banner>
         <!-- filter -->
         <div class="section section-condensed" id="filter">

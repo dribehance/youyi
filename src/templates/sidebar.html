@@ -183,7 +183,7 @@
         <div class="avatar avatar-large">
             <img ng-src="{{ staticImageUrl + user.avatar || '../images/avatar_1.png'}}" err-src="../images/avatar_1.png" alt="">
         </div>
-        <a ng-href="#/me_info" class="block text-large text-gray">{{user.name || user.nickname || user.telephone || user.email }}<i class="kk kk-icon kk-edit" style="position:relative;top:-3px"></i></a>
+        <a ng-href="#/me_info" class="block text-large text-gray">{{user.nickname || user.name || user.telephone || user.email }}<i class="kk kk-icon kk-edit" style="position:relative;top:-3px"></i></a>
         <div>{{user.return_language}}</div>
         <p></p>
     </div>

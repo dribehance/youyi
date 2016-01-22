@@ -1,6 +1,6 @@
  // by dribehance <dribehance.kksdapp.com>
  // EventHandle
- angular.module("Youyi").factory("appServices", function($rootScope,$filter, $window, $location, $translate, $timeout, localStorageService, userServices, errorServices, toastServices, config) {
+ angular.module("Youyi").factory("appServices", function($rootScope, $filter, $window, $location, $translate, $timeout, localStorageService, userServices, errorServices, toastServices, config) {
      var routeChangeStart = function(e) {
          // do something white routechangestart,eg:
          // toastServices.show();
@@ -72,8 +72,13 @@
              };
              // language cache
              if (!localStorageService.get("language")) {
+                 $rootScope.global_language = "CN"
                  localStorageService.set("language", "CN")
-             };
+             } else {
+                 // translate app
+                 $rootScope.global_language = localStorageService.get("language")
+                 $translate.use(localStorageService.get("language"));
+             }
              // recommand cache
              if (!localStorageService.get("recommand")) {
                  localStorageService.set("recommand", {})
@@ -82,8 +87,6 @@
              // localStorageService.remove("token")
              $rootScope.user = {};
              userServices.sync();
-             // translate app
-             $translate.use(localStorageService.get("language"));
              // index dialog tips
              $rootScope.showDialog = function() {
                  var tip = $filter("translate")("Please Install UE Lives APP to Enjoy All Functions");

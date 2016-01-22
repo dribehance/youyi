@@ -25,6 +25,7 @@ var settingController = function($scope, $rootScope, $translate, SharedState, fa
     }
     $scope.ajaxForm = function() {
         localStorageService.set("language", $scope.input.choosen_language.code);
+        $rootScope.global_language = $scope.input.choosen_language.code;
         $translate.use(localStorageService.get("language"));
         userServices.sync();
         SharedState.turnOff("language_panel");

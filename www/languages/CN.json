@@ -302,12 +302,13 @@
     "Personal ID Verification Passed": "已通过个人信息实名认证",
     "Leave": "暂时离开",
     "Continue": "继续填写",
-    "You haven't Set Transaction Password. Go Set?":"交易密码为空，是否需要去完善",
-    "Please Install UE Lives APP to Enjoy All Functions":"请下载悠译APP以使用完整的功能",
-    "Contact Number":"联系电话",
-    "Enter Your Nickname":"请输入昵称",
-    "Enter Your Real Name":"请输入真实姓名",
-    "Enter the Industry in Which You are Working":"请输入行业",
-    "Select Your Region":"请选择区域",
-    "Enter Your Mobile No. or Email":"请输入您的手机或邮箱"
+    "You haven't Set Transaction Password. Go Set?": "交易密码为空，是否需要去完善",
+    "Please Install UE Lives APP to Enjoy All Functions": "请下载悠译APP以使用完整的功能",
+    "Contact Number": "联系电话",
+    "Enter Your Nickname": "请输入昵称",
+    "Enter Your Real Name": "请输入真实姓名",
+    "Enter the Industry in Which You are Working": "请输入行业",
+    "Select Your Region": "请选择区域",
+    "Enter Your Mobile No. or Email": "请输入您的手机或邮箱",
+    "Init. Pwd. 666666 for WeChat, Weibo, FB": "第三方登录初始密码666666"
 }

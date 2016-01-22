@@ -339,6 +339,10 @@
         -webkit-border-radius: 100%;
         overflow: hidden;
         background-color: white;
+        img {
+            height: 100%;
+            width: 100%;
+        }
     }
     .translator-bg {
         display: block;
@@ -466,6 +470,10 @@
         width: 70px;
         height: 70px;
     }
+    img {
+        height: 100%;
+        width: 100%;
+    }
 }
 
 .scrollable-dialog {
@@ -556,4 +564,27 @@
 }
 .modal-header .pull-left {
     padding-right:20px;
+}
+img.media-object {
+    height: 100%;
+    width: 100%;
+}
+.download {
+    position: relative;
+    .close-download {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 84px;
+        z-index: 1000;
+    }
+    .app-download {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 168px;
+        z-index: 1000;
+    }
 }

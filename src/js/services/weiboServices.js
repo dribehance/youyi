@@ -65,6 +65,12 @@ angular.module("Youyi").factory("weiboServices", function($http, $q, $window, $l
                 });
             });
         },
+        // login
+        // https://api.weibo.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&response_type=code&redirect_uri=YOUR_REGISTERED_REDIRECT_URI
+        queryAuthorizationCode: function() {
+            var url = config.weibo.base_url + "?" + "client_id=" + config.weibo.appid + "&redirect_uri=" + encodeURIComponent(config.weibo.redirect_uri) + "&response_type=" + config.weixin.response_type + "&scope=" + config.weixin.scope;
+            $window.location.href = url;
+        },
         _save: function(data) {
             // save user info to server
             var query = {

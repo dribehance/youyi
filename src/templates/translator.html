@@ -76,7 +76,7 @@
                         {{translator.pay_day}}{{translator.currency_type}}/{{"Day"|translate}}
                     </div>
                 </div>
-                <div class="list-group-item" ng-if="translator.commentTags >0">
+                <div class="list-group-item" ng-if="translator.commentTags.length >0">
                     <p class="text-small">{{"Comment Tags" | translate}}</p>
                     <div class="row grid-gutter">
                         <div class="col-xs-4" ng-repeat="tag in translator.commentTags">
@@ -118,7 +118,7 @@
                             <p class="text-small">{{"Experience" | translate}}</p>
                         </div>
                     </div>
-                    <div class="text-right" ng-repeat="experience in translator.experiences">
+                    <div class="" ng-repeat="experience in translator.experiences">
                         <p>{{experience.experience}}</p>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                             <p class="text-small">{{"Profile" | translate}}</p>
                         </div>
                     </div>
-                    <div class="text-right">
+                    <div class="">
                         <p>{{translator.introduction}}</p>
                     </div>
                 </div>

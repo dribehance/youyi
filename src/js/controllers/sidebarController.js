@@ -220,7 +220,8 @@ angular.module("Youyi").controller("sidebarController", function($scope, $window
         facebookServices.share();
     }
     $scope.weiboLogin = function() {
-        weiboServices.login();
+        // weiboServices.login();
+        weiboServices.queryAuthorizationCode && weiboServices.queryAuthorizationCode();
     };
     // $scope.weiboShare = function() {
     //     console.log("weiboShare")

@@ -18,7 +18,7 @@
     <div class="scrollable-content">
         <!-- normal content -->
         <a ng-href="#/translators/{{translator.user_id}}" class="translator" ng-repeat="translator in translators track by $index">
-            <imageview data-rate="750/422" src="staticImageUrl+translator.bg_image"></imageview>
+            <imageview data-rate="750/422" data-fill="cover" src="staticImageUrl+translator.bg_image"></imageview>
             <span class="translator-intro">
                 <span class="h3 block">
                 <i class="kk kk-icon" ng-class="{'kk-male':translator.gender=='1','kk-female':translator.gender !='1'}"></i>

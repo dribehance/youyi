@@ -32,5 +32,11 @@ angular.module("Youyi").constant("config", {
         "scope": "snsapi_userinfo",
         "state": "weixin",
         "wechat_redirect":"#wechat_redirect",
+    },
+    weibo: {
+        "base_url":"https://api.weibo.com/oauth2/authorize",
+        "appid": "622824244",
+        "secret":"c66fffcec19ed0cab6743d9a7c33f29f",
+        "redirect_uri": "http://www.uelives.com/oauth_weibo",
     }
 });
