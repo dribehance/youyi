@@ -91,11 +91,11 @@
     "旅行": "旅行",
     "其它": "その他",
     "Task Details": "具体的な仕事内容",
-    "Home": "ホームページ",
-    "Create Task": "新しい仕事を発注",
-    "Task List": "仕事リスト",
-    "UE": "？",
-    "Messages/chat": "チャットルーム",
+    "Home": "ホーム",
+    "Create Task": "新規",
+    "Task List": "リスト",
+    "UE": "UE",
+    "Messages/chat": "チャット",
     "Select Language": "言語選択",
     "Enter the Language to be Translated": "翻訳する元の言語を選択",
     "Add Another Language": "新しい言語を追加する",
@@ -303,5 +303,7 @@
     "Enter the Industry in Which You are Working": "業界を入力してください",
     "Select Your Region": "地域を選択してください",
     "Enter Your Mobile No. or Email": "電話番号/メールアドレス入力",
-    "Init. Pwd. 666666 for WeChat, Weibo, FB": "WeChat、Weibo、FB初期パスワード 666666"
+    "Init. Pwd. 666666 for WeChat, Weibo, FB": "WeChat、Weibo、FB初期パスワード 666666",
+    "No more than 4hrs. counts as half day. If you have different service charges, please elaborate details in your 'Profile'.": "４時間以下を半日と計算。謝金の詳細については、プロフィールに記入してください。",
+    "No more than 4hrs. counts as half day": "４時間以下を半日と計算"
 }

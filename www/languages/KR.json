@@ -89,7 +89,7 @@
     "Travel": "여행",
     "商务": "비즈니스",
     "旅行": "여행",
-    "其它": "기타등등",
+    "其它": "기타",
     "Task Details": "작업 정보",
     "Home": "홈페이지",
     "Create Task": "작업 생성",
@@ -105,7 +105,7 @@
     "Type": "종류",
     "Business": "사업",
     "Travel": "여행",
-    "Others": "기타등등",
+    "Others": "기타",
     "Price": "가격",
     "Day": "일",
     "Hr.": "시간",
@@ -301,5 +301,7 @@
     "Enter the Industry in Which You are Working": "니 업계 입력하십시오.",
     "Select Your Region": "지역을 선택하세요",
     "Enter Your Mobile No. or Email": "휴대폰 번호/이메일",
-    "Init. Pwd. 666666 for WeChat, Weibo, FB": "WeChat, Weibo, FB 초기 암호 666666"
+    "Init. Pwd. 666666 for WeChat, Weibo, FB": "WeChat, Weibo, FB 초기 암호 666666",
+    "No more than 4hrs. counts as half day. If you have different service charges, please elaborate details in your 'Profile'.": "4시간/일은 0.5일로 계산. 비용이 다를 경우 개인소개에 설명하세요",
+    "No more than 4hrs. counts as half day": "4시간/일은 0.5일로 계산"
 }

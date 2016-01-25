@@ -89,7 +89,7 @@
     "Travel": "旅行",
     "商务": "商务",
     "旅行": "旅行",
-    "其它": "其他",
+    "其它": "其它",
     "Task Details": "任务详情",
     "Home": "主页",
     "Create Task": "发起任务",
@@ -310,5 +310,7 @@
     "Enter the Industry in Which You are Working": "请输入行业",
     "Select Your Region": "请选择区域",
     "Enter Your Mobile No. or Email": "请输入您的手机或邮箱",
-    "Init. Pwd. 666666 for WeChat, Weibo, FB": "第三方登录初始密码666666"
+    "Init. Pwd. 666666 for WeChat, Weibo, FB": "第三方登录初始密码666666",
+    "No more than 4hrs. counts as half day. If you have different service charges, please elaborate details in your 'Profile'.": "4小时或以下以半天计算。如有不同收费标准，请在“个人介绍”中详细说明",
+    "No more than 4hrs. counts as half day": "4小时或以下以半天计算"
 }
