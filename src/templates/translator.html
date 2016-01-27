@@ -35,15 +35,27 @@
                     <div class="btn-group justified">
                         <span>
                             <span class="block text-small">{{"Service Attitude" | translate}}</span>
-                        <span class="block text-primary">{{translator.service_score}}</span>
+                            <span class="block text-primary" ng-if="translator.service_score !=0">
+                                {{translator.service_score}}
+                                <small class="text-gray"> / 5.0</small>
+                            </span>
+                            <span class="block text-primary" ng-if="translator.service_score ==0">-</span>
                         </span>
                         <span class="text-center">
                             <span class="block text-small">{{"Proficiency" | translate}}</span>
-                        <span class="block text-primary">{{translator.profession_score}}</span>
+                            <span class="block text-primary" ng-if="translator.profession_score !=0">
+                                {{translator.profession_score}}
+                                <small class="text-gray"> / 5.0</small>
+                            </span>
+                            <span class="block text-primary" ng-if="translator.profession_score ==0">-</span>
                         </span>
                         <span class="text-right">
                             <span class="block text-small">{{"Language Skill" | translate}}</span>
-                        <span class="block text-primary">{{translator.language_score}}</span>
+                            <span class="block text-primary" ng-if="translator.language_score !=0">
+                                {{translator.language_score}}
+                                <small class="text-gray"> / 5.0</small>
+                            </span>
+                            <span class="block text-primary" ng-if="translator.language_score ==0">-</span>
                         </span>
                     </div>
                 </div>
