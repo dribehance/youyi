@@ -200,6 +200,7 @@ var meController = function($scope, $rootScope, $location, $timeout, SharedState
     $scope.sync_back = function() {
         userServices.sync();
         if ($rootScope.user.is_translate == 1) {
+            $rootScope.back();
             return;
         }
         toastServices.show();
