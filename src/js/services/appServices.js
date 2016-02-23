@@ -86,7 +86,7 @@
              // user info cache
              // localStorageService.remove("token")
              $rootScope.user = {};
-             if ($location.path().match("translators") == null) {
+             if (!($location.path().match("translators") == null || $location.path().match("tasks") == null)) {
                  userServices.sync();
              }
              // index dialog tips
