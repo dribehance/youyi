@@ -86,7 +86,9 @@
              // user info cache
              // localStorageService.remove("token")
              $rootScope.user = {};
-             userServices.sync();
+             if ($location.path().match("translators") == null) {
+                 userServices.sync();
+             }
              // index dialog tips
              $rootScope.showDialog = function() {
                  var tip = $filter("translate")("Please Install UE Lives APP to Enjoy All Functions");
